@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  role      UserRole @default(VIEWER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Listing {
+  id             String        @id @default(cuid())
+  slug           String        @unique
+  title          String
+  summary        String
+  description   String
+  type           ListingType
+  status         ListingStatus @default(AVAILABLE)
+  price          Float?
+  address        String
+  suburb         String
+  state          String
+  postcode       String
+  latitude       Float?
+  longitude      Float?
+  bedrooms       Int?
+  bathrooms      Int?
+  carSpaces      Int?
+  floorAreaSqm   Float?
+  features       String
+  heroImageUrl   String?
+  gallery        String
+  youtubeUrl     String?
+  published      Boolean       @default(false)
+  seoTitle       String?
+  seoDescription String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  enquiries Enquiry[]
+
+  @@map("listings")
+}
+
+model Enquiry {
+  id             String        @id @default(cuid())
+  type           EnquiryType
+  name           String
+  email          String
+  phone          String?
+  message        String
+  listingId      String?
+  preferredDate  DateTime?
+  createdAt      DateTime      @default(now())
+
+  listing Listing? @relation(fields: [listingId], references: [id])
+
+  @@map("enquiries")
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+enum ListingType {
+  RESIDENTIAL
+  COMMERCIAL
+  ANCILLARY
+}
+
+enum ListingStatus {
+  AVAILABLE
+  UNDER_OFFER
+  SOLD
+  LEASED
+}
+
+enum EnquiryType {
+  GENERAL
+  VALUATION
+  INSPECTION
+}
