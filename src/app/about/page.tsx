@@ -9,6 +9,7 @@ import {
 import { Building2, Award, Users, Target, CheckCircle } from 'lucide-react'
 import { FadeIn } from '@/components/ui/fade-in'
 import { Section } from '@/components/ui/section'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'About Us - Touchwood Asset Management',
@@ -108,8 +109,15 @@ export default function AboutPage() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="relative">
-              <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
-                <Building2 className="h-32 w-32 text-gray-400" />
+              <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                <Image
+                  src="/mascot.png"
+                  alt="Touchwood Asset Management mascot"
+                  fill
+                  className="object-contain object-center"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
               </div>
             </div>
           </FadeIn>

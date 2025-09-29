@@ -15,15 +15,15 @@ const heroData = [
     imageSrc: '/hero/parking.jpg',
     imageAlt: 'Secure car park space with orange roller door',
     ctaText: 'View Parking',
-    ctaLink: '/listings?category=car-park'
+    ctaLink: '/listings?category=car-park',
   },
   {
     title: 'Storage',
     subtitle: 'Convenient storage solutions for your belongings',
-    imageSrc: '/hero/storage.jpg',
+    imageSrc: '/storagerent.png',
     imageAlt: 'Clean storage unit facility',
     ctaText: 'View Storage',
-    ctaLink: '/listings?category=storage-cage'
+    ctaLink: '/listings?category=storage-cage',
   },
   {
     title: 'Residential',
@@ -31,8 +31,8 @@ const heroData = [
     imageSrc: '/hero/residential.jpg',
     imageAlt: 'Modern residential property',
     ctaText: 'View Properties',
-    ctaLink: '/listings?category=properties'
-  }
+    ctaLink: '/listings?category=properties',
+  },
 ]
 
 export function HeroSplit({ className = '' }: HeroSplitProps) {
@@ -51,7 +51,9 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
             Our Services
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            From residential rentals to commercial properties, storage, and carparks, we provide end-to-end management designed to maximise your returns and minimise your stress.
+            From residential rentals to commercial properties, storage, and
+            carparks, we provide end-to-end management designed to maximise your
+            returns and minimise your stress.
           </p>
         </motion.div>
 
@@ -99,7 +101,7 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
               />
             </motion.div>
           ))}
-          
+
           {/* Residential full-width below */}
           <motion.div
             className="md:col-span-2"
