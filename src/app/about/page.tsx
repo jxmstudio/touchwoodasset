@@ -1,16 +1,23 @@
 import { Metadata } from 'next'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Building2, Award, Users, Target, CheckCircle } from 'lucide-react'
 import { FadeIn } from '@/components/ui/fade-in'
 import { Section } from '@/components/ui/section'
 
 export const metadata: Metadata = {
   title: 'About Us - Touchwood Asset Management',
-  description: 'Learn about Touchwood Asset Management, our mission, values, and the team behind our success in property management across Melbourne and Victoria.',
+  description:
+    'Learn about Touchwood Asset Management, our mission, values, and the team behind our success in property management across Melbourne and Victoria.',
   openGraph: {
     title: 'About Us - Touchwood Asset Management',
-    description: 'Learn about Touchwood Asset Management, our mission, values, and the team behind our success in property management across Melbourne and Victoria.',
+    description:
+      'Learn about Touchwood Asset Management, our mission, values, and the team behind our success in property management across Melbourne and Victoria.',
   },
 }
 
@@ -25,22 +32,26 @@ const teamMembers = [
 const values = [
   {
     title: 'Excellence',
-    description: 'We strive for excellence in every aspect of our service delivery.',
+    description:
+      'We strive for excellence in every aspect of our service delivery.',
     icon: Award,
   },
   {
     title: 'Integrity',
-    description: 'Honest, transparent, and ethical business practices are our foundation.',
+    description:
+      'Honest, transparent, and ethical business practices are our foundation.',
     icon: CheckCircle,
   },
   {
     title: 'Innovation',
-    description: 'We embrace new technologies and approaches to better serve our clients.',
+    description:
+      'We embrace new technologies and approaches to better serve our clients.',
     icon: Target,
   },
   {
     title: 'Community',
-    description: 'We\'re committed to building strong relationships within our local communities.',
+    description:
+      "We're committed to building strong relationships within our local communities.",
     icon: Users,
   },
 ]
@@ -56,7 +67,8 @@ export default function AboutPage() {
               About Touchwood Asset Management
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-              Building trust through exceptional property management services since 2010
+              Building trust through exceptional property management services
+              since 2010
             </p>
           </FadeIn>
         </div>
@@ -72,20 +84,24 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-lg text-gray-700">
                 <p>
-                  Founded in 2010, Touchwood Asset Management began with a simple mission: to provide 
-                  exceptional property management services that put our clients first. What started as a 
-                  small team managing a handful of properties has grown into one of Melbourne's most trusted 
-                  property management companies.
+                  Founded in 2010, Touchwood Asset Management began with a
+                  simple mission: to provide exceptional property management
+                  services that put our clients first. What started as a small
+                  team managing a handful of properties has grown into one of
+                  Melbourne&apos;s most trusted property management companies.
                 </p>
                 <p>
-                  Our journey has been driven by a commitment to excellence, innovation, and genuine 
-                  care for our clients' investments. We understand that property is more than just 
-                  bricks and mortar – it's about people, families, businesses, and communities.
+                  Our journey has been driven by a commitment to excellence,
+                  innovation, and genuine care for our clients&apos;
+                  investments. We understand that property is more than just
+                  bricks and mortar – it&apos;s about people, families,
+                  businesses, and communities.
                 </p>
                 <p>
-                  Today, we manage a diverse portfolio of residential, commercial, and ancillary 
-                  properties across Melbourne and Victoria, serving thousands of satisfied clients who trust 
-                  us with their most valuable assets.
+                  Today, we manage a diverse portfolio of residential,
+                  commercial, and ancillary properties across Melbourne and
+                  Victoria, serving thousands of satisfied clients who trust us
+                  with their most valuable assets.
                 </p>
               </div>
             </div>
@@ -105,21 +121,27 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <FadeIn>
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Our Mission
+              </h3>
               <p className="text-lg text-gray-700">
-                To provide exceptional property management services that maximize our clients' 
-                investments while delivering outstanding tenant experiences through innovation, 
-                integrity, and personalized service.
+                To provide exceptional property management services that
+                maximize our clients&apos; investments while delivering
+                outstanding tenant experiences through innovation, integrity,
+                and personalized service.
               </p>
             </div>
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Our Vision
+              </h3>
               <p className="text-lg text-gray-700">
-                To be the leading property management company in Melbourne and Victoria, recognized for 
-                our commitment to excellence, innovation, and building lasting relationships with 
-                our clients and communities.
+                To be the leading property management company in Melbourne and
+                Victoria, recognized for our commitment to excellence,
+                innovation, and building lasting relationships with our clients
+                and communities.
               </p>
             </div>
           </FadeIn>
@@ -127,8 +149,8 @@ export default function AboutPage() {
       </Section>
 
       {/* Values */}
-      <Section 
-        title="Our Values" 
+      <Section
+        title="Our Values"
         subtitle="The principles that guide everything we do"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -153,8 +175,8 @@ export default function AboutPage() {
       </Section>
 
       {/* Team */}
-      <Section 
-        title="Meet Our Team" 
+      <Section
+        title="Meet Our Team"
         subtitle="Experienced professionals dedicated to your property success"
         className="bg-gray-50"
       >
@@ -172,9 +194,7 @@ export default function AboutPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-600">
-                    {member.bio}
-                  </p>
+                  <p className="text-sm text-gray-600">{member.bio}</p>
                 </CardContent>
               </Card>
             </FadeIn>
