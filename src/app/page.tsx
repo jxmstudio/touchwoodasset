@@ -10,115 +10,69 @@ import { VideoHero } from '@/components/hero/VideoHero'
 import { HeroSplit } from '@/components/marketing/HeroSplit'
 import { ListingsCarousel } from '@/components/listings/ListingsCarousel'
 import { OwnerPromo } from '@/components/OwnerPromo'
-import { 
-  Building2, 
-  Star, 
-  Phone, 
-  Mail,
-  Users,
-  TrendingUp
-} from 'lucide-react'
+import { listings } from '@/data/listings'
+import { Building2, Star, Phone, Mail, Users, TrendingUp } from 'lucide-react'
 
-// Mock listings data for the carousel
-const featuredListings = [
-  {
-    id: '1',
-    slug: 'luxury-apartment-sydney-harbour',
-    title: 'Luxury Apartment with Sydney Harbour Views',
-    summary: 'Stunning 3-bedroom apartment with panoramic harbour views and premium finishes',
-    type: 'RESIDENTIAL' as const,
-    status: 'AVAILABLE' as const,
-    price: 2500000,
-    address: '123 Harbour Drive',
-    suburb: 'Sydney',
-    state: 'NSW',
-    bedrooms: 3,
-    bathrooms: 2,
-    carSpaces: 2,
-    floorAreaSqm: 180,
-    heroImageUrl: '/placeholder-property.svg',
-  },
-  {
-    id: '2',
-    slug: 'modern-office-space-cbd',
-    title: 'Modern Office Space in CBD',
-    summary: 'Premium office space in the heart of Sydney CBD with modern amenities',
-    type: 'COMMERCIAL' as const,
-    status: 'AVAILABLE' as const,
-    price: 85000,
-    address: '456 Business Street',
-    suburb: 'Sydney',
-    state: 'NSW',
-    floorAreaSqm: 200,
-    heroImageUrl: '/placeholder-property.svg',
-  },
-  {
-    id: '3',
-    slug: 'family-home-northern-beaches',
-    title: 'Family Home in Northern Beaches',
-    summary: 'Spacious 4-bedroom family home in sought-after Northern Beaches location',
-    type: 'RESIDENTIAL' as const,
-    status: 'UNDER_OFFER' as const,
-    price: 3200000,
-    address: '321 Beach Road',
-    suburb: 'Manly',
-    state: 'NSW',
-    bedrooms: 4,
-    bathrooms: 3,
-    carSpaces: 3,
-    floorAreaSqm: 280,
-    heroImageUrl: '/placeholder-property.svg',
-  },
-  {
-    id: '4',
-    slug: 'retail-space-chatswood',
-    title: 'Prime Retail Space in Chatswood',
-    summary: 'High-traffic retail space in the bustling Chatswood shopping district',
-    type: 'COMMERCIAL' as const,
-    status: 'LEASED' as const,
-    price: 65000,
-    address: '654 Shopping Centre Drive',
-    suburb: 'Chatswood',
-    state: 'NSW',
-    floorAreaSqm: 150,
-    heroImageUrl: '/placeholder-property.svg',
-  }
-]
-
-
-
+// Get featured listings from real data - mix of residential and commercial properties
+const featuredListings = listings
+  .filter(
+    (listing) =>
+      listing.category === 'properties' ||
+      listing.type === 'RESIDENTIAL' ||
+      listing.type === 'COMMERCIAL'
+  )
+  .slice(0, 4)
 
 // Testimonials
 const testimonials = [
   {
     id: '1',
-    quote: 'Touchwood made our property investment journey seamless. Their expertise in the Melbourne market is unmatched.',
+    quote:
+      'Touchwood made our property investment journey seamless. Their expertise in the Melbourne market is unmatched.',
     author: 'Sarah Chen',
     role: 'Property Investor',
-    rating: 5
+    rating: 5,
   },
   {
     id: '2',
-    quote: 'Professional service from start to finish. They found us the perfect commercial space for our business.',
+    quote:
+      'Professional service from start to finish. They found us the perfect commercial space for our business.',
     author: 'Michael Roberts',
     role: 'Business Owner',
-    rating: 5
+    rating: 5,
   },
   {
     id: '3',
-    quote: 'Outstanding property management services. They take care of everything so we don\'t have to worry.',
+    quote:
+      'Outstanding property management services. They take care of everything so we don&apos;t have to worry.',
     author: 'Lisa Wong',
     role: 'Property Owner',
-    rating: 5
-  }
+    rating: 5,
+  },
 ]
 
 // Statistics
 const stats = [
-  { number: '500+', label: 'Properties Managed', icon: <Building2 className="h-6 w-6" /> },
-  { number: '15+', label: 'Years Experience', icon: <Users className="h-6 w-6" /> },
-  { number: '98%', label: 'Client Satisfaction', icon: <Star className="h-6 w-6" /> },
-  { number: '$2.5B+', label: 'Sales Volume', icon: <TrendingUp className="h-6 w-6" /> }
+  {
+    number: '500+',
+    label: 'Properties Managed',
+    icon: <Building2 className="h-6 w-6" />,
+  },
+  {
+    number: '15+',
+    label: 'Years Experience',
+    icon: <Users className="h-6 w-6" />,
+  },
+  {
+    number: '98%',
+    label: 'Client Satisfaction',
+    icon: <Star className="h-6 w-6" />,
+  },
+  {
+    number: '$2.5B+',
+    label: 'Sales Volume',
+    icon: <TrendingUp className="h-6 w-6" />,
+  },
 ]
 
 export default function HomePage() {
@@ -156,18 +110,18 @@ export default function HomePage() {
           <FadeIn>
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Trusted by Melbourne's Property Owners
+                Trusted by Melbourne&apos;s Property Owners
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Our track record speaks for itself
               </p>
             </div>
           </FadeIn>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <FadeIn key={stat.label} delay={index * 0.1}>
-                <motion.div 
+                <motion.div
                   className="text-center group"
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.2 }}
@@ -188,8 +142,6 @@ export default function HomePage() {
         </div>
       </section>
 
-
-
       {/* Testimonials - Soft Section */}
       <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50/30 to-white">
         <div className="container mx-auto max-w-7xl px-4 md:px-6">
@@ -203,7 +155,7 @@ export default function HomePage() {
               </p>
             </div>
           </FadeIn>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <FadeIn key={testimonial.id} delay={index * 0.2}>
@@ -214,15 +166,22 @@ export default function HomePage() {
                   <Card className="p-8 text-center hover:shadow-xl transition-all duration-300 h-full bg-white border-0 shadow-lg">
                     <div className="flex justify-center mb-6">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                        <Star
+                          key={i}
+                          className="h-5 w-5 text-yellow-400 fill-current"
+                        />
                       ))}
                     </div>
                     <blockquote className="text-foreground mb-6 italic text-lg leading-relaxed">
-                      "{testimonial.quote}"
+                      &ldquo;{testimonial.quote}&rdquo;
                     </blockquote>
                     <div>
-                      <div className="font-semibold text-foreground text-lg">{testimonial.author}</div>
-                      <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                      <div className="font-semibold text-foreground text-lg">
+                        {testimonial.author}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {testimonial.role}
+                      </div>
                     </div>
                   </Card>
                 </motion.div>
@@ -249,7 +208,9 @@ export default function HomePage() {
                 Ready to Get Started?
               </h2>
               <p className="text-lg md:text-xl mb-10 text-white/90 max-w-3xl mx-auto leading-relaxed">
-                Whether you're looking to buy, sell, rent, or manage property, our expert team is here to help you achieve your real estate goals.
+                Whether you&apos;re looking to buy, sell, rent, or manage
+                property, our expert team is here to help you achieve your real
+                estate goals.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Button

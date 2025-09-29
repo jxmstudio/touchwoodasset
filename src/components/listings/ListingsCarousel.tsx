@@ -16,8 +16,15 @@ interface Listing {
   title: string
   summary: string
   type: 'RESIDENTIAL' | 'COMMERCIAL' | 'ANCILLARY'
-  status: 'AVAILABLE' | 'UNDER_OFFER' | 'SOLD' | 'LEASED'
-  price: number
+  status:
+    | 'AVAILABLE'
+    | 'UNDER_OFFER'
+    | 'SOLD'
+    | 'LEASED'
+    | 'COMING_SOON'
+    | 'FOR_RENT'
+  price?: number
+  pricePeriod?: 'per_month' | 'per_week' | 'per_day' | 'total'
   address: string
   suburb: string
   state: string
@@ -39,13 +46,13 @@ interface ListingsCarouselProps {
 
 export function ListingsCarousel({
   listings,
-  title = "Current Properties",
-  subtitle = "Discover our latest listings",
-  className = "",
+  title = 'Current Properties',
+  subtitle = 'Discover our latest listings',
+  className = '',
   autoPlay = false,
-  showViewAll = true
+  showViewAll = true,
 }: ListingsCarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+  const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: 'start',
     skipSnaps: false,
@@ -53,7 +60,7 @@ export function ListingsCarousel({
     containScroll: 'trimSnaps',
     slidesToScroll: 1,
     duration: 25, // Smoother transitions
-    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' // Custom easing
+    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)', // Custom easing
   })
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
@@ -86,28 +93,28 @@ export function ListingsCarousel({
   // Auto play functionality with pause on hover
   useEffect(() => {
     if (!emblaApi || !autoPlay) return
-    
+
     let interval: NodeJS.Timeout
-    
+
     const startAutoplay = () => {
       interval = setInterval(() => {
         emblaApi.scrollNext()
       }, 6000) // Increased to 6 seconds for better UX
     }
-    
+
     const stopAutoplay = () => {
       clearInterval(interval)
     }
-    
+
     startAutoplay()
-    
+
     // Pause on hover
     const emblaNode = emblaRef.current
     if (emblaNode) {
       emblaNode.addEventListener('mouseenter', stopAutoplay)
       emblaNode.addEventListener('mouseleave', startAutoplay)
     }
-    
+
     return () => {
       clearInterval(interval)
       if (emblaNode) {
@@ -115,18 +122,22 @@ export function ListingsCarousel({
         emblaNode.removeEventListener('mouseleave', startAutoplay)
       }
     }
-  }, [emblaApi, autoPlay])
+  }, [emblaApi, autoPlay, emblaRef])
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'AVAILABLE':
-        return 'bg-available text-white'
+        return 'bg-green-500 text-white'
       case 'UNDER_OFFER':
-        return 'bg-under-offer text-white'
+        return 'bg-orange-500 text-white'
       case 'SOLD':
-        return 'bg-sold text-white'
+        return 'bg-red-500 text-white'
       case 'LEASED':
-        return 'bg-leased text-white'
+        return 'bg-purple-500 text-white'
+      case 'COMING_SOON':
+        return 'bg-blue-500 text-white'
+      case 'FOR_RENT':
+        return 'bg-indigo-500 text-white'
       default:
         return 'bg-gray-500 text-white'
     }
@@ -176,10 +187,19 @@ export function ListingsCarousel({
 
         {/* Carousel */}
         <div className="relative">
-          <div className="overflow-hidden" ref={emblaRef} id="carousel-content" role="region" aria-label={`${title} carousel`}>
+          <div
+            className="overflow-hidden"
+            ref={emblaRef}
+            id="carousel-content"
+            role="region"
+            aria-label={`${title} carousel`}
+          >
             <div className="flex">
               {listings.map((listing, index) => (
-                <div key={listing.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] xl:flex-[0_0_25%] min-w-0 pl-4">
+                <div
+                  key={listing.id}
+                  className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] xl:flex-[0_0_25%] min-w-0 pl-4"
+                >
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -197,7 +217,7 @@ export function ListingsCarousel({
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           priority={false}
                         />
-                        
+
                         {/* Status Badge */}
                         <div className="absolute top-3 left-3">
                           <Badge className={getStatusColor(listing.status)}>
@@ -220,7 +240,11 @@ export function ListingsCarousel({
                               View
                             </Link>
                           </Button>
-                          <Button size="sm" variant="ghost" className="text-white hover:text-black">
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="text-white hover:text-black"
+                          >
                             <Heart className="h-4 w-4" />
                           </Button>
                         </div>
@@ -234,13 +258,28 @@ export function ListingsCarousel({
                           </h3>
                           <div className="flex items-center text-sm text-gray-600 mb-2">
                             <MapPin className="h-4 w-4 mr-1 flex-shrink-0" />
-                            <span className="truncate">{listing.address}, {listing.suburb}</span>
+                            <span className="truncate">
+                              {listing.address}, {listing.suburb}
+                            </span>
                           </div>
                         </div>
 
                         <div className="flex items-center justify-between mb-4">
                           <div className="text-xl font-bold text-primary">
-                            ${listing.price.toLocaleString()}
+                            {listing.price ? (
+                              <>
+                                ${listing.price.toLocaleString()}
+                                {listing.pricePeriod && (
+                                  <span className="text-sm font-normal text-gray-600 ml-1">
+                                    /{listing.pricePeriod.replace('_', ' ')}
+                                  </span>
+                                )}
+                              </>
+                            ) : (
+                              <span className="text-gray-500">
+                                Price on request
+                              </span>
+                            )}
                           </div>
                           {listing.floorAreaSqm && (
                             <div className="text-sm text-gray-500">
@@ -250,23 +289,31 @@ export function ListingsCarousel({
                         </div>
 
                         {/* Property Features */}
-                        {(listing.bedrooms || listing.bathrooms || listing.carSpaces) && (
+                        {(listing.bedrooms ||
+                          listing.bathrooms ||
+                          listing.carSpaces) && (
                           <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
                             {listing.bedrooms && (
                               <div className="flex items-center">
-                                <span className="font-medium">{listing.bedrooms}</span>
+                                <span className="font-medium">
+                                  {listing.bedrooms}
+                                </span>
                                 <span className="ml-1">bed</span>
                               </div>
                             )}
                             {listing.bathrooms && (
                               <div className="flex items-center">
-                                <span className="font-medium">{listing.bathrooms}</span>
+                                <span className="font-medium">
+                                  {listing.bathrooms}
+                                </span>
                                 <span className="ml-1">bath</span>
                               </div>
                             )}
                             {listing.carSpaces && (
                               <div className="flex items-center">
-                                <span className="font-medium">{listing.carSpaces}</span>
+                                <span className="font-medium">
+                                  {listing.carSpaces}
+                                </span>
                                 <span className="ml-1">car</span>
                               </div>
                             )}
@@ -302,7 +349,7 @@ export function ListingsCarousel({
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
-          
+
           <Button
             className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-all duration-200"
             variant="outline"
@@ -326,9 +373,7 @@ export function ListingsCarousel({
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <Button size="lg" asChild>
-              <Link href="/listings">
-                View All Properties
-              </Link>
+              <Link href="/listings">View All Properties</Link>
             </Button>
           </motion.div>
         )}
