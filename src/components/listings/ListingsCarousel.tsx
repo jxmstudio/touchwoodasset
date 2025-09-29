@@ -56,7 +56,7 @@ export function ListingsCarousel({
     loop: true,
     align: 'start',
     skipSnaps: false,
-    dragFree: true,
+    dragFree: false,
     containScroll: 'trimSnaps',
     slidesToScroll: 1,
     duration: 25, // Smoother transitions
@@ -186,7 +186,7 @@ export function ListingsCarousel({
         </div>
 
         {/* Carousel */}
-        <div className="relative">
+        <div className="relative px-12">
           <div
             className="overflow-hidden"
             ref={emblaRef}
@@ -198,7 +198,7 @@ export function ListingsCarousel({
               {listings.map((listing, index) => (
                 <div
                   key={listing.id}
-                  className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] xl:flex-[0_0_25%] min-w-0 pl-4"
+                  className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] xl:flex-[0_0_25%] min-w-0 px-2"
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -339,7 +339,7 @@ export function ListingsCarousel({
 
           {/* Navigation Buttons */}
           <Button
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-all duration-200"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white/95 hover:bg-white shadow-lg border-2 border-gray-200 hover:border-gray-300 transition-all duration-200 w-10 h-10 p-0"
             variant="outline"
             size="sm"
             onClick={scrollPrev}
@@ -347,11 +347,11 @@ export function ListingsCarousel({
             aria-label="Previous properties"
             aria-controls="carousel-content"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-5 w-5" />
           </Button>
 
           <Button
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-all duration-200"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white/95 hover:bg-white shadow-lg border-2 border-gray-200 hover:border-gray-300 transition-all duration-200 w-10 h-10 p-0"
             variant="outline"
             size="sm"
             onClick={scrollNext}
@@ -359,7 +359,7 @@ export function ListingsCarousel({
             aria-label="Next properties"
             aria-controls="carousel-content"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-5 w-5" />
           </Button>
         </div>
 
