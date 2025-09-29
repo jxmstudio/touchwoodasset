@@ -8,90 +8,96 @@ export interface ServiceFeature {
 export const serviceFeatures: ServiceFeature[] = [
   {
     id: '1',
-    feature: '1,388 RM transferred to your nominated bank account (t&c applies)',
+    feature: '$500 VISA Card or cashback, $100 for ancillaries assets (t&c applies)',
     touchwood: true,
     genericAgency: false
   },
   {
     id: '2',
-    feature: 'Personalise WhatsApp or WeChat group for a Faster Response',
+    feature: 'Enjoy complimentary insurance coverage (up to $2,000) for property management negligence',
     touchwood: true,
     genericAgency: false
   },
   {
     id: '3',
+    feature: 'Personalise WhatsApp or WeChat group for a Faster Response',
+    touchwood: true,
+    genericAgency: false
+  },
+  {
+    id: '4',
     feature: 'Proactive Leasing Strategy',
     touchwood: true,
     genericAgency: true
   },
   {
-    id: '4',
+    id: '5',
     feature: 'Strategic Rental Pricing & Marketing Insight',
     touchwood: true,
     genericAgency: true
   },
   {
-    id: '5',
+    id: '6',
     feature: 'Quality Photos & Virtual Staging',
     touchwood: true,
     genericAgency: false
   },
   {
-    id: '6',
+    id: '7',
     feature: 'Videography',
     touchwood: true,
     genericAgency: false
   },
   {
-    id: '7',
+    id: '8',
     feature: 'Engaging Property Copywriting',
     touchwood: true,
     genericAgency: false
   },
   {
-    id: '8',
+    id: '9',
     feature: 'Listing on REA & Domain',
     touchwood: true,
     genericAgency: true
   },
   {
-    id: '9',
+    id: '10',
     feature: 'Rapid Tenant Onboarding Process (24-hr application turnaround)',
     touchwood: true,
     genericAgency: false
   },
   {
-    id: '10',
+    id: '11',
     feature: 'Detailed Entry/Exit Reporting',
     touchwood: true,
     genericAgency: true
   },
   {
-    id: '11',
+    id: '12',
     feature: 'Routine Inspection invites to Owners',
     touchwood: true,
     genericAgency: false
   },
   {
-    id: '12',
+    id: '13',
     feature: 'End-to-End Property Management',
     touchwood: true,
     genericAgency: true
   },
   {
-    id: '13',
+    id: '14',
     feature: 'Transparent Communication to our Owners',
     touchwood: true,
     genericAgency: false
   },
   {
-    id: '14',
+    id: '15',
     feature: 'Hands on approach to Maintenance',
     touchwood: true,
     genericAgency: false
   },
   {
-    id: '15',
+    id: '16',
     feature: 'Legacy-Focused Property Stewardship',
     touchwood: true,
     genericAgency: false

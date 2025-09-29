@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card'
 import { FadeIn } from '@/components/ui/fade-in'
 
 import { VideoHero } from '@/components/hero/VideoHero'
+import { HeroSplit } from '@/components/marketing/HeroSplit'
 import { ListingsCarousel } from '@/components/listings/ListingsCarousel'
 import { OwnerPromo } from '@/components/OwnerPromo'
 import { 
@@ -137,6 +138,8 @@ export default function HomePage() {
         muted={true}
       />
 
+      {/* Hero Split Section */}
+      <HeroSplit />
 
       {/* Featured Listings Carousel */}
       <ListingsCarousel

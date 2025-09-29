@@ -12,16 +12,32 @@ interface GalleryImage {
   alt?: string
   width?: number
   height?: number
+  type?: 'image' | 'video'
+  videoUrl?: string
 }
 
 interface ListingGalleryProps {
   images: GalleryImage[]
   title: string
+  videoUrl?: string
 }
 
-export function ListingGallery({ images, title }: ListingGalleryProps) {
+export function ListingGallery({ images, title, videoUrl }: ListingGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
+  const [showVideo, setShowVideo] = useState(false)
+
+  // Extract YouTube video ID from URL
+  const getYouTubeVideoId = (url: string) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+    const match = url.match(regExp)
+    return (match && match[2].length === 11) ? match[2] : null
+  }
+
+  const getEmbedUrl = (url: string) => {
+    const videoId = getYouTubeVideoId(url)
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : null
+  }
 
   const openLightbox = useCallback((index: number) => {
     setSelectedIndex(index)
@@ -62,52 +78,106 @@ export function ListingGallery({ images, title }: ListingGalleryProps) {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [isLightboxOpen, closeLightbox, goToPrevious, goToNext])
 
-  if (!images || images.length === 0) {
+  if ((!images || images.length === 0) && !videoUrl) {
     return (
       <div className="aspect-[4/3] bg-gray-200 rounded-lg flex items-center justify-center">
-        <p className="text-gray-500">No images available</p>
+        <p className="text-gray-500">No media available</p>
       </div>
     )
   }
 
-  const mainImage = images[selectedIndex]
+  const mainImage = images && images.length > 0 ? images[selectedIndex] : null
 
   return (
     <>
       {/* Main Gallery */}
       <div className="space-y-4">
-        {/* Main Image */}
+        {/* Main Media - Video or Image */}
         <div className="relative aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden group cursor-pointer">
-          <Image
-            src={mainImage.url}
-            alt={mainImage.alt || title}
-            fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
-            priority
-          />
-          
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-            <Button
-              variant="secondary"
-              size="sm"
-              className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              onClick={() => openLightbox(selectedIndex)}
-            >
-              <ZoomIn className="h-4 w-4 mr-2" />
-              View Full Size
-            </Button>
-          </div>
+          {showVideo && videoUrl ? (
+            <div className="w-full h-full">
+              <iframe
+                src={getEmbedUrl(videoUrl) || videoUrl}
+                title={title}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          ) : mainImage ? (
+            <>
+              <Image
+                src={mainImage.url}
+                alt={mainImage.alt || title}
+                fill
+                className="object-contain transition-transform duration-300 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
+                priority
+                style={{
+                  objectFit: 'contain',
+                  objectPosition: 'center'
+                }}
+              />
+              
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  onClick={() => openLightbox(selectedIndex)}
+                >
+                  <ZoomIn className="h-4 w-4 mr-2" />
+                  View Full Size
+                </Button>
+              </div>
 
-          {/* Image Counter */}
-          <div className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm">
-            {selectedIndex + 1} / {images.length}
-          </div>
+              {/* Image Counter */}
+              <div className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-sm">
+                {selectedIndex + 1} / {images.length}
+              </div>
+            </>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <p className="text-gray-500">No media available</p>
+            </div>
+          )}
+        </div>
+
+        {/* Media Toggle Buttons */}
+        <div className="flex gap-2 mb-4">
+          {videoUrl && (
+            <Button
+              variant={showVideo ? "default" : "outline"}
+              size="sm"
+              onClick={() => setShowVideo(true)}
+              className="flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              Video
+            </Button>
+          )}
+          {images && images.length > 0 && (
+            <Button
+              variant={!showVideo ? "default" : "outline"}
+              size="sm"
+              onClick={() => setShowVideo(false)}
+              className="flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21,15 16,10 5,21"/>
+              </svg>
+              Photos
+            </Button>
+          )}
         </div>
 
         {/* Thumbnail Grid */}
-        {images.length > 1 && (
+        {images && images.length > 1 && !showVideo && (
           <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
             {images.map((image, index) => (
               <button
@@ -124,8 +194,12 @@ export function ListingGallery({ images, title }: ListingGalleryProps) {
                   src={image.url}
                   alt={image.alt || `${title} - Image ${index + 1}`}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="(max-width: 768px) 25vw, 16vw"
+                  style={{
+                    objectFit: 'contain',
+                    objectPosition: 'center'
+                  }}
                 />
               </button>
             ))}
@@ -217,8 +291,12 @@ export function ListingGallery({ images, title }: ListingGalleryProps) {
                       src={image.url}
                       alt={image.alt || `${title} - Image ${index + 1}`}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="64px"
+                      style={{
+                        objectFit: 'contain',
+                        objectPosition: 'center'
+                      }}
                     />
                   </button>
                 ))}

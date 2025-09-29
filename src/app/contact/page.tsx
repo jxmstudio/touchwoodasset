@@ -52,7 +52,7 @@ export default function ContactPage() {
               Contact Us
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-              Get in touch with our expert team. We're here to help with all your property management needs.
+              Don't wait—discover why property owners choose us. Contact our expert team today.
             </p>
           </FadeIn>
         </div>
@@ -157,7 +157,7 @@ export default function ContactPage() {
         subtitle="Find answers to common questions about our services"
         className="bg-gray-50"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <FadeIn delay={0}>
             <Card>
               <CardHeader>
@@ -165,8 +165,8 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  We aim to respond to all enquiries within 24 hours during business days. 
-                  For urgent matters, please call us directly.
+                  We respond to all enquiries within 24 hours on business days.
+                  For urgent matters, please call/SMS us directly and our team will assist you right away.
                 </p>
               </CardContent>
             </Card>
@@ -179,8 +179,7 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  Yes, we offer free initial consultations to discuss your property management 
-                  needs and how we can help you.
+                  Yes! We provide a free initial consultation to discuss your real estate goals and show you how we can help. Book your consultation today.
                 </p>
               </CardContent>
             </Card>
@@ -193,8 +192,7 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  We primarily service Melbourne and surrounding Victoria areas, including the 
-                  Yarra Valley, Mornington Peninsula, and Greater Melbourne.
+                  We proudly service Melbourne CBD and surrounding suburbs within a 50km radius. Excitingly, we're also preparing to expand into regional Victoria soon.
                 </p>
               </CardContent>
             </Card>
@@ -207,8 +205,176 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  Absolutely! We offer professional property valuations for sales, 
-                  refinancing, and investment purposes.
+                  Absolutely! Our team offers professional property valuations for sales, refinancing, and investment purposes. Get in touch today to book your valuation.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={0.4}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">What makes your property management different?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  We are a boutique agency that prides itself on personalised service, transparent communication, and proven results. You won't get lost in the crowd with us—we treat every property as if it were our own.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={0.5}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">How do you handle tenant selection and screening?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  We carefully screen all tenants through background checks, rental history reviews, and references, ensuring the right fit for your property.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={0.6}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Do you arrange repairs and maintenance?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  Yes. We coordinate with a trusted network of licensed tradespeople to handle repairs and maintenance promptly, keeping your property in excellent condition.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={0.7}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">How often do you conduct routine inspections?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  We complete detailed routine inspection in the 3rd month and every 6 months thereafter, with full written reports and photos provided to you.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={0.8}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">What are your management fees?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  Our low fees are very competitive and are tailored to each property. Contact us today for a transparent, no-obligation quote.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={0.9}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">When do I receive my rental income?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  Rental income is disbursed upon the receipt of rent payments on a monthly cycle directly to your nominated account.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={1.0}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">What happens if my tenant falls behind in rent?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  We follow a strict arrears process in line with Victorian legislation and keep you informed every step of the way. If needed, we represent you at VCAT.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={1.1}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Can I switch to your agency from another manager?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  Yes! We make switching simple by handling the entire handover process on your behalf. It's stress-free for you.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={1.2}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Do you manage both residential and commercial properties?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  Yes—we manage residential rentals, commercial properties, storage units, and carparks.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={1.3}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Are you fully licensed and insured?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  Yes. We are a fully licensed real estate agency and carry professional indemnity insurance for your peace of mind.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={1.4}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Do you help with landlord insurance claims?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  Yes, we assist owners with landlord insurance claims, making the process smoother and less stressful.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={1.5}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">How do you ensure compliance with Victorian tenancy laws?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  Our team stays up to date with Victorian Residential Tenancies Act requirements and other legislation, ensuring your property is always compliant.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
+
+          <FadeIn delay={1.6}>
+            <Card className="md:col-span-2">
+              <CardHeader>
+                <CardTitle className="text-lg">I heard about the promotion — $500 Visa gift card or cashback. Is this correct?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">
+                  Yes! When you switch your property management to us, you'll receive a $500 Visa gift card or cashback as a welcome bonus. It's our way of saying thank you for trusting us with your property. If you have a carpark or storage unit, we will still offer you a $100 Visa gift card or cashback as our appreciation for your support. Enquire today to claim your offer.
                 </p>
               </CardContent>
             </Card>

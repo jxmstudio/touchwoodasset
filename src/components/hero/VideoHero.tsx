@@ -64,7 +64,7 @@ export function VideoHero({
   // Don't render video until client-side to prevent hydration mismatch
   if (!isClient) {
     return (
-      <section className={`relative w-full min-h-screen overflow-hidden ${className}`}>
+      <section className={`relative w-full min-h-screen overflow-hidden ${className}`} suppressHydrationWarning>
         {/* Fallback poster image */}
         {posterImage && (
           <div className="absolute inset-0">
@@ -72,6 +72,10 @@ export function VideoHero({
               src={posterImage}
               alt="Hero background"
               className="w-full h-full object-cover"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center'
+              }}
             />
           </div>
         )}
@@ -130,7 +134,7 @@ export function VideoHero({
   }
 
   return (
-    <section className={`relative w-full min-h-screen overflow-hidden ${className}`}>
+    <section className={`relative w-full min-h-screen overflow-hidden ${className}`} suppressHydrationWarning>
       {/* Background Video or Poster Image */}
       <div className="absolute inset-0">
         {!prefersReducedMotion && isClient ? (
@@ -160,6 +164,10 @@ export function VideoHero({
               src={posterImage}
               alt="Hero background"
               className="w-full h-full object-cover"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center'
+              }}
             />
           )
         )}

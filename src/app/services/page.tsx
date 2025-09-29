@@ -1,13 +1,13 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Home, Building2, Car, Users, Shield, TrendingUp, Clock, CheckCircle, ArrowRight } from 'lucide-react'
 import { FadeIn } from '@/components/ui/fade-in'
 import { Section } from '@/components/ui/section'
 import { ServiceFeatureComparison } from '@/components/ServiceFeatureComparison'
+import { ServiceSection } from '@/components/services/ServiceSection'
+import { ContactStrip } from '@/components/common/ContactStrip'
 
 export const metadata: Metadata = {
   title: 'Services - Touchwood Asset Management',
@@ -22,10 +22,10 @@ const services = [
   {
     id: 'residential',
     title: 'Residential Sales & Rentals',
-    description: 'Comprehensive residential property services including sales, leasing, and property management.',
-    icon: Home,
-    image: '/images/services/residential.png',
-    features: [
+    intro: 'Comprehensive residential property services including sales, leasing, and property management for houses, apartments, and townhouses across Melbourne.',
+    imageSrc: '/services/residential.jpg',
+    imageAlt: 'Modern residential property for sale and rent',
+    whatWeOffer: [
       'Property sales and marketing',
       'Tenant screening and placement',
       'Rent collection and management',
@@ -35,7 +35,7 @@ const services = [
       'Legal compliance management',
       '24/7 tenant support',
     ],
-    benefits: [
+    keyBenefits: [
       'Maximize rental returns',
       'Professional tenant management',
       'Reduced vacancy periods',
@@ -43,14 +43,16 @@ const services = [
       'Legal compliance assurance',
       'Detailed financial reporting',
     ],
+    ctaText: 'Explore Residential Properties',
+    ctaLink: '/listings?category=properties&type=residential',
   },
   {
     id: 'commercial',
     title: 'Commercial Rentals',
-    description: 'Expert commercial property leasing and management for businesses of all sizes.',
-    icon: Building2,
-    image: '/images/services/commercial.png',
-    features: [
+    intro: 'Expert commercial property leasing and management for businesses of all sizes, from small offices to large retail spaces.',
+    imageSrc: '/services/commercial.jpg',
+    imageAlt: 'Modern commercial office building',
+    whatWeOffer: [
       'Commercial property leasing',
       'Business tenant acquisition',
       'Lease negotiation and management',
@@ -60,7 +62,7 @@ const services = [
       'Financial reporting and analysis',
       'Strategic property planning',
     ],
-    benefits: [
+    keyBenefits: [
       'Optimize commercial returns',
       'Professional business relationships',
       'Reduced vacancy risk',
@@ -68,14 +70,16 @@ const services = [
       'Strategic growth planning',
       'Expert lease management',
     ],
+    ctaText: 'View Commercial Spaces',
+    ctaLink: '/listings?category=properties&type=commercial',
   },
   {
     id: 'ancillary',
     title: 'Ancillary Rentals',
-    description: 'Specialized services for car parks, storage units, and other ancillary property needs.',
-    icon: Car,
-    image: '/images/services/ancillary.png',
-    features: [
+    intro: 'Specialized services for car parks, storage units, and other ancillary property needs to maximize your property\'s income potential.',
+    imageSrc: '/services/ancillary.jpg',
+    imageAlt: 'Secure car park and storage facilities',
+    whatWeOffer: [
       'Car park leasing and management',
       'Storage unit rentals',
       'Specialized property solutions',
@@ -85,7 +89,7 @@ const services = [
       'Billing and collection',
       'Customer service support',
     ],
-    benefits: [
+    keyBenefits: [
       'Maximize ancillary income',
       'Specialized expertise',
       'Enhanced security measures',
@@ -93,6 +97,8 @@ const services = [
       'Increased property value',
       'Comprehensive service delivery',
     ],
+    ctaText: 'Browse Ancillary Services',
+    ctaLink: '/listings?category=car-park',
   },
 ]
 
@@ -124,8 +130,43 @@ const additionalServices = [
 ]
 
 export default function ServicesPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Property Management Services",
+    "description": "Comprehensive property management services including residential sales & rentals, commercial rentals, and ancillary rentals across Melbourne and Victoria.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Touchwood Asset Management",
+      "url": "https://touchwoodasset.com",
+      "logo": "https://touchwoodasset.com/logo-touchwood.png"
+    },
+    "serviceType": "Property Management",
+    "areaServed": {
+      "@type": "Place",
+      "name": "Melbourne, Victoria, Australia"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Property Management Services",
+      "itemListElement": services.map((service, index) => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": service.title,
+          "description": service.intro
+        }
+      }))
+    }
+  }
+
   return (
-    <div className="min-h-screen">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary via-primary to-brand-600 text-white py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -134,83 +175,35 @@ export default function ServicesPage() {
               Our Services
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-              Comprehensive property management solutions tailored to your needs
+              Comprehensive property management solutions, tailored to you.
             </p>
           </FadeIn>
         </div>
       </section>
 
+      {/* Contact Strip - Top */}
+      <ContactStrip variant="primary" />
+
       {/* Main Services */}
       <Section 
         title="Core Services" 
-        subtitle="We offer a full range of property management services to meet all your needs"
+        subtitle="From residential rentals to commercial properties, storage, and carparks, we provide end-to-end management designed to maximise your returns and minimise your stress. Partner with us today and experience the difference of a boutique agency that puts your property first."
       >
         <div className="space-y-20">
           {services.map((service, index) => (
-            <div key={service.id} id={service.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-              index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-            }`}>
-              <FadeIn delay={index * 0.2}>
-                <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                  <div className="flex items-center space-x-3 mb-6">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                      <service.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-3xl font-bold text-gray-900">{service.title}</h3>
-                  </div>
-                  <p className="text-lg text-gray-700 mb-8">
-                    {service.description}
-                  </p>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-3">What We Offer</h4>
-                      <ul className="space-y-2">
-                        {service.features.slice(0, 4).map((feature) => (
-                          <li key={feature} className="flex items-center space-x-2 text-sm text-gray-600">
-                            <CheckCircle className="h-4 w-4 text-green-500" />
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-3">Key Benefits</h4>
-                      <ul className="space-y-2">
-                        {service.benefits.slice(0, 3).map((benefit) => (
-                          <li key={benefit} className="flex items-center space-x-2 text-sm text-gray-600">
-                            <CheckCircle className="h-4 w-4 text-green-500" />
-                            <span>{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  
-                  <Link href="/contact">
-                    <Button size="lg" className="bg-primary hover:bg-brand-600">
-                      Get Started
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
-                </div>
-              </FadeIn>
-              
-              <FadeIn delay={(index * 0.2) + 0.1}>
-                <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
-                  <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-lg relative group">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                      priority={index === 0}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                    />
-                  </div>
-                </div>
-              </FadeIn>
-            </div>
+            <ServiceSection
+              key={service.id}
+              title={service.title}
+              intro={service.intro}
+              imageSrc={service.imageSrc}
+              imageAlt={service.imageAlt}
+              whatWeOffer={service.whatWeOffer}
+              keyBenefits={service.keyBenefits}
+              ctaText={service.ctaText}
+              ctaLink={service.ctaLink}
+              reverse={index % 2 === 1}
+              priority={index === 0}
+            />
           ))}
         </div>
       </Section>
@@ -251,44 +244,60 @@ export default function ServicesPage() {
       {/* Why Choose Us */}
       <Section 
         title="Why Choose Touchwood?" 
-        subtitle="We combine expertise, technology, and personalized service to deliver exceptional results"
+        subtitle="We deliver more than property management — we deliver confidence, results, and peace of mind. Our expertise, innovation, and client-first approach ensure your property is in the best hands."
+        className="bg-gradient-to-br from-gray-50 to-white relative overflow-hidden"
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(225,38,43,0.05)_1px,transparent_0)] bg-[length:24px_24px] opacity-30"></div>
+        
+        {/* Decorative divider line */}
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
           <FadeIn delay={0}>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-10 w-10 text-primary" />
+            <div className="group text-center p-6 rounded-2xl hover:bg-white/80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <div className="w-24 h-24 bg-gradient-to-br from-primary to-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Users className="h-12 w-12 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Expert Team</h3>
-              <p className="text-gray-600">
-                Our experienced professionals have deep knowledge of the Melbourne property market 
-                and are committed to your success.
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">🔑 Expert Team</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Our experienced professionals bring in-depth knowledge of the Melbourne market and a proven ability to maximise value. We treat every property as if it were our own.
               </p>
             </div>
           </FadeIn>
           
           <FadeIn delay={0.1}>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="h-10 w-10 text-primary" />
+            <div className="group text-center p-6 rounded-2xl hover:bg-white/80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <div className="w-24 h-24 bg-gradient-to-br from-primary to-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Shield className="h-12 w-12 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Trusted & Reliable</h3>
-              <p className="text-gray-600">
-                With over 15 years in business, we've built a reputation for reliability, 
-                transparency, and exceptional service.
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">🛡 Trusted & Reliable</h3>
+              <p className="text-gray-600 leading-relaxed">
+                With over 15 years of experience, Touchwood has earned a reputation built on transparency, reliability, and consistent results. Clients trust us to protect and grow their investments.
               </p>
             </div>
           </FadeIn>
           
           <FadeIn delay={0.2}>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock className="h-10 w-10 text-primary" />
+            <div className="group text-center p-6 rounded-2xl hover:bg-white/80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <div className="w-24 h-24 bg-gradient-to-br from-primary to-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Clock className="h-12 w-12 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">24/7 Support</h3>
-              <p className="text-gray-600">
-                We're always here when you need us, providing round-the-clock support 
-                for all your property management needs.
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">⏰ 24/7 Support</h3>
+              <p className="text-gray-600 leading-relaxed">
+                We're here whenever you need us — offering round-the-clock support and quick response times, so you'll never feel alone managing your property.
+              </p>
+            </div>
+          </FadeIn>
+          
+          <FadeIn delay={0.3}>
+            <div className="group text-center p-6 rounded-2xl hover:bg-white/80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <div className="w-24 h-24 bg-gradient-to-br from-primary to-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <TrendingUp className="h-12 w-12 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">📈 Proven Results</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Our data-driven approach and proven strategies consistently deliver superior returns and market performance for our clients' property portfolios.
               </p>
             </div>
           </FadeIn>
@@ -302,32 +311,9 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary via-primary to-brand-600 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Get Started?
-            </h2>
-            <p className="text-xl mb-8 text-white/90 max-w-3xl mx-auto">
-              Let us help you maximize your property investment with our comprehensive 
-              management services.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-white hover:bg-gray-100 text-gray-900 font-semibold">
-                  Contact Us Today
-                </Button>
-              </Link>
-              <Link href="/listings">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-foreground">
-                  View Our Properties
-                </Button>
-              </Link>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-    </div>
+      {/* Contact Strip - Bottom */}
+      <ContactStrip variant="secondary" />
+      </div>
+    </>
   )
 }

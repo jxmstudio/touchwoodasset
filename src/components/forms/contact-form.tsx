@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { toast } from 'sonner'
 import { Send, Loader2 } from 'lucide-react'
+import { submitContactForm } from '@/lib/sheets-webhook'
 
 const contactFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -42,23 +43,21 @@ export function ContactForm() {
     setIsSubmitting(true)
     
     try {
-      // TODO: Replace with actual API call
-      const response = await fetch('/api/enquiries', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...data,
-          type: data.enquiryType,
-        }),
+      // Submit to Google Sheets via our proxy
+      const result = await submitContactForm({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        subject: data.subject,
+        message: data.message,
+        enquiryType: data.enquiryType,
       })
 
-      if (response.ok) {
+      if (result.success) {
         toast.success('Thank you for your message! We\'ll get back to you within 24 hours.')
         form.reset()
       } else {
-        throw new Error('Failed to send message')
+        throw new Error(result.error || 'Failed to send message')
       }
     } catch (error) {
       console.error('Error sending message:', error)

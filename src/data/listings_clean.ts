@@ -54,9 +54,6 @@ export const listings: ListingItem[] = [
     heroImageUrl: '/placeholder-property.svg',
     description: 'Secure underground car park in the heart of Melbourne CBD, perfect for residents or workers in the area.',
     features: ['CBD location','24/7 security','Underground parking','Monthly rates available'],
-    gallery: [
-      { url: '/placeholder-property.svg', alt: 'Melbourne CBD car park entrance', width: 800, height: 600 }
-    ],
     agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
     category: 'car-park'
   },
@@ -77,7 +74,7 @@ export const listings: ListingItem[] = [
     bathrooms: 1,
     carSpaces: 1,
     floorAreaSqm: 55,
-    heroImageUrl: '/Building shot 2.jpg',
+    heroImageUrl: '/placeholder-property.svg',
     description: 'Fully furnished 1-bedroom apartment in a quiet cul-de-sac location in St Kilda. Perfect for professionals or couples seeking a comfortable living space.',
     features: [
       'Fully furnished',
@@ -89,17 +86,9 @@ export const listings: ListingItem[] = [
       'Public transport nearby'
     ],
     gallery: [
-      { url: '/Building shot 2.jpg', alt: 'Exterior building view', width: 800, height: 600 },
-      { url: '/Living Room.jpg', alt: 'Main living room', width: 800, height: 600 },
-      { url: '/Living Room 2.jpg', alt: 'Living room alternate view', width: 800, height: 600 },
-      { url: '/Living Room 3.jpg', alt: 'Living room with furnishings', width: 800, height: 600 },
-      { url: '/Living Room 4.jpg', alt: 'Living room detail view', width: 800, height: 600 },
-      { url: '/Kitchen.jpg', alt: 'Modern kitchen', width: 800, height: 600 },
-      { url: '/Bedroom 1.jpg', alt: 'Master bedroom', width: 800, height: 600 },
-      { url: '/Bedroom 2.jpg', alt: 'Bedroom with wardrobe', width: 800, height: 600 },
-      { url: '/Bathroom.jpg', alt: 'Modern bathroom', width: 800, height: 600 },
-      { url: '/Local shop.jpg', alt: 'Nearby local amenities', width: 800, height: 600 },
-      { url: '/Floorplan.jpg', alt: 'Property floorplan', width: 800, height: 600 }
+      { url: '/placeholder-property.svg', alt: 'Living room with modern furnishings', width: 800, height: 600 },
+      { url: '/placeholder-property.svg', alt: 'Modern kitchen', width: 800, height: 600 },
+      { url: '/placeholder-property.svg', alt: 'Bedroom with built-in wardrobe', width: 800, height: 600 }
     ],
     agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
     category: 'properties'
@@ -118,7 +107,7 @@ export const listings: ListingItem[] = [
     state: 'VIC',
     postcode: '3002',
     floorAreaSqm: 12,
-    heroImageUrl: '/211-Powlett-St-EAST-MELB-landscape.jpg',
+    heroImageUrl: '/placeholder-property.svg',
     description: 'Secure car park space in the heart of East Melbourne, conveniently located near Tribeca. Perfect for residents or workers in the area seeking reliable parking.',
     features: [
       'Prime East Melbourne location',
@@ -126,9 +115,6 @@ export const listings: ListingItem[] = [
       '24/7 security',
       'Well-lit and maintained',
       'Easy access to CBD'
-    ],
-    gallery: [
-      { url: '/211-Powlett-St-EAST-MELB-landscape.jpg', alt: '211 Powlett St car park entrance', width: 800, height: 600 }
     ],
     agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
     category: 'car-park'
@@ -147,7 +133,7 @@ export const listings: ListingItem[] = [
     state: 'VIC',
     postcode: '3182',
     floorAreaSqm: 12,
-    heroImageUrl: '/A20-1-Queens-Rd.jpg',
+    heroImageUrl: '/placeholder-property.svg',
     description: 'Secure car park space in St Kilda Tower with convenient Queens Lane access. Perfect for residents or workers in the St Kilda area.',
     features: [
       'St Kilda Tower location',
@@ -155,9 +141,6 @@ export const listings: ListingItem[] = [
       '24/7 security',
       'Well-maintained',
       'Close to St Kilda Beach'
-    ],
-    gallery: [
-      { url: '/A20-1-Queens-Rd.jpg', alt: 'St Kilda Tower car park entrance', width: 800, height: 600 }
     ],
     agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
     category: 'car-park'
@@ -174,7 +157,7 @@ export const listings: ListingItem[] = [
     state: 'VIC',
     postcode: '3205',
     floorAreaSqm: 12,
-    heroImageUrl: '/63-Stead-Street.jpg',
+    heroImageUrl: '/placeholder-property.svg',
     description: 'Multiple secure car park spaces available for rent in the heart of South Melbourne. Conveniently located with easy access to the CBD, these spaces offer excellent value for residents and workers in the area.',
     features: [
       'Prime South Melbourne location',
@@ -185,11 +168,9 @@ export const listings: ListingItem[] = [
       'Public transport nearby'
     ],
     gallery: [
-      { url: '/63-Stead-Street.jpg', alt: '63 Stead Street exterior view', width: 800, height: 600 },
-      { url: '/76-63-Stead-St.jpg', alt: 'Street view of 63 Stead Street', width: 800, height: 600 },
-      { url: '/55-56-63-Stead.jpg', alt: 'Building entrance and surrounding area', width: 800, height: 600 }
+      { url: '/placeholder-property.svg', alt: 'South Melbourne car park entrance', width: 800, height: 600 },
+      { url: '/placeholder-property.svg', alt: 'Secure car park spaces', width: 800, height: 600 }
     ],
-    videoUrl: 'https://www.youtube.com/watch?v=5PO4SiEsIlU',
     agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
     category: 'car-park'
   },
@@ -205,7 +186,7 @@ export const listings: ListingItem[] = [
     state: 'VIC',
     postcode: '3205',
     floorAreaSqm: 12,
-    heroImageUrl: '/150-Albert-Rd-SOUTH-MELBOURNE-1.jpg',
+    heroImageUrl: '/placeholder-property.svg',
     description: '7 secure car park spaces available for rent in the heart of South Melbourne. Conveniently located on Albert Road with easy access to the CBD, these spaces offer excellent value for residents and workers in the area.',
     features: [
       'Prime South Melbourne location on Albert Road',
@@ -214,10 +195,6 @@ export const listings: ListingItem[] = [
       'Easy CBD access',
       'Close to South Melbourne Market',
       'Public transport nearby'
-    ],
-    gallery: [
-      { url: '/150-Albert-Rd-SOUTH-MELBOURNE-1.jpg', alt: '150 Albert Road exterior building view', width: 800, height: 600 },
-      { url: '/150-Albert-Rd-SOUTH-MELBOUNRE-2-1.jpg', alt: '150 Albert Road interior hallway view', width: 800, height: 600 }
     ],
     videoUrl: 'https://youtu.be/K75u14rFfPQ?si=vrQt6TDqUq-OxCJz',
     spaces: [
@@ -295,7 +272,7 @@ export const listings: ListingItem[] = [
     state: 'VIC',
     postcode: '3004',
     floorAreaSqm: 12,
-    heroImageUrl: '/A20-1-Queens-Rd.jpg',
+    heroImageUrl: '/placeholder-property.svg',
     description: 'Secure car park space in St Kilda Tower with convenient Queens Lane access. This well-maintained space offers easy entry and exit with 24/7 security.',
     features: [
       '24/7 Security',
@@ -304,10 +281,7 @@ export const listings: ListingItem[] = [
       'Convenient CBD location',
       'Monthly rental available'
     ],
-    gallery: [
-      { url: '/A20-1-Queens-Rd.jpg', alt: 'A20/1 Queens Road car park entrance', width: 800, height: 600 }
-    ],
-    videoUrl: 'https://www.youtube.com/watch?v=X_l_lQjp-HA',
+    videoUrl: 'https://youtu.be/X_l_lQjp-HA',
     agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
     category: 'car-park'
   }
