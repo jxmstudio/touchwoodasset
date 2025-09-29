@@ -1,0 +1,12 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin/*
+Disallow: /api/*
+Disallow: /auth/*
+
+# Host
+Host: https://touchwood.com.au
+
+# Sitemaps
+Sitemap: https://touchwood.com.au/sitemap.xml
