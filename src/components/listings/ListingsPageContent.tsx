@@ -21,12 +21,14 @@ export function ListingsPageContent() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeIn direction="up" distance={50} duration={0.8}>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Property Listings
+              Current Listings
             </h1>
           </FadeIn>
           <FadeIn direction="up" distance={30} delay={0.2} duration={0.8}>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-              Discover exceptional properties across Melbourne and Victoria
+              Explore our curated selection of exceptional residential,
+              commercial, and ancillary assets available across Melbourne CBD
+              and greater Victoria.
             </p>
           </FadeIn>
         </div>
@@ -48,7 +50,7 @@ export function ListingsPageContent() {
               <div className="flex-1 min-w-0">
                 {/* Category Tabs */}
                 <CategoryTabs totalCounts={mockCounts} />
-                
+
                 {/* Listings Grid */}
                 <ListingsGrid category={category} />
               </div>

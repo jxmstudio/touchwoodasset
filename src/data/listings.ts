@@ -15,7 +15,13 @@ export interface ListingItem {
   title: string
   summary: string
   type: 'RESIDENTIAL' | 'COMMERCIAL' | 'ANCILLARY'
-  status: 'AVAILABLE' | 'UNDER_OFFER' | 'SOLD' | 'LEASED' | 'COMING_SOON' | 'FOR_RENT'
+  status:
+    | 'AVAILABLE'
+    | 'UNDER_OFFER'
+    | 'SOLD'
+    | 'LEASED'
+    | 'COMING_SOON'
+    | 'FOR_RENT'
   price?: number
   pricePeriod?: 'per_month' | 'per_week' | 'per_day' | 'total'
   address: string
@@ -52,19 +58,192 @@ export const listings: ListingItem[] = [
     postcode: '3000',
     floorAreaSqm: 12,
     heroImageUrl: '/placeholder-property.svg',
-    description: 'Secure underground car park in the heart of Melbourne CBD, perfect for residents or workers in the area.',
-    features: ['CBD location','24/7 security','Underground parking','Monthly rates available'],
-    gallery: [
-      { url: '/placeholder-property.svg', alt: 'Melbourne CBD car park entrance', width: 800, height: 600 }
+    description:
+      'Secure underground car park in the heart of Melbourne CBD, perfect for residents or workers in the area.',
+    features: [
+      'CBD location',
+      '24/7 security',
+      'Underground parking',
+      'Monthly rates available',
     ],
-    agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
-    category: 'car-park'
+    gallery: [
+      {
+        url: '/placeholder-property.svg',
+        alt: 'Melbourne CBD car park entrance',
+        width: 800,
+        height: 600,
+      },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'car-park',
+  },
+  {
+    id: '8',
+    slug: 'bright-2br-apartment-southbank',
+    title: 'Modern 2BR Apartment with City Views – Southbank',
+    summary:
+      'Light-filled apartment with balcony, secure parking and city skyline views',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    price: 620,
+    pricePeriod: 'per_week',
+    address: '108 Southbank Blvd',
+    suburb: 'Southbank',
+    state: 'VIC',
+    bedrooms: 2,
+    bathrooms: 2,
+    carSpaces: 1,
+    floorAreaSqm: 70,
+    heroImageUrl: '/Living Room 2.jpg',
+    description:
+      'Spacious open-plan living with modern finishes, balcony with skyline views and access to building amenities.',
+    features: [
+      'Balcony with views',
+      'Secure parking',
+      'Gym & pool access',
+      'Air conditioning',
+    ],
+    gallery: [
+      {
+        url: '/Living Room 2.jpg',
+        alt: 'Living room',
+        width: 800,
+        height: 600,
+      },
+      { url: '/Kitchen.jpg', alt: 'Kitchen', width: 800, height: 600 },
+      { url: '/Bedroom 1.jpg', alt: 'Bedroom', width: 800, height: 600 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    id: '9',
+    slug: 'prime-office-suite-cbd',
+    title: 'Prime Office Suite – Melbourne CBD',
+    summary:
+      'Professional office suite ideal for small teams, steps from transport',
+    type: 'COMMERCIAL',
+    status: 'AVAILABLE',
+    price: 35000,
+    pricePeriod: 'per_year',
+    address: '99 Collins Street',
+    suburb: 'Melbourne',
+    state: 'VIC',
+    floorAreaSqm: 85,
+    heroImageUrl: '/Building shot 2.jpg',
+    description:
+      'Well-presented suite with reception, boardroom and open-plan workspace in a prestige address.',
+    features: [
+      'Collins St address',
+      'Lift access',
+      'End-of-trip facilities',
+      'Close to transport',
+    ],
+    gallery: [
+      {
+        url: '/Building shot 2.jpg',
+        alt: 'Office exterior',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/Living Room 3.jpg',
+        alt: 'Open workspace',
+        width: 800,
+        height: 600,
+      },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    id: '10',
+    slug: 'secure-storage-cage-carlton',
+    title: 'Secure Storage Cage – Carlton',
+    summary: 'Clean, dry storage cage in secure residential building basement',
+    type: 'ANCILLARY',
+    status: 'AVAILABLE',
+    price: 120,
+    pricePeriod: 'per_month',
+    address: '18 Lygon Street',
+    suburb: 'Carlton',
+    state: 'VIC',
+    floorAreaSqm: 6,
+    heroImageUrl: '/storagerent.png',
+    description:
+      'Convenient storage solution close to the CBD with easy access and after-hours security.',
+    features: [
+      'After-hours access',
+      'Easy loading area',
+      'Dry and ventilated',
+      'Secure complex',
+    ],
+    gallery: [
+      { url: '/storagerent.png', alt: 'Storage cage', width: 800, height: 600 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'storage-cage',
+  },
+  {
+    id: '11',
+    slug: 'chic-1br-apartment-fitzroy',
+    title: 'Chic 1BR Apartment – Fitzroy Village',
+    summary: 'Stylish inner-north living close to cafes and trams',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    price: 520,
+    pricePeriod: 'per_week',
+    address: '12 Rose Street',
+    suburb: 'Fitzroy',
+    state: 'VIC',
+    bedrooms: 1,
+    bathrooms: 1,
+    carSpaces: 0,
+    floorAreaSqm: 48,
+    heroImageUrl: '/Living Room.jpg',
+    description:
+      'Boutique apartment with timber floors, modern kitchen and balcony, steps to Brunswick Street.',
+    features: [
+      'Timber floors',
+      'Balcony',
+      'Modern kitchen',
+      'Tram at doorstep',
+    ],
+    gallery: [
+      { url: '/Living Room.jpg', alt: 'Living room', width: 800, height: 600 },
+      { url: '/Bedroom 2.jpg', alt: 'Bedroom', width: 800, height: 600 },
+      { url: '/Kitchen.jpg', alt: 'Kitchen', width: 800, height: 600 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
   },
   {
     id: '2',
     slug: 'furnished-apartment-st-kilda',
-    title: '7/1 Fiona Court, St Kilda, VIC 3182 — Fully Furnished 1-Bedroom in Leafy Cul-de-sac',
-    summary: 'Fully furnished 1-bedroom apartment in a quiet cul-de-sac location in St Kilda',
+    title:
+      '7/1 Fiona Court, St Kilda, VIC 3182 — Fully Furnished 1-Bedroom in Leafy Cul-de-sac',
+    summary:
+      'Fully furnished 1-bedroom apartment in a quiet cul-de-sac location in St Kilda',
     type: 'RESIDENTIAL',
     status: 'FOR_RENT',
     price: 450,
@@ -78,7 +257,8 @@ export const listings: ListingItem[] = [
     carSpaces: 1,
     floorAreaSqm: 55,
     heroImageUrl: '/Building shot 2.jpg',
-    description: 'Fully furnished 1-bedroom apartment in a quiet cul-de-sac location in St Kilda. Perfect for professionals or couples seeking a comfortable living space.',
+    description:
+      'Fully furnished 1-bedroom apartment in a quiet cul-de-sac location in St Kilda. Perfect for professionals or couples seeking a comfortable living space.',
     features: [
       'Fully furnished',
       'Quiet cul-de-sac location',
@@ -86,29 +266,74 @@ export const listings: ListingItem[] = [
       'Air conditioning',
       'Secure parking space',
       'Close to St Kilda Beach',
-      'Public transport nearby'
+      'Public transport nearby',
     ],
     gallery: [
-      { url: '/Building shot 2.jpg', alt: 'Exterior building view', width: 800, height: 600 },
-      { url: '/Living Room.jpg', alt: 'Main living room', width: 800, height: 600 },
-      { url: '/Living Room 2.jpg', alt: 'Living room alternate view', width: 800, height: 600 },
-      { url: '/Living Room 3.jpg', alt: 'Living room with furnishings', width: 800, height: 600 },
-      { url: '/Living Room 4.jpg', alt: 'Living room detail view', width: 800, height: 600 },
+      {
+        url: '/Building shot 2.jpg',
+        alt: 'Exterior building view',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/Living Room.jpg',
+        alt: 'Main living room',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/Living Room 2.jpg',
+        alt: 'Living room alternate view',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/Living Room 3.jpg',
+        alt: 'Living room with furnishings',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/Living Room 4.jpg',
+        alt: 'Living room detail view',
+        width: 800,
+        height: 600,
+      },
       { url: '/Kitchen.jpg', alt: 'Modern kitchen', width: 800, height: 600 },
       { url: '/Bedroom 1.jpg', alt: 'Master bedroom', width: 800, height: 600 },
-      { url: '/Bedroom 2.jpg', alt: 'Bedroom with wardrobe', width: 800, height: 600 },
+      {
+        url: '/Bedroom 2.jpg',
+        alt: 'Bedroom with wardrobe',
+        width: 800,
+        height: 600,
+      },
       { url: '/Bathroom.jpg', alt: 'Modern bathroom', width: 800, height: 600 },
-      { url: '/Local shop.jpg', alt: 'Nearby local amenities', width: 800, height: 600 },
-      { url: '/Floorplan.jpg', alt: 'Property floorplan', width: 800, height: 600 }
+      {
+        url: '/Local shop.jpg',
+        alt: 'Nearby local amenities',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/Floorplan.jpg',
+        alt: 'Property floorplan',
+        width: 800,
+        height: 600,
+      },
     ],
-    agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
-    category: 'properties'
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
   },
   {
     id: '3',
     slug: 'carpark-211-powlett-st-east-melbourne',
     title: 'Secure Car Park — 211 Powlett St, East Melbourne (Tribeca)',
-    summary: 'Secure car park space in prime East Melbourne location near Tribeca',
+    summary:
+      'Secure car park space in prime East Melbourne location near Tribeca',
     type: 'ANCILLARY',
     status: 'FOR_RENT',
     price: 350,
@@ -119,25 +344,36 @@ export const listings: ListingItem[] = [
     postcode: '3002',
     floorAreaSqm: 12,
     heroImageUrl: '/211-Powlett-St-EAST-MELB-landscape.jpg',
-    description: 'Secure car park space in the heart of East Melbourne, conveniently located near Tribeca. Perfect for residents or workers in the area seeking reliable parking.',
+    description:
+      'Secure car park space in the heart of East Melbourne, conveniently located near Tribeca. Perfect for residents or workers in the area seeking reliable parking.',
     features: [
       'Prime East Melbourne location',
       'Near Tribeca development',
       '24/7 security',
       'Well-lit and maintained',
-      'Easy access to CBD'
+      'Easy access to CBD',
     ],
     gallery: [
-      { url: '/211-Powlett-St-EAST-MELB-landscape.jpg', alt: '211 Powlett St car park entrance', width: 800, height: 600 }
+      {
+        url: '/211-Powlett-St-EAST-MELB-landscape.jpg',
+        alt: '211 Powlett St car park entrance',
+        width: 800,
+        height: 600,
+      },
     ],
-    agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
-    category: 'car-park'
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'car-park',
   },
   {
     id: '4',
     slug: 'carpark-st-kilda-tower-queens-lane',
     title: 'Car Park for Rent – St Kilda Tower (Entry via Queens Ln)',
-    summary: 'Secure car park space in St Kilda Tower with convenient Queens Lane access',
+    summary:
+      'Secure car park space in St Kilda Tower with convenient Queens Lane access',
     type: 'ANCILLARY',
     status: 'FOR_RENT',
     price: 350,
@@ -148,25 +384,36 @@ export const listings: ListingItem[] = [
     postcode: '3182',
     floorAreaSqm: 12,
     heroImageUrl: '/A20-1-Queens-Rd.jpg',
-    description: 'Secure car park space in St Kilda Tower with convenient Queens Lane access. Perfect for residents or workers in the St Kilda area.',
+    description:
+      'Secure car park space in St Kilda Tower with convenient Queens Lane access. Perfect for residents or workers in the St Kilda area.',
     features: [
       'St Kilda Tower location',
       'Queens Lane access',
       '24/7 security',
       'Well-maintained',
-      'Close to St Kilda Beach'
+      'Close to St Kilda Beach',
     ],
     gallery: [
-      { url: '/A20-1-Queens-Rd.jpg', alt: 'St Kilda Tower car park entrance', width: 800, height: 600 }
+      {
+        url: '/A20-1-Queens-Rd.jpg',
+        alt: 'St Kilda Tower car park entrance',
+        width: 800,
+        height: 600,
+      },
     ],
-    agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
-    category: 'car-park'
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'car-park',
   },
   {
     id: '5',
     slug: 'carparks-63-stead-st-south-melbourne',
     title: 'Car Parks for Rent – 63 Stead Street, South Melbourne',
-    summary: 'Multiple secure car park spaces available for rent in prime South Melbourne location',
+    summary:
+      'Multiple secure car park spaces available for rent in prime South Melbourne location',
     type: 'ANCILLARY',
     status: 'FOR_RENT',
     address: '63 Stead Street',
@@ -175,29 +422,50 @@ export const listings: ListingItem[] = [
     postcode: '3205',
     floorAreaSqm: 12,
     heroImageUrl: '/63-Stead-Street.jpg',
-    description: 'Multiple secure car park spaces available for rent in the heart of South Melbourne. Conveniently located with easy access to the CBD, these spaces offer excellent value for residents and workers in the area.',
+    description:
+      'Multiple secure car park spaces available for rent in the heart of South Melbourne. Conveniently located with easy access to the CBD, these spaces offer excellent value for residents and workers in the area.',
     features: [
       'Prime South Melbourne location',
       'Multiple spaces available',
       '24/7 security',
       'Easy CBD access',
       'Close to South Melbourne Market',
-      'Public transport nearby'
+      'Public transport nearby',
     ],
     gallery: [
-      { url: '/63-Stead-Street.jpg', alt: '63 Stead Street exterior view', width: 800, height: 600 },
-      { url: '/76-63-Stead-St.jpg', alt: 'Street view of 63 Stead Street', width: 800, height: 600 },
-      { url: '/55-56-63-Stead.jpg', alt: 'Building entrance and surrounding area', width: 800, height: 600 }
+      {
+        url: '/63-Stead-Street.jpg',
+        alt: '63 Stead Street exterior view',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/76-63-Stead-St.jpg',
+        alt: 'Street view of 63 Stead Street',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/55-56-63-Stead.jpg',
+        alt: 'Building entrance and surrounding area',
+        width: 800,
+        height: 600,
+      },
     ],
     videoUrl: 'https://www.youtube.com/watch?v=5PO4SiEsIlU',
-    agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
-    category: 'car-park'
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'car-park',
   },
   {
     id: '6',
     slug: 'carparks-150-albert-rd-south-melbourne',
     title: 'Carparks for Rent – 150 Albert Rd, South Melbourne',
-    summary: '7 secure car park spaces available for rent in prime South Melbourne location',
+    summary:
+      '7 secure car park spaces available for rent in prime South Melbourne location',
     type: 'ANCILLARY',
     status: 'FOR_RENT',
     address: '150 Albert Road',
@@ -206,18 +474,29 @@ export const listings: ListingItem[] = [
     postcode: '3205',
     floorAreaSqm: 12,
     heroImageUrl: '/150-Albert-Rd-SOUTH-MELBOURNE-1.jpg',
-    description: '7 secure car park spaces available for rent in the heart of South Melbourne. Conveniently located on Albert Road with easy access to the CBD, these spaces offer excellent value for residents and workers in the area.',
+    description:
+      '7 secure car park spaces available for rent in the heart of South Melbourne. Conveniently located on Albert Road with easy access to the CBD, these spaces offer excellent value for residents and workers in the area.',
     features: [
       'Prime South Melbourne location on Albert Road',
       '7 spaces available',
       '24/7 security',
       'Easy CBD access',
       'Close to South Melbourne Market',
-      'Public transport nearby'
+      'Public transport nearby',
     ],
     gallery: [
-      { url: '/150-Albert-Rd-SOUTH-MELBOURNE-1.jpg', alt: '150 Albert Road exterior building view', width: 800, height: 600 },
-      { url: '/150-Albert-Rd-SOUTH-MELBOUNRE-2-1.jpg', alt: '150 Albert Road interior hallway view', width: 800, height: 600 }
+      {
+        url: '/150-Albert-Rd-SOUTH-MELBOURNE-1.jpg',
+        alt: '150 Albert Road exterior building view',
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/150-Albert-Rd-SOUTH-MELBOUNRE-2-1.jpg',
+        alt: '150 Albert Road interior hallway view',
+        width: 800,
+        height: 600,
+      },
     ],
     videoUrl: 'https://youtu.be/K75u14rFfPQ?si=vrQt6TDqUq-OxCJz',
     spaces: [
@@ -227,7 +506,7 @@ export const listings: ListingItem[] = [
         price: 250,
         pricePeriod: 'per_month',
         available: true,
-        description: 'Standard car park space - 2.4m x 5.0m'
+        description: 'Standard car park space - 2.4m x 5.0m',
       },
       {
         id: 'space-2',
@@ -235,7 +514,7 @@ export const listings: ListingItem[] = [
         price: 250,
         pricePeriod: 'per_month',
         available: true,
-        description: 'Standard car park space - 2.4m x 5.0m'
+        description: 'Standard car park space - 2.4m x 5.0m',
       },
       {
         id: 'space-3',
@@ -243,7 +522,7 @@ export const listings: ListingItem[] = [
         price: 250,
         pricePeriod: 'per_month',
         available: true,
-        description: 'Standard car park space - 2.4m x 5.0m'
+        description: 'Standard car park space - 2.4m x 5.0m',
       },
       {
         id: 'space-4',
@@ -251,7 +530,7 @@ export const listings: ListingItem[] = [
         price: 250,
         pricePeriod: 'per_month',
         available: true,
-        description: 'Standard car park space - 2.4m x 5.0m'
+        description: 'Standard car park space - 2.4m x 5.0m',
       },
       {
         id: 'space-5',
@@ -259,7 +538,7 @@ export const listings: ListingItem[] = [
         price: 250,
         pricePeriod: 'per_month',
         available: true,
-        description: 'Standard car park space - 2.4m x 5.0m'
+        description: 'Standard car park space - 2.4m x 5.0m',
       },
       {
         id: 'space-6',
@@ -267,7 +546,7 @@ export const listings: ListingItem[] = [
         price: 250,
         pricePeriod: 'per_month',
         available: true,
-        description: 'Standard car park space - 2.4m x 5.0m'
+        description: 'Standard car park space - 2.4m x 5.0m',
       },
       {
         id: 'space-7',
@@ -275,17 +554,23 @@ export const listings: ListingItem[] = [
         price: 250,
         pricePeriod: 'per_month',
         available: true,
-        description: 'Standard car park space - 2.4m x 5.0m'
-      }
+        description: 'Standard car park space - 2.4m x 5.0m',
+      },
     ],
-    agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
-    category: 'car-park'
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'car-park',
   },
   {
     id: '7',
     slug: 'carpark-a20-1-queens-road-melbourne-3004',
-    title: 'Car Park for Rent – A20/1 Queens Road (St Kilda Tower, Entry via Queens Ln)',
-    summary: 'Secure car park space in St Kilda Tower with convenient Queens Lane access',
+    title:
+      'Car Park for Rent – A20/1 Queens Road (St Kilda Tower, Entry via Queens Ln)',
+    summary:
+      'Secure car park space in St Kilda Tower with convenient Queens Lane access',
     type: 'ANCILLARY',
     status: 'FOR_RENT',
     price: 350,
@@ -296,21 +581,31 @@ export const listings: ListingItem[] = [
     postcode: '3004',
     floorAreaSqm: 12,
     heroImageUrl: '/A20-1-Queens-Rd.jpg',
-    description: 'Secure car park space in St Kilda Tower with convenient Queens Lane access. This well-maintained space offers easy entry and exit with 24/7 security.',
+    description:
+      'Secure car park space in St Kilda Tower with convenient Queens Lane access. This well-maintained space offers easy entry and exit with 24/7 security.',
     features: [
       '24/7 Security',
       'Easy Access via Queens Lane',
       'Well-lit and maintained',
       'Convenient CBD location',
-      'Monthly rental available'
+      'Monthly rental available',
     ],
     gallery: [
-      { url: '/A20-1-Queens-Rd.jpg', alt: 'A20/1 Queens Road car park entrance', width: 800, height: 600 }
+      {
+        url: '/A20-1-Queens-Rd.jpg',
+        alt: 'A20/1 Queens Road car park entrance',
+        width: 800,
+        height: 600,
+      },
     ],
     videoUrl: 'https://www.youtube.com/watch?v=X_l_lQjp-HA',
-    agent: { name: 'Eamon Chau', phone: '0413 889 388', email: 'admin@touchwoodasset.com' },
-    category: 'car-park'
-  }
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'car-park',
+  },
 ]
 
 export const getCountsByCategory = () => {

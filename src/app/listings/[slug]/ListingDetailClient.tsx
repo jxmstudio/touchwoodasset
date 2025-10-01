@@ -7,17 +7,17 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { FadeIn } from '@/components/ui/fade-in'
-import { 
-  MapPin, 
-  Bed, 
-  Bath, 
-  Car, 
-  Ruler, 
+import {
+  MapPin,
+  Bed,
+  Bath,
+  Car,
+  Ruler,
   Calendar,
   ArrowLeft,
   Share2,
   Heart,
-  Shield
+  Shield,
 } from 'lucide-react'
 import Link from 'next/link'
 import { ListingItem } from '@/data/listings'
@@ -68,13 +68,31 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
     return `$${price.toLocaleString()}`
   }
 
+  const formatPeriod = (period?: string) => {
+    switch (period) {
+      case 'per_month':
+        return 'per calendar month'
+      case 'per_week':
+        return 'per week'
+      case 'per_day':
+        return 'per day'
+      case 'total':
+        return 'total'
+      default:
+        return undefined
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b">
         <div className="container mx-auto max-w-7xl px-4 md:px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/listings" className="flex items-center text-gray-600 hover:text-gray-900">
+            <Link
+              href="/listings"
+              className="flex items-center text-gray-600 hover:text-gray-900"
+            >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Listings
             </Link>
@@ -99,9 +117,9 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
             <FadeIn>
               {/* Gallery */}
               <div className="mb-8">
-                <ListingGallery 
-                  images={listing.gallery} 
-                  title={listing.title} 
+                <ListingGallery
+                  images={listing.gallery}
+                  title={listing.title}
                   videoUrl={listing.videoUrl}
                 />
               </div>
@@ -111,10 +129,14 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
                 <CardHeader>
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <CardTitle className="text-2xl font-bold mb-2">{listing.title}</CardTitle>
+                      <CardTitle className="text-2xl font-bold mb-2">
+                        {listing.title}
+                      </CardTitle>
                       <div className="flex items-center text-gray-600 mb-4">
                         <MapPin className="h-4 w-4 mr-2" />
-                        <span>{listing.address}, {listing.suburb}, {listing.state}</span>
+                        <span>
+                          {listing.address}, {listing.suburb}, {listing.state}
+                        </span>
                       </div>
                     </div>
                     <div className="flex flex-col items-end space-y-2">
@@ -126,47 +148,87 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
                       </Badge>
                     </div>
                   </div>
-                  
-                  <div className="text-3xl font-bold text-primary mb-4">
+
+                  <div className="text-3xl font-bold text-gray-900 mb-4">
                     {formatPrice(listing.price || 0)}
-                    {listing.pricePeriod && (
-                      <span className="text-lg font-normal text-gray-600 ml-2">
-                        / {listing.pricePeriod.replace('_', ' ')}
+                    {formatPeriod(listing.pricePeriod) && (
+                      <span className="text-lg font-normal text-gray-700 ml-2">
+                        {formatPeriod(listing.pricePeriod)}
                       </span>
                     )}
                   </div>
                 </CardHeader>
-                
+
                 <CardContent>
                   <p className="text-gray-700 mb-6">{listing.description}</p>
-                  
+
                   {/* Property Features */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                     {listing.bedrooms && (
                       <div className="flex items-center">
                         <Bed className="h-5 w-5 text-gray-500 mr-2" />
-                        <span className="text-sm">{listing.bedrooms} bed{listing.bedrooms > 1 ? 's' : ''}</span>
+                        <span className="text-sm">
+                          {listing.bedrooms} bed
+                          {listing.bedrooms > 1 ? 's' : ''}
+                        </span>
                       </div>
                     )}
                     {listing.bathrooms && (
                       <div className="flex items-center">
                         <Bath className="h-5 w-5 text-gray-500 mr-2" />
-                        <span className="text-sm">{listing.bathrooms} bath{listing.bathrooms > 1 ? 's' : ''}</span>
+                        <span className="text-sm">
+                          {listing.bathrooms} bath
+                          {listing.bathrooms > 1 ? 's' : ''}
+                        </span>
                       </div>
                     )}
                     {listing.carSpaces && (
                       <div className="flex items-center">
                         <Car className="h-5 w-5 text-gray-500 mr-2" />
-                        <span className="text-sm">{listing.carSpaces} car{listing.carSpaces > 1 ? 's' : ''}</span>
+                        <span className="text-sm">
+                          {listing.carSpaces} car
+                          {listing.carSpaces > 1 ? 's' : ''}
+                        </span>
                       </div>
                     )}
-                    {listing.floorAreaSqm && (
+                    {/* For car parks, show clearance height instead of size */}
+                    {listing.category === 'car-park' ? (
                       <div className="flex items-center">
                         <Ruler className="h-5 w-5 text-gray-500 mr-2" />
-                        <span className="text-sm">{listing.floorAreaSqm}m²</span>
+                        <span className="text-sm">2.1m clearance</span>
                       </div>
+                    ) : (
+                      listing.floorAreaSqm && (
+                        <div className="flex items-center">
+                          <Ruler className="h-5 w-5 text-gray-500 mr-2" />
+                          <span className="text-sm">
+                            {listing.floorAreaSqm}m²
+                          </span>
+                        </div>
+                      )
                     )}
                   </div>
+
+                  {/* Availability and actions */}
+                  {(listing.status === 'AVAILABLE' ||
+                    listing.status === 'FOR_RENT') && (
+                    <div className="mb-6 p-4 border rounded-lg bg-green-50 flex items-center justify-between">
+                      <span className="text-green-800 font-medium">
+                        Available now
+                      </span>
+                      <div className="flex gap-2">
+                        <Button variant="outline">
+                          Request a booking to inspect
+                        </Button>
+                        {(listing.category === 'car-park' ||
+                          listing.category === 'storage-cage') && (
+                          <Button onClick={() => setIsApplyModalOpen(true)}>
+                            Secure me a spot today!
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  )}
 
                   {/* Features List */}
                   {listing.features && listing.features.length > 0 && (
@@ -174,7 +236,10 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
                       <h3 className="text-lg font-semibold mb-4">Features</h3>
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         {listing.features.map((feature, index) => (
-                          <li key={index} className="flex items-center text-sm text-gray-600">
+                          <li
+                            key={index}
+                            className="flex items-center text-sm text-gray-600"
+                          >
                             <div className="w-2 h-2 bg-primary rounded-full mr-3 flex-shrink-0"></div>
                             {feature}
                           </li>
@@ -199,13 +264,18 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
                   <div className="text-center mb-4">
                     <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
                       <span className="text-xl font-bold text-primary">
-                        {listing.agent?.name.split(' ').map(n => n[0]).join('') || 'EC'}
+                        {listing.agent?.name
+                          .split(' ')
+                          .map((n) => n[0])
+                          .join('') || 'EC'}
                       </span>
                     </div>
-                    <h3 className="font-semibold">{listing.agent?.name || 'Eamon Chau'}</h3>
+                    <h3 className="font-semibold">
+                      {listing.agent?.name || 'Eamon Chau'}
+                    </h3>
                     <p className="text-sm text-gray-600">Property Specialist</p>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <Button className="w-full" size="lg">
                       Call {listing.agent?.phone || '0413 889 388'}
@@ -218,7 +288,8 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
               </Card>
 
               {/* Secure Application for Car Park/Storage */}
-              {(listing.category === 'car-park' || listing.category === 'storage-cage') && (
+              {(listing.category === 'car-park' ||
+                listing.category === 'storage-cage') && (
                 <Card className="mb-6">
                   <CardHeader>
                     <CardTitle className="text-lg flex items-center gap-2">
@@ -226,12 +297,15 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
                       Secure Application
                     </CardTitle>
                     <p className="text-sm text-gray-600">
-                      Apply securely for this {listing.category === 'car-park' ? 'car park' : 'storage cage'}
+                      Apply securely for this{' '}
+                      {listing.category === 'car-park'
+                        ? 'car park'
+                        : 'storage cage'}
                     </p>
                   </CardHeader>
                   <CardContent>
-                    <Button 
-                      className="w-full" 
+                    <Button
+                      className="w-full"
                       size="lg"
                       onClick={() => setIsApplyModalOpen(true)}
                     >
@@ -262,7 +336,9 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Category:</span>
-                      <span className="font-medium capitalize">{listing.category}</span>
+                      <span className="font-medium capitalize">
+                        {listing.category}
+                      </span>
                     </div>
                   </div>
                 </CardContent>

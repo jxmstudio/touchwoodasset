@@ -7,8 +7,21 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { toast } from 'sonner'
 import { Send, Loader2 } from 'lucide-react'
 import { submitContactForm } from '@/lib/sheets-webhook'
@@ -41,7 +54,7 @@ export function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true)
-    
+
     try {
       // Submit to Google Sheets via our proxy
       const result = await submitContactForm({
@@ -54,14 +67,18 @@ export function ContactForm() {
       })
 
       if (result.success) {
-        toast.success('Thank you for your message! We\'ll get back to you within 24 hours.')
+        toast.success(
+          'Thank you for your message! We\u2019ll get back to you within 24 hours.'
+        )
         form.reset()
       } else {
         throw new Error(result.error || 'Failed to send message')
       }
     } catch (error) {
       console.error('Error sending message:', error)
-      toast.error('Sorry, there was an error sending your message. Please try again or call us directly.')
+      toast.error(
+        'Sorry, there was an error sending your message. Please try again or call us directly.'
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -92,7 +109,11 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Email Address *</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="Enter your email" {...field} />
+                  <Input
+                    type="email"
+                    placeholder="Enter your email"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -121,16 +142,23 @@ export function ContactForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Enquiry Type *</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="w-full bg-gray-100 hover:bg-gray-200">
                       <SelectValue placeholder="Select enquiry type" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="GENERAL">General Enquiry</SelectItem>
-                    <SelectItem value="VALUATION">Property Valuation</SelectItem>
-                    <SelectItem value="INSPECTION">Property Inspection</SelectItem>
+                    <SelectItem value="GENERAL">General enquiry</SelectItem>
+                    <SelectItem value="VALUATION">
+                      Property valuation (sale/rentals)
+                    </SelectItem>
+                    <SelectItem value="INSPECTION">
+                      Property inspection
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -146,7 +174,10 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>Subject *</FormLabel>
               <FormControl>
-                <Input placeholder="Enter a subject for your enquiry" {...field} />
+                <Input
+                  placeholder="Enter a subject for your enquiry"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -160,10 +191,10 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>Message *</FormLabel>
               <FormControl>
-                <Textarea 
+                <Textarea
                   placeholder="Please provide details about your enquiry..."
                   className="min-h-[120px]"
-                  {...field} 
+                  {...field}
                 />
               </FormControl>
               <FormMessage />
@@ -171,8 +202,8 @@ export function ContactForm() {
           )}
         />
 
-        <Button 
-          type="submit" 
+        <Button
+          type="submit"
           disabled={isSubmitting}
           className="w-full bg-blue-600 hover:bg-blue-700"
         >
@@ -194,7 +225,7 @@ export function ContactForm() {
           <a href="/legal/privacy" className="text-blue-600 hover:underline">
             Privacy Policy
           </a>
-          . We'll never share your information with third parties.
+          . We\u2019ll never share your information with third parties.
         </p>
       </form>
     </Form>

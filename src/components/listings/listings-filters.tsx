@@ -4,7 +4,13 @@ import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
 import { Search, Filter, X } from 'lucide-react'
 import { AnimatedButton } from '@/components/ui/animated-button'
@@ -19,13 +25,16 @@ export function ListingsFilters() {
     minPrice: '',
     maxPrice: '',
     bedrooms: '',
+    suiteSize: '',
+    storageSize: '',
+    parkingLevel: '',
     suburb: '',
   })
 
   const [activeFilters, setActiveFilters] = useState<string[]>([])
 
   const handleFilterChange = (key: string, value: string) => {
-    setFilters(prev => ({ ...prev, [key]: value }))
+    setFilters((prev) => ({ ...prev, [key]: value }))
   }
 
   const clearFilters = () => {
@@ -36,6 +45,9 @@ export function ListingsFilters() {
       minPrice: '',
       maxPrice: '',
       bedrooms: '',
+      suiteSize: '',
+      storageSize: '',
+      parkingLevel: '',
       suburb: '',
     })
     setActiveFilters([])
@@ -63,9 +75,12 @@ export function ListingsFilters() {
             value={filters.search}
             onChange={(e) => handleFilterChange('search', e.target.value)}
           />
-          
-          <Select value={filters.type} onValueChange={(value) => handleFilterChange('type', value)}>
-            <SelectTrigger>
+
+          <Select
+            value={filters.type}
+            onValueChange={(value) => handleFilterChange('type', value)}
+          >
+            <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
               <SelectValue placeholder="Property Type" />
             </SelectTrigger>
             <SelectContent>
@@ -75,8 +90,11 @@ export function ListingsFilters() {
             </SelectContent>
           </Select>
 
-          <Select value={filters.status} onValueChange={(value) => handleFilterChange('status', value)}>
-            <SelectTrigger>
+          <Select
+            value={filters.status}
+            onValueChange={(value) => handleFilterChange('status', value)}
+          >
+            <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>
@@ -100,17 +118,78 @@ export function ListingsFilters() {
             />
           </div>
 
-          <Select value={filters.bedrooms} onValueChange={(value) => handleFilterChange('bedrooms', value)}>
-            <SelectTrigger>
-              <SelectValue placeholder="Bedrooms" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1">1+</SelectItem>
-              <SelectItem value="2">2+</SelectItem>
-              <SelectItem value="3">3+</SelectItem>
-              <SelectItem value="4">4+</SelectItem>
-            </SelectContent>
-          </Select>
+          {/* Conditional filters by type */}
+          {filters.type === 'RESIDENTIAL' && (
+            <Select
+              value={filters.bedrooms}
+              onValueChange={(value) => handleFilterChange('bedrooms', value)}
+            >
+              <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+                <SelectValue placeholder="Bedrooms" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">1+</SelectItem>
+                <SelectItem value="2">2+</SelectItem>
+                <SelectItem value="3">3+</SelectItem>
+                <SelectItem value="4">4+</SelectItem>
+              </SelectContent>
+            </Select>
+          )}
+
+          {filters.type === 'COMMERCIAL' && (
+            <Select
+              value={filters.suiteSize}
+              onValueChange={(value) => handleFilterChange('suiteSize', value)}
+            >
+              <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+                <SelectValue placeholder="Suite size" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="ANY">Any</SelectItem>
+                <SelectItem value="0-50">0–50m²</SelectItem>
+                <SelectItem value="50-100">50–100m²</SelectItem>
+                <SelectItem value=">100">100m²+</SelectItem>
+              </SelectContent>
+            </Select>
+          )}
+
+          {filters.type === 'ANCILLARY' && (
+            <>
+              <Select
+                value={filters.storageSize}
+                onValueChange={(value) =>
+                  handleFilterChange('storageSize', value)
+                }
+              >
+                <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+                  <SelectValue placeholder="Storage size (sqm)" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="2-4">2–4sqm</SelectItem>
+                  <SelectItem value="5-10">5–10sqm</SelectItem>
+                  <SelectItem value=">10">10sqm and above</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Select
+                value={filters.parkingLevel}
+                onValueChange={(value) =>
+                  handleFilterChange('parkingLevel', value)
+                }
+              >
+                <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+                  <SelectValue placeholder="Parking level" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="ground">Ground floor</SelectItem>
+                  <SelectItem value="1-2">1–2 floors from ground</SelectItem>
+                  <SelectItem value=">=3">
+                    3 or more floors from ground
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </>
+          )}
 
           <Input
             placeholder="Suburb"

@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": "2025-10-01T14:31:32.751Z",
+    "type": "contact",
+    "name": "john wayne",
+    "email": "johnwayne22@gmail.com",
+    "phone": "0468443378",
+    "subject": "Property rental",
+    "message": "Property Property Property",
+    "enquiryType": "VALUATION"
+  }
+]
