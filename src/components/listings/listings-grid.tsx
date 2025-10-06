@@ -39,7 +39,7 @@ interface ListingsGridProps {
 
 export function ListingsGrid({ category }: ListingsGridProps) {
   const [allListings, setAllListings] = useState(mockListings)
-  const [loading, setLoading] = useState(false)
+  const [loading] = useState(false)
 
   // Filter listings based on category
   const filteredListings = category
@@ -51,20 +51,7 @@ export function ListingsGrid({ category }: ListingsGridProps) {
     setAllListings(mockListings)
   }, [])
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'AVAILABLE':
-        return 'default'
-      case 'UNDER_OFFER':
-        return 'secondary'
-      case 'SOLD':
-        return 'destructive'
-      case 'LEASED':
-        return 'outline'
-      default:
-        return 'secondary'
-    }
-  }
+  // status colors handled by top bar currently
 
   const getTypeColor = (type: string) => {
     switch (type) {
@@ -238,26 +225,15 @@ export function ListingsGrid({ category }: ListingsGridProps) {
                         : null
                   if (!saleOrRentLabel) return null
                   return (
-                    <div className="absolute top-3 left-0">
-                      <span className="bg-red-600 text-white text-xs md:text-sm font-bold uppercase tracking-wide px-3 py-1 rounded-r-md shadow">
+                    <div className="absolute top-0 left-0 right-0">
+                      <div className="bg-red-600 text-white text-xs md:text-sm font-extrabold uppercase tracking-wide px-4 py-1 shadow">
                         {saleOrRentLabel}
-                      </span>
+                      </div>
                     </div>
                   )
                 })()}
-                <div className="absolute top-4 right-4">
-                  <Badge
-                    className={
-                      listing.type === 'ANCILLARY'
-                        ? 'bg-white text-red-600 border-red-600 font-bold'
-                        : undefined
-                    }
-                    variant={
-                      listing.type === 'ANCILLARY'
-                        ? 'outline'
-                        : getTypeColor(listing.type)
-                    }
-                  >
+                <div className="absolute top-3 right-3">
+                  <Badge className="bg-red-600 text-white font-bold border-transparent">
                     {listing.type}
                   </Badge>
                 </div>

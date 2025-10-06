@@ -225,7 +225,7 @@ export function ContactForm() {
           <a href="/legal/privacy" className="text-blue-600 hover:underline">
             Privacy Policy
           </a>
-          . We\u2019ll never share your information with third parties.
+          . We&apos;ll never share your information with third parties.
         </p>
       </form>
     </Form>

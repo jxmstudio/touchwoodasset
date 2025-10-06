@@ -124,6 +124,7 @@ export function ListingsCarousel({
     }
   }, [emblaApi, autoPlay, emblaRef])
 
+  /* kept for future use
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'AVAILABLE':
@@ -142,7 +143,7 @@ export function ListingsCarousel({
         return 'bg-gray-500 text-white'
     }
   }
-
+  */
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'RESIDENTIAL':
@@ -218,16 +219,21 @@ export function ListingsCarousel({
                           priority={false}
                         />
 
-                        {/* Status Badge */}
-                        <div className="absolute top-3 left-3">
-                          <Badge className={getStatusColor(listing.status)}>
-                            {listing.status.replace('_', ' ')}
-                          </Badge>
-                        </div>
+                        {/* Status Bar */}
+                        {(listing.status === 'FOR_RENT' ||
+                          listing.status === 'AVAILABLE') && (
+                          <div className="absolute top-0 left-0 right-0">
+                            <div className="bg-red-600 text-white text-xs md:text-sm font-extrabold uppercase tracking-wide px-4 py-1 shadow">
+                              {listing.status === 'FOR_RENT'
+                                ? 'FOR RENT'
+                                : 'FOR SALE'}
+                            </div>
+                          </div>
+                        )}
 
-                        {/* Type Badge */}
+                        {/* Type Badge - solid red */}
                         <div className="absolute top-3 right-3">
-                          <Badge className={getTypeColor(listing.type)}>
+                          <Badge className="bg-red-600 text-white font-bold border-transparent">
                             {listing.type}
                           </Badge>
                         </div>

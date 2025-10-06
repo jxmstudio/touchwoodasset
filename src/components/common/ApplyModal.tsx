@@ -5,7 +5,13 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Loader2, CheckCircle, Shield, Mail } from 'lucide-react'
@@ -17,6 +23,14 @@ interface ApplyModalProps {
   listingId: string
   listingTitle: string
   category: 'car-park' | 'storage-cage'
+  status?:
+    | 'AVAILABLE'
+    | 'UNDER_OFFER'
+    | 'SOLD'
+    | 'LEASED'
+    | 'COMING_SOON'
+    | 'FOR_RENT'
+  type?: 'RESIDENTIAL' | 'COMMERCIAL' | 'ANCILLARY'
 }
 
 interface ApplicationFormData {
@@ -27,28 +41,38 @@ interface ApplicationFormData {
   honeypot: string // For spam protection
 }
 
-export function ApplyModal({ isOpen, onClose, listingId, listingTitle, category }: ApplyModalProps) {
+export function ApplyModal({
+  isOpen,
+  onClose,
+  listingId,
+  listingTitle,
+  category,
+  status,
+  type,
+}: ApplyModalProps) {
   const [formData, setFormData] = useState<ApplicationFormData>({
     name: '',
     email: '',
     phone: '',
     message: '',
-    honeypot: ''
+    honeypot: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Honeypot check
     if (formData.honeypot) {
       return // Silent fail for bots
@@ -71,8 +95,8 @@ export function ApplyModal({ isOpen, onClose, listingId, listingTitle, category 
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+
       // In a real app, this would be an API call:
       // await fetch('/api/applications', {
       //   method: 'POST',
@@ -87,7 +111,7 @@ export function ApplyModal({ isOpen, onClose, listingId, listingTitle, category 
 
       setIsSubmitted(true)
       toast.success('Application submitted successfully!')
-      
+
       // Reset form after a delay
       setTimeout(() => {
         setFormData({
@@ -95,12 +119,11 @@ export function ApplyModal({ isOpen, onClose, listingId, listingTitle, category 
           email: '',
           phone: '',
           message: '',
-          honeypot: ''
+          honeypot: '',
         })
         setIsSubmitted(false)
         onClose()
       }, 3000)
-
     } catch (error) {
       toast.error('Failed to submit application. Please try again.')
     } finally {
@@ -110,29 +133,59 @@ export function ApplyModal({ isOpen, onClose, listingId, listingTitle, category 
 
   const categoryLabels = {
     'car-park': 'Car Park',
-    'storage-cage': 'Storage Cage'
+    'storage-cage': 'Storage Cage',
   }
+
+  const saleOrRentLabel =
+    status === 'FOR_RENT'
+      ? 'FOR RENT'
+      : status === 'AVAILABLE'
+        ? 'FOR SALE'
+        : undefined
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-xl w-full rounded-lg overflow-hidden max-h-[85vh]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Shield className="h-5 w-5 text-primary" />
             Secure Application
           </DialogTitle>
           <DialogDescription>
-            Apply for this {categoryLabels[category]} securely. Your information will be protected.
+            Apply for this {categoryLabels[category]} securely. Your information
+            will be protected.
           </DialogDescription>
         </DialogHeader>
+
+        {/* Top tags */}
+        <div className="relative -mt-2 mb-2">
+          {saleOrRentLabel && (
+            <div className="absolute top-0 left-0 right-0">
+              <div className="bg-red-600 text-white text-xs font-extrabold uppercase tracking-wide px-4 py-1">
+                {saleOrRentLabel}
+              </div>
+            </div>
+          )}
+          {type && (
+            <div className="absolute top-2 right-2">
+              <Badge className="bg-red-600 text-white font-bold border-transparent">
+                {type}
+              </Badge>
+            </div>
+          )}
+          <div className="pt-6" />
+        </div>
 
         {isSubmitted ? (
           <Card className="text-center py-8">
             <CardContent>
               <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Application Submitted!</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                Application Submitted!
+              </h3>
               <p className="text-gray-600 mb-4">
-                Thank you for your interest. We'll review your application and contact you soon.
+                Thank you for your interest. We&apos;ll review your application
+                and contact you soon.
               </p>
               <div className="bg-blue-50 p-4 rounded-lg">
                 <div className="flex items-center gap-2 text-sm text-blue-700">
@@ -147,7 +200,9 @@ export function ApplyModal({ isOpen, onClose, listingId, listingTitle, category 
             {/* Listing Info */}
             <Card className="bg-gray-50">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-700">Applying for:</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-700">
+                  Applying for:
+                </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
                 <div className="flex items-center justify-between">
@@ -229,7 +284,9 @@ export function ApplyModal({ isOpen, onClose, listingId, listingTitle, category 
                 <Shield className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
                 <div className="text-xs text-blue-700">
                   <p className="font-medium">Your information is secure</p>
-                  <p>We use industry-standard encryption to protect your data.</p>
+                  <p>
+                    We use industry-standard encryption to protect your data.
+                  </p>
                 </div>
               </div>
             </div>
@@ -245,11 +302,7 @@ export function ApplyModal({ isOpen, onClose, listingId, listingTitle, category 
               >
                 Cancel
               </Button>
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="flex-1"
-              >
+              <Button type="submit" disabled={isSubmitting} className="flex-1">
                 {isSubmitting ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />

@@ -10,15 +10,16 @@ import {
 import { Phone, Mail, MapPin, Clock, Building2 } from 'lucide-react'
 import { FadeIn } from '@/components/ui/fade-in'
 import { Section } from '@/components/ui/section'
+// import { BookingCalendar } from '@/components/calendar/BookingCalendar'
 
 export const metadata: Metadata = {
   title: 'Contact Us - Touchwood Asset Management',
   description:
-    'Get in touch with Touchwood Asset Management. We\u2019re here to help with all your property management needs in Melbourne and Victoria.',
+    "Get in touch with Touchwood Asset Management. We're here to help with all your property management needs in Melbourne and Victoria.",
   openGraph: {
     title: 'Contact Us - Touchwood Asset Management',
     description:
-      'Get in touch with Touchwood Asset Management. We\u2019re here to help with all your property management needs in Melbourne and Victoria.',
+      "Get in touch with Touchwood Asset Management. We're here to help with all your property management needs in Melbourne and Victoria.",
   },
 }
 
@@ -58,8 +59,8 @@ export default function ContactPage() {
           <FadeIn>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-              Dont waitdiscover why property owners choose us. Contact our
-              expert team today.
+              Don&apos;t wait—discover why property owners choose us. Contact
+              our expert team today.
             </p>
           </FadeIn>
         </div>
@@ -77,13 +78,15 @@ export default function ContactPage() {
                     Send us a Message
                   </h2>
                   <p className="text-lg text-gray-600">
-                    Fill out the form below and we\u2019ll get back to you
+                    Fill out the form below and we&apos;ll get back to you
                     within 24 hours. For urgent matters, please call us
                     directly.
                   </p>
                 </div>
 
                 <ContactForm />
+
+                {/* Booking Calendar removed per request */}
               </div>
             </FadeIn>
 
@@ -95,8 +98,8 @@ export default function ContactPage() {
                     Get in Touch
                   </h2>
                   <p className="text-lg text-gray-600">
-                    Were here to help with all your property management needs.
-                    Reach out to us through any of the channels below.
+                    We&apos;re here to help with all your property management
+                    needs. Reach out to us through any of the channels below.
                   </p>
                 </div>
 
@@ -214,7 +217,7 @@ export default function ContactPage() {
               <CardContent>
                 <p className="text-gray-600">
                   We proudly service Melbourne CBD and surrounding suburbs
-                  within a 50km radius. Excitingly, we\u2019re also preparing to
+                  within a 50km radius. Excitingly, we&apos;re also preparing to
                   expand into regional Victoria soon.
                 </p>
               </CardContent>
@@ -249,7 +252,7 @@ export default function ContactPage() {
                 <p className="text-gray-600">
                   We are a boutique agency that prides itself on personalised
                   service, transparent communication, and proven results. You
-                  won\u2019t get lost in the crowd with uswe treat every
+                  won&apos;t get lost in the crowd with us—we treat every
                   property as if it were our own.
                 </p>
               </CardContent>
@@ -367,7 +370,7 @@ export default function ContactPage() {
               <CardContent>
                 <p className="text-gray-600">
                   Yes! We make switching simple by handling the entire handover
-                  process on your behalf. It\u2019s stress-free for you.
+                  process on your behalf. It&apos;s stress-free for you.
                 </p>
               </CardContent>
             </Card>
@@ -466,8 +469,8 @@ export default function ContactPage() {
               <CardContent>
                 <p className="text-gray-600">
                   Yes! When you switch your property management to us,
-                  you\u2019ll receive a $500 Visa gift card or cashback as a
-                  welcome bonus. It\u2019s our way of saying thank you for
+                  you&apos;ll receive a $500 Visa gift card or cashback as a
+                  welcome bonus. It&apos;s our way of saying thank you for
                   trusting us with your property. If you have a carpark or
                   storage unit, we will still offer you a $100 Visa gift card or
                   cashback as our appreciation for your support. Enquire today

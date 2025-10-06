@@ -13,7 +13,6 @@ import {
   Bath,
   Car,
   Ruler,
-  Calendar,
   ArrowLeft,
   Share2,
   Heart,
@@ -217,8 +216,10 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
                         Available now
                       </span>
                       <div className="flex gap-2">
-                        <Button variant="outline">
-                          Request a booking to inspect
+                        <Button variant="outline" asChild>
+                          <Link href={`/inspection?listing=${listing.slug}`}>
+                            Request a booking to inspect
+                          </Link>
                         </Button>
                         {(listing.category === 'car-park' ||
                           listing.category === 'storage-cage') && (
@@ -355,6 +356,16 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
         listingId={listing.id}
         listingTitle={listing.title}
         category={listing.category as 'car-park' | 'storage-cage'}
+        status={
+          listing.status as
+            | 'AVAILABLE'
+            | 'UNDER_OFFER'
+            | 'SOLD'
+            | 'LEASED'
+            | 'COMING_SOON'
+            | 'FOR_RENT'
+        }
+        type={listing.type as 'RESIDENTIAL' | 'COMMERCIAL' | 'ANCILLARY'}
       />
     </div>
   )

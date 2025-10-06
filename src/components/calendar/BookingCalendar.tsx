@@ -5,15 +5,27 @@ import DatePicker from 'react-datepicker'
 import { motion } from 'framer-motion'
 import { Calendar, Clock, User, Mail, Phone, MessageSquare } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import "react-datepicker/dist/react-datepicker.css"
+import 'react-datepicker/dist/react-datepicker.css'
 
 const bookingSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -39,8 +51,8 @@ interface BookingCalendarProps {
 export function BookingCalendar({
   type,
   propertyId,
-  className = "",
-  onSubmit
+  className = '',
+  onSubmit,
 }: BookingCalendarProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
@@ -51,18 +63,33 @@ export function BookingCalendar({
     formState: { errors },
     setValue,
     watch,
-    reset
+    reset,
   } = useForm<BookingFormData>({
-    resolver: zodResolver(bookingSchema)
+    resolver: zodResolver(bookingSchema),
   })
 
   const selectedDate = watch('preferredDate')
 
   // Available time slots
   const timeSlots = [
-    '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
-    '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM',
-    '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM'
+    '9:00 AM',
+    '9:30 AM',
+    '10:00 AM',
+    '10:30 AM',
+    '11:00 AM',
+    '11:30 AM',
+    '12:00 PM',
+    '12:30 PM',
+    '1:00 PM',
+    '1:30 PM',
+    '2:00 PM',
+    '2:30 PM',
+    '3:00 PM',
+    '3:30 PM',
+    '4:00 PM',
+    '4:30 PM',
+    '5:00 PM',
+    '5:30 PM',
   ]
 
   // Appointment types based on user type
@@ -74,7 +101,7 @@ export function BookingCalendar({
           'Rental Appraisal',
           'Property Inspection',
           'Maintenance Discussion',
-          'Lease Renewal Meeting'
+          'Lease Renewal Meeting',
         ]
       case 'seller':
         return [
@@ -82,7 +109,7 @@ export function BookingCalendar({
           'Sale Strategy Consultation',
           'Market Analysis Meeting',
           'Property Styling Consultation',
-          'Pre-sale Inspection'
+          'Pre-sale Inspection',
         ]
       case 'buyer':
         return [
@@ -90,7 +117,7 @@ export function BookingCalendar({
           'Buyer Consultation',
           'Finance Pre-approval Meeting',
           'Property Research Session',
-          'Settlement Support'
+          'Settlement Support',
         ]
       case 'tenant':
         return [
@@ -98,7 +125,7 @@ export function BookingCalendar({
           'Application Support',
           'Lease Discussion',
           'Property Condition Report',
-          'Tenancy Information Session'
+          'Tenancy Information Session',
         ]
       default:
         return ['General Consultation']
@@ -147,9 +174,13 @@ export function BookingCalendar({
           data.preferredDate.getFullYear(),
           data.preferredDate.getMonth(),
           data.preferredDate.getDate(),
-          parseInt(data.preferredTime.split(':')[0]) + (data.preferredTime.includes('PM') && !data.preferredTime.startsWith('12') ? 12 : 0),
+          parseInt(data.preferredTime.split(':')[0]) +
+            (data.preferredTime.includes('PM') &&
+            !data.preferredTime.startsWith('12')
+              ? 12
+              : 0),
           parseInt(data.preferredTime.split(':')[1].split(' ')[0])
-        )
+        ),
       }
 
       if (onSubmit) {
@@ -182,7 +213,7 @@ export function BookingCalendar({
   const isDateAvailable = (date: Date) => {
     const today = new Date()
     today.setHours(0, 0, 0, 0)
-    
+
     // Only allow future dates and weekdays
     return date >= today && date.getDay() !== 0 && date.getDay() !== 6
   }
@@ -198,9 +229,12 @@ export function BookingCalendar({
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
           <Calendar className="h-8 w-8 text-green-600" />
         </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">Booking Confirmed!</h3>
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          Booking Confirmed!
+        </h3>
         <p className="text-gray-600 mb-6">
-          Thank you for your booking request. We'll contact you within 24 hours to confirm your appointment details.
+          Thank you for your booking request. We&apos;ll contact you within 24
+          hours to confirm your appointment details.
         </p>
         <Button onClick={() => setSubmitSuccess(false)}>
           Book Another Appointment
@@ -211,13 +245,13 @@ export function BookingCalendar({
 
   return (
     <motion.div
-      className={className}
+      className={`${className} max-w-3xl mx-auto`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <Card className="bg-white shadow-xl">
-        <CardHeader className="text-center">
+      <Card className="bg-white shadow-xl rounded-2xl border">
+        <CardHeader className="text-center space-y-2">
           <CardTitle className="text-2xl font-bold text-gray-900">
             {getTitle()}
           </CardTitle>
@@ -226,10 +260,10 @@ export function BookingCalendar({
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-6">
-          <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
+        <CardContent className="space-y-10">
+          <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-10">
             {/* Personal Information */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <Label htmlFor="name">Full Name *</Label>
                 <div className="relative">
@@ -242,7 +276,9 @@ export function BookingCalendar({
                   />
                 </div>
                 {errors.name && (
-                  <p className="text-sm text-red-600 mt-1">{errors.name.message}</p>
+                  <p className="text-sm text-red-600 mt-1">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
 
@@ -259,7 +295,9 @@ export function BookingCalendar({
                   />
                 </div>
                 {errors.email && (
-                  <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>
+                  <p className="text-sm text-red-600 mt-1">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
 
@@ -276,13 +314,17 @@ export function BookingCalendar({
                   />
                 </div>
                 {errors.phone && (
-                  <p className="text-sm text-red-600 mt-1">{errors.phone.message}</p>
+                  <p className="text-sm text-red-600 mt-1">
+                    {errors.phone.message}
+                  </p>
                 )}
               </div>
 
               <div>
                 <Label htmlFor="appointmentType">Appointment Type *</Label>
-                <Select onValueChange={(value) => setValue('appointmentType', value)}>
+                <Select
+                  onValueChange={(value) => setValue('appointmentType', value)}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select appointment type" />
                   </SelectTrigger>
@@ -295,13 +337,15 @@ export function BookingCalendar({
                   </SelectContent>
                 </Select>
                 {errors.appointmentType && (
-                  <p className="text-sm text-red-600 mt-1">{errors.appointmentType.message}</p>
+                  <p className="text-sm text-red-600 mt-1">
+                    {errors.appointmentType.message}
+                  </p>
                 )}
               </div>
             </div>
 
             {/* Date and Time Selection */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <Label>Preferred Date *</Label>
                 <div className="relative">
@@ -317,7 +361,9 @@ export function BookingCalendar({
                   />
                 </div>
                 {errors.preferredDate && (
-                  <p className="text-sm text-red-600 mt-1">{errors.preferredDate.message}</p>
+                  <p className="text-sm text-red-600 mt-1">
+                    {errors.preferredDate.message}
+                  </p>
                 )}
               </div>
 
@@ -325,7 +371,9 @@ export function BookingCalendar({
                 <Label htmlFor="preferredTime">Preferred Time *</Label>
                 <div className="relative">
                   <Clock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                  <Select onValueChange={(value) => setValue('preferredTime', value)}>
+                  <Select
+                    onValueChange={(value) => setValue('preferredTime', value)}
+                  >
                     <SelectTrigger className="pl-10">
                       <SelectValue placeholder="Select time" />
                     </SelectTrigger>
@@ -339,7 +387,9 @@ export function BookingCalendar({
                   </Select>
                 </div>
                 {errors.preferredTime && (
-                  <p className="text-sm text-red-600 mt-1">{errors.preferredTime.message}</p>
+                  <p className="text-sm text-red-600 mt-1">
+                    {errors.preferredTime.message}
+                  </p>
                 )}
               </div>
             </div>
@@ -353,7 +403,7 @@ export function BookingCalendar({
                   id="message"
                   className="pl-10"
                   placeholder="Any specific requirements or questions..."
-                  rows={4}
+                  rows={5}
                   {...register('message')}
                 />
               </div>
@@ -362,7 +412,7 @@ export function BookingCalendar({
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full py-3 text-lg font-semibold"
+              className="w-full py-4 text-lg font-semibold"
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Submitting...' : 'Book Appointment'}
@@ -370,16 +420,28 @@ export function BookingCalendar({
           </form>
 
           {/* Contact Information */}
-          <div className="text-center pt-6 border-t border-gray-200">
+          <div className="text-center pt-8 border-t border-gray-200">
             <p className="text-sm text-gray-600 mb-2">
               Need immediate assistance?
             </p>
             <div className="space-y-1">
               <p className="text-sm font-medium">
-                Call us: <a href="tel:+61212345678" className="text-primary hover:underline">+61 2 1234 5678</a>
+                Call us:{' '}
+                <a
+                  href="tel:+61212345678"
+                  className="text-primary hover:underline"
+                >
+                  +61 2 1234 5678
+                </a>
               </p>
               <p className="text-sm font-medium">
-                Email: <a href="mailto:info@touchwood.com.au" className="text-primary hover:underline">info@touchwood.com.au</a>
+                Email:{' '}
+                <a
+                  href="mailto:info@touchwood.com.au"
+                  className="text-primary hover:underline"
+                >
+                  info@touchwood.com.au
+                </a>
               </p>
             </div>
           </div>
