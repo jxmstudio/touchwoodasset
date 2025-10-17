@@ -5,7 +5,16 @@ import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { Menu, X, Building2, Home, Info, Phone, Search, User } from 'lucide-react'
+import {
+  Menu,
+  X,
+  Building2,
+  Home,
+  Info,
+  Phone,
+  Search,
+  User,
+} from 'lucide-react'
 import Image from 'next/image'
 
 const navigation = [
@@ -27,17 +36,20 @@ export function Navigation() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 transition-shadow duration-300">
-      <nav className="container mx-auto max-w-7xl px-4 md:px-6" aria-label="Main navigation">
+      <nav
+        className="container mx-auto max-w-7xl px-4 md:px-6"
+        aria-label="Main navigation"
+      >
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <Image 
-                src="/logo-touchwood.png" 
-                alt="Touchwood Asset Management" 
-                width={156} 
-                height={42} 
-                className="h-10 w-auto rounded-md sm:h-12" 
+              <Image
+                src="/logo-touchwood.png"
+                alt="Touchwood Asset Management"
+                width={156}
+                height={42}
+                className="h-10 w-auto rounded-md sm:h-12"
                 priority
                 suppressHydrationWarning
               />
@@ -45,12 +57,14 @@ export function Navigation() {
           </div>
 
           {/* Desktop Navigation - Ray White style */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {navigation.map((item) => (
+          <div className="hidden md:flex md:items-center">
+            {navigation.map((item, index) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-normal text-gray-600 transition-colors hover:text-gray-900 uppercase tracking-wide"
+                className={`text-sm font-normal text-gray-600 transition-colors hover:text-gray-900 uppercase tracking-wide whitespace-nowrap ${
+                  index > 0 ? 'ml-8' : ''
+                }`}
               >
                 {item.name}
               </Link>
@@ -71,13 +85,20 @@ export function Navigation() {
                   <span className="sr-only">Open main menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetContent
+                side="right"
+                className="w-[300px] sm:w-[400px] bg-white"
+              >
                 <div className="flex flex-col space-y-6">
                   <div className="flex items-center justify-between">
-                    <Link href="/" className="flex items-center space-x-2" onClick={() => setMobileMenuOpen(false)}>
-                      <Image 
-                        src="/logo-touchwood.png" 
-                        alt="Touchwood Asset Management" 
+                    <Link
+                      href="/"
+                      className="flex items-center space-x-2"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Image
+                        src="/logo-touchwood.png"
+                        alt="Touchwood Asset Management"
                         width={156}
                         height={42}
                         className="h-8 w-auto rounded-md"
@@ -93,7 +114,7 @@ export function Navigation() {
                       <X className="h-6 w-6" />
                     </Button>
                   </div>
-                  
+
                   <div className="flex flex-col space-y-4">
                     {navigation.map((item) => (
                       <Link
@@ -106,9 +127,11 @@ export function Navigation() {
                         <span>{item.name}</span>
                       </Link>
                     ))}
-                    
+
                     <div className="border-t pt-4 mt-4">
-                      <p className="text-sm font-medium text-gray-900 mb-2">Quick Access</p>
+                      <p className="text-sm font-medium text-gray-900 mb-2">
+                        Quick Access
+                      </p>
                       {specialPages.map((item) => (
                         <Link
                           key={item.name}

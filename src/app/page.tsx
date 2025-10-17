@@ -98,10 +98,11 @@ export default function HomePage() {
       {/* Featured Listings Carousel */}
       <ListingsCarousel
         listings={featuredListings}
-        title="Featured Properties"
-        subtitle="Discover our handpicked selection of premium properties"
+        title="Featured Property"
+        subtitle="Handpicked premium property showcase"
         showViewAll={true}
         autoPlay={true}
+        variant="hero"
       />
 
       {/* Stats Section - Soft and Spacious */}

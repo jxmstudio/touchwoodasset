@@ -42,6 +42,7 @@ interface ListingsCarouselProps {
   className?: string
   autoPlay?: boolean
   showViewAll?: boolean
+  variant?: 'grid' | 'hero'
 }
 
 export function ListingsCarousel({
@@ -51,6 +52,7 @@ export function ListingsCarousel({
   className = '',
   autoPlay = false,
   showViewAll = true,
+  variant = 'grid',
 }: ListingsCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -99,7 +101,7 @@ export function ListingsCarousel({
     const startAutoplay = () => {
       interval = setInterval(() => {
         emblaApi.scrollNext()
-      }, 6000) // Increased to 6 seconds for better UX
+      }, 7000) // 7 seconds for hero variant
     }
 
     const stopAutoplay = () => {
@@ -159,6 +161,224 @@ export function ListingsCarousel({
 
   if (!listings || listings.length === 0) {
     return null
+  }
+
+  // Hero variant rendering
+  if (variant === 'hero') {
+    return (
+      <section className={`py-16 bg-gray-50 ${className}`}>
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              {title}
+            </motion.h2>
+            <motion.p
+              className="text-lg text-gray-600 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              {subtitle}
+            </motion.p>
+          </div>
+
+          {/* Hero Carousel */}
+          <div className="relative">
+            <div
+              className="overflow-hidden rounded-2xl"
+              ref={emblaRef}
+              id="hero-carousel-content"
+              role="region"
+              aria-label={`${title} carousel`}
+            >
+              <div className="flex">
+                {listings.map((listing, index) => (
+                  <div key={listing.id} className="flex-[0_0_100%] min-w-0">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                    >
+                      <div className="relative aspect-[21/9] min-h-[500px] overflow-hidden rounded-2xl">
+                        <Image
+                          src={listing.heroImageUrl}
+                          alt={listing.title}
+                          fill
+                          className="object-cover"
+                          sizes="100vw"
+                          priority={index === 0}
+                        />
+
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                        {/* Content Overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                          <div className="max-w-4xl">
+                            {/* Status Badge */}
+                            {(listing.status === 'FOR_RENT' ||
+                              listing.status === 'AVAILABLE') && (
+                              <div className="mb-4">
+                                <Badge className="bg-red-600 text-white font-bold border-transparent text-sm px-4 py-2">
+                                  {listing.status === 'FOR_RENT'
+                                    ? 'FOR RENT'
+                                    : 'FOR SALE'}
+                                </Badge>
+                              </div>
+                            )}
+
+                            {/* Title */}
+                            <h3 className="text-3xl md:text-5xl font-bold text-white mb-4 line-clamp-2">
+                              {listing.title}
+                            </h3>
+
+                            {/* Location */}
+                            <div className="flex items-center text-white/90 mb-4">
+                              <MapPin className="h-5 w-5 mr-2 flex-shrink-0" />
+                              <span className="text-lg">
+                                {listing.address}, {listing.suburb}
+                              </span>
+                            </div>
+
+                            {/* Price and Features */}
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                              <div className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-0">
+                                {listing.price ? (
+                                  <>
+                                    ${listing.price.toLocaleString()}
+                                    {listing.pricePeriod && (
+                                      <span className="text-lg font-normal text-white/80 ml-2">
+                                        /{listing.pricePeriod.replace('_', ' ')}
+                                      </span>
+                                    )}
+                                  </>
+                                ) : (
+                                  <span className="text-white/80">
+                                    Price on request
+                                  </span>
+                                )}
+                              </div>
+
+                              {/* Property Features */}
+                              {(listing.bedrooms ||
+                                listing.bathrooms ||
+                                listing.carSpaces) && (
+                                <div className="flex items-center space-x-6 text-white/90">
+                                  {listing.bedrooms && (
+                                    <div className="flex items-center">
+                                      <span className="text-xl font-semibold">
+                                        {listing.bedrooms}
+                                      </span>
+                                      <span className="ml-1">bed</span>
+                                    </div>
+                                  )}
+                                  {listing.bathrooms && (
+                                    <div className="flex items-center">
+                                      <span className="text-xl font-semibold">
+                                        {listing.bathrooms}
+                                      </span>
+                                      <span className="ml-1">bath</span>
+                                    </div>
+                                  )}
+                                  {listing.carSpaces && (
+                                    <div className="flex items-center">
+                                      <span className="text-xl font-semibold">
+                                        {listing.carSpaces}
+                                      </span>
+                                      <span className="ml-1">car</span>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+
+                            {/* CTA Button */}
+                            <Button
+                              size="lg"
+                              asChild
+                              className="bg-white text-gray-900 hover:bg-gray-100"
+                            >
+                              <Link href={`/listings/${listing.slug}`}>
+                                View Details
+                              </Link>
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Large Navigation Buttons */}
+            <Button
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/95 hover:bg-white shadow-xl border-2 border-gray-200 hover:border-gray-300 transition-all duration-200 w-12 h-12 p-0"
+              variant="outline"
+              size="sm"
+              onClick={scrollPrev}
+              disabled={prevBtnDisabled}
+              aria-label="Previous property"
+              aria-controls="hero-carousel-content"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+
+            <Button
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/95 hover:bg-white shadow-xl border-2 border-gray-200 hover:border-gray-300 transition-all duration-200 w-12 h-12 p-0"
+              variant="outline"
+              size="sm"
+              onClick={scrollNext}
+              disabled={nextBtnDisabled}
+              aria-label="Next property"
+              aria-controls="hero-carousel-content"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </Button>
+          </div>
+
+          {/* Progress Dots */}
+          <div className="flex justify-center space-x-3 mt-8">
+            {listings.map((_, index) => (
+              <button
+                key={index}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === selectedIndex
+                    ? 'bg-primary scale-125'
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                onClick={() => emblaApi?.scrollTo(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* View All Button */}
+          {showViewAll && (
+            <motion.div
+              className="text-center mt-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <Button size="lg" asChild>
+                <Link href="/listings">View All Properties</Link>
+              </Button>
+            </motion.div>
+          )}
+        </div>
+      </section>
+    )
   }
 
   return (
