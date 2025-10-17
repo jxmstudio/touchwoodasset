@@ -10,6 +10,7 @@ import {
 import { Phone, Mail, MapPin, Clock, Building2 } from 'lucide-react'
 import { FadeIn } from '@/components/ui/fade-in'
 import { Section } from '@/components/ui/section'
+import Image from 'next/image'
 // import { BookingCalendar } from '@/components/calendar/BookingCalendar'
 
 export const metadata: Metadata = {
@@ -150,8 +151,21 @@ export default function ContactPage() {
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                          <MapPin className="h-16 w-16 text-gray-400" />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {/* Image on the left */}
+                          <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-sm">
+                            <Image
+                              src="/ghost.png"
+                              alt="Touchwood Asset Management office"
+                              fill
+                              className="object-contain object-center"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                          </div>
+                          {/* Map placeholder on the right */}
+                          <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+                            <MapPin className="h-16 w-16 text-gray-400" />
+                          </div>
                         </div>
                         <p className="text-sm text-gray-600 mt-3 text-center">
                           Map integration coming soon

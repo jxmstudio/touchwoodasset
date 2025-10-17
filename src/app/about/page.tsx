@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Building2, Award, Users, Target, CheckCircle } from 'lucide-react'
+import { Award, Users, Target, CheckCircle } from 'lucide-react'
 import { FadeIn } from '@/components/ui/fade-in'
 import { Section } from '@/components/ui/section'
 import Image from 'next/image'
@@ -27,6 +27,21 @@ const teamMembers = [
     name: 'Eamon Chau',
     role: 'Touchwood Asset Management',
     bio: 'Phone: 0413 889 388 • Email: admin@touchwoodasset.com',
+  },
+  {
+    name: 'Josh Jones',
+    role: 'Marketing Manager',
+    bio: 'Email: marketing@touchwoodasset.com',
+  },
+  {
+    name: 'Joy Mei',
+    role: 'New Business',
+    bio: 'Email: enquiry@touchwoodasset.com',
+  },
+  {
+    name: 'Lily Wong',
+    role: 'Country Manager - Malaysia',
+    bio: 'Email: lily.wong@touchwoodasset.com',
   },
 ]
 
@@ -68,8 +83,7 @@ export default function AboutPage() {
               About Touchwood Asset Management
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-              Building trust through exceptional property management services
-              since 2010
+              Driven by Trust. Defined by Service.
             </p>
           </FadeIn>
         </div>
@@ -85,24 +99,25 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-lg text-gray-700">
                 <p>
-                  Founded in 2010, Touchwood Asset Management began with a
-                  simple mission: to provide exceptional property management
-                  services that put our clients first. What started as a small
-                  team managing a handful of properties has grown into one of
-                  Melbourne&apos;s most trusted property management companies.
+                  Founded in 2025, Touchwood Asset Management was established
+                  with a clear mission — to make property management simple by
+                  seamlessly combining AI-driven technology with genuine
+                  face-to-face service for vendors, landlords, buyers, and
+                  renters alike.
                 </p>
                 <p>
-                  Our journey has been driven by a commitment to excellence,
-                  innovation, and genuine care for our clients&apos;
-                  investments. We understand that property is more than just
-                  bricks and mortar – it&apos;s about people, families,
+                  Built on a foundation of trust, innovation, and
+                  professionalism, Touchwood has grown into a reputable boutique
+                  agency known for its tailored approach and commitment to
+                  excellence. We understand that property is more than just
+                  bricks and mortar — it&apos;s about people, families,
                   businesses, and communities.
                 </p>
                 <p>
-                  Today, we manage a diverse portfolio of residential,
-                  commercial, and ancillary properties across Melbourne and
-                  Victoria, serving thousands of satisfied clients who trust us
-                  with their most valuable assets.
+                  Today, we proudly manage a diverse portfolio of residential,
+                  commercial, and ancillary assets across Melbourne and
+                  Victoria, delivering exceptional results and peace of mind to
+                  clients who entrust us with their most valuable assets.
                 </p>
               </div>
             </div>
@@ -111,13 +126,56 @@ export default function AboutPage() {
             <div className="relative">
               <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/mascot.png"
+                  src="/lol.png"
                   alt="Touchwood Asset Management mascot"
                   fill
                   className="object-contain object-center"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   priority
                 />
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </Section>
+
+      {/* Logo Story */}
+      <Section className="bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <FadeIn>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                The Story Behind Our Logo
+              </h2>
+              <div className="space-y-4 text-lg text-gray-700">
+                <p>
+                  Our logo draws inspiration from the timeless Chinese character
+                  &quot;福&quot; (Fú) — a symbol that represents blessing,
+                  prosperity, and good fortune.
+                </p>
+                <p>
+                  In reimagining this traditional character, we sought to
+                  capture both heritage and modernity — reflecting
+                  Touchwood&apos;s belief that success in property and business
+                  comes from balancing deep roots with forward-thinking
+                  innovation.
+                </p>
+                <p>
+                  The reinterpreted &quot;福&quot; takes the form of a stylised
+                  red house — a modern architectural expression of home,
+                  stability, and growth. Its clean lines represent structure and
+                  trust, while its upward form embodies aspiration and progress.
+                </p>
+                <p>
+                  Just as &quot;福&quot; has long symbolised happiness and
+                  abundance in Chinese culture, our logo embodies Touchwood
+                  Asset Management&apos;s mission: to create enduring value,
+                  foster trust, and deliver prosperity for our clients, their
+                  families, and their communities.
+                </p>
+                <p className="font-semibold text-primary">
+                  Roots in Tradition. Designed for the Future.
+                </p>
               </div>
             </div>
           </FadeIn>
@@ -133,10 +191,10 @@ export default function AboutPage() {
                 Our Mission
               </h3>
               <p className="text-lg text-gray-700">
-                To provide exceptional property management services that
-                maximize our clients&apos; investments while delivering
-                outstanding tenant experiences through innovation, integrity,
-                and personalized service.
+                To provide exceptional asset management solutions that maximise
+                our clients&apos; investments while delivering outstanding
+                rentals and sales experiences — built on innovation, integrity,
+                and personalised service.
               </p>
             </div>
           </FadeIn>
@@ -146,10 +204,10 @@ export default function AboutPage() {
                 Our Vision
               </h3>
               <p className="text-lg text-gray-700">
-                To be the leading property management company in Melbourne and
-                Victoria, recognized for our commitment to excellence,
-                innovation, and building lasting relationships with our clients
-                and communities.
+                To be Melbourne and Victoria&apos;s forefront asset management
+                agency, recognised for our commitment to excellence, innovation,
+                and enduring relationships that strengthen communities and
+                create lasting value for our clients.
               </p>
             </div>
           </FadeIn>
@@ -216,20 +274,20 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <FadeIn delay={0}>
               <div>
-                <div className="text-4xl font-bold mb-2">500+</div>
-                <div className="text-white/80">Properties Managed</div>
+                <div className="text-4xl font-bold mb-2">100+</div>
+                <div className="text-white/80">Assets Under Management</div>
               </div>
             </FadeIn>
             <FadeIn delay={0.1}>
               <div>
-                <div className="text-4xl font-bold mb-2">1000+</div>
+                <div className="text-4xl font-bold mb-2">160+</div>
                 <div className="text-white/80">Happy Clients</div>
               </div>
             </FadeIn>
             <FadeIn delay={0.2}>
               <div>
-                <div className="text-4xl font-bold mb-2">15+</div>
-                <div className="text-white/80">Years Experience</div>
+                <div className="text-4xl font-bold mb-2">25+</div>
+                <div className="text-white/80">Combined Years Experience</div>
               </div>
             </FadeIn>
             <FadeIn delay={0.3}>
