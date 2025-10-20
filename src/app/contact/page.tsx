@@ -127,7 +127,7 @@ export default function ContactPage() {
                 {/* Red Night Campaign Image */}
                 <FadeIn delay={0.4}>
                   <div className="mt-8">
-                    <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg">
+                    <div className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg">
                       <Image
                         src="/Red - Night campaign.jpg"
                         alt="Red Night Campaign - Touchwood Asset Management"
