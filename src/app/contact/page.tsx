@@ -124,6 +124,21 @@ export default function ContactPage() {
 
                 <ContactForm />
 
+                {/* Red Night Campaign Image */}
+                <FadeIn delay={0.4}>
+                  <div className="mt-8">
+                    <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-lg">
+                      <Image
+                        src="/Red - Night campaign.jpg"
+                        alt="Red Night Campaign - Touchwood Asset Management"
+                        fill
+                        className="object-cover object-center"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  </div>
+                </FadeIn>
+
                 {/* Booking Calendar removed per request */}
               </div>
             </FadeIn>
