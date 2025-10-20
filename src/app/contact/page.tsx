@@ -68,7 +68,7 @@ export default function ContactPage() {
       </section>
 
       {/* Promotional Video Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-8">
@@ -83,14 +83,14 @@ export default function ContactPage() {
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="relative max-w-4xl mx-auto">
-              <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-2xl">
+            <div className="relative max-w-4xl mx-auto z-10">
+              <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-2xl relative">
                 <video
                   className="w-full h-full object-cover"
                   loop
                   controls
                   playsInline
-                  poster="/images/video-poster.jpg"
+                  style={{ zIndex: 20, position: 'relative' }}
                 >
                   <source
                     src="/Touchwood - make the switch today!.mp4"
