@@ -141,7 +141,7 @@ export default function AboutPage() {
 
       {/* Logo Story */}
       <Section className="bg-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <FadeIn>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -181,16 +181,14 @@ export default function AboutPage() {
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="relative">
-              <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-lg">
-                <Image
-                  src="/Fu-Symbol.jpg"
-                  alt="Fu Symbol - Chinese character for blessing and prosperity"
-                  fill
-                  className="object-contain object-center"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
+            <div className="relative w-full h-96 lg:h-[500px]">
+              <Image
+                src="/Fu-Symbol.jpg"
+                alt="Fu Symbol - Chinese character for blessing and prosperity"
+                fill
+                className="object-contain object-center"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
           </FadeIn>
         </div>
