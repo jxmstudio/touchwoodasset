@@ -67,6 +67,44 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Promotional Video Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeIn>
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Make the Switch Today
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Discover why property owners choose Touchwood Asset Management
+                for their investment needs
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.2}>
+            <div className="relative max-w-4xl mx-auto">
+              <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-2xl">
+                <video
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/images/video-poster.jpg"
+                >
+                  <source
+                    src="/Touchwood - make the switch today!.mp4"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* Contact Form & Info */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -158,7 +196,7 @@ export default function ContactPage() {
                               src="/ghost.png"
                               alt="Touchwood Asset Management office"
                               fill
-                              className="object-contain object-center"
+                              className="object-cover object-center"
                               sizes="(max-width: 768px) 100vw, 50vw"
                             />
                           </div>

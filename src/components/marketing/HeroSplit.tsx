@@ -10,7 +10,23 @@ interface HeroSplitProps {
 
 const heroData = [
   {
-    title: 'Parking',
+    title: 'Residential',
+    subtitle: 'Houses, flats, and apartments for rent and sale',
+    imageSrc: '/image.png',
+    imageAlt: 'Modern residential property',
+    ctaText: 'View Properties',
+    ctaLink: '/listings?category=properties&type=residential',
+  },
+  {
+    title: 'Commercial',
+    subtitle: 'Office spaces, retail, and commercial properties',
+    imageSrc: '/image(1).png',
+    imageAlt: 'Modern commercial office building',
+    ctaText: 'View Commercial',
+    ctaLink: '/listings?category=properties&type=commercial',
+  },
+  {
+    title: 'Carpark',
     subtitle: 'Secure car park spaces in prime locations across Melbourne',
     imageSrc: '/hero/parking.jpg',
     imageAlt: 'Secure car park space with orange roller door',
@@ -20,18 +36,10 @@ const heroData = [
   {
     title: 'Storage',
     subtitle: 'Convenient storage solutions for your belongings',
-    imageSrc: '/storagerent.png',
+    imageSrc: '/hero/storage.jpg',
     imageAlt: 'Clean storage unit facility',
     ctaText: 'View Storage',
     ctaLink: '/listings?category=storage-cage',
-  },
-  {
-    title: 'Residential',
-    subtitle: 'Houses, flats, and apartments for rent and sale',
-    imageSrc: '/hero/residential.jpg',
-    imageAlt: 'Modern residential property',
-    ctaText: 'View Properties',
-    ctaLink: '/listings?category=properties',
   },
 ]
 
@@ -57,8 +65,8 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
           </p>
         </motion.div>
 
-        {/* Desktop: 3 equal columns */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-6">
+        {/* Desktop: 4 equal columns */}
+        <div className="hidden lg:grid lg:grid-cols-4 gap-6">
           {heroData.map((item, index) => (
             <motion.div
               key={item.title}
@@ -80,9 +88,9 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
           ))}
         </div>
 
-        {/* Tablet: 2 columns (Parking + Storage), Residential full-width below */}
+        {/* Tablet: 2x2 grid */}
         <div className="hidden md:grid md:grid-cols-2 lg:hidden gap-6">
-          {heroData.slice(0, 2).map((item, index) => (
+          {heroData.map((item, index) => (
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 30 }}
@@ -101,24 +109,6 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
               />
             </motion.div>
           ))}
-
-          {/* Residential full-width below */}
-          <motion.div
-            className="md:col-span-2"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <HeroCard
-              title={heroData[2].title}
-              subtitle={heroData[2].subtitle}
-              imageSrc={heroData[2].imageSrc}
-              imageAlt={heroData[2].imageAlt}
-              ctaText={heroData[2].ctaText}
-              ctaLink={heroData[2].ctaLink}
-            />
-          </motion.div>
         </div>
 
         {/* Mobile: Stacked single cards */}

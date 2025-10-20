@@ -126,7 +126,7 @@ export default function AboutPage() {
             <div className="relative">
               <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/lol.png"
+                  src="/Bricksy-office.png"
                   alt="Touchwood Asset Management mascot"
                   fill
                   className="object-contain object-center"
@@ -173,7 +173,7 @@ export default function AboutPage() {
                   foster trust, and deliver prosperity for our clients, their
                   families, and their communities.
                 </p>
-                <p className="font-semibold text-primary">
+                <p className="font-semibold text-primary italic">
                   Roots in Tradition. Designed for the Future.
                 </p>
               </div>

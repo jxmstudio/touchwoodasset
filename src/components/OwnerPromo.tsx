@@ -142,7 +142,7 @@ export function OwnerPromo({
             {/* Image - Right Side (thumbnail accent) */}
             <div className="relative h-64 lg:h-auto bg-gradient-to-br from-brand-50/30 to-white/90">
               <div className="absolute inset-0 p-8 lg:p-12 hidden md:flex items-center justify-center">
-                <div className="relative w-56 h-56 lg:w-72 lg:h-72 rounded-xl overflow-hidden bg-white ring-1 ring-gray-200 shadow-sm">
+                <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden bg-white ring-1 ring-gray-200 shadow-sm">
                   <Image
                     src="/lol.png"
                     alt="Touchwood mascot thumbnail"
