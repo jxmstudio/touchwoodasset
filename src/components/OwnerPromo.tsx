@@ -84,7 +84,7 @@ export function OwnerPromo({
         className={`relative overflow-hidden shadow-soft-lg border-0 bg-white ${className}`}
       >
         <CardContent className="p-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-0">
             {/* Content - Left Side */}
             <div className="p-8 lg:p-12 flex flex-col justify-center">
               <motion.div
@@ -141,8 +141,8 @@ export function OwnerPromo({
 
             {/* Image - Right Side (thumbnail accent) */}
             <div className="relative h-64 lg:h-auto bg-gradient-to-br from-brand-50/30 to-white/90">
-              <div className="absolute inset-0 p-8 lg:p-12 hidden md:flex items-center justify-center">
-                <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden bg-white ring-1 ring-gray-200 shadow-sm">
+              <div className="absolute inset-0 p-4 lg:p-8 hidden md:flex items-center justify-center">
+                <div className="relative w-full h-full max-w-sm max-h-96 rounded-xl overflow-hidden bg-white ring-1 ring-gray-200 shadow-sm">
                   <Image
                     src="/lol.png"
                     alt="Touchwood mascot thumbnail"

@@ -87,9 +87,8 @@ export default function ContactPage() {
               <div className="aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-2xl">
                 <video
                   className="w-full h-full object-cover"
-                  autoPlay
                   loop
-                  muted
+                  controls
                   playsInline
                   poster="/images/video-poster.jpg"
                 >
