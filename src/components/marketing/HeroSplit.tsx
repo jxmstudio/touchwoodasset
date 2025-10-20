@@ -36,7 +36,7 @@ const heroData = [
   {
     title: 'Storage',
     subtitle: 'Convenient storage solutions for your belongings',
-    imageSrc: '/F5.jfif',
+    imageSrc: '/F5.jpg',
     imageAlt: 'Clean storage unit facility',
     ctaText: 'View Storage',
     ctaLink: '/listings?category=storage-cage',

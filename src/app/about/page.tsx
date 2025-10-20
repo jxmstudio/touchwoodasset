@@ -126,7 +126,7 @@ export default function AboutPage() {
             <div className="relative">
               <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/Bricksy - office.jfif"
+                  src="/Bricksy-office.jfif"
                   alt="Touchwood Asset Management mascot"
                   fill
                   className="object-contain object-center"
@@ -184,7 +184,7 @@ export default function AboutPage() {
             <div className="relative">
               <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/Fu Symbol.jpg"
+                  src="/Fu-Symbol.jpg"
                   alt="Fu Symbol - Chinese character for blessing and prosperity"
                   fill
                   className="object-contain object-center"
