@@ -1,9 +1,11 @@
 import { MetadataRoute } from 'next'
+import { articles } from '@/data/articles'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
-  
-  return [
+
+  // Static routes
+  const staticRoutes = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -27,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
@@ -64,5 +72,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
-  ]
+  ] as MetadataRoute.Sitemap
+
+  // Dynamic blog article routes
+  const articleRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
+    url: `${baseUrl}/blog/${article.slug}`,
+    lastModified: new Date(article.date),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
+  return [...staticRoutes, ...articleRoutes]
 }
