@@ -124,21 +124,6 @@ export default function ContactPage() {
 
                 <ContactForm />
 
-                {/* Red Night Campaign Image */}
-                <FadeIn delay={0.4}>
-                  <div className="mt-8">
-                    <div className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg">
-                      <Image
-                        src="/Red - Night campaign.jpg"
-                        alt="Red Night Campaign - Touchwood Asset Management"
-                        fill
-                        className="object-cover object-center"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </div>
-                  </div>
-                </FadeIn>
-
                 {/* Booking Calendar removed per request */}
               </div>
             </FadeIn>
@@ -188,44 +173,6 @@ export default function ContactPage() {
                     </FadeIn>
                   ))}
                 </div>
-
-                {/* Office Location */}
-                <FadeIn delay={0.7}>
-                  <div className="mt-8">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center space-x-2">
-                          <Building2 className="h-5 w-5 text-primary" />
-                          <span>Office Location</span>
-                        </CardTitle>
-                        <CardDescription>
-                          Visit our office for in-person consultations
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {/* Image on the left */}
-                          <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-sm">
-                            <Image
-                              src="/ghost.png"
-                              alt="Touchwood Asset Management office"
-                              fill
-                              className="object-cover object-center"
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                            />
-                          </div>
-                          {/* Map placeholder on the right */}
-                          <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
-                            <MapPin className="h-16 w-16 text-gray-400" />
-                          </div>
-                        </div>
-                        <p className="text-sm text-gray-600 mt-3 text-center">
-                          Map integration coming soon
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </FadeIn>
               </div>
             </FadeIn>
           </div>

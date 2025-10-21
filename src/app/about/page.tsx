@@ -126,7 +126,7 @@ export default function AboutPage() {
             <div className="relative">
               <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/Bricksy-office.jfif"
+                  src="/Bricksy.jpg"
                   alt="Touchwood Asset Management mascot"
                   fill
                   className="object-contain object-center"
