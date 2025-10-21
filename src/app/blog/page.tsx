@@ -102,21 +102,16 @@ export default function BlogPage() {
                         </span>
                       ))}
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <Button asChild className="flex-1">
-                        <Link href={`/blog/${article.slug}`}>Read More</Link>
-                      </Button>
-                      <Button asChild variant="outline" className="flex-1">
-                        <a
-                          href={article.externalLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          View Original
-                        </a>
-                      </Button>
-                    </div>
+                    <Button asChild className="w-full">
+                      <a
+                        href={article.externalLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        View Original Article
+                      </a>
+                    </Button>
                   </CardContent>
                 </Card>
               </FadeIn>
@@ -165,8 +160,15 @@ export default function BlogPage() {
                     <CardDescription>{article.excerpt}</CardDescription>
                   </CardHeader>
                   <CardContent className="flex-grow flex flex-col justify-end">
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href={`/blog/${article.slug}`}>Read More</Link>
+                    <Button asChild className="w-full">
+                      <a
+                        href={article.externalLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        View Original Article
+                      </a>
                     </Button>
                   </CardContent>
                 </Card>
