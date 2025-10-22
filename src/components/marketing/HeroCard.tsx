@@ -16,6 +16,7 @@ interface HeroCardProps {
   ctaLink: string
   className?: string
   priority?: boolean
+  imageFit?: 'cover' | 'contain'
 }
 
 export function HeroCard({
@@ -26,7 +27,8 @@ export function HeroCard({
   ctaText,
   ctaLink,
   className = '',
-  priority = false
+  priority = false,
+  imageFit = 'cover',
 }: HeroCardProps) {
   return (
     <motion.div
@@ -40,18 +42,18 @@ export function HeroCard({
           src={imageSrc}
           alt={imageAlt}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className={`object-${imageFit} transition-transform duration-500 group-hover:scale-105`}
           priority={priority}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           style={{
-            objectFit: 'cover',
-            objectPosition: 'center'
+            objectFit: imageFit,
+            objectPosition: 'center',
           }}
         />
-        
+
         {/* High Contrast Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
-        
+
         {/* Content Overlay */}
         <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
           <motion.div
@@ -65,7 +67,7 @@ export function HeroCard({
             <p className="text-white/90 mb-6 text-sm md:text-base leading-relaxed">
               {subtitle}
             </p>
-            
+
             <Button
               asChild
               size="sm"

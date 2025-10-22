@@ -83,6 +83,7 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
                 ctaText={item.ctaText}
                 ctaLink={item.ctaLink}
                 priority={index === 0}
+                imageFit={item.title === 'Storage' ? 'contain' : 'cover'}
               />
             </motion.div>
           ))}
@@ -106,6 +107,7 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
                 ctaText={item.ctaText}
                 ctaLink={item.ctaLink}
                 priority={index === 0}
+                imageFit={item.title === 'Storage' ? 'contain' : 'cover'}
               />
             </motion.div>
           ))}
@@ -129,6 +131,7 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
                 ctaText={item.ctaText}
                 ctaLink={item.ctaLink}
                 priority={index === 0}
+                imageFit={item.title === 'Storage' ? 'contain' : 'cover'}
               />
             </motion.div>
           ))}
