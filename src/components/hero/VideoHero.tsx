@@ -25,13 +25,13 @@ export function VideoHero({
   title,
   subtitle,
   description,
-  ctaText = "Learn More",
-  ctaLink = "#",
+  ctaText = 'Learn More',
+  ctaLink = '#',
   autoPlay = true,
   loop = true,
   muted = true,
   overlay = true,
-  className = ""
+  className = '',
 }: VideoHeroProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isClient, setIsClient] = useState(false)
@@ -43,11 +43,11 @@ export function VideoHero({
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     setPrefersReducedMotion(mediaQuery.matches)
-    
+
     const handleChange = (e: MediaQueryListEvent) => {
       setPrefersReducedMotion(e.matches)
     }
-    
+
     mediaQuery.addEventListener('change', handleChange)
     return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
@@ -64,7 +64,10 @@ export function VideoHero({
   // Don't render video until client-side to prevent hydration mismatch
   if (!isClient) {
     return (
-      <section className={`relative w-full min-h-screen overflow-hidden ${className}`} suppressHydrationWarning>
+      <section
+        className={`relative w-full min-h-screen overflow-hidden ${className}`}
+        suppressHydrationWarning
+      >
         {/* Fallback poster image */}
         {posterImage && (
           <div className="absolute inset-0">
@@ -74,16 +77,14 @@ export function VideoHero({
               className="w-full h-full object-cover"
               style={{
                 objectFit: 'cover',
-                objectPosition: 'center'
+                objectPosition: 'center',
               }}
             />
           </div>
         )}
-        
+
         {/* Overlay */}
-        {overlay && (
-          <div className="absolute inset-0 bg-black/40" />
-        )}
+        {overlay && <div className="absolute inset-0 bg-black/40" />}
 
         {/* Content Overlay */}
         <div className="relative z-10 flex items-center justify-center min-h-screen">
@@ -116,7 +117,7 @@ export function VideoHero({
                 >
                   <a href={ctaLink}>{ctaText}</a>
                 </Button>
-                
+
                 <Button
                   variant="outline"
                   size="lg"
@@ -134,7 +135,10 @@ export function VideoHero({
   }
 
   return (
-    <section className={`relative w-full min-h-screen overflow-hidden ${className}`} suppressHydrationWarning>
+    <section
+      className={`relative w-full min-h-screen overflow-hidden ${className}`}
+      suppressHydrationWarning
+    >
       {/* Background Video or Poster Image */}
       <div className="absolute inset-0">
         {!prefersReducedMotion && isClient ? (
@@ -145,6 +149,7 @@ export function VideoHero({
             loop={loop}
             muted={true}
             playsInline
+            webkit-playsinline="true"
             preload="metadata"
             aria-hidden="true"
             poster={posterImage}
@@ -166,7 +171,7 @@ export function VideoHero({
               className="w-full h-full object-cover"
               style={{
                 objectFit: 'cover',
-                objectPosition: 'center'
+                objectPosition: 'center',
               }}
             />
           )
@@ -174,9 +179,7 @@ export function VideoHero({
       </div>
 
       {/* Overlay */}
-      {overlay && (
-        <div className="absolute inset-0 bg-black/40" />
-      )}
+      {overlay && <div className="absolute inset-0 bg-black/40" />}
 
       {/* Controls removed per requirement: no pause or volume UI */}
 
@@ -187,14 +190,22 @@ export function VideoHero({
             className="max-w-4xl mx-auto text-center text-white"
             initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, delay: 0.5 }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.8, delay: 0.5 }
+            }
           >
             {subtitle && (
               <motion.p
                 className="text-lg md:text-xl text-white/90 mb-4 uppercase tracking-wider font-medium"
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.7 }}
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : { duration: 0.6, delay: 0.7 }
+                }
               >
                 {subtitle}
               </motion.p>
@@ -205,7 +216,11 @@ export function VideoHero({
               style={{ fontFamily: 'serif' }}
               initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, delay: 0.9 }}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { duration: 0.8, delay: 0.9 }
+              }
             >
               {title}
             </motion.h1>
@@ -215,7 +230,11 @@ export function VideoHero({
                 className="text-lg md:text-xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed"
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 1.1 }}
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : { duration: 0.6, delay: 1.1 }
+                }
               >
                 {description}
               </motion.p>
@@ -225,7 +244,11 @@ export function VideoHero({
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 1.3 }}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { duration: 0.6, delay: 1.3 }
+              }
             >
               <Button
                 size="lg"
@@ -234,7 +257,7 @@ export function VideoHero({
               >
                 <a href={ctaLink}>{ctaText}</a>
               </Button>
-              
+
               <Button
                 variant="outline"
                 size="lg"
@@ -258,12 +281,20 @@ export function VideoHero({
         <motion.div
           className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center"
           animate={shouldReduceMotion ? false : { y: [0, 10, 0] }}
-          transition={shouldReduceMotion ? { duration: 0 } : { duration: 2, repeat: Infinity }}
+          transition={
+            shouldReduceMotion
+              ? { duration: 0 }
+              : { duration: 2, repeat: Infinity }
+          }
         >
           <motion.div
             className="w-1 h-3 bg-white/70 rounded-full mt-2"
             animate={shouldReduceMotion ? false : { y: [0, 6, 0] }}
-            transition={shouldReduceMotion ? { duration: 0 } : { duration: 2, repeat: Infinity }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 2, repeat: Infinity }
+            }
           />
         </motion.div>
       </motion.div>

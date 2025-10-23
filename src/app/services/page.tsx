@@ -264,8 +264,8 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
             <FadeIn delay={0}>
               <div className="group text-center p-6 rounded-2xl hover:bg-white/80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="w-24 h-24 bg-gradient-to-br from-primary to-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Users className="h-12 w-12 text-white" />
+                <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Users className="h-12 w-12 text-gray-700" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
                   🔑 Expert Team
@@ -280,8 +280,8 @@ export default function ServicesPage() {
 
             <FadeIn delay={0.1}>
               <div className="group text-center p-6 rounded-2xl hover:bg-white/80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="w-24 h-24 bg-gradient-to-br from-primary to-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Shield className="h-12 w-12 text-white" />
+                <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Shield className="h-12 w-12 text-gray-700" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
                   🛡 Trusted & Reliable
@@ -297,8 +297,8 @@ export default function ServicesPage() {
 
             <FadeIn delay={0.2}>
               <div className="group text-center p-6 rounded-2xl hover:bg-white/80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="w-24 h-24 bg-gradient-to-br from-primary to-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Clock className="h-12 w-12 text-white" />
+                <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Clock className="h-12 w-12 text-gray-700" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
                   ⏰ 24/7 Support
@@ -313,8 +313,8 @@ export default function ServicesPage() {
 
             <FadeIn delay={0.3}>
               <div className="group text-center p-6 rounded-2xl hover:bg-white/80 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="w-24 h-24 bg-gradient-to-br from-primary to-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <TrendingUp className="h-12 w-12 text-white" />
+                <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <TrendingUp className="h-12 w-12 text-gray-700" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
                   📈 Proven Results

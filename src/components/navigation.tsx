@@ -91,7 +91,7 @@ export function Navigation() {
                 side="right"
                 className="w-[300px] sm:w-[400px] bg-white"
               >
-                <div className="flex flex-col space-y-6">
+                <div className="flex flex-col space-y-8">
                   <div className="flex items-center justify-between">
                     <Link
                       href="/"
@@ -117,34 +117,36 @@ export function Navigation() {
                     </Button>
                   </div>
 
-                  <div className="flex flex-col space-y-4">
+                  <div className="flex flex-col space-y-6">
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="flex items-center space-x-3 text-lg font-medium text-muted-foreground transition-colors hover:text-foreground"
+                        className="flex items-center space-x-4 text-lg font-medium text-muted-foreground transition-colors hover:text-foreground py-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        <item.icon className="h-5 w-5" />
+                        <item.icon className="h-6 w-6" />
                         <span>{item.name}</span>
                       </Link>
                     ))}
 
-                    <div className="border-t pt-4 mt-4">
-                      <p className="text-sm font-medium text-gray-900 mb-2">
+                    <div className="border-t border-gray-200 pt-6 mt-6">
+                      <p className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
                         Quick Access
                       </p>
-                      {specialPages.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="flex items-center space-x-3 text-lg font-medium text-primary transition-colors hover:text-primary/80"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <item.icon className="h-5 w-5" />
-                          <span>{item.name}</span>
-                        </Link>
-                      ))}
+                      <div className="space-y-4">
+                        {specialPages.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="flex items-center space-x-4 text-lg font-medium text-primary transition-colors hover:text-primary/80 py-2"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <item.icon className="h-6 w-6" />
+                            <span>{item.name}</span>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
 

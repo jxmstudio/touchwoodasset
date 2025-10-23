@@ -141,7 +141,7 @@ export function OwnerPromo({
 
             {/* Image - Right Side (thumbnail accent) */}
             <div className="relative h-64 lg:h-auto bg-gradient-to-br from-brand-50/30 to-white/90">
-              <div className="absolute inset-0 p-4 lg:p-8 hidden md:flex items-center justify-center">
+              <div className="absolute inset-0 p-4 lg:p-8 flex items-center justify-center">
                 <div className="relative w-full h-full max-w-sm max-h-96 rounded-xl overflow-hidden bg-white ring-1 ring-gray-200 shadow-sm">
                   <Image
                     src="/lol.png"
