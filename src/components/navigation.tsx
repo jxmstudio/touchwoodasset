@@ -12,7 +12,6 @@ import {
 } from '@/components/ui/sheet'
 import {
   Menu,
-  X,
   Building2,
   Home,
   Info,
@@ -98,8 +97,8 @@ export function Navigation() {
               >
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <div className="flex flex-col h-full">
-                  {/* Header with logo and close button */}
-                  <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
+                  {/* Header with logo */}
+                  <div className="flex items-center p-6 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
                     <Link
                       href="/"
                       className="flex items-center space-x-2"
@@ -115,14 +114,6 @@ export function Navigation() {
                         suppressHydrationWarning
                       />
                     </Link>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="hover:bg-gray-100 rounded-full p-2"
-                    >
-                      <X className="h-5 w-5" />
-                    </Button>
                   </div>
 
                   {/* Navigation content with scroll */}
