@@ -4,7 +4,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from '@/components/ui/sheet'
 import {
   Menu,
   X,
@@ -91,6 +96,7 @@ export function Navigation() {
                 side="right"
                 className="w-[320px] sm:w-[420px] bg-gradient-to-br from-gray-50 to-white border-l border-gray-200"
               >
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <div className="flex flex-col h-full">
                   {/* Header with logo and close button */}
                   <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
