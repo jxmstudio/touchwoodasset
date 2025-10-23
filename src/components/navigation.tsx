@@ -89,10 +89,11 @@ export function Navigation() {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="w-[300px] sm:w-[400px] bg-white"
+                className="w-[320px] sm:w-[420px] bg-gradient-to-br from-gray-50 to-white border-l border-gray-200"
               >
-                <div className="flex flex-col space-y-8">
-                  <div className="flex items-center justify-between">
+                <div className="flex flex-col h-full">
+                  {/* Header with logo and close button */}
+                  <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
                     <Link
                       href="/"
                       className="flex items-center space-x-2"
@@ -112,45 +113,55 @@ export function Navigation() {
                       variant="ghost"
                       size="sm"
                       onClick={() => setMobileMenuOpen(false)}
+                      className="hover:bg-gray-100 rounded-full p-2"
                     >
-                      <X className="h-6 w-6" />
+                      <X className="h-5 w-5" />
                     </Button>
                   </div>
 
-                  <div className="flex flex-col space-y-6">
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="flex items-center space-x-4 text-lg font-medium text-muted-foreground transition-colors hover:text-foreground py-2"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <item.icon className="h-6 w-6" />
-                        <span>{item.name}</span>
-                      </Link>
-                    ))}
+                  {/* Navigation content with scroll */}
+                  <div className="flex-1 overflow-y-auto">
+                    <div className="p-6 space-y-2">
+                      {navigation.map((item, index) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="flex items-center space-x-4 text-lg font-medium text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 rounded-xl py-4 px-4 group"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100 group-hover:bg-primary/10 transition-colors duration-200">
+                            <item.icon className="h-5 w-5 text-gray-600 group-hover:text-primary transition-colors duration-200" />
+                          </div>
+                          <span className="flex-1">{item.name}</span>
+                        </Link>
+                      ))}
+                    </div>
 
-                    <div className="border-t border-gray-200 pt-6 mt-6">
-                      <p className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide">
-                        Quick Access
-                      </p>
-                      <div className="space-y-4">
-                        {specialPages.map((item) => (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            className="flex items-center space-x-4 text-lg font-medium text-primary transition-colors hover:text-primary/80 py-2"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            <item.icon className="h-6 w-6" />
-                            <span>{item.name}</span>
-                          </Link>
-                        ))}
+                    {/* Quick Access Section */}
+                    <div className="px-6 pb-6">
+                      <div className="bg-gradient-to-r from-primary/5 to-brand-50/50 rounded-2xl p-6 border border-primary/10">
+                        <p className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wider flex items-center">
+                          <span className="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                          Quick Access
+                        </p>
+                        <div className="space-y-3">
+                          {specialPages.map((item) => (
+                            <Link
+                              key={item.name}
+                              href={item.href}
+                              className="flex items-center space-x-4 text-base font-semibold text-primary hover:text-brand-600 transition-colors duration-200 rounded-lg py-3 px-4 hover:bg-white/60 group"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors duration-200">
+                                <item.icon className="h-4 w-4 text-primary" />
+                              </div>
+                              <span>{item.name}</span>
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  {/* Authentication section removed */}
                 </div>
               </SheetContent>
             </Sheet>
