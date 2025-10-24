@@ -411,10 +411,9 @@ export const listings: ListingItem[] = [
   {
     id: '15088',
     slug: 'milano-apartment-1508-8-franklin-melbourne',
-    title:
-      'Fully Renovated & Turn-Key Apartment | Impressive Gross Yield of 7.7% pa',
+    title: '1508/8 Franklin Street, Melbourne',
     summary:
-      'High-performing investment in The Milano Apartments - 7.7% gross yield with strong rental returns and capital growth potential',
+      'Fully Renovated & Turn-Key Apartment | Impressive Gross Yield of 7.7% pa',
     type: 'RESIDENTIAL',
     status: 'FOR_RENT',
     address: '1508/8 Franklin Street',
@@ -425,34 +424,36 @@ export const listings: ListingItem[] = [
     bathrooms: 2,
     floorAreaSqm: 85,
     heroImageUrl: '/15088/Living room.jpg',
-    description: `Seize this rare opportunity to secure a high-performing investment in one of Melbourne's most sought-after residential towers - The Milano Apartments. Offering an impressive 7.7% gross yield, this property combines strong rental returns with enduring capital growth potential.
+    description: `High-performing investment in The Milano Apartments with impressive 7.7% gross yield. This beautifully renovated two-bedroom apartment combines strong rental returns with enduring capital growth potential.
 
-Perched high on the 15th floor, this beautifully renovated two-bedroom apartment has been meticulously updated to maximise appeal and minimise ongoing maintenance:
+**Property Features:**
+• Brand new engineered floorboards
+• Freshly painted interiors  
+• New reverse cycle heating/cooling
+• Stylish new Holland blinds
+• Double-glazed sliding door
+• North-facing balcony with city views
+• Stone finishes in kitchen and bathrooms
+• Dual ensuite access for both bedrooms
+• 2.7m ceilings with floor-to-ceiling glazing
 
-✨ Brand new engineered floorboards - sleek and low-maintenance
-✨ Freshly painted interiors - bright, modern, and tenant-ready
-✨ New reverse cycle heating/cooling - year-round comfort
-✨ Stylish new Holland blinds - privacy and light control
-✨ Double-glazed sliding door - noise reduction and thermal efficiency
-✨ North-facing balcony - sun-filled and perfect for relaxing
+**Building Facilities:**
+• 25m heated swimming pool, spa, sauna
+• Fully equipped gym and tennis court
+• BBQ area and resident kitchen
+• 21-seat cinema
+• 24-hour building attendant
 
-Both bedrooms enjoy abundant natural light, with the second bedroom showcasing stunning city views. The smart floor plan includes:
-- Stone finishes in kitchen and bathrooms
-- Dual ensuite access for both bedrooms - ideal for shared tenancies
-- 2.7m ceilings with floor-to-ceiling glazing - enhanced light and space
-- Private balcony - appealing to renters seeking outdoor space
+**Prime Location:**
+• Steps from Melbourne Central, QV, Emporium
+• Walk to Melbourne University and RMIT
+• Close to trams, trains, dining, and entertainment
 
-Premium resident facilities boost rental demand, including:
-- 25m heated swimming pool, spa, sauna, and fully equipped gym
-- Tennis court, BBQ area, resident kitchen/function space, and 21-seat cinema
-- 24-hour building attendant for security and convenience
-
-Prime location ensures consistent tenant interest:
-- Steps from Melbourne Central, QV, Emporium, and Queen Victoria Market
-- Walk to Melbourne University and RMIT - ideal for student tenants
-- Close to trams, trains, dining, and entertainment hubs
-
-Whether you're expanding your portfolio or seeking a blue-chip investment, this apartment delivers premium rental yields, low vacancy risk, and strong capital growth prospects - all in a landmark building with enduring tenant appeal.
+**Investment Highlights:**
+• 7.7% gross yield per annum
+• Low vacancy risk
+• Strong capital growth prospects
+• Premium rental yields
 
 Property Code: 14110 - Please quote this number when phoning or texting.`,
     features: [
