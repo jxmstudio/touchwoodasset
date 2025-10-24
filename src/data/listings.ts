@@ -408,6 +408,162 @@ export const listings: ListingItem[] = [
     },
     category: 'car-park',
   },
+  {
+    id: '15088',
+    slug: 'milano-apartment-1508-8-franklin-melbourne',
+    title:
+      'Fully Renovated & Turn-Key Apartment | Impressive Gross Yield of 7.7% pa',
+    summary:
+      'High-performing investment in The Milano Apartments - 7.7% gross yield with strong rental returns and capital growth potential',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    address: '1508/8 Franklin Street',
+    suburb: 'Melbourne',
+    state: 'VIC',
+    postcode: '3000',
+    bedrooms: 2,
+    bathrooms: 2,
+    floorAreaSqm: 85,
+    heroImageUrl: '/15088/Living room.jpg',
+    description: `Seize this rare opportunity to secure a high-performing investment in one of Melbourne's most sought-after residential towers - The Milano Apartments. Offering an impressive 7.7% gross yield, this property combines strong rental returns with enduring capital growth potential.
+
+Perched high on the 15th floor, this beautifully renovated two-bedroom apartment has been meticulously updated to maximise appeal and minimise ongoing maintenance:
+
+✨ Brand new engineered floorboards - sleek and low-maintenance
+✨ Freshly painted interiors - bright, modern, and tenant-ready
+✨ New reverse cycle heating/cooling - year-round comfort
+✨ Stylish new Holland blinds - privacy and light control
+✨ Double-glazed sliding door - noise reduction and thermal efficiency
+✨ North-facing balcony - sun-filled and perfect for relaxing
+
+Both bedrooms enjoy abundant natural light, with the second bedroom showcasing stunning city views. The smart floor plan includes:
+- Stone finishes in kitchen and bathrooms
+- Dual ensuite access for both bedrooms - ideal for shared tenancies
+- 2.7m ceilings with floor-to-ceiling glazing - enhanced light and space
+- Private balcony - appealing to renters seeking outdoor space
+
+Premium resident facilities boost rental demand, including:
+- 25m heated swimming pool, spa, sauna, and fully equipped gym
+- Tennis court, BBQ area, resident kitchen/function space, and 21-seat cinema
+- 24-hour building attendant for security and convenience
+
+Prime location ensures consistent tenant interest:
+- Steps from Melbourne Central, QV, Emporium, and Queen Victoria Market
+- Walk to Melbourne University and RMIT - ideal for student tenants
+- Close to trams, trains, dining, and entertainment hubs
+
+Whether you're expanding your portfolio or seeking a blue-chip investment, this apartment delivers premium rental yields, low vacancy risk, and strong capital growth prospects - all in a landmark building with enduring tenant appeal.
+
+Property Code: 14110 - Please quote this number when phoning or texting.`,
+    features: [
+      '7.7% gross yield per annum',
+      'Brand new engineered floorboards',
+      'Freshly painted interiors',
+      'New reverse cycle heating/cooling',
+      'Stylish new Holland blinds',
+      'Double-glazed sliding door',
+      'North-facing balcony',
+      'Stone finishes in kitchen and bathrooms',
+      'Dual ensuite access for both bedrooms',
+      '2.7m ceilings with floor-to-ceiling glazing',
+      '15th floor with city views',
+      '25m heated swimming pool',
+      'Spa, sauna, and fully equipped gym',
+      'Tennis court and BBQ area',
+      '21-seat cinema',
+      '24-hour building attendant',
+      'Steps from Melbourne Central',
+      'Walk to Melbourne University and RMIT',
+      'Close to trams, trains, dining, and entertainment',
+    ],
+    gallery: [
+      {
+        url: '/15088/Living room.jpg',
+        alt: 'Modern living room with city views',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/Kitchen.jpg',
+        alt: 'Renovated kitchen with stone finishes',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/Bedroom 1.jpg',
+        alt: 'Master bedroom with ensuite',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/Bedroom 2.jpg',
+        alt: 'Second bedroom with city views',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/franklin_1508a_8_melbourne_bedroom_HR.jpg',
+        alt: 'High-resolution bedroom view',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/Bathroom.jpg',
+        alt: 'Renovated bathroom with stone finishes',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/balcony view.jpg',
+        alt: 'North-facing balcony with city views',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/Main building (waterpainting).jpg',
+        alt: 'The Milano Apartments building exterior',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/Floorplan (1508.8).jpg',
+        alt: 'Floor plan of apartment 1508/8',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/Pool & Sauna.jpg',
+        alt: '25m heated swimming pool and sauna facilities',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/Gym.jpg',
+        alt: 'Fully equipped gym facilities',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/Tennis Court.jpg',
+        alt: 'Tennis court facilities',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/15088/Cinema.jpg',
+        alt: '21-seat cinema room',
+        width: 1200,
+        height: 800,
+      },
+    ],
+    videoUrl: 'https://www.youtube.com/watch?v=0_Bvl6n_HDY',
+    agent: {
+      name: 'Eamon Chau',
+      phone: '0413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
 ]
 
 export const getCountsByCategory = () => {
