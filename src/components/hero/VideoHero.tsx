@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react'
+import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 
@@ -33,7 +34,6 @@ export function VideoHero({
   overlay = true,
   className = '',
 }: VideoHeroProps) {
-  const [isLoaded, setIsLoaded] = useState(false)
   const [isClient, setIsClient] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -57,10 +57,6 @@ export function VideoHero({
     setIsClient(true)
   }, [])
 
-  const handleVideoLoad = () => {
-    setIsLoaded(true)
-  }
-
   // Don't render video until client-side to prevent hydration mismatch
   if (!isClient) {
     return (
@@ -70,15 +66,13 @@ export function VideoHero({
       >
         {/* Fallback poster image */}
         {posterImage && (
-          <div className="absolute inset-0">
-            <img
+          <div className="absolute inset-0 bg-gray-900">
+            <Image
               src={posterImage}
-              alt="Hero background"
-              className="w-full h-full object-cover"
-              style={{
-                objectFit: 'cover',
-                objectPosition: 'center',
-              }}
+              alt="Property background"
+              fill
+              className="object-cover opacity-90"
+              priority
             />
           </div>
         )}
@@ -140,7 +134,7 @@ export function VideoHero({
       suppressHydrationWarning
     >
       {/* Background Video or Poster Image */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-gray-900">
         {!prefersReducedMotion && isClient ? (
           <video
             ref={videoRef}
@@ -150,14 +144,10 @@ export function VideoHero({
             muted={true}
             playsInline
             webkit-playsinline="true"
-            preload="metadata"
+            x-webkit-airplay="allow"
+            preload="auto"
             aria-hidden="true"
             poster={posterImage}
-            onLoadedData={handleVideoLoad}
-            onError={() => {
-              console.warn('Video failed to load, falling back to poster image')
-              setIsLoaded(false)
-            }}
           >
             <source src={videoSrc} type="video/mp4" />
             Your browser does not support the video tag.
@@ -165,14 +155,12 @@ export function VideoHero({
         ) : (
           /* Fallback to poster image for reduced motion or when video fails */
           posterImage && (
-            <img
+            <Image
               src={posterImage}
-              alt="Hero background"
-              className="w-full h-full object-cover"
-              style={{
-                objectFit: 'cover',
-                objectPosition: 'center',
-              }}
+              alt="Property background"
+              fill
+              className="object-cover opacity-90"
+              priority
             />
           )
         )}

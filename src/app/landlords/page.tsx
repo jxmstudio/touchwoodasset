@@ -3,26 +3,34 @@ import { VideoHero } from '@/components/hero/VideoHero'
 import { BookingCalendar } from '@/components/calendar/BookingCalendar'
 import { ListingsCarousel } from '@/components/listings/ListingsCarousel'
 import { OwnerPromo } from '@/components/OwnerPromo'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { FadeIn } from '@/components/ui/fade-in'
 import { StaggerContainer } from '@/components/ui/stagger-container'
-import { 
-  TrendingUp, 
-  Shield, 
-  Users, 
-  DollarSign, 
+import {
+  TrendingUp,
+  Shield,
+  Users,
+  DollarSign,
   Star,
-  CheckCircle
+  CheckCircle,
 } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Property Management for Landlords - Touchwood Asset Management',
-  description: 'Maximize your rental returns with our comprehensive property management services. Expert tenant screening, maintenance, and financial reporting.',
+  description:
+    'Maximize your rental returns with our comprehensive property management services. Expert tenant screening, maintenance, and financial reporting.',
   openGraph: {
     title: 'Property Management for Landlords - Touchwood Asset Management',
-    description: 'Maximize your rental returns with our comprehensive property management services. Expert tenant screening, maintenance, and financial reporting.',
+    description:
+      'Maximize your rental returns with our comprehensive property management services. Expert tenant screening, maintenance, and financial reporting.',
   },
 }
 
@@ -52,27 +60,51 @@ const services = [
   {
     icon: Users,
     title: 'Tenant Screening',
-    description: 'Comprehensive background checks and reference verification to find quality tenants.',
-    features: ['Credit checks', 'Employment verification', 'Previous rental history', 'Character references']
+    description:
+      'Comprehensive background checks and reference verification to find quality tenants.',
+    features: [
+      'Credit checks',
+      'Employment verification',
+      'Previous rental history',
+      'Character references',
+    ],
   },
   {
     icon: DollarSign,
     title: 'Rent Collection',
-    description: 'Automated rent collection and prompt follow-up on overdue payments.',
-    features: ['Online payment portal', 'Automated reminders', 'Arrears management', 'Monthly statements']
+    description:
+      'Automated rent collection and prompt follow-up on overdue payments.',
+    features: [
+      'Online payment portal',
+      'Automated reminders',
+      'Arrears management',
+      'Monthly statements',
+    ],
   },
   {
     icon: Shield,
     title: 'Property Maintenance',
-    description: '24/7 maintenance coordination with trusted contractors and suppliers.',
-    features: ['Emergency repairs', 'Routine maintenance', 'Quality contractors', 'Cost-effective solutions']
+    description:
+      '24/7 maintenance coordination with trusted contractors and suppliers.',
+    features: [
+      'Emergency repairs',
+      'Routine maintenance',
+      'Quality contractors',
+      'Cost-effective solutions',
+    ],
   },
   {
     icon: TrendingUp,
     title: 'Financial Reporting',
-    description: 'Detailed monthly reports and annual tax statements for your investment.',
-    features: ['Monthly statements', 'Tax reporting', 'Expense tracking', 'Performance analytics']
-  }
+    description:
+      'Detailed monthly reports and annual tax statements for your investment.',
+    features: [
+      'Monthly statements',
+      'Tax reporting',
+      'Expense tracking',
+      'Performance analytics',
+    ],
+  },
 ]
 
 const benefits = [
@@ -83,7 +115,7 @@ const benefits = [
   'Comprehensive insurance coverage',
   'Regular property inspections',
   'Legal compliance and documentation',
-  'Tax-ready financial reporting'
+  'Tax-ready financial reporting',
 ]
 
 export default function LandlordsPage() {
@@ -108,20 +140,26 @@ export default function LandlordsPage() {
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-primary/10 text-primary">Property Management</Badge>
+              <Badge className="mb-4 bg-primary/10 text-primary">
+                Property Management
+              </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Complete Property Management Solutions
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                From tenant screening to maintenance coordination, we handle every aspect 
-                of property management so you can focus on growing your investment portfolio.
+                From tenant screening to maintenance coordination, we handle
+                every aspect of property management so you can focus on growing
+                your investment portfolio.
               </p>
             </div>
           </FadeIn>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300">
+              <Card
+                key={index}
+                className="text-center hover:shadow-lg transition-shadow duration-300"
+              >
                 <CardHeader>
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <service.icon className="h-8 w-8 text-primary" />
@@ -158,15 +196,18 @@ export default function LandlordsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <FadeIn direction="left">
               <div>
-                <Badge className="mb-4 bg-green-100 text-green-800">Why Choose Us</Badge>
+                <Badge className="mb-4 bg-green-100 text-green-800">
+                  Why Choose Us
+                </Badge>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                   Landlord Benefits
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
-                  Our comprehensive property management service delivers measurable results 
-                  for property investors across Melbourne and Victoria.
+                  Our comprehensive property management service delivers
+                  measurable results for property investors across Melbourne and
+                  Victoria.
                 </p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {benefits.map((benefit, index) => (
                     <div key={index} className="flex items-center">
@@ -190,22 +231,36 @@ export default function LandlordsPage() {
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Star className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Client Satisfaction</h3>
-                  <p className="text-gray-600">Average landlord retention rate</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    Client Satisfaction
+                  </h3>
+                  <p className="text-gray-600">
+                    Average landlord retention rate
+                  </p>
                 </div>
-                
+
                 <div className="grid grid-cols-3 gap-6 text-center">
                   <div>
-                    <div className="text-3xl font-bold text-primary mb-2">98%</div>
-                    <div className="text-sm text-gray-600">Client Retention</div>
+                    <div className="text-3xl font-bold text-primary mb-2">
+                      98%
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Client Retention
+                    </div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-primary mb-2">15</div>
+                    <div className="text-3xl font-bold text-primary mb-2">
+                      15
+                    </div>
                     <div className="text-sm text-gray-600">Days Avg. Lease</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-primary mb-2">500+</div>
-                    <div className="text-sm text-gray-600">Properties Managed</div>
+                    <div className="text-3xl font-bold text-primary mb-2">
+                      500+
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Properties Managed
+                    </div>
                   </div>
                 </div>
               </div>
@@ -228,40 +283,49 @@ export default function LandlordsPage() {
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-12">
-              <Badge className="mb-4 bg-primary/10 text-primary">Get Started</Badge>
+              <Badge className="mb-4 bg-primary/10 text-primary">
+                Get Started
+              </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Ready to Maximize Your Returns?
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Schedule a consultation with our property management experts. 
-                We'll provide a comprehensive analysis of your property's rental potential.
+                Schedule a consultation with our property management experts.
+                We&apos;ll provide a comprehensive analysis of your
+                property&apos;s rental potential.
               </p>
             </div>
           </FadeIn>
 
-          <BookingCalendar
-            type="landlord"
-            className="max-w-2xl mx-auto"
-          />
+          <BookingCalendar type="landlord" className="max-w-2xl mx-auto" />
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary via-primary to-brand-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-gray-100 via-gray-50 to-white">
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <FadeIn>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               Start Earning More from Your Property Today
             </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join hundreds of satisfied landlords who trust Touchwood Asset Management 
-              with their investment properties.
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Join hundreds of satisfied landlords who trust Touchwood Asset
+              Management with their investment properties.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" asChild>
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-white"
+                asChild
+              >
                 <a href="#booking">Book Free Consultation</a>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-gray-300 text-foreground hover:bg-gray-100"
+                asChild
+              >
                 <a href="/contact">Contact Us</a>
               </Button>
             </div>

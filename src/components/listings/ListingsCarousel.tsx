@@ -146,18 +146,6 @@ export function ListingsCarousel({
     }
   }
   */
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case 'RESIDENTIAL':
-        return 'bg-blue-100 text-blue-800'
-      case 'COMMERCIAL':
-        return 'bg-green-100 text-green-800'
-      case 'ANCILLARY':
-        return 'bg-purple-100 text-purple-800'
-      default:
-        return 'bg-gray-100 text-gray-800'
-    }
-  }
 
   if (!listings || listings.length === 0) {
     return null
@@ -515,11 +503,11 @@ export function ListingsCarousel({
                         </div>
 
                         {/* Property Features */}
-                        {(listing.bedrooms ||
-                          listing.bathrooms ||
-                          listing.carSpaces) && (
+                        {(typeof listing.bedrooms === 'number' ||
+                          typeof listing.bathrooms === 'number' ||
+                          typeof listing.carSpaces === 'number') && (
                           <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
-                            {listing.bedrooms && (
+                            {typeof listing.bedrooms === 'number' && (
                               <div className="flex items-center">
                                 <span className="font-medium">
                                   {listing.bedrooms}
@@ -527,7 +515,7 @@ export function ListingsCarousel({
                                 <span className="ml-1">bed</span>
                               </div>
                             )}
-                            {listing.bathrooms && (
+                            {typeof listing.bathrooms === 'number' && (
                               <div className="flex items-center">
                                 <span className="font-medium">
                                   {listing.bathrooms}
@@ -535,7 +523,7 @@ export function ListingsCarousel({
                                 <span className="ml-1">bath</span>
                               </div>
                             )}
-                            {listing.carSpaces && (
+                            {typeof listing.carSpaces === 'number' && (
                               <div className="flex items-center">
                                 <span className="font-medium">
                                   {listing.carSpaces}
