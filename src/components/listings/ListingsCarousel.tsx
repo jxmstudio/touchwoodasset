@@ -257,11 +257,11 @@ export function ListingsCarousel({
                               </div>
 
                               {/* Property Features */}
-                              {(listing.bedrooms ||
-                                listing.bathrooms ||
-                                listing.carSpaces) && (
+                              {(typeof listing.bedrooms === 'number' ||
+                                typeof listing.bathrooms === 'number' ||
+                                typeof listing.carSpaces === 'number') && (
                                 <div className="flex items-center space-x-6 text-white/90">
-                                  {listing.bedrooms && (
+                                  {typeof listing.bedrooms === 'number' && (
                                     <div className="flex items-center">
                                       <span className="text-xl font-semibold">
                                         {listing.bedrooms}
@@ -269,7 +269,7 @@ export function ListingsCarousel({
                                       <span className="ml-1">bed</span>
                                     </div>
                                   )}
-                                  {listing.bathrooms && (
+                                  {typeof listing.bathrooms === 'number' && (
                                     <div className="flex items-center">
                                       <span className="text-xl font-semibold">
                                         {listing.bathrooms}
@@ -277,7 +277,7 @@ export function ListingsCarousel({
                                       <span className="ml-1">bath</span>
                                     </div>
                                   )}
-                                  {listing.carSpaces && (
+                                  {typeof listing.carSpaces === 'number' && (
                                     <div className="flex items-center">
                                       <span className="text-xl font-semibold">
                                         {listing.carSpaces}
