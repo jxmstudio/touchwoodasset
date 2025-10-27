@@ -260,10 +260,10 @@ export function BookingCalendar({
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-10">
-          <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-10">
+        <CardContent className="space-y-6">
+          <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
             {/* Personal Information */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Label htmlFor="name">Full Name *</Label>
                 <div className="relative">
@@ -345,7 +345,7 @@ export function BookingCalendar({
             </div>
 
             {/* Date and Time Selection */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Label>Preferred Date *</Label>
                 <div className="relative">
@@ -412,7 +412,8 @@ export function BookingCalendar({
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full py-4 text-lg font-semibold"
+              size="lg"
+              className="w-full"
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Submitting...' : 'Book Appointment'}
@@ -420,7 +421,7 @@ export function BookingCalendar({
           </form>
 
           {/* Contact Information */}
-          <div className="text-center pt-8 border-t border-gray-200">
+          <div className="text-center pt-6 border-t border-gray-200">
             <p className="text-sm text-gray-600 mb-2">
               Need immediate assistance?
             </p>
@@ -428,19 +429,19 @@ export function BookingCalendar({
               <p className="text-sm font-medium">
                 Call us:{' '}
                 <a
-                  href="tel:+61212345678"
+                  href="tel:+61413889388"
                   className="text-primary hover:underline"
                 >
-                  +61 2 1234 5678
+                  +61 413 889 388
                 </a>
               </p>
               <p className="text-sm font-medium">
                 Email:{' '}
                 <a
-                  href="mailto:info@touchwood.com.au"
+                  href="mailto:admin@touchwoodasset.com"
                   className="text-primary hover:underline"
                 >
-                  info@touchwood.com.au
+                  admin@touchwoodasset.com
                 </a>
               </p>
             </div>
