@@ -163,7 +163,7 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
 
                   {/* Property Features */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    {listing.bedrooms && (
+                    {typeof listing.bedrooms === 'number' && (
                       <div className="flex items-center">
                         <Bed className="h-5 w-5 text-gray-500 mr-2" />
                         <span className="text-sm">
@@ -172,7 +172,7 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
                         </span>
                       </div>
                     )}
-                    {listing.bathrooms && (
+                    {typeof listing.bathrooms === 'number' && (
                       <div className="flex items-center">
                         <Bath className="h-5 w-5 text-gray-500 mr-2" />
                         <span className="text-sm">
@@ -181,7 +181,7 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
                         </span>
                       </div>
                     )}
-                    {listing.carSpaces && (
+                    {typeof listing.carSpaces === 'number' && (
                       <div className="flex items-center">
                         <Car className="h-5 w-5 text-gray-500 mr-2" />
                         <span className="text-sm">
