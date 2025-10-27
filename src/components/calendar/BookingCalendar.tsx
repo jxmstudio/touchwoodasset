@@ -401,9 +401,8 @@ export function BookingCalendar({
                 <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <Textarea
                   id="message"
-                  className="pl-10"
+                  className="pl-10 min-h-[140px]"
                   placeholder="Any specific requirements or questions..."
-                  rows={5}
                   {...register('message')}
                 />
               </div>
