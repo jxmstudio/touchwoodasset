@@ -251,7 +251,7 @@ export function BookingCalendar({
       transition={{ duration: 0.6 }}
     >
       <Card className="bg-white shadow-xl rounded-2xl border">
-        <CardHeader className="text-center space-y-2">
+        <CardHeader className="text-center space-y-2 pb-8">
           <CardTitle className="text-2xl font-bold text-gray-900">
             {getTitle()}
           </CardTitle>
@@ -260,7 +260,7 @@ export function BookingCalendar({
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-6 pt-0">
           <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
             {/* Personal Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
