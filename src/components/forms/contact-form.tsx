@@ -193,7 +193,7 @@ export function ContactForm() {
               <FormControl>
                 <Textarea
                   placeholder="Please provide details about your enquiry..."
-                  className="min-h-[120px]"
+                  className="min-h-[140px]"
                   {...field}
                 />
               </FormControl>
@@ -204,6 +204,7 @@ export function ContactForm() {
 
         <Button
           type="submit"
+          size="lg"
           disabled={isSubmitting}
           className="w-full bg-blue-600 hover:bg-blue-700"
         >
