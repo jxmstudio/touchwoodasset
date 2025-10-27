@@ -264,7 +264,7 @@ export function BookingCalendar({
           <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-6">
             {/* Personal Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="name">Full Name *</Label>
                 <div className="relative">
                   <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -282,7 +282,7 @@ export function BookingCalendar({
                 )}
               </div>
 
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="email">Email Address *</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -301,7 +301,7 @@ export function BookingCalendar({
                 )}
               </div>
 
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="phone">Phone Number *</Label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -320,7 +320,7 @@ export function BookingCalendar({
                 )}
               </div>
 
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="appointmentType">Appointment Type *</Label>
                 <Select
                   onValueChange={(value) => setValue('appointmentType', value)}
@@ -346,7 +346,7 @@ export function BookingCalendar({
 
             {/* Date and Time Selection */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
+              <div className="space-y-2">
                 <Label>Preferred Date *</Label>
                 <div className="relative">
                   <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400 z-10" />
@@ -367,7 +367,7 @@ export function BookingCalendar({
                 )}
               </div>
 
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="preferredTime">Preferred Time *</Label>
                 <div className="relative">
                   <Clock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -395,7 +395,7 @@ export function BookingCalendar({
             </div>
 
             {/* Message */}
-            <div>
+            <div className="space-y-2">
               <Label htmlFor="message">Additional Message (Optional)</Label>
               <div className="relative">
                 <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
