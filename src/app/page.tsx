@@ -54,23 +54,23 @@ const testimonials = [
 // Statistics
 const stats = [
   {
-    number: '100+',
-    label: 'Properties Managed',
+    number: '220+',
+    label: 'Assets Under Management',
     icon: <Building2 className="h-6 w-6" />,
   },
   {
-    number: '25+',
-    label: 'Years Experience',
+    number: '260+',
+    label: 'Happy Clients',
     icon: <Users className="h-6 w-6" />,
   },
   {
-    number: '98%',
-    label: 'Client Satisfaction',
+    number: '25+',
+    label: 'Combined Years Experience',
     icon: <Star className="h-6 w-6" />,
   },
   {
-    number: '1000+',
-    label: 'Client Engagement per month',
+    number: '24/7',
+    label: 'Support Available',
     icon: <TrendingUp className="h-6 w-6" />,
   },
 ]

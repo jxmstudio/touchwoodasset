@@ -8,12 +8,12 @@ Create a new property listing for a fully renovated 2-bedroom apartment at The M
 
 ## Property Details
 
-**Address:** 1508/8 Franklin Street, Melbourne VIC  
-**Property Type:** Residential - Apartment  
-**Status:** FOR_RENT (investment property)  
-**Bedrooms:** 2  
-**Bathrooms:** 2  
-**Yield:** 7.7% gross per annum  
+**Address:** 1508/8 Franklin Street, Melbourne VIC
+**Property Type:** Residential - Apartment
+**Status:** FOR_RENT (investment property)
+**Bedrooms:** 2
+**Bathrooms:** 2
+**Yield:** 7.7% gross per annum
 **Phone Code:** 14110
 
 **Key Features:**

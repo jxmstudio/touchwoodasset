@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { VideoHero } from '@/components/hero/VideoHero'
 import { BookingCalendar } from '@/components/calendar/BookingCalendar'
-import { ListingsCarousel } from '@/components/listings/ListingsCarousel'
 import { OwnerPromo } from '@/components/OwnerPromo'
 import {
   Card,
@@ -33,28 +32,6 @@ export const metadata: Metadata = {
       'Maximize your rental returns with our comprehensive property management services. Expert tenant screening, maintenance, and financial reporting.',
   },
 }
-
-// Mock data for demonstration
-const mockListings = [
-  {
-    id: '1',
-    slug: 'luxury-apartment-sydney-harbour',
-    title: 'Luxury Apartment with Sydney Harbour Views',
-    summary: 'Stunning 3-bedroom apartment with panoramic harbour views',
-    type: 'RESIDENTIAL' as const,
-    status: 'AVAILABLE' as const,
-    price: 2500000,
-    address: '123 Harbour Drive',
-    suburb: 'Sydney',
-    state: 'NSW',
-    bedrooms: 3,
-    bathrooms: 2,
-    carSpaces: 2,
-    floorAreaSqm: 180,
-    heroImageUrl: '/placeholder-property.svg',
-  },
-  // Add more mock listings as needed
-]
 
 const services = [
   {
@@ -232,35 +209,19 @@ export default function LandlordsPage() {
                     <Star className="h-8 w-8 text-primary" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    Client Satisfaction
+                    Assets Under Management
                   </h3>
                   <p className="text-gray-600">
-                    Average landlord retention rate
+                    Growing portfolio across Melbourne
                   </p>
                 </div>
 
-                <div className="grid grid-cols-3 gap-6 text-center">
-                  <div>
-                    <div className="text-3xl font-bold text-primary mb-2">
-                      98%
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      Client Retention
-                    </div>
+                <div className="text-center">
+                  <div className="text-5xl font-bold text-primary mb-2">
+                    220+
                   </div>
-                  <div>
-                    <div className="text-3xl font-bold text-primary mb-2">
-                      15
-                    </div>
-                    <div className="text-sm text-gray-600">Days Avg. Lease</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-primary mb-2">
-                      500+
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      Properties Managed
-                    </div>
+                  <div className="text-lg text-gray-600">
+                    Assets Under Management
                   </div>
                 </div>
               </div>
@@ -268,15 +229,6 @@ export default function LandlordsPage() {
           </div>
         </div>
       </section>
-
-      {/* Current Listings Carousel */}
-      <ListingsCarousel
-        listings={mockListings}
-        title="Featured Investment Properties"
-        subtitle="Explore high-yield investment opportunities"
-        showViewAll={true}
-        autoPlay={true}
-      />
 
       {/* Booking Section */}
       <section id="booking" className="py-20 bg-white">

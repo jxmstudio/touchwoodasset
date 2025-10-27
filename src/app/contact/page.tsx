@@ -28,8 +28,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Phone',
-    content: '0413 889 388',
-    href: 'tel:0413889388',
+    content: '+61 413 889 388',
+    href: 'tel:+61413889388',
   },
   {
     icon: Mail,

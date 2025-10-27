@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { VideoHero } from '@/components/hero/VideoHero'
 import { BookingCalendar } from '@/components/calendar/BookingCalendar'
-import { ListingsCarousel } from '@/components/listings/ListingsCarousel'
 import {
   Card,
   CardContent,
@@ -35,28 +34,6 @@ export const metadata: Metadata = {
       'Get the best price for your property with our expert sales team. Professional valuations, marketing, and negotiation services.',
   },
 }
-
-// Mock data for demonstration
-const mockListings = [
-  {
-    id: '1',
-    slug: 'luxury-apartment-sydney-harbour',
-    title: 'Recently Sold - Luxury Apartment',
-    summary: 'Sold 15% above asking price in just 2 weeks',
-    type: 'RESIDENTIAL' as const,
-    status: 'SOLD' as const,
-    price: 2500000,
-    address: '123 Harbour Drive',
-    suburb: 'Sydney',
-    state: 'NSW',
-    bedrooms: 3,
-    bathrooms: 2,
-    carSpaces: 2,
-    floorAreaSqm: 180,
-    heroImageUrl: '/placeholder-property.svg',
-  },
-  // Add more mock listings as needed
-]
 
 const services = [
   {
@@ -308,15 +285,15 @@ export default function SellersPage() {
 
                 <div className="grid grid-cols-3 gap-6 text-center">
                   <div>
-                    <div className="text-3xl font-bold mb-2">$285M</div>
+                    <div className="text-3xl font-bold mb-2">$16M</div>
                     <div className="text-sm text-white/80">Total Sales</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold mb-2">98%</div>
+                    <div className="text-3xl font-bold mb-2">88%</div>
                     <div className="text-sm text-white/80">Of Asking Price</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold mb-2">28</div>
+                    <div className="text-3xl font-bold mb-2">36</div>
                     <div className="text-sm text-white/80">Days Avg. Sale</div>
                   </div>
                 </div>
@@ -325,15 +302,6 @@ export default function SellersPage() {
           </div>
         </div>
       </section>
-
-      {/* Recent Sales Carousel */}
-      <ListingsCarousel
-        listings={mockListings}
-        title="Recent Sales Success Stories"
-        subtitle="See how we've helped sellers achieve exceptional results"
-        showViewAll={true}
-        autoPlay={true}
-      />
 
       {/* Booking Section */}
       <section id="booking" className="py-20 bg-gray-50">

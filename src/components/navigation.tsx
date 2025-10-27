@@ -75,6 +75,15 @@ export function Navigation() {
                 {item.name}
               </Link>
             ))}
+            {specialPages.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-sm font-normal text-gray-600 transition-colors hover:text-gray-900 uppercase tracking-wide whitespace-nowrap ml-8"
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
 
           {/* Desktop Actions */}
