@@ -190,7 +190,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Contact Strip - Top */}
-        <ContactStrip variant="primary" />
+        <ContactStrip variant="secondary" />
 
         {/* Main Services */}
         <Section

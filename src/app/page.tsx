@@ -81,7 +81,7 @@ export default function HomePage() {
       {/* Video Hero Section */}
       <VideoHero
         videoSrc="/videos/landing.mp4"
-        posterImage="/images/hero-poster.jpg"
+        posterImage="/hero/residential.jpg"
         title="Your Property Journey Starts Here"
         subtitle="Touchwood Asset Management"
         description="Discover exceptional properties and expert real estate services across Melbourne and Victoria. We're here to help you buy, sell, or invest with confidence."
@@ -200,15 +200,15 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section - Soft and Inviting */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-primary via-primary to-brand-600 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/10" />
+      <section className="py-20 md:py-28 bg-gradient-to-br from-gray-100 via-gray-50 to-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-100/50 to-transparent" />
         <div className="relative z-10">
           <div className="container mx-auto max-w-7xl px-4 md:px-6 text-center">
             <FadeIn>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-foreground">
                 Ready to Get Started?
               </h2>
-              <p className="text-lg md:text-xl mb-10 text-white/90 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl mb-10 text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Whether you&apos;re looking to buy, sell, rent, or manage
                 property, our expert team is here to help you achieve your real
                 estate goals.
@@ -217,9 +217,9 @@ export default function HomePage() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-white hover:bg-gray-100 text-black shadow-xl hover:shadow-2xl transition-all duration-300 text-lg px-8 py-4 h-auto font-bold border border-gray-300"
+                  className="bg-primary hover:bg-primary/90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 text-lg px-8 py-4 h-auto font-bold"
                 >
-                  <a href="/contact" className="text-black hover:text-black">
+                  <a href="/contact">
                     <Phone className="mr-2 h-5 w-5" />
                     Contact Us Today
                   </a>
@@ -227,10 +227,10 @@ export default function HomePage() {
                 <Button
                   asChild
                   size="lg"
-                  variant="ghost"
-                  className="text-white hover:bg-white hover:text-foreground border-2 border-white/70 hover:border-white text-lg px-8 py-4 h-auto backdrop-blur-sm [&_*]:text-inherit"
+                  variant="outline"
+                  className="border-2 border-gray-300 text-foreground hover:bg-gray-100 text-lg px-8 py-4 h-auto"
                 >
-                  <a href="/valuation" className="text-inherit">
+                  <a href="/valuation">
                     <Mail className="mr-2 h-5 w-5" />
                     Free Property Valuation
                   </a>
