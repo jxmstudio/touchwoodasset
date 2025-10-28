@@ -286,7 +286,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <FadeIn delay={0}>
               <div>
-                <div className="text-4xl font-bold mb-2">100+</div>
+                <div className="text-4xl font-bold mb-2">220+</div>
                 <div className="text-white/80">Assets Under Management</div>
               </div>
             </FadeIn>

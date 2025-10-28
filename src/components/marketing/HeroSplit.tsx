@@ -38,8 +38,8 @@ const heroData = [
     subtitle: 'Convenient storage solutions for your belongings',
     imageSrc: '/F5.jpg',
     imageAlt: 'Clean storage unit facility',
-    ctaText: 'View Storage',
-    ctaLink: '/listings?category=storage-cage',
+    ctaText: 'View The Archive',
+    ctaLink: '/the-archive',
   },
 ]
 
@@ -83,7 +83,7 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
                 ctaText={item.ctaText}
                 ctaLink={item.ctaLink}
                 priority={index === 0}
-                imageFit={item.title === 'Storage' ? 'contain' : 'cover'}
+                imageFit="cover"
               />
             </motion.div>
           ))}
@@ -107,7 +107,7 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
                 ctaText={item.ctaText}
                 ctaLink={item.ctaLink}
                 priority={index === 0}
-                imageFit={item.title === 'Storage' ? 'contain' : 'cover'}
+                imageFit={item.title === 'Storage' ? 'cover' : 'cover'}
               />
             </motion.div>
           ))}
@@ -131,7 +131,7 @@ export function HeroSplit({ className = '' }: HeroSplitProps) {
                 ctaText={item.ctaText}
                 ctaLink={item.ctaLink}
                 priority={index === 0}
-                imageFit={item.title === 'Storage' ? 'contain' : 'cover'}
+                imageFit={item.title === 'Storage' ? 'cover' : 'cover'}
               />
             </motion.div>
           ))}

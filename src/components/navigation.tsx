@@ -19,6 +19,7 @@ import {
   Search,
   User,
   FileText,
+  Archive,
 } from 'lucide-react'
 import Image from 'next/image'
 
@@ -27,6 +28,7 @@ const navigation = [
   { name: 'About Us', href: '/about', icon: Info },
   { name: 'Services', href: '/services', icon: Building2 },
   { name: 'Listings', href: '/listings', icon: Search },
+  { name: 'The Archive', href: '/the-archive', icon: Archive },
   { name: 'Articles', href: '/blog', icon: FileText },
   { name: 'Contact', href: '/contact', icon: Phone },
 ]
