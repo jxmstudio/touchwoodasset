@@ -6,7 +6,7 @@ Disallow: /api/*
 Disallow: /auth/*
 
 # Host
-Host: https://touchwood.com.au
+Host: https://touchwoodasset.com
 
 # Sitemaps
-Sitemap: https://touchwood.com.au/sitemap.xml
+Sitemap: https://touchwoodasset.com/sitemap.xml
