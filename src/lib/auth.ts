@@ -1,42 +1,44 @@
 import { NextAuthOptions } from 'next-auth'
-import { PrismaAdapter } from '@auth/prisma-adapter'
-import EmailProvider from 'next-auth/providers/email'
-import { prisma } from './prisma'
+import CredentialsProvider from 'next-auth/providers/credentials'
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET || 'development-secret-change-in-production',
   providers: [
-    EmailProvider({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: Number(process.env.EMAIL_SERVER_PORT),
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD,
-        },
+    // Simple credentials provider for admin access
+    CredentialsProvider({
+      name: 'Credentials',
+      credentials: {
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
       },
-      from: process.env.EMAIL_FROM,
+      async authorize(credentials) {
+        // Admin login - you can customize this later
+        if (
+          credentials?.email === process.env.ADMIN_EMAIL &&
+          credentials?.password === process.env.ADMIN_PASSWORD
+        ) {
+          return { id: '1', email: credentials.email, name: 'Admin' }
+        }
+        return null
+      },
     }),
   ],
   callbacks: {
-    async session({ session, user }) {
-      if (session.user && user) {
-        (session.user as any).id = user.id
-        ;(session.user as any).role = (user as any).role
+    async session({ session, token }) {
+      if (session.user && token) {
+        session.user.email = token.email
       }
       return session
     },
     async jwt({ token, user }) {
       if (user) {
-        ;(token as any).role = (user as any).role
+        token.email = user.email
       }
       return token
     },
   },
   pages: {
     signIn: '/auth/signin',
-    verifyRequest: '/auth/verify-request',
   },
   session: {
     strategy: 'jwt',
