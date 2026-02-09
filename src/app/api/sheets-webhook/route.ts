@@ -65,12 +65,14 @@ export async function POST(request: NextRequest) {
     }
     
     // Forward the request to Google Sheets webhook
+    // IMPORTANT: redirect: 'follow' is required because Google Apps Script returns a 302 redirect
     const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
+      redirect: 'follow',
     })
     
     if (!response.ok) {
