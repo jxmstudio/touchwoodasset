@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import {
   Card,
@@ -32,24 +32,91 @@ import {
 } from '@/components/ui/carousel'
 
 import { listings as mockListings } from '@/data/listings'
+import type { FilterState } from './ListingsPageContent'
 
 interface ListingsGridProps {
   category?: string
+  filters?: FilterState
 }
 
-export function ListingsGrid({ category }: ListingsGridProps) {
+export function ListingsGrid({ category, filters }: ListingsGridProps) {
   const [allListings, setAllListings] = useState(mockListings)
   const [loading] = useState(false)
-
-  // Filter listings based on category
-  const filteredListings = category
-    ? allListings.filter((listing) => listing.category === category)
-    : allListings
+  const [isMounted, setIsMounted] = useState(false)
 
   // TODO: Replace with real API call
   useEffect(() => {
     setAllListings(mockListings)
+    setIsMounted(true)
   }, [])
+
+  // Filter listings based on category and filters
+  const filteredListings = useMemo(() => {
+    let filtered = [...allListings]
+
+    // Category filter
+    if (category) {
+      filtered = filtered.filter((listing) => listing.category === category)
+    }
+
+    // Apply search and filter criteria
+    if (filters) {
+      // Search filter
+      if (filters.search) {
+        const searchLower = filters.search.toLowerCase()
+        filtered = filtered.filter(
+          (listing) =>
+            listing.title.toLowerCase().includes(searchLower) ||
+            listing.address.toLowerCase().includes(searchLower) ||
+            listing.suburb.toLowerCase().includes(searchLower) ||
+            listing.summary.toLowerCase().includes(searchLower)
+        )
+      }
+
+      // Type filter
+      if (filters.type) {
+        filtered = filtered.filter((listing) => listing.type === filters.type)
+      }
+
+      // Status filter
+      if (filters.status) {
+        filtered = filtered.filter((listing) => listing.status === filters.status)
+      }
+
+      // Price filters
+      if (filters.minPrice) {
+        const minPrice = parseInt(filters.minPrice)
+        filtered = filtered.filter(
+          (listing) => listing.price && listing.price >= minPrice
+        )
+      }
+      if (filters.maxPrice) {
+        const maxPrice = parseInt(filters.maxPrice)
+        filtered = filtered.filter(
+          (listing) => listing.price && listing.price <= maxPrice
+        )
+      }
+
+      // Bedrooms filter (for residential)
+      if (filters.bedrooms && filters.type === 'RESIDENTIAL') {
+        const minBedrooms = parseInt(filters.bedrooms)
+        filtered = filtered.filter(
+          (listing) =>
+            listing.bedrooms && listing.bedrooms >= minBedrooms
+        )
+      }
+
+      // Suburb filter
+      if (filters.suburb) {
+        const suburbLower = filters.suburb.toLowerCase()
+        filtered = filtered.filter((listing) =>
+          listing.suburb.toLowerCase().includes(suburbLower)
+        )
+      }
+    }
+
+    return filtered
+  }, [allListings, category, filters])
 
   // status colors handled by top bar currently
 
@@ -122,11 +189,11 @@ export function ListingsGrid({ category }: ListingsGridProps) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 w-full">
       {/* Results Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
             {filteredListings.length}{' '}
             {category
               ? category === 'properties'
@@ -139,7 +206,7 @@ export function ListingsGrid({ category }: ListingsGridProps) {
               : 'Properties'}{' '}
             Found
           </h2>
-          <p className="text-gray-600">
+          <p className="text-sm sm:text-base text-gray-600">
             {category
               ? `Showing all available ${category === 'properties' ? 'properties' : category === 'car-park' ? 'car parks' : 'storage cages'}`
               : 'Showing all available properties'}
@@ -147,9 +214,9 @@ export function ListingsGrid({ category }: ListingsGridProps) {
         </div>
 
         <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-600">Sort by:</span>
+          <span className="text-sm text-gray-600 hidden sm:inline">Sort by:</span>
           <Select defaultValue="price-low-high">
-            <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+            <SelectTrigger className="bg-white text-gray-900 border-gray-300 hover:bg-gray-100 w-full sm:w-auto">
               <SelectValue placeholder="Choose sorting" />
             </SelectTrigger>
             <SelectContent>
@@ -180,15 +247,16 @@ export function ListingsGrid({ category }: ListingsGridProps) {
 
       {/* Listings Grid */}
       <StaggerContainer
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 lg:gap-8"
+        className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 w-full"
         staggerChildren={0.1}
         delayChildren={0.2}
       >
         {filteredListings.map((listing) => (
           <PropertyCardHover key={listing.id}>
-            <Card className="overflow-hidden bg-white border border-gray-100 min-w-[300px] shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <div className="aspect-[4/3] bg-gray-200 relative overflow-hidden">
+            <Card className="overflow-hidden bg-white border border-gray-100 w-full max-w-full shadow-lg hover:shadow-2xl transition-shadow duration-300">
+              <div className="aspect-[4/3] bg-gray-200 relative overflow-hidden w-full">
                 {listing.gallery && listing.gallery.length > 0 ? (
+                  isMounted ? (
                   <Carousel
                     className="h-full w-full"
                     opts={{ align: 'start', loop: true }}
@@ -208,6 +276,15 @@ export function ListingsGrid({ category }: ListingsGridProps) {
                     <CarouselPrevious className="left-3 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white" />
                     <CarouselNext className="right-3 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white" />
                   </Carousel>
+                  ) : (
+                    // Fallback during SSR - show first image
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={listing.gallery[0].url}
+                      alt={listing.gallery[0].alt || listing.title}
+                      className="w-full h-full object-cover"
+                    />
+                  )
                 ) : (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img

@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -30,6 +30,12 @@ export function HeroCard({
   priority = false,
   imageFit = 'cover',
 }: HeroCardProps) {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   return (
     <motion.div
       className={`relative group overflow-hidden rounded-lg ${className}`}
@@ -37,19 +43,29 @@ export function HeroCard({
       transition={{ duration: 0.3, ease: 'easeOut' }}
     >
       {/* Background Image */}
-      <div className="relative h-64 md:h-80 lg:h-96">
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          className={`object-${imageFit} transition-transform duration-500 group-hover:scale-105`}
-          priority={priority}
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          style={{
-            objectFit: imageFit,
-            objectPosition: 'center',
-          }}
-        />
+      <div className="relative h-64 md:h-80 lg:h-96" suppressHydrationWarning>
+        {isMounted ? (
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            className={`object-${imageFit} transition-transform duration-500 group-hover:scale-105`}
+            priority={priority}
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            style={{
+              objectFit: imageFit,
+              objectPosition: 'center',
+            }}
+          />
+        ) : (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className={`absolute inset-0 w-full h-full object-${imageFit} transition-transform duration-500 group-hover:scale-105`}
+            suppressHydrationWarning
+          />
+        )}
 
         {/* High Contrast Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />

@@ -1,16 +1,6 @@
-@import "tailwindcss";
-
-@theme {
-  --color-primary: #E1262B;
-  --color-primary-foreground: #FFFFFF;
-  --color-brand-600: #B11B20;
-  --color-brand-50: #FFF1F2;
-  --color-available: #059669;
-  --color-under-offer: #D97706;
-  --color-sold: #BE123C;
-  --color-leased: #4F46E5;
-  --radius: 1rem;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {

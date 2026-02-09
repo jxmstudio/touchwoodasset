@@ -20,6 +20,7 @@ import {
   User,
   FileText,
   Archive,
+  Sparkles,
 } from 'lucide-react'
 import Image from 'next/image'
 
@@ -28,6 +29,7 @@ const navigation = [
   { name: 'About Us', href: '/about', icon: Info },
   { name: 'Services', href: '/services', icon: Building2 },
   { name: 'Listings', href: '/listings', icon: Search },
+  { name: 'Prime Hosting', href: '/prime-hosting', icon: Sparkles },
   { name: 'The Archive', href: '/the-archive', icon: Archive },
   { name: 'Articles', href: '/blog', icon: FileText },
   { name: 'Contact', href: '/contact', icon: Phone },
@@ -50,7 +52,7 @@ export function Navigation() {
       >
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center -ml-6 md:-ml-8">
             <Link href="/" className="flex items-center space-x-2">
               <Image
                 src="/logo-touchwood.png"
@@ -58,6 +60,7 @@ export function Navigation() {
                 width={156}
                 height={42}
                 className="h-10 w-auto rounded-md sm:h-12"
+                style={{ height: 'auto', width: 'auto' }}
                 priority
                 suppressHydrationWarning
               />
@@ -65,7 +68,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop Navigation - Ray White style */}
-          <div className="hidden md:flex md:items-center">
+          <div className="hidden md:flex md:items-center ml-12">
             {navigation.map((item, index) => (
               <Link
                 key={item.name}
@@ -121,6 +124,7 @@ export function Navigation() {
                         width={156}
                         height={42}
                         className="h-8 w-auto rounded-md"
+                        style={{ height: 'auto', width: 'auto' }}
                         priority
                         suppressHydrationWarning
                       />

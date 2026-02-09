@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -14,6 +15,11 @@ interface ArchiveGridProps {
 }
 
 export function ArchiveGrid({ units, isLoading = false }: ArchiveGridProps) {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -59,6 +65,7 @@ export function ArchiveGrid({ units, isLoading = false }: ArchiveGridProps) {
             <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 group h-full">
               {/* Image */}
               <div className="relative aspect-video overflow-hidden bg-gray-100">
+                {isMounted ? (
                 <Image
                   src={unit.images[0]}
                   alt={`${unit.unitNumber} - ${unit.size}sqm storage unit`}
@@ -66,6 +73,14 @@ export function ArchiveGrid({ units, isLoading = false }: ArchiveGridProps) {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
+                ) : (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={unit.images[0]}
+                    alt={`${unit.unitNumber} - ${unit.size}sqm storage unit`}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
 
                 {/* Status Badge */}
                 <div className="absolute top-3 right-3">

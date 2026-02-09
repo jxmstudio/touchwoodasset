@@ -16,6 +16,7 @@ export function Footer() {
                 width={240}
                 height={64}
                 className="h-16 w-auto rounded-lg"
+                style={{ height: 'auto', width: 'auto' }}
                 suppressHydrationWarning
               />
             </div>

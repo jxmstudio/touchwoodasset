@@ -15,30 +15,23 @@ import { Badge } from '@/components/ui/badge'
 import { Search, Filter, X } from 'lucide-react'
 import { AnimatedButton } from '@/components/ui/animated-button'
 import { motion, useReducedMotion } from 'framer-motion'
+import type { FilterState } from './ListingsPageContent'
 
-export function ListingsFilters() {
+interface ListingsFiltersProps {
+  filters: FilterState
+  onFiltersChange: (filters: FilterState) => void
+}
+
+export function ListingsFilters({ filters, onFiltersChange }: ListingsFiltersProps) {
   const shouldReduceMotion = useReducedMotion()
-  const [filters, setFilters] = useState({
-    search: '',
-    type: '',
-    status: '',
-    minPrice: '',
-    maxPrice: '',
-    bedrooms: '',
-    suiteSize: '',
-    storageSize: '',
-    parkingLevel: '',
-    suburb: '',
-  })
-
   const [activeFilters, setActiveFilters] = useState<string[]>([])
 
-  const handleFilterChange = (key: string, value: string) => {
-    setFilters((prev) => ({ ...prev, [key]: value }))
+  const handleFilterChange = (key: keyof FilterState, value: string) => {
+    onFiltersChange({ ...filters, [key]: value })
   }
 
   const clearFilters = () => {
-    setFilters({
+    const clearedFilters: FilterState = {
       search: '',
       type: '',
       status: '',
@@ -49,7 +42,8 @@ export function ListingsFilters() {
       storageSize: '',
       parkingLevel: '',
       suburb: '',
-    })
+    }
+    onFiltersChange(clearedFilters)
     setActiveFilters([])
   }
 
@@ -61,15 +55,15 @@ export function ListingsFilters() {
   }
 
   return (
-    <div className="space-y-6">
-      <Card className="sticky top-6">
-        <CardHeader className="pb-4">
-          <CardTitle className="flex items-center space-x-2 text-lg">
-            <Search className="h-5 w-5" />
+    <div className="space-y-4 sm:space-y-6">
+      <Card className="lg:sticky lg:top-6">
+        <CardHeader className="pb-3 sm:pb-4">
+          <CardTitle className="flex items-center space-x-2 text-base sm:text-lg">
+            <Search className="h-4 w-4 sm:h-5 sm:w-5" />
             <span>Search & Filter</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 sm:space-y-4">
           <Input
             placeholder="Search properties..."
             value={filters.search}
@@ -80,7 +74,7 @@ export function ListingsFilters() {
             value={filters.type}
             onValueChange={(value) => handleFilterChange('type', value)}
           >
-            <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+            <SelectTrigger className="bg-white text-gray-900 border-gray-300 hover:bg-gray-100">
               <SelectValue placeholder="Property Type" />
             </SelectTrigger>
             <SelectContent>
@@ -94,7 +88,7 @@ export function ListingsFilters() {
             value={filters.status}
             onValueChange={(value) => handleFilterChange('status', value)}
           >
-            <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+            <SelectTrigger className="bg-white text-gray-900 border-gray-300 hover:bg-gray-100">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>
@@ -124,7 +118,7 @@ export function ListingsFilters() {
               value={filters.bedrooms}
               onValueChange={(value) => handleFilterChange('bedrooms', value)}
             >
-              <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+              <SelectTrigger className="bg-white text-gray-900 border-gray-300 hover:bg-gray-100">
                 <SelectValue placeholder="Bedrooms" />
               </SelectTrigger>
               <SelectContent>
@@ -141,7 +135,7 @@ export function ListingsFilters() {
               value={filters.suiteSize}
               onValueChange={(value) => handleFilterChange('suiteSize', value)}
             >
-              <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+              <SelectTrigger className="bg-white text-gray-900 border-gray-300 hover:bg-gray-100">
                 <SelectValue placeholder="Suite size" />
               </SelectTrigger>
               <SelectContent>
@@ -161,7 +155,7 @@ export function ListingsFilters() {
                   handleFilterChange('storageSize', value)
                 }
               >
-                <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+                <SelectTrigger className="bg-white text-gray-900 border-gray-300 hover:bg-gray-100">
                   <SelectValue placeholder="Storage size (sqm)" />
                 </SelectTrigger>
                 <SelectContent>
@@ -177,7 +171,7 @@ export function ListingsFilters() {
                   handleFilterChange('parkingLevel', value)
                 }
               >
-                <SelectTrigger className="bg-gray-100 hover:bg-gray-200">
+                <SelectTrigger className="bg-white text-gray-900 border-gray-300 hover:bg-gray-100">
                   <SelectValue placeholder="Parking level" />
                 </SelectTrigger>
                 <SelectContent>
@@ -197,12 +191,12 @@ export function ListingsFilters() {
             onChange={(e) => handleFilterChange('suburb', e.target.value)}
           />
 
-          <div className="flex space-x-2">
-            <AnimatedButton onClick={applyFilters} className="flex-1">
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+            <AnimatedButton onClick={applyFilters} className="flex-1 w-full sm:w-auto">
               <Filter className="mr-2 h-4 w-4" />
               Apply Filters
             </AnimatedButton>
-            <AnimatedButton variant="outline" onClick={clearFilters}>
+            <AnimatedButton variant="outline" onClick={clearFilters} className="bg-white text-gray-700 border-gray-300 hover:bg-gray-100 w-full sm:w-auto">
               <X className="h-4 w-4" />
             </AnimatedButton>
           </div>

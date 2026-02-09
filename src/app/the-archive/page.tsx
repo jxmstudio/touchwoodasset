@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -25,7 +25,26 @@ import {
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
+// Convert YouTube URLs to embed format
+function getYouTubeEmbedUrl(url: string): string {
+  // Handle youtu.be short URLs
+  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/)
+  if (shortMatch) {
+    return `https://www.youtube.com/embed/${shortMatch[1]}`
+  }
+  
+  // Handle youtube.com/watch URLs
+  const watchMatch = url.match(/youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/)
+  if (watchMatch) {
+    return `https://www.youtube.com/embed/${watchMatch[1]}`
+  }
+  
+  // Already embed format or other format, return as-is
+  return url
+}
+
 export default function TheArchivePage() {
+  const [isMounted, setIsMounted] = useState(false)
   const [filters, setFilters] = useState({
     storageSize: 'all',
     leaseDuration: 'all',
@@ -35,6 +54,10 @@ export default function TheArchivePage() {
   })
 
   const [activeFilters, setActiveFilters] = useState(filters)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const handleFilterChange = (key: string, value: string) => {
     setFilters((prev) => ({ ...prev, [key]: value }))
@@ -91,6 +114,7 @@ export default function TheArchivePage() {
       {/* Hero Section */}
       <section className="relative h-[500px] bg-gray-900 overflow-hidden">
         <div className="absolute inset-0">
+          {isMounted ? (
           <Image
             src={archiveFacility.buildingImage}
             alt="The Archive - 601 Little Collins Street"
@@ -99,6 +123,14 @@ export default function TheArchivePage() {
             priority
             sizes="100vw"
           />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={archiveFacility.buildingImage}
+              alt="The Archive - 601 Little Collins Street"
+              className="absolute inset-0 w-full h-full object-cover opacity-60"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
         </div>
 
@@ -125,7 +157,7 @@ export default function TheArchivePage() {
             <FadeIn>
               <div className="aspect-video rounded-xl overflow-hidden shadow-2xl">
                 <iframe
-                  src={archiveFacility.videoUrl}
+                  src={getYouTubeEmbedUrl(archiveFacility.videoUrl)}
                   title="The Archive Tour"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

@@ -29,6 +29,24 @@ interface StorageUnitDetailClientProps {
   unit: StorageUnit
 }
 
+// Convert YouTube URLs to embed format
+function getYouTubeEmbedUrl(url: string): string {
+  // Handle youtu.be short URLs
+  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/)
+  if (shortMatch) {
+    return `https://www.youtube.com/embed/${shortMatch[1]}`
+  }
+  
+  // Handle youtube.com/watch URLs
+  const watchMatch = url.match(/youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/)
+  if (watchMatch) {
+    return `https://www.youtube.com/embed/${watchMatch[1]}`
+  }
+  
+  // Already embed format or other format, return as-is
+  return url
+}
+
 export function StorageUnitDetailClient({
   unit,
 }: StorageUnitDetailClientProps) {
@@ -200,7 +218,7 @@ export function StorageUnitDetailClient({
                     <CardContent>
                       <div className="aspect-video rounded-lg overflow-hidden">
                         <iframe
-                          src={unit.videoUrl}
+                          src={getYouTubeEmbedUrl(unit.videoUrl)}
                           title={`${unit.unitNumber} Tour`}
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen

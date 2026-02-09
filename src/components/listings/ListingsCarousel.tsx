@@ -10,6 +10,50 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 
+// Image component wrapper to prevent hydration mismatch
+function CarouselImage({
+  src,
+  alt,
+  priority = false,
+  sizes,
+  className = '',
+}: {
+  src: string
+  alt: string
+  priority?: boolean
+  sizes: string
+  className?: string
+}) {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) {
+    return (
+      /* eslint-disable-next-line @next/next/no-img-element */
+      <img
+        src={src}
+        alt={alt}
+        className={`absolute inset-0 w-full h-full object-cover ${className}`}
+        suppressHydrationWarning
+      />
+    )
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      className={`object-cover ${className}`}
+      sizes={sizes}
+      priority={priority}
+    />
+  )
+}
+
 interface Listing {
   id: string
   slug: string
@@ -196,12 +240,10 @@ export function ListingsCarousel({
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                     >
-                      <div className="relative aspect-[21/9] min-h-[500px] overflow-hidden rounded-2xl">
-                        <Image
+                      <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] overflow-hidden rounded-2xl" suppressHydrationWarning>
+                        <CarouselImage
                           src={listing.heroImageUrl}
                           alt={listing.title}
-                          fill
-                          className="object-cover"
                           sizes="100vw"
                           priority={index === 0}
                         />
@@ -210,13 +252,13 @@ export function ListingsCarousel({
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
                         {/* Content Overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
                           <div className="max-w-4xl">
                             {/* Status Badge */}
                             {(listing.status === 'FOR_RENT' ||
                               listing.status === 'AVAILABLE') && (
-                              <div className="mb-4">
-                                <Badge className="bg-red-600 text-white font-bold border-transparent text-sm px-4 py-2">
+                              <div className="mb-2 sm:mb-4">
+                                <Badge className="bg-red-600 text-white font-bold border-transparent text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2">
                                   {listing.status === 'FOR_RENT'
                                     ? 'FOR RENT'
                                     : 'FOR SALE'}
@@ -225,26 +267,26 @@ export function ListingsCarousel({
                             )}
 
                             {/* Title */}
-                            <h3 className="text-3xl md:text-5xl font-bold text-white mb-4 line-clamp-2">
+                            <h3 className="text-xl sm:text-3xl md:text-5xl font-bold text-white mb-2 sm:mb-4 line-clamp-2">
                               {listing.title}
                             </h3>
 
                             {/* Location */}
-                            <div className="flex items-center text-white/90 mb-4">
-                              <MapPin className="h-5 w-5 mr-2 flex-shrink-0" />
-                              <span className="text-lg">
+                            <div className="flex items-center text-white/90 mb-2 sm:mb-4">
+                              <MapPin className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2 flex-shrink-0" />
+                              <span className="text-sm sm:text-lg truncate">
                                 {listing.address}, {listing.suburb}
                               </span>
                             </div>
 
                             {/* Price and Features */}
-                            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                              <div className="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-0">
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-6">
+                              <div className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-0">
                                 {listing.price ? (
                                   <>
                                     ${listing.price.toLocaleString()}
                                     {listing.pricePeriod && (
-                                      <span className="text-lg font-normal text-white/80 ml-2">
+                                      <span className="text-sm sm:text-lg font-normal text-white/80 ml-1 sm:ml-2">
                                         /{listing.pricePeriod.replace('_', ' ')}
                                       </span>
                                     )}
@@ -260,10 +302,10 @@ export function ListingsCarousel({
                               {(typeof listing.bedrooms === 'number' ||
                                 typeof listing.bathrooms === 'number' ||
                                 typeof listing.carSpaces === 'number') && (
-                                <div className="flex items-center space-x-6 text-white/90">
+                                <div className="flex items-center space-x-3 sm:space-x-6 text-white/90 text-sm sm:text-base">
                                   {typeof listing.bedrooms === 'number' && (
                                     <div className="flex items-center">
-                                      <span className="text-xl font-semibold">
+                                      <span className="text-base sm:text-xl font-semibold">
                                         {listing.bedrooms}
                                       </span>
                                       <span className="ml-1">bed</span>
@@ -271,7 +313,7 @@ export function ListingsCarousel({
                                   )}
                                   {typeof listing.bathrooms === 'number' && (
                                     <div className="flex items-center">
-                                      <span className="text-xl font-semibold">
+                                      <span className="text-base sm:text-xl font-semibold">
                                         {listing.bathrooms}
                                       </span>
                                       <span className="ml-1">bath</span>
@@ -279,7 +321,7 @@ export function ListingsCarousel({
                                   )}
                                   {typeof listing.carSpaces === 'number' && (
                                     <div className="flex items-center">
-                                      <span className="text-xl font-semibold">
+                                      <span className="text-base sm:text-xl font-semibold">
                                         {listing.carSpaces}
                                       </span>
                                       <span className="ml-1">car</span>
@@ -291,9 +333,9 @@ export function ListingsCarousel({
 
                             {/* CTA Button */}
                             <Button
-                              size="lg"
+                              size="default"
                               asChild
-                              className="bg-white text-gray-900 hover:bg-gray-100"
+                              className="bg-white text-gray-900 hover:bg-gray-100 text-sm sm:text-base px-4 sm:px-6"
                             >
                               <Link href={`/listings/${listing.slug}`}>
                                 View Details
@@ -417,14 +459,12 @@ export function ListingsCarousel({
                   >
                     <Card className="overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-300 group">
                       {/* Image */}
-                      <div className="relative aspect-[4/3] overflow-hidden">
-                        <Image
+                      <div className="relative aspect-[4/3] overflow-hidden" suppressHydrationWarning>
+                        <CarouselImage
                           src={listing.heroImageUrl}
                           alt={listing.title}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          priority={false}
+                          className="transition-transform duration-300 group-hover:scale-105"
                         />
 
                         {/* Status Bar */}

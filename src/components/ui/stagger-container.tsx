@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 
 interface StaggerContainerProps {
@@ -21,9 +21,25 @@ export function StaggerContainer({
   distance = 30
 }: StaggerContainerProps) {
   const shouldReduceMotion = useReducedMotion()
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   if (shouldReduceMotion) {
     return <div className={className}>{children}</div>
+  }
+
+  // During SSR or before mount, render without animation but still visible
+  if (!isMounted) {
+    return (
+      <div className={className} style={{ opacity: 1 }}>
+        {React.Children.map(children, (child, index) => (
+          <div key={index}>{child}</div>
+        ))}
+      </div>
+    )
   }
 
   const directionOffset = {
@@ -63,15 +79,15 @@ export function StaggerContainer({
     <motion.div
       className={className}
       variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      initial="visible"
+      animate="visible"
     >
       {React.Children.map(children, (child, index) => (
         <motion.div 
           key={index} 
           variants={itemVariants}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          initial="visible"
+          animate="visible"
         >
           {child}
         </motion.div>

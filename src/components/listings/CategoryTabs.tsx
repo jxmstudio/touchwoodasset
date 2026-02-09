@@ -72,8 +72,8 @@ export function CategoryTabs({ totalCounts }: CategoryTabsProps) {
   }
 
   return (
-    <div className="mb-8">
-      <div className="flex flex-wrap gap-2 sm:gap-4">
+    <div className="mb-6 sm:mb-8">
+      <div className="flex flex-wrap gap-2 sm:gap-3 lg:gap-4">
         {categoriesWithCounts.map((category) => {
           const Icon = category.icon
           const isActive = activeCategory === category.id
@@ -83,16 +83,16 @@ export function CategoryTabs({ totalCounts }: CategoryTabsProps) {
               key={category.id}
               variant={isActive ? 'default' : 'outline'}
               onClick={() => handleCategoryChange(category.id)}
-              className={`relative px-4 py-2 transition-all duration-200 ${
+              className={`relative px-3 py-2 sm:px-4 transition-all duration-200 text-sm sm:text-base ${
                 isActive 
                   ? 'bg-primary text-primary-foreground shadow-md' 
-                  : 'hover:bg-gray-50'
+                  : 'bg-white text-gray-900 hover:bg-gray-50'
               }`}
             >
-              <Icon className="h-4 w-4 mr-2" />
-              <span>{category.label}</span>
+              <Icon className={`h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 ${isActive ? '' : 'text-gray-700'}`} />
+              <span className="whitespace-nowrap">{category.label}</span>
               <motion.span
-                className={`ml-2 px-2 py-0.5 rounded-full text-xs font-medium ${
+                className={`ml-1.5 sm:ml-2 px-1.5 sm:px-2 py-0.5 rounded-full text-xs font-medium ${
                   isActive 
                     ? 'bg-primary-foreground/20 text-primary-foreground' 
                     : 'bg-gray-100 text-gray-600'

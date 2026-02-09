@@ -64,15 +64,15 @@ export function VideoHero({
         className={`relative w-full min-h-screen overflow-hidden ${className}`}
         suppressHydrationWarning
       >
-        {/* Fallback poster image */}
+        {/* Fallback poster image - use native img to avoid hydration mismatch */}
         {posterImage && (
           <div className="absolute inset-0 bg-gray-900">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={posterImage}
               alt="Property background"
-              fill
-              className="object-cover opacity-90"
-              priority
+              className="absolute inset-0 w-full h-full object-cover opacity-90"
+              suppressHydrationWarning
             />
           </div>
         )}
