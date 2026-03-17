@@ -13,7 +13,9 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(git add:*)",
       "Bash(cmd /c \"where npm\")",
-      "Bash(cmd /c \"where npm.cmd node.exe npx.cmd\")"
+      "Bash(cmd /c \"where npm.cmd node.exe npx.cmd\")",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
