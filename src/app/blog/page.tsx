@@ -15,13 +15,12 @@ import { articles } from '@/data/articles'
 import { ExternalLink, Calendar, Tag } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'News & Articles - Touchwood Asset Management',
-  description:
-    'Stay updated with the latest news, insights, and media features from Touchwood Asset Management. Expert perspectives on property investment, car parks, and real estate trends.',
+  title: 'Articles & Insights',
+  description: 'Property investment insights, market news and media features from Touchwood Asset Management. Expert perspectives on Melbourne real estate, car parks & storage.',
+  alternates: { canonical: '/blog' },
   openGraph: {
-    title: 'News & Articles - Touchwood Asset Management',
-    description:
-      'Stay updated with the latest news, insights, and media features from Touchwood Asset Management.',
+    title: 'Articles & Insights | Touchwood Asset Management',
+    description: 'Property investment insights, market news and media features from Touchwood Asset Management. Expert perspectives on Melbourne real estate, car parks & storage.',
   },
 }
 

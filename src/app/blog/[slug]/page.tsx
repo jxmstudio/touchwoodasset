@@ -31,10 +31,11 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${article.title} - Touchwood Asset Management`,
+    title: article.title,
     description: article.excerpt,
+    alternates: { canonical: `/blog/${article.slug}` },
     openGraph: {
-      title: `${article.title} - Touchwood Asset Management`,
+      title: article.title,
       description: article.excerpt,
       images: article.featuredImage ? [article.featuredImage] : [],
     },
@@ -48,7 +49,35 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     notFound()
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.title,
+    description: article.excerpt,
+    datePublished: article.date,
+    url: `https://touchwoodasset.com/blog/${article.slug}`,
+    author: {
+      '@type': 'Organization',
+      name: 'Touchwood Asset Management',
+      url: 'https://touchwoodasset.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Touchwood Asset Management',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://touchwoodasset.com/logo-touchwood.png',
+      },
+    },
+    ...(article.featuredImage && { image: article.featuredImage }),
+  }
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <div className="min-h-screen bg-gray-50">
       {/* Back Navigation */}
       <section className="bg-white border-b">
@@ -233,5 +262,6 @@ export default function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </article>
     </div>
+    </>
   )
 }

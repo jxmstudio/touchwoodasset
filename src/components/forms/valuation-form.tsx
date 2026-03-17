@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { toast } from 'sonner'
 import { Calculator, Loader2, Building2, MapPin, Calendar } from 'lucide-react'
+import { submitValuationForm } from '@/lib/sheets-webhook'
 
 const valuationFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -53,24 +54,23 @@ export function ValuationForm() {
     setIsSubmitting(true)
     
     try {
-      // TODO: Replace with actual API call
-      const response = await fetch('/api/enquiries', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...data,
-          type: 'VALUATION',
-          message: `Valuation request for ${data.propertyAddress}, ${data.suburb} ${data.postcode}. Purpose: ${data.valuationPurpose}. Additional info: ${data.additionalInfo || 'None'}`,
-        }),
+      const result = await submitValuationForm({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        propertyAddress: `${data.propertyAddress}, ${data.suburb} ${data.postcode}`,
+        propertyType: data.propertyType,
+        bedrooms: data.bedrooms ? Number(data.bedrooms) : undefined,
+        bathrooms: data.bathrooms ? Number(data.bathrooms) : undefined,
+        carSpaces: data.carSpaces ? Number(data.carSpaces) : undefined,
+        message: `Purpose: ${data.valuationPurpose}. Floor area: ${data.floorAreaSqm || 'N/A'} m². ${data.additionalInfo || ''}`.trim(),
       })
 
-      if (response.ok) {
+      if (result.success) {
         toast.success('Thank you for your valuation request! We\'ll contact you within 24 hours to arrange an inspection.')
         form.reset()
       } else {
-        throw new Error('Failed to submit valuation request')
+        throw new Error(result.error || 'Failed to submit valuation request')
       }
     } catch (error) {
       console.error('Error submitting valuation request:', error)

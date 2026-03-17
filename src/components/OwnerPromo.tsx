@@ -66,7 +66,7 @@ export function OwnerPromo({
                   className="border-primary/20 text-foreground hover:bg-primary/5 font-semibold tracking-wide"
                 >
                   <a
-                    href="/book"
+                    href="/contact"
                     aria-label="Book a consultation for property management"
                   >
                     Book consultation
@@ -130,7 +130,7 @@ export function OwnerPromo({
                     className="border-primary/20 text-foreground hover:bg-primary/5 font-semibold tracking-wide px-8 py-4 h-auto"
                   >
                     <a
-                      href="/book"
+                      href="/contact"
                       aria-label="Book a consultation for property management"
                     >
                       Book a consultation

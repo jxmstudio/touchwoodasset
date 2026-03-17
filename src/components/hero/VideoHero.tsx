@@ -36,6 +36,7 @@ export function VideoHero({
 }: VideoHeroProps) {
   const [isClient, setIsClient] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [videoError, setVideoError] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const shouldReduceMotion = useReducedMotion()
 
@@ -135,7 +136,7 @@ export function VideoHero({
     >
       {/* Background Video or Poster Image */}
       <div className="absolute inset-0 bg-gray-900">
-        {!prefersReducedMotion && isClient ? (
+        {!prefersReducedMotion && isClient && !videoError ? (
           <video
             ref={videoRef}
             className="w-full h-full object-cover"
@@ -143,11 +144,11 @@ export function VideoHero({
             loop={loop}
             muted={true}
             playsInline
-            webkit-playsinline="true"
             x-webkit-airplay="allow"
             preload="auto"
             aria-hidden="true"
             poster={posterImage}
+            onError={() => setVideoError(true)}
           >
             <source src={videoSrc} type="video/mp4" />
             Your browser does not support the video tag.

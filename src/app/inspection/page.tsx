@@ -2,11 +2,12 @@ import { Metadata } from 'next'
 import { InspectionForm } from '@/components/forms/inspection-form'
 
 export const metadata: Metadata = {
-  title: 'Property Inspection - Touchwood Asset Management',
-  description: 'Book a property inspection with Touchwood Asset Management. Professional property inspections and condition reports.',
+  title: 'Book an Inspection',
+  description: 'Book a property inspection with Touchwood Asset Management in Melbourne. Professional condition reports for residential & commercial properties. Schedule online today.',
+  alternates: { canonical: '/inspection' },
   openGraph: {
-    title: 'Property Inspection - Touchwood Asset Management',
-    description: 'Book a property inspection with Touchwood Asset Management. Professional property inspections and condition reports.',
+    title: 'Book an Inspection | Touchwood Asset Management',
+    description: 'Book a property inspection with Touchwood Asset Management in Melbourne. Professional condition reports for residential & commercial properties. Schedule online today.',
   },
 }
 

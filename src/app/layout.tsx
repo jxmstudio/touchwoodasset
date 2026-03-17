@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
+  metadataBase: new URL((process.env.NEXTAUTH_URL || 'https://touchwoodasset.com').replace(/\/$/, '')),
   alternates: {
     canonical: '/',
   },
@@ -73,6 +73,41 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'Touchwood Asset Management',
+              url: 'https://touchwoodasset.com',
+              logo: 'https://touchwoodasset.com/logo-touchwood.png',
+              telephone: '+61413889388',
+              email: 'admin@touchwoodasset.com',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: '1423/1 Queens Road',
+                addressLocality: 'Melbourne',
+                addressRegion: 'VIC',
+                postalCode: '3004',
+                addressCountry: 'AU',
+              },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: -37.8399,
+                longitude: 144.9690,
+              },
+              areaServed: {
+                '@type': 'Place',
+                name: 'Melbourne, Victoria, Australia',
+              },
+              priceRange: '$$',
+              openingHours: 'Mo-Fr 09:00-17:00',
+            }),
+          }}
+        />
+      </head>
       <body className={`${inter.className} ${inter.variable} antialiased`}>
         <AuthProvider>
           <div className="min-h-screen flex flex-col">

@@ -12,13 +12,12 @@ import { Section } from '@/components/ui/section'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
-  title: 'About Us - Touchwood Asset Management',
-  description:
-    'Learn about Touchwood Asset Management, our mission, values, and the team behind our success in property management across Melbourne and Victoria.',
+  title: 'About Us',
+  description: 'Meet the team behind Touchwood Asset Management — Melbourne\'s trusted property management agency. 25+ years experience across residential, commercial & ancillary properties.',
+  alternates: { canonical: '/about' },
   openGraph: {
-    title: 'About Us - Touchwood Asset Management',
-    description:
-      'Learn about Touchwood Asset Management, our mission, values, and the team behind our success in property management across Melbourne and Victoria.',
+    title: 'About Us | Touchwood Asset Management',
+    description: 'Meet the team behind Touchwood Asset Management — Melbourne\'s trusted property management agency. 25+ years experience across residential, commercial & ancillary properties.',
   },
 }
 

@@ -2,11 +2,12 @@ import { Metadata } from 'next'
 import { ValuationForm } from '@/components/forms/valuation-form'
 
 export const metadata: Metadata = {
-  title: 'Property Valuation - Touchwood Asset Management',
-  description: 'Get a professional property valuation from Touchwood Asset Management. Expert valuations for sales, refinancing, and investment purposes.',
+  title: 'Property Valuation',
+  description: 'Get a free property valuation from Touchwood\'s Melbourne experts. Residential, commercial & ancillary appraisals for sale, refinancing or investment. Book your inspection today.',
+  alternates: { canonical: '/valuation' },
   openGraph: {
-    title: 'Property Valuation - Touchwood Asset Management',
-    description: 'Get a professional property valuation from Touchwood Asset Management. Expert valuations for sales, refinancing, and investment purposes.',
+    title: 'Property Valuation | Touchwood Asset Management',
+    description: 'Get a free property valuation from Touchwood\'s Melbourne experts. Residential, commercial & ancillary appraisals for sale, refinancing or investment. Book your inspection today.',
   },
 }
 

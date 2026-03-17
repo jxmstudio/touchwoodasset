@@ -1,98 +1,145 @@
 import { MetadataRoute } from 'next'
 import { articles } from '@/data/articles'
+import { listings } from '@/data/listings'
+import { storageUnits } from '@/data/storage-units'
+
+const BASE_URL = (process.env.NEXTAUTH_URL || 'https://touchwoodasset.com').replace(/\/$/, '')
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
-
   // Static routes
   const staticRoutes = [
     {
-      url: baseUrl,
+      url: BASE_URL,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
+      url: `${BASE_URL}/about`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/services`,
+      url: `${BASE_URL}/services`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/listings`,
+      url: `${BASE_URL}/listings`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: 'daily' as const,
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/prime-hosting`,
+      url: `${BASE_URL}/prime-hosting`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/the-archive`,
+      url: `${BASE_URL}/the-archive`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${BASE_URL}/blog`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${BASE_URL}/contact`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/valuation`,
+      url: `${BASE_URL}/landlords`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/inspection`,
+      url: `${BASE_URL}/sellers`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'monthly' as const,
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/legal/privacy`,
+      url: `${BASE_URL}/valuation`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/inspection`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/legal/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/legal/terms`,
+      url: `${BASE_URL}/legal/terms`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: 'yearly' as const,
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/legal/returns`,
+      url: `${BASE_URL}/legal/returns`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: 'yearly' as const,
       priority: 0.3,
     },
-  ] as MetadataRoute.Sitemap
+  ] satisfies MetadataRoute.Sitemap
 
   // Dynamic blog article routes
   const articleRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
-    url: `${baseUrl}/blog/${article.slug}`,
+    url: `${BASE_URL}/blog/${article.slug}`,
     lastModified: new Date(article.date),
-    changeFrequency: 'monthly',
+    changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  return [...staticRoutes, ...articleRoutes]
+  // Dynamic listing detail routes
+  const listingRoutes: MetadataRoute.Sitemap = listings.map((listing) => ({
+    url: `${BASE_URL}/listings/${listing.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }))
+
+  // Dynamic storage unit routes
+  const storageRoutes: MetadataRoute.Sitemap = storageUnits.map((unit) => ({
+    url: `${BASE_URL}/the-archive/${unit.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+
+  // Location / suburb SEO pages
+  const locationSlugs = ['east-melbourne', 'south-melbourne', 'melbourne-cbd', 'st-kilda']
+  const locationRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/locations`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    ...locationSlugs.map((slug) => ({
+      url: `${BASE_URL}/locations/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
+  ]
+
+  return [...staticRoutes, ...articleRoutes, ...listingRoutes, ...storageRoutes, ...locationRoutes]
 }

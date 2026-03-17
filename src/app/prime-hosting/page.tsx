@@ -26,13 +26,12 @@ import { Section } from '@/components/ui/section'
 import { ContactStrip } from '@/components/common/ContactStrip'
 
 export const metadata: Metadata = {
-  title: 'Short-Stay Rental Management - Touchwood & Prime Hosting',
-  description:
-    'Touchwood, in collaboration with Prime Hosting, is now offering our owners short-stay rental management services. Maximize your property returns with professional Airbnb and short-term rental management.',
+  title: 'Short-Stay Rental Management',
+  description: 'Maximise your Melbourne property returns with Airbnb and short-stay rental management. Touchwood partners with Prime Hosting for full-service short-term rental solutions.',
+  alternates: { canonical: '/prime-hosting' },
   openGraph: {
-    title: 'Short-Stay Rental Management - Touchwood & Prime Hosting',
-    description:
-      'Touchwood, in collaboration with Prime Hosting, is now offering our owners short-stay rental management services. Maximize your property returns with professional Airbnb and short-term rental management.',
+    title: 'Short-Stay Rental Management | Touchwood & Prime Hosting',
+    description: 'Maximise your Melbourne property returns with Airbnb and short-stay rental management. Touchwood partners with Prime Hosting for full-service short-term rental solutions.',
   },
 }
 

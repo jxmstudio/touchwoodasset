@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git ls-tree:*)",
+      "Bash(git grep:*)",
+      "Bash(grep -E '\\\\.\\(mp4|webm|ogv|jpg|jpeg|png\\)$')",
+      "Bash(grep -E '\\\\.\\(mp4|webm|ogv\\)$')",
+      "Bash(grep -E '\\\\.\\(jpg|jpeg|png\\)$')",
+      "Bash(git restore:*)",
+      "Bash(grep -r og: /c/Users/alexn/touchwoodasset-1/src --include=*.tsx --include=*.ts -c)",
+      "WebFetch(domain:touchwoodasset.com)",
+      "Bash(git rm:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git add:*)",
+      "Bash(cmd /c \"where npm\")",
+      "Bash(cmd /c \"where npm.cmd node.exe npx.cmd\")"
+    ]
+  }
+}

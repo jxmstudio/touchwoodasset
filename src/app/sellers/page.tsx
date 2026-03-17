@@ -25,13 +25,12 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Sell Your Property - Touchwood Asset Management',
-  description:
-    'Get the best price for your property with our expert sales team. Professional valuations, marketing, and negotiation services.',
+  title: 'For Sellers',
+  description: 'Sell your Melbourne property with confidence. Expert valuations, sales strategy & buyer network across VIC. Request your free property appraisal from Touchwood today.',
+  alternates: { canonical: '/sellers' },
   openGraph: {
-    title: 'Sell Your Property - Touchwood Asset Management',
-    description:
-      'Get the best price for your property with our expert sales team. Professional valuations, marketing, and negotiation services.',
+    title: 'For Sellers | Touchwood Asset Management',
+    description: 'Sell your Melbourne property with confidence. Expert valuations, sales strategy & buyer network across VIC. Request your free property appraisal from Touchwood today.',
   },
 }
 

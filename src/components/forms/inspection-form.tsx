@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { toast } from 'sonner'
 import { Search, Loader2, Building2, MapPin, Calendar, Clock } from 'lucide-react'
+import { submitInspectionForm } from '@/lib/sheets-webhook'
 
 const inspectionFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -52,25 +53,21 @@ export function InspectionForm() {
     setIsSubmitting(true)
     
     try {
-      // TODO: Replace with actual API call
-      const response = await fetch('/api/enquiries', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...data,
-          type: 'INSPECTION',
-          message: `Inspection request for ${data.propertyAddress}, ${data.suburb} ${data.postcode}. Type: ${data.inspectionType}. Date: ${data.preferredDate}. Time: ${data.preferredTime}. Urgency: ${data.urgency}. Additional info: ${data.additionalInfo || 'None'}`,
-          preferredDate: data.preferredDate,
-        }),
+      const result = await submitInspectionForm({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        propertyAddress: `${data.propertyAddress}, ${data.suburb} ${data.postcode}`,
+        preferredDate: data.preferredDate,
+        preferredTime: data.preferredTime,
+        message: `Type: ${data.inspectionType}. Urgency: ${data.urgency}. ${data.additionalInfo || ''}`.trim(),
       })
 
-      if (response.ok) {
+      if (result.success) {
         toast.success('Thank you for your inspection request! We\'ll contact you within 24 hours to confirm the appointment.')
         form.reset()
       } else {
-        throw new Error('Failed to submit inspection request')
+        throw new Error(result.error || 'Failed to submit inspection request')
       }
     } catch (error) {
       console.error('Error submitting inspection request:', error)

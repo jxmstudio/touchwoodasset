@@ -14,13 +14,12 @@ import Image from 'next/image'
 // import { BookingCalendar } from '@/components/calendar/BookingCalendar'
 
 export const metadata: Metadata = {
-  title: 'Contact Us - Touchwood Asset Management',
-  description:
-    "Get in touch with Touchwood Asset Management. We're here to help with all your property management needs in Melbourne and Victoria.",
+  title: 'Contact Us',
+  description: 'Contact Touchwood Asset Management in Melbourne. Call +61 413 889 388, email us, or book a consultation online. We respond within 24 hours.',
+  alternates: { canonical: '/contact' },
   openGraph: {
-    title: 'Contact Us - Touchwood Asset Management',
-    description:
-      "Get in touch with Touchwood Asset Management. We're here to help with all your property management needs in Melbourne and Victoria.",
+    title: 'Contact Us | Touchwood Asset Management',
+    description: 'Contact Touchwood Asset Management in Melbourne. Call +61 413 889 388, email us, or book a consultation online. We respond within 24 hours.',
   },
 }
 

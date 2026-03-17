@@ -16,13 +16,12 @@ import { ServiceSection } from '@/components/services/ServiceSection'
 import { ContactStrip } from '@/components/common/ContactStrip'
 
 export const metadata: Metadata = {
-  title: 'Services - Touchwood Asset Management',
-  description:
-    'Comprehensive property management services including residential sales & rentals, commercial rentals, and ancillary rentals across Melbourne and Victoria.',
+  title: 'Our Services',
+  description: 'Residential sales & rentals, commercial leasing, car park and storage management across Melbourne. Full-service property management from Touchwood Asset Management.',
+  alternates: { canonical: '/services' },
   openGraph: {
-    title: 'Services - Touchwood Asset Management',
-    description:
-      'Comprehensive property management services including residential sales & rentals, commercial rentals, and ancillary rentals across Melbourne and Victoria.',
+    title: 'Our Services | Touchwood Asset Management',
+    description: 'Residential sales & rentals, commercial leasing, car park and storage management across Melbourne. Full-service property management from Touchwood Asset Management.',
   },
 }
 

@@ -75,9 +75,29 @@ const stats = [
   },
 ]
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Touchwood Asset Management',
+  url: 'https://touchwoodasset.com',
+  logo: 'https://touchwoodasset.com/logo-touchwood.png',
+  sameAs: [],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    reviewCount: '3',
+    bestRating: '5',
+    worstRating: '1',
+  },
+}
+
 export default function HomePage() {
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
       {/* Video Hero Section */}
       <VideoHero
         videoSrc="/videos/landing.mp4"

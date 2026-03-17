@@ -23,13 +23,12 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Property Management for Landlords - Touchwood Asset Management',
-  description:
-    'Maximize your rental returns with our comprehensive property management services. Expert tenant screening, maintenance, and financial reporting.',
+  title: 'For Landlords',
+  description: 'Earn more from your Melbourne investment property. Touchwood Asset Management offers full-service landlord solutions — tenant screening, maintenance & reporting. Book a free consultation.',
+  alternates: { canonical: '/landlords' },
   openGraph: {
-    title: 'Property Management for Landlords - Touchwood Asset Management',
-    description:
-      'Maximize your rental returns with our comprehensive property management services. Expert tenant screening, maintenance, and financial reporting.',
+    title: 'For Landlords | Touchwood Asset Management',
+    description: 'Earn more from your Melbourne investment property. Touchwood Asset Management offers full-service landlord solutions — tenant screening, maintenance & reporting. Book a free consultation.',
   },
 }
 
