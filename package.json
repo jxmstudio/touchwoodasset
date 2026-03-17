@@ -12,7 +12,6 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio",
-    "postbuild": "next-sitemap",
     "postinstall": "npx prisma@6.15.0 generate",
     "precommit": "lint-staged"
   },
