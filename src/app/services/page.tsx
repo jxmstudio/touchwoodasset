@@ -232,9 +232,9 @@ export default function ServicesPage() {
                     <CardTitle className="text-xl">{service.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="text-center">
-                    <CardDescription className="text-base mb-4">
+                    <p className="text-base text-gray-900 mb-4">
                       {service.description}
-                    </CardDescription>
+                    </p>
                     <Link href={service.href}>
                       <Button variant="outline" className="w-full">
                         Learn More
@@ -269,7 +269,7 @@ export default function ServicesPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
                   🔑 Expert Team
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-900 leading-relaxed">
                   Our experienced professionals bring in-depth knowledge of the
                   Melbourne market and a proven ability to maximise value. We
                   treat every asset as if it were our own.
@@ -285,7 +285,7 @@ export default function ServicesPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
                   🛡 Trusted & Reliable
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-900 leading-relaxed">
                   With over 25 years of experience, Touchwood has earned a
                   reputation built on transparency, reliability, and consistent
                   results. Clients trust us to protect and grow their
@@ -302,7 +302,7 @@ export default function ServicesPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
                   ⏰ 24/7 Support
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-900 leading-relaxed">
                   We&apos;re here whenever you need us — offering
                   round-the-clock support and quick response times, so
                   you&apos;ll never feel alone managing your property.
@@ -318,7 +318,7 @@ export default function ServicesPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
                   📈 Proven Results
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-900 leading-relaxed">
                   Our data-driven approach and proven strategies consistently
                   deliver superior returns and market performance for our
                   clients&apos; property portfolios.
