@@ -100,7 +100,8 @@ export default function HomePage() {
       />
       {/* Video Hero Section */}
       <VideoHero
-        videoSrc="/videos/landing.mp4"
+        videoSrc="/videos/landing-desktop.mp4"
+        videoSrcMobile="/videos/landing-mobile.mp4"
         posterImage="/hero/residential.jpg"
         title="Your Property Journey Starts Here"
         subtitle="Touchwood Asset Management"

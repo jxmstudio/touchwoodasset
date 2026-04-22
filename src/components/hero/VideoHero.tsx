@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 
 interface VideoHeroProps {
   videoSrc: string
+  videoSrcMobile?: string
   posterImage?: string
   title: string
   subtitle?: string
@@ -22,6 +23,7 @@ interface VideoHeroProps {
 
 export function VideoHero({
   videoSrc,
+  videoSrcMobile,
   posterImage,
   title,
   subtitle,
@@ -37,6 +39,7 @@ export function VideoHero({
   const [isClient, setIsClient] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [videoError, setVideoError] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const shouldReduceMotion = useReducedMotion()
 
@@ -56,7 +59,17 @@ export function VideoHero({
   // Ensure we're on the client side before setting initial state
   useEffect(() => {
     setIsClient(true)
+    setIsMobile(window.innerWidth <= 768)
   }, [])
+
+  // Programmatic play — catches silent iOS autoplay blocks that don't fire onError
+  useEffect(() => {
+    if (!isClient || !videoRef.current || prefersReducedMotion || videoError) return
+    videoRef.current.play().catch(() => {
+      // Autoplay blocked (iOS Low Power Mode, cellular restriction, etc.)
+      // poster image already set on <video> so the fallback is visible
+    })
+  }, [isClient, prefersReducedMotion, videoError])
 
   // Don't render video until client-side to prevent hydration mismatch
   if (!isClient) {
@@ -145,12 +158,12 @@ export function VideoHero({
             muted={true}
             playsInline
             x-webkit-airplay="allow"
-            preload="auto"
+            preload="metadata"
             aria-hidden="true"
             poster={posterImage}
             onError={() => setVideoError(true)}
           >
-            <source src={videoSrc} type="video/mp4" />
+            <source src={isMobile && videoSrcMobile ? videoSrcMobile : videoSrc} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : (
