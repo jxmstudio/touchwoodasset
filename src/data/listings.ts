@@ -717,6 +717,126 @@ A rare passive investment opportunity - secure it today and enjoy guaranteed ret
     },
     category: 'properties',
   },
+  {
+    id: '1316-lonsdale',
+    slug: 'apartment-1316-39-lonsdale-street-melbourne',
+    title: '1316/39 Lonsdale Street, Melbourne',
+    summary:
+      "An Investor's Dream with Secure Returns in Melbourne's Prestigious Paris End",
+    type: 'RESIDENTIAL',
+    status: 'AVAILABLE',
+    price: 258000,
+    pricePeriod: 'total',
+    address: '1316/39 Lonsdale Street',
+    suburb: 'Melbourne',
+    state: 'VIC',
+    postcode: '3000',
+    bedrooms: 2,
+    bathrooms: 1,
+    floorAreaSqm: 33,
+    heroImageUrl: '/1316-lonsdale/Living%20room.jpg',
+    description: `Positioned in one of Melbourne CBD's most tightly held pockets, this high-performing, fully furnished investment delivers immediate income with future upside — the perfect set-and-forget asset for savvy investors.
+
+Currently leased at $600 per week ($31,200 p.a.), the property is secured with a tenancy in place until June 2026, with the renters already expressing strong interest to extend — providing continuity of income and minimal vacancy risk.
+
+Located within the sought-after 'Student Living on Lonsdale' complex, this low-maintenance 2-bedroom apartment is strategically positioned to attract consistent rental demand from students and city professionals alike. If you wish to take vacant possession and move in, this is also an option to you.
+
+**Investment Highlights:**
+• Strong rental return: $600 per week fully furnished
+• Secure lease: Fixed until June 2026 with extension interest for a further 6 months
+• Turnkey investment: Fully furnished, no additional capital required
+• High-demand location: Walking distance to RMIT, theatres, dining, and transport
+• Low-maintenance asset: Ideal for passive investors
+
+**Property Features:**
+• Light-filled open-plan living and dining area
+• Functional kitchen with stainless steel appliances
+• Two well-proportioned bedrooms with built-in robes
+• Modern central bathroom
+• Secure building with controlled entry
+
+**Resident Amenities:**
+• Communal lounge & games room
+• TV lounge
+• Shared laundry facilities
+
+**Location Advantages:**
+• Positioned in Melbourne's iconic Paris End
+• Steps to RMIT University and CBD campuses
+• Walking distance to Lygon Street dining precinct
+• Surrounded by theatres, restaurants, and nightlife
+• Close to Carlton Gardens, Treasury Gardens & Fitzroy Gardens
+• Moments to Melbourne Central, QV, and public transport (free tram zone & Parliament Station)`,
+    features: [
+      'Strong rental return: $600 per week fully furnished',
+      'Secure lease until June 2026 with extension interest',
+      'Turnkey investment — fully furnished',
+      'High-demand location near RMIT and CBD campuses',
+      'Low-maintenance asset ideal for passive investors',
+      'Light-filled open-plan living and dining area',
+      'Functional kitchen with stainless steel appliances',
+      'Two bedrooms with built-in robes',
+      'Modern central bathroom',
+      'Secure building with controlled entry',
+      'Communal lounge & games room',
+      'Shared laundry facilities',
+      "Steps to Melbourne's iconic Paris End",
+      'Walking distance to Lygon Street dining precinct',
+      'Close to Carlton, Treasury & Fitzroy Gardens',
+      'Near Melbourne Central, QV & Parliament Station',
+      'Free tram zone access',
+    ],
+    gallery: [
+      {
+        url: '/1316-lonsdale/Living%20room.jpg',
+        alt: 'Light-filled open-plan living and dining area',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/1316-lonsdale/Kitchen%20shot.jpg',
+        alt: 'Functional kitchen with stainless steel appliances',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/1316-lonsdale/Bedroom%201.jpg',
+        alt: 'Bedroom 1 with built-in robes',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/1316-lonsdale/Bedroom%202.jpg',
+        alt: 'Bedroom 2 with built-in robes',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/1316-lonsdale/Bathroom%20shot.jpg',
+        alt: 'Modern central bathroom',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/1316-lonsdale/Building%20shot.jpg',
+        alt: 'Student Living on Lonsdale building exterior',
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: '/1316-lonsdale/1316.39%20(floorplan).jpg',
+        alt: 'Floor plan of apartment 1316/39 Lonsdale Street',
+        width: 1200,
+        height: 800,
+      },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
 ]
 
 export const getCountsByCategory = () => {
