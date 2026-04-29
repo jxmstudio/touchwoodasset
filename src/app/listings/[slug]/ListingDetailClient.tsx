@@ -159,7 +159,7 @@ export function ListingDetailClient({ listing }: ListingDetailClientProps) {
                 </CardHeader>
 
                 <CardContent>
-                  <p className="text-gray-700 mb-6">{listing.description}</p>
+                  <p className="text-gray-700 mb-6 whitespace-pre-line">{listing.description}</p>
 
                   {/* Property Features */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">

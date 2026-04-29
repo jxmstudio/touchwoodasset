@@ -735,38 +735,38 @@ A rare passive investment opportunity - secure it today and enjoy guaranteed ret
     bathrooms: 1,
     floorAreaSqm: 33,
     heroImageUrl: '/1316-lonsdale/Living%20room.jpg',
-    description: `Positioned in one of Melbourne CBD's most tightly held pockets, this high-performing, fully furnished investment delivers immediate income with future upside — the perfect set-and-forget asset for savvy investors.
+    description: `Positioned in one of Melbourne CBD's most tightly held pockets, this high-performing, fully furnished investment delivers immediate income with future upside — the perfect set-and-forget asset for savvy investors. Currently leased at $600 per week ($31,200 p.a.), the property is secured with a tenancy in place until June 2026, with the renters already expressing strong interest to extend — providing continuity of income and minimal vacancy risk. Located within the sought-after 'Student Living on Lonsdale' complex, this low-maintenance 2-bedroom apartment is strategically positioned to attract consistent rental demand from students and city professionals alike. If you wish to take vacant possession and move in, this is also an option to you.
 
-Currently leased at $600 per week ($31,200 p.a.), the property is secured with a tenancy in place until June 2026, with the renters already expressing strong interest to extend — providing continuity of income and minimal vacancy risk.
+Investment Highlights:
 
-Located within the sought-after 'Student Living on Lonsdale' complex, this low-maintenance 2-bedroom apartment is strategically positioned to attract consistent rental demand from students and city professionals alike. If you wish to take vacant possession and move in, this is also an option to you.
+Strong rental return: $600 per week fully furnished
+Secure lease: Fixed until June 2026 with extension interest for a further 6 months
+Turnkey investment: Fully furnished, no additional capital required
+High-demand location: Walking distance to RMIT, theatres, dining, and transport
+Low-maintenance asset: Ideal for passive investors
 
-**Investment Highlights:**
-• Strong rental return: $600 per week fully furnished
-• Secure lease: Fixed until June 2026 with extension interest for a further 6 months
-• Turnkey investment: Fully furnished, no additional capital required
-• High-demand location: Walking distance to RMIT, theatres, dining, and transport
-• Low-maintenance asset: Ideal for passive investors
+Property Features:
 
-**Property Features:**
-• Light-filled open-plan living and dining area
-• Functional kitchen with stainless steel appliances
-• Two well-proportioned bedrooms with built-in robes
-• Modern central bathroom
-• Secure building with controlled entry
+Light-filled open-plan living and dining area
+Functional kitchen with stainless steel appliances
+Two well-proportioned bedrooms with built-in robes
+Modern central bathroom
+Secure building with controlled entry
 
-**Resident Amenities:**
-• Communal lounge & games room
-• TV lounge
-• Shared laundry facilities
+Resident Amenities:
 
-**Location Advantages:**
-• Positioned in Melbourne's iconic Paris End
-• Steps to RMIT University and CBD campuses
-• Walking distance to Lygon Street dining precinct
-• Surrounded by theatres, restaurants, and nightlife
-• Close to Carlton Gardens, Treasury Gardens & Fitzroy Gardens
-• Moments to Melbourne Central, QV, and public transport (free tram zone & Parliament Station)`,
+Communal lounge & games room
+TV lounge
+Shared laundry facilities
+
+Location Advantages:
+
+Positioned in Melbourne's iconic Paris End
+Steps to RMIT University and CBD campuses
+Walking distance to Lygon Street dining precinct
+Surrounded by theatres, restaurants, and nightlife
+Close to Carlton Gardens, Treasury Gardens & Fitzroy Gardens
+Moments to Melbourne Central, QV, and public transport (free tram zone & Parliament Station)`,
     features: [
       'Strong rental return: $600 per week fully furnished',
       'Secure lease until June 2026 with extension interest',
