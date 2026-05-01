@@ -837,6 +837,82 @@ Moments to Melbourne Central, QV, and public transport (free tram zone & Parliam
     },
     category: 'properties',
   },
+  {
+    id: '6-1070-sydney-rd',
+    slug: 'townhouse-6-1070-sydney-road-fawkner',
+    title: '6/1070 Sydney Road, Fawkner',
+    summary:
+      'Modern Boutique Townhouse — Recently Leased | Management Transfer',
+    type: 'RESIDENTIAL',
+    status: 'LEASED',
+    price: 500,
+    pricePeriod: 'per_week',
+    address: '6/1070 Sydney Road',
+    suburb: 'Fawkner',
+    state: 'VIC',
+    postcode: '3060',
+    bedrooms: 2,
+    bathrooms: 1,
+    carSpaces: 1,
+    heroImageUrl: '/6-1070-sydney-rd-fawkner/Living-room-1.jpg',
+    description: `Positioned in a well-maintained boutique development, this modern residence offers a seamless blend of comfort, functionality, and low-maintenance living — perfect for professionals, couples, or small families seeking lifestyle and convenience.
+
+Property Highlights:
+
+Light-filled open plan living and dining area with split system heating & cooling
+Contemporary kitchen with stainless steel appliances, dishwasher & ample cabinetry
+Two well-proportioned bedrooms with built-in robes
+Central bathroom with sleek finishes and walk-in shower
+Private balcony with outdoor entertaining space — ideal for weekend BBQs
+Secure single car garage with additional storage options
+Quality finishes throughout with a neutral colour palette
+
+Lifestyle & Location:
+
+Moments to Merri Creek Trail — perfect for walking, cycling, and outdoor lifestyle
+Easy access to Gowrie Station for a direct CBD commute
+Surrounded by local shops, cafes, and essential amenities along Sydney Road
+Close to schools, parks, and community facilities
+
+Why You'll Love It:
+
+A move-in ready home that ticks all the boxes — modern design, practical layout, and a lifestyle location with strong connectivity. Whether you're relaxing indoors or entertaining outdoors, this property delivers effortless living.`,
+    features: [
+      'Light-filled open plan living and dining area',
+      'Split system heating & cooling',
+      'Contemporary kitchen with stainless steel appliances',
+      'Dishwasher and ample cabinetry',
+      'Two bedrooms with built-in robes',
+      'Central bathroom with walk-in shower',
+      'Private balcony with outdoor entertaining space',
+      'Secure single car garage with additional storage',
+      'Quality finishes with neutral colour palette',
+      'Moments to Merri Creek Trail',
+      'Easy access to Gowrie Station — direct CBD commute',
+      'Local shops, cafes & amenities along Sydney Road',
+      'Close to schools, parks & community facilities',
+    ],
+    gallery: [
+      { url: '/6-1070-sydney-rd-fawkner/Living-room-1.jpg', alt: 'Light-filled open plan living and dining area', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Living-room-2.jpg', alt: 'Living room alternate angle', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Kitchen.jpg', alt: 'Contemporary kitchen with stainless steel appliances', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Bedroom-1.jpg', alt: 'Bedroom 1 with built-in robes', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Bedroom-2.jpg', alt: 'Bedroom 2 with built-in robes', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Bathroom.jpg', alt: 'Central bathroom with walk-in shower', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Balcony.jpg', alt: 'Private balcony with outdoor entertaining space', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Garage.jpg', alt: 'Secure single car garage with storage', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Front-building.jpg', alt: 'Front building exterior', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Street-view.jpg', alt: 'Street view near Sydney Road', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Merri-Creek-Trail.jpg', alt: 'Merri Creek Trail nearby', width: 1200, height: 800 },
+      { url: '/6-1070-sydney-rd-fawkner/Train-station.jpg', alt: 'Gowrie Station for CBD commute', width: 1200, height: 800 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
 ]
 
 export const getCountsByCategory = () => {
