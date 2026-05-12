@@ -17,7 +17,7 @@
     --foreground: 222 84% 5%; /* #0F172A - charcoal */
     
     --muted: 220 14% 96%; /* #F3F4F6 - section backgrounds/dividers */
-    --muted-foreground: 220 9% 46%; /* #6B7280 - secondary text */
+    --muted-foreground: 215 16% 35%; /* #4B5563 - secondary text (gray-600, AAA contrast) */
     
     --card: 0 0% 100%; /* #FFFFFF */
     --card-foreground: 222 84% 5%; /* #0F172A */
