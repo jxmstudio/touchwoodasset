@@ -151,90 +151,6 @@ export const listings: ListingItem[] = [
     category: 'car-park',
   },
   {
-    id: '5',
-    slug: 'carparks-63-stead-st-south-melbourne',
-    title: 'Affordable Parking Options– 63 Stead St, South Melbourne',
-    summary:
-      'Convenient and affordable parking in South Melbourne with undercover and open bay options',
-    type: 'ANCILLARY',
-    status: 'LEASED',
-    price: 250,
-    pricePeriod: 'per_month',
-    address: '63 Stead Street',
-    suburb: 'South Melbourne',
-    state: 'VIC',
-    postcode: '3205',
-    floorAreaSqm: 12,
-    heroImageUrl: '/happy/63%20Stead%20Street.jpg',
-    description:
-      'Looking for convenient and affordable parking in South Melbourne?\n\nWe have three exclusive car parks available now, perfectly located just minutes from:\nSouth Melbourne Market, Clarendon Street precinct, Albert Park Lake, with quick access to the CBD, St Kilda Road and CityLink.\n\nAvailable spaces:\n• 1x Undercover bay – $250 per month\n• 1x Open bay – $250 per month (LEASED)\n• 1x Open bay – $250 per month\n\nSecure, accessible, and ideal for local residents or professionals seeking reliable parking in a prime location.\nEnquire today to reserve your space!',
-    features: [
-      'Prime South Melbourne location',
-      'Minutes from South Melbourne Market',
-      'Close to Clarendon Street precinct',
-      'Near Albert Park Lake',
-      'Quick access to CBD',
-      'Easy access to St Kilda Road',
-      'Close to CityLink',
-      'Undercover and open bay options',
-      'Secure parking',
-      'Ideal for residents and professionals',
-    ],
-    gallery: [
-      {
-        url: '/happy/63%20Stead%20Street.jpg',
-        alt: '63 Stead Street exterior view',
-        width: 1200,
-        height: 800,
-      },
-      {
-        url: '/happy/76.63%20Stead%20St.jpg',
-        alt: 'Street view of 63 Stead Street',
-        width: 1200,
-        height: 800,
-      },
-      {
-        url: '/happy/55&56.63%20Stead.jpg',
-        alt: 'Building entrance and surrounding area',
-        width: 1200,
-        height: 800,
-      },
-    ],
-    videoUrl: 'https://youtu.be/5PO4SiEsIlU',
-    spaces: [
-      {
-        id: 'space-1',
-        spaceNumber: 'Undercover Bay 1',
-        price: 250,
-        pricePeriod: 'per_month',
-        available: true,
-        description: 'Undercover car park bay',
-      },
-      {
-        id: 'space-2',
-        spaceNumber: 'Open Bay 1',
-        price: 250,
-        pricePeriod: 'per_month',
-        available: false,
-        description: 'Open car park bay - LEASED',
-      },
-      {
-        id: 'space-3',
-        spaceNumber: 'Open Bay 2',
-        price: 250,
-        pricePeriod: 'per_month',
-        available: true,
-        description: 'Open car park bay',
-      },
-    ],
-    agent: {
-      name: 'Eamon Chau',
-      phone: '+61 413 889 388',
-      email: 'admin@touchwoodasset.com',
-    },
-    category: 'car-park',
-  },
-  {
     id: 'franklin-729-58',
     slug: 'carpark-729-58-franklin-st-melbourne',
     title: 'Prime Parking Space Available for Rent on Level 7(29)',
@@ -590,106 +506,6 @@ Property Code: 14110 - Please quote this number when phoning or texting.`,
     category: 'properties',
   },
   {
-    id: '212-600-little-bourke',
-    slug: 'studio-apartment-212-600-little-bourke-melbourne',
-    title: '212/600 Little Bourke Street, Melbourne',
-    summary:
-      'Set-and-forget investment with a steady return - fixed 5-year lease with YESH Hotel',
-    type: 'RESIDENTIAL',
-    status: 'SOLD',
-    price: 106500,
-    pricePeriod: 'total',
-    address: '212/600 Little Bourke Street',
-    suburb: 'Melbourne',
-    state: 'VIC',
-    postcode: '3000',
-    bedrooms: 1,
-    bathrooms: 1,
-    carSpaces: 0,
-    floorAreaSqm: 19,
-    heroImageUrl: '/john/Studio%201.jpg',
-    description: `Set-and-forget investment with a steady return - fixed 5-year lease with YESH Hotel.
-
-Burst onto the investment scene with this sleek CBD lifestyle pad - an easy-care studio apartment featuring a dedicated study zone, perfect for executives or savvy investors seeking reliable, hands-off returns.
-
-Positioned in the vibrant heart of Melbourne, you're just moments from iconic landmarks including Flagstaff Gardens, Queen Victoria Market, Bourke Street Mall, and public transport options that put the entire city at your feet.
-
-World-class dining, cultural attractions, and entertainment hubs like Melbourne Aquarium, Crown Casino, Marvel Stadium, and the theatre district all lie within effortless reach.
-
-**Key Features:**
-• Open-plan studio layout
-• Study desk, ideal for remote work or executive stays
-• Bathroom with combined shower/bath and toilet
-• Large window drawing in natural light
-• Split system heating and air conditioning
-• Surrounded by Melbourne's best restaurants, nightlife, and shopping
-
-**Investment Snapshot:**
-A rare passive investment opportunity - secure it today and enjoy guaranteed returns tomorrow.`,
-    features: [
-      'Open-plan studio layout',
-      'Study desk for remote work',
-      'Combined shower/bath and toilet',
-      'Large window with natural light',
-      'Split system heating and air conditioning',
-      'Fixed 5-year lease with YESH Hotel',
-      'CBD location',
-      'Near Flagstaff Gardens',
-      'Near Queen Victoria Market',
-      'Near Bourke Street Mall',
-      'Close to Melbourne Aquarium',
-      'Close to Crown Casino',
-      'Close to Marvel Stadium',
-      'Close to theatre district',
-      'Excellent public transport access',
-    ],
-    gallery: [
-      {
-        url: '/john/Studio%201.jpg',
-        alt: 'Open-plan studio apartment interior',
-        width: 1200,
-        height: 800,
-      },
-      {
-        url: '/john/Building%20shot%201.jpg',
-        alt: 'Building exterior at 600 Little Bourke Street',
-        width: 1200,
-        height: 800,
-      },
-      {
-        url: '/john/Studio%202.jpg',
-        alt: 'Studio apartment with study area',
-        width: 1200,
-        height: 800,
-      },
-      {
-        url: '/john/Studio%203.jpg',
-        alt: 'Living space with natural light',
-        width: 1200,
-        height: 800,
-      },
-      {
-        url: '/john/Bathroom.jpg',
-        alt: 'Modern bathroom with shower/bath combo',
-        width: 1200,
-        height: 800,
-      },
-      {
-        url: '/john/Floorplan.jpg',
-        alt: 'Studio apartment floor plan',
-        width: 1200,
-        height: 800,
-      },
-    ],
-    videoUrl: 'https://youtu.be/cQmfpK0pD2E',
-    agent: {
-      name: 'Eamon Chau',
-      phone: '+61 413 889 388',
-      email: 'admin@touchwoodasset.com',
-    },
-    category: 'properties',
-  },
-  {
     id: '1316-lonsdale',
     slug: 'apartment-1316-39-lonsdale-street-melbourne',
     title: '1316/39 Lonsdale Street, Melbourne',
@@ -765,6 +581,27 @@ A rare passive investment opportunity - secure it today and enjoy guaranteed ret
     suburb: 'Kew',
     state: 'VIC',
     postcode: '3101',
+    heroImageUrl: '/placeholder-property.svg',
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'car-park',
+  },
+  {
+    id: 'carpark-273-135-fitzroy-st-st-kilda',
+    slug: 'carpark-273-135-fitzroy-st-st-kilda',
+    title: 'Car Park for Rent – 273/135 Fitzroy Street, St Kilda',
+    summary: 'Secure car park space available for rent in St Kilda',
+    type: 'ANCILLARY',
+    status: 'FOR_RENT',
+    price: 220,
+    pricePeriod: 'per_month',
+    address: '273/135 Fitzroy Street',
+    suburb: 'St Kilda',
+    state: 'VIC',
+    postcode: '3182',
     heroImageUrl: '/placeholder-property.svg',
     agent: {
       name: 'Eamon Chau',

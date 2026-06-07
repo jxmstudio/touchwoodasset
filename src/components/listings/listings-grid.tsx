@@ -1,416 +1,139 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Building2, Bed, Bath, Car, MapPin, ArrowRight } from 'lucide-react'
-import { StaggerContainer } from '@/components/ui/stagger-container'
-import { PropertyCardHover } from '@/components/ui/hover-card'
-import { PropertyCardSkeleton } from '@/components/ui/loading-animations'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel'
+import { Bed, Bath, Car, Ruler, MapPin, ArrowRight } from 'lucide-react'
+import type { ListingItem } from '@/data/listings'
 
-import { listings as mockListings } from '@/data/listings'
-import type { FilterState } from './ListingsPageContent'
-
-interface ListingsGridProps {
-  category?: string
-  filters?: FilterState
+interface ListingCardProps {
+  listing: ListingItem
+  /** Visually de-emphasise — used for leased/sold rows */
+  muted?: boolean
 }
 
-export function ListingsGrid({ category, filters }: ListingsGridProps) {
-  const [allListings, setAllListings] = useState(mockListings)
-  const [loading] = useState(false)
+export function ListingCard({ listing, muted = false }: ListingCardProps) {
   const [isMounted, setIsMounted] = useState(false)
+  useEffect(() => { setIsMounted(true) }, [])
 
-  // TODO: Replace with real API call
-  useEffect(() => {
-    setAllListings(mockListings)
-    setIsMounted(true)
-  }, [])
-
-  // Filter listings based on category and filters
-  const filteredListings = useMemo(() => {
-    let filtered = [...allListings]
-
-    // Category filter
-    if (category) {
-      filtered = filtered.filter((listing) => listing.category === category)
-    }
-
-    // Apply search and filter criteria
-    if (filters) {
-      // Search filter
-      if (filters.search) {
-        const searchLower = filters.search.toLowerCase()
-        filtered = filtered.filter(
-          (listing) =>
-            listing.title.toLowerCase().includes(searchLower) ||
-            listing.address.toLowerCase().includes(searchLower) ||
-            listing.suburb.toLowerCase().includes(searchLower) ||
-            listing.summary.toLowerCase().includes(searchLower)
-        )
-      }
-
-      // Type filter
-      if (filters.type) {
-        filtered = filtered.filter((listing) => listing.type === filters.type)
-      }
-
-      // Status filter
-      if (filters.status) {
-        filtered = filtered.filter((listing) => listing.status === filters.status)
-      }
-
-      // Price filters
-      if (filters.minPrice) {
-        const minPrice = parseInt(filters.minPrice)
-        filtered = filtered.filter(
-          (listing) => listing.price && listing.price >= minPrice
-        )
-      }
-      if (filters.maxPrice) {
-        const maxPrice = parseInt(filters.maxPrice)
-        filtered = filtered.filter(
-          (listing) => listing.price && listing.price <= maxPrice
-        )
-      }
-
-      // Bedrooms filter (for residential)
-      if (filters.bedrooms && filters.type === 'RESIDENTIAL') {
-        const minBedrooms = parseInt(filters.bedrooms)
-        filtered = filtered.filter(
-          (listing) =>
-            listing.bedrooms && listing.bedrooms >= minBedrooms
-        )
-      }
-
-      // Suburb filter
-      if (filters.suburb) {
-        const suburbLower = filters.suburb.toLowerCase()
-        filtered = filtered.filter((listing) =>
-          listing.suburb.toLowerCase().includes(suburbLower)
-        )
-      }
-    }
-
-    return filtered
-  }, [allListings, category, filters])
-
-  // status colors handled by top bar currently
-
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case 'RESIDENTIAL':
-        return 'outline'
-      case 'COMMERCIAL':
-        return 'secondary'
-      case 'ANCILLARY':
-        return 'default'
-      default:
-        return 'outline'
-    }
+  const statusConfig: Record<string, { label: string; className: string }> = {
+    FOR_RENT:    { label: 'For Lease',   className: 'bg-primary text-white' },
+    AVAILABLE:   { label: 'For Sale',    className: 'bg-primary text-white' },
+    LEASED:      { label: 'Leased',      className: 'bg-gray-500 text-white' },
+    SOLD:        { label: 'Sold',        className: 'bg-gray-500 text-white' },
+    UNDER_OFFER: { label: 'Under Offer', className: 'bg-amber-500 text-white' },
+    COMING_SOON: { label: 'Coming Soon', className: 'bg-gray-700 text-white' },
   }
 
-  const formatPrice = (price?: number, period?: string) => {
-    if (!price) return 'POA'
-    const value = `$${price.toLocaleString()}`
-    switch (period) {
-      case 'per_month':
-        return `${value} / month`
-      case 'per_week':
-        return `${value} / week`
-      case 'per_day':
-        return `${value} / day`
-      default:
-        return value
+  const { label, className: badgeClass } = statusConfig[listing.status] ?? {
+    label: listing.status,
+    className: 'bg-gray-500 text-white',
+  }
+
+  const formatPrice = () => {
+    if (!listing.price) return null
+    const formatted = `$${listing.price.toLocaleString()}`
+    const periods: Record<string, string> = {
+      per_month: ' pcm',
+      per_week:  ' pw',
+      per_day:   ' / day',
+      total:     '',
     }
+    const suffix = listing.pricePeriod ? (periods[listing.pricePeriod] ?? '') : ''
+    return `${formatted}${suffix}`
   }
 
-  if (loading) {
-    return (
-      <StaggerContainer
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 lg:gap-8"
-        staggerChildren={0.1}
-      >
-        {[...Array(6)].map((_, i) => (
-          <PropertyCardSkeleton key={i} />
-        ))}
-      </StaggerContainer>
-    )
-  }
-
-  if (filteredListings.length === 0) {
-    const categoryLabels = {
-      properties: 'Properties',
-      'car-park': 'Car Parks',
-      'storage-cage': 'Storage Cages',
-    }
-
-    return (
-      <div className="text-center py-12">
-        <Building2 className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-gray-900 mb-2">
-          No{' '}
-          {category
-            ? categoryLabels[category as keyof typeof categoryLabels] ||
-              'properties'
-            : 'properties'}{' '}
-          found
-        </h3>
-        <p className="text-gray-600">
-          {category
-            ? `We don't have any ${categoryLabels[category as keyof typeof categoryLabels]?.toLowerCase() || 'properties'} available at the moment.`
-            : 'Try adjusting your search criteria or check back later.'}
-        </p>
-      </div>
-    )
-  }
+  const imageUrl = listing.gallery?.[0]?.url ?? listing.heroImageUrl
+  const price = formatPrice()
 
   return (
-    <div className="space-y-6 w-full">
-      {/* Results Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-            {filteredListings.length}{' '}
-            {category
-              ? category === 'properties'
-                ? 'Properties'
-                : category === 'car-park'
-                  ? 'Car Parks'
-                  : category === 'storage-cage'
-                    ? 'Storage Cages'
-                    : 'Properties'
-              : 'Properties'}{' '}
-            Found
-          </h2>
-          <p className="text-sm sm:text-base text-gray-600">
-            {category
-              ? `Showing all available ${category === 'properties' ? 'properties' : category === 'car-park' ? 'car parks' : 'storage cages'}`
-              : 'Showing all available properties'}
-          </p>
-        </div>
+    <Link
+      href={`/listings/${listing.slug}`}
+      className={`group block rounded-xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 ${
+        muted ? 'opacity-60' : ''
+      }`}
+    >
+      {/* ── Image ── */}
+      <div className="relative aspect-[16/9] overflow-hidden bg-gray-100">
+        {isMounted ? (
+          <img
+            src={imageUrl}
+            alt={listing.title}
+            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${
+              muted ? 'grayscale-[20%]' : ''
+            }`}
+          />
+        ) : (
+          /* SSR fallback — no hydration mismatch */
+          <img
+            src={imageUrl}
+            alt={listing.title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
 
-        <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-600 hidden sm:inline">Sort by:</span>
-          <Select defaultValue="price-low-high">
-            <SelectTrigger className="bg-white text-gray-900 border-gray-300 hover:bg-gray-100 w-full sm:w-auto">
-              <SelectValue placeholder="Choose sorting" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="next-inspection">Next inspection</SelectItem>
-              <SelectItem value="date-new-old">
-                Date (Newest - Oldest)
-              </SelectItem>
-              <SelectItem value="date-old-new">
-                Date (Oldest - Newest)
-              </SelectItem>
-              <SelectItem value="price-low-high">
-                Price (Lowest - Highest)
-              </SelectItem>
-              <SelectItem value="price-high-low">
-                Price (Highest - Lowest)
-              </SelectItem>
-              <SelectSeparator />
-              <SelectItem value="archive-sale">
-                Archive listing (Sale)
-              </SelectItem>
-              <SelectItem value="archive-rentals">
-                Archive listing (Rentals)
-              </SelectItem>
-            </SelectContent>
-          </Select>
+        {/* Status badge */}
+        <div className="absolute top-3 left-3">
+          <span className={`text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md ${badgeClass}`}>
+            {label}
+          </span>
         </div>
       </div>
 
-      {/* Listings Grid */}
-      <StaggerContainer
-        className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 w-full"
-        staggerChildren={0.1}
-        delayChildren={0.2}
-      >
-        {filteredListings.map((listing) => (
-          <PropertyCardHover key={listing.id}>
-            <Card className="overflow-hidden bg-white border border-gray-100 w-full max-w-full shadow-lg hover:shadow-2xl transition-shadow duration-300">
-              <div className="aspect-[4/3] bg-gray-200 relative overflow-hidden w-full">
-                {listing.gallery && listing.gallery.length > 0 ? (
-                  isMounted ? (
-                  <Carousel
-                    className="h-full w-full"
-                    opts={{ align: 'start', loop: true }}
-                  >
-                    <CarouselContent className="h-full">
-                      {listing.gallery.map((img, idx) => (
-                        <CarouselItem key={idx} className="h-full">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={img.url}
-                            alt={img.alt || listing.title}
-                            className="w-full h-full object-cover"
-                          />
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="left-3 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white" />
-                    <CarouselNext className="right-3 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white" />
-                  </Carousel>
-                  ) : (
-                    // Fallback during SSR - show first image
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={listing.gallery[0].url}
-                      alt={listing.gallery[0].alt || listing.title}
-                      className="w-full h-full object-cover"
-                    />
-                  )
-                ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={listing.heroImageUrl}
-                    alt={listing.title}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-                {(() => {
-                  const saleOrRentLabel =
-                    listing.status === 'FOR_RENT'
-                      ? 'FOR RENT'
-                      : listing.status === 'AVAILABLE'
-                        ? 'FOR SALE'
-                        : null
-                  if (!saleOrRentLabel) return null
-                  return (
-                    <div className="absolute top-0 left-0 right-0">
-                      <div className="bg-red-600 text-white text-xs md:text-sm font-extrabold uppercase tracking-wide px-4 py-1 shadow">
-                        {saleOrRentLabel}
-                      </div>
-                    </div>
-                  )
-                })()}
-                <div className="absolute top-3 right-3">
-                  <Badge className="bg-red-600 text-white font-bold border-transparent">
-                    {listing.type}
-                  </Badge>
-                </div>
-              </div>
+      {/* ── Content ── */}
+      <div className="p-5">
+        {/* Price */}
+        {price && (
+          <p className="text-2xl font-bold text-gray-900 mb-2">{price}</p>
+        )}
 
-              <CardHeader className="pb-4 px-6">
-                <CardTitle className="line-clamp-2 text-lg font-semibold leading-tight">
-                  {listing.title}
-                </CardTitle>
-                <CardDescription className="line-clamp-2 text-sm text-gray-600 mt-2">
-                  {listing.summary}
-                </CardDescription>
-              </CardHeader>
+        {/* Address */}
+        <div className="flex items-start gap-1.5 mb-4">
+          <MapPin className="h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-sm font-semibold text-gray-900 line-clamp-1">{listing.address}</p>
+            <p className="text-sm text-gray-500">{listing.suburb}, {listing.state}</p>
+          </div>
+        </div>
 
-              <CardContent className="pt-0 px-6 pb-6">
-                <div className="flex items-center space-x-2 text-sm text-gray-600 mb-4">
-                  <MapPin className="h-4 w-4 flex-shrink-0" />
-                  <span className="truncate">
-                    {listing.address}, {listing.suburb}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between mb-4">
-                  <div className="text-xl font-bold text-primary">
-                    {formatPrice(listing.price, listing.pricePeriod)}
-                  </div>
-                  <div className="text-sm text-gray-500 font-medium">
-                    {listing.type === 'ANCILLARY' &&
-                    listing.category === 'car-park'
-                      ? null
-                      : listing.type === 'ANCILLARY' &&
-                          listing.category === 'storage-cage'
-                        ? listing.floorAreaSqm
-                          ? `${listing.floorAreaSqm}m²`
-                          : null
-                        : listing.type === 'RESIDENTIAL'
-                          ? null
-                          : listing.floorAreaSqm
-                            ? `${listing.floorAreaSqm}m²`
-                            : null}
-                  </div>
-                </div>
-
-                {/* Property Features */}
-                <div className="flex items-center justify-start space-x-4 text-sm text-gray-600 mb-4">
-                  {listing.type === 'RESIDENTIAL' && (
-                    <>
-                      {typeof listing.bedrooms === 'number' && (
-                        <div className="flex items-center space-x-1">
-                          <Bed className="h-4 w-4" />
-                          <span>{listing.bedrooms} brm</span>
-                        </div>
-                      )}
-                      {typeof listing.bathrooms === 'number' && (
-                        <div className="flex items-center space-x-1">
-                          <Bath className="h-4 w-4" />
-                          <span>{listing.bathrooms} bath</span>
-                        </div>
-                      )}
-                      {typeof listing.carSpaces === 'number' && (
-                        <div className="flex items-center space-x-1">
-                          <Car className="h-4 w-4" />
-                          <span>{listing.carSpaces} car</span>
-                        </div>
-                      )}
-                    </>
-                  )}
-                  {listing.type === 'ANCILLARY' &&
-                    listing.category === 'car-park' && (
-                      <span>2.1m clearance</span>
-                    )}
-                  {listing.type === 'ANCILLARY' &&
-                    listing.category === 'storage-cage' &&
-                    listing.floorAreaSqm && (
-                      <span>{listing.floorAreaSqm}m²</span>
-                    )}
-                </div>
-
-                <Link href={`/listings/${listing.slug}`} className="block">
-                  <Button className="w-full">
-                    View Details
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </PropertyCardHover>
-        ))}
-      </StaggerContainer>
-
-      {/* Pagination */}
-      <div className="flex items-center justify-center space-x-2 mt-12">
-        <Button variant="outline" disabled>
-          Previous
-        </Button>
-        <Button variant="outline">1</Button>
-        <Button variant="outline">2</Button>
-        <Button variant="outline">3</Button>
-        <Button variant="outline">Next</Button>
+        {/* Stats row */}
+        <div className="flex items-center gap-3 text-sm text-gray-600 pt-3 border-t border-gray-100">
+          {listing.bedrooms != null && (
+            <span className="flex items-center gap-1.5">
+              <Bed className="h-4 w-4 text-gray-400" />
+              {listing.bedrooms}
+            </span>
+          )}
+          {listing.bathrooms != null && (
+            <span className="flex items-center gap-1.5">
+              <Bath className="h-4 w-4 text-gray-400" />
+              {listing.bathrooms}
+            </span>
+          )}
+          {listing.carSpaces != null && (
+            <span className="flex items-center gap-1.5">
+              <Car className="h-4 w-4 text-gray-400" />
+              {listing.carSpaces}
+            </span>
+          )}
+          {listing.floorAreaSqm && (
+            <span className="flex items-center gap-1.5">
+              <Ruler className="h-4 w-4 text-gray-400" />
+              {listing.floorAreaSqm}m²
+            </span>
+          )}
+          <span className="ml-auto text-primary font-semibold flex items-center gap-1 group-hover:gap-2 transition-all duration-200">
+            View <ArrowRight className="h-4 w-4" />
+          </span>
+        </div>
       </div>
-    </div>
+    </Link>
   )
+}
+
+/**
+ * @deprecated — use ListingsPageContent which renders ListingCard directly.
+ * Kept as an empty stub so any remaining imports don't break.
+ */
+export function ListingsGrid(_props: { category?: string; filters?: Record<string, string> }) {
+  return null
 }

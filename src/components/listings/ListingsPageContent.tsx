@@ -1,90 +1,207 @@
 'use client'
 
-import { useState } from 'react'
-import { useSearchParams } from 'next/navigation'
-import { ListingsGrid } from '@/components/listings/listings-grid'
-import { ListingsFilters } from '@/components/listings/listings-filters'
-import { CategoryTabs } from '@/components/listings/CategoryTabs'
+import { useState, useMemo } from 'react'
+import Link from 'next/link'
+import { listings } from '@/data/listings'
+import { ListingCard } from '@/components/listings/listings-grid'
 import { FadeIn } from '@/components/ui/fade-in'
-import { getCountsByCategory } from '@/data/listings'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
-// Derive counts from central dataset
-const mockCounts = getCountsByCategory()
+const ACTIVE_STATUSES = ['FOR_RENT', 'AVAILABLE', 'COMING_SOON']
+const INACTIVE_STATUSES = ['LEASED', 'SOLD', 'UNDER_OFFER']
 
-export interface FilterState {
-  search: string
-  type: string
-  status: string
-  minPrice: string
-  maxPrice: string
-  bedrooms: string
-  suiteSize: string
-  storageSize: string
-  parkingLevel: string
-  suburb: string
+// ─── Divider between active and leased rows ────────────────────────────────
+function LeasedDivider({ label }: { label: string }) {
+  return (
+    <div className="flex items-center gap-4 my-8">
+      <div className="h-px bg-gray-200 flex-1" />
+      <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 whitespace-nowrap">
+        {label}
+      </span>
+      <div className="h-px bg-gray-200 flex-1" />
+    </div>
+  )
 }
 
-export function ListingsPageContent() {
-  const searchParams = useSearchParams()
-  const category = searchParams.get('category') || undefined
-  
-  const [filters, setFilters] = useState<FilterState>({
-    search: '',
-    type: '',
-    status: '',
-    minPrice: '',
-    maxPrice: '',
-    bedrooms: '',
-    suiteSize: '',
-    storageSize: '',
-    parkingLevel: '',
-    suburb: '',
-  })
+// ─── Section (active grid + leased grid) ──────────────────────────────────
+interface SectionProps {
+  title: string
+  subtitle: string
+  active: typeof listings
+  inactive: typeof listings
+  leasedLabel?: string
+}
+
+function ListingSection({ title, subtitle, active, inactive, leasedLabel = 'Leased' }: SectionProps) {
+  if (active.length === 0 && inactive.length === 0) return null
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary via-primary to-brand-600 text-white py-20 overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <FadeIn direction="up" distance={50} duration={0.8}>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+    <section>
+      <FadeIn direction="up" distance={30} duration={0.5}>
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
+          <p className="text-gray-500 mt-1">{subtitle}</p>
+        </div>
+      </FadeIn>
+
+      {active.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {active.map((listing, i) => (
+            <FadeIn key={listing.id} delay={i * 0.05} duration={0.4}>
+              <ListingCard listing={listing} />
+            </FadeIn>
+          ))}
+        </div>
+      )}
+
+      {inactive.length > 0 && (
+        <>
+          <LeasedDivider label={leasedLabel} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {inactive.map((listing) => (
+              <ListingCard key={listing.id} listing={listing} muted />
+            ))}
+          </div>
+        </>
+      )}
+    </section>
+  )
+}
+
+// ─── Main page ────────────────────────────────────────────────────────────
+export function ListingsPageContent() {
+  const [suburb, setSuburb] = useState('all')
+  const [sort, setSort] = useState('default')
+
+  // Unique suburbs derived from data (sorted A-Z)
+  const suburbs = useMemo(() => {
+    const set = new Set(listings.map((l) => l.suburb).filter(Boolean))
+    return Array.from(set).sort()
+  }, [])
+
+  // Apply suburb filter
+  const filtered = useMemo(() => {
+    if (suburb === 'all') return listings
+    return listings.filter((l) => l.suburb === suburb)
+  }, [suburb])
+
+  // Apply sort (only affects active listings — inactive always go below)
+  const withSort = useMemo(() => {
+    const items = [...filtered]
+    if (sort === 'price-asc') items.sort((a, b) => (a.price ?? 0) - (b.price ?? 0))
+    if (sort === 'price-desc') items.sort((a, b) => (b.price ?? 0) - (a.price ?? 0))
+    return items
+  }, [filtered, sort])
+
+  // Split by category
+  const ancillary  = useMemo(() => withSort.filter((l) => l.category === 'car-park'), [withSort])
+  const properties = useMemo(() => withSort.filter((l) => l.category === 'properties'), [withSort])
+
+  // Split each category into active vs inactive
+  const activeAncillary   = ancillary.filter((l) => ACTIVE_STATUSES.includes(l.status))
+  const inactiveAncillary = ancillary.filter((l) => INACTIVE_STATUSES.includes(l.status))
+  const activeProperties  = properties.filter((l) => ACTIVE_STATUSES.includes(l.status))
+  const inactiveProperties = properties.filter((l) => INACTIVE_STATUSES.includes(l.status))
+
+  const totalActive = activeAncillary.length + activeProperties.length
+
+  return (
+    <div className="min-h-screen bg-white">
+
+      {/* ── Hero ─────────────────────────────────────────────────────────── */}
+      <section className="bg-gray-900 text-white py-16 md:py-20">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeIn direction="up" duration={0.6}>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
               Current Listings
             </h1>
-          </FadeIn>
-          <FadeIn direction="up" distance={30} delay={0.2} duration={0.8}>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-              Explore our curated selection of exceptional residential,
-              commercial, and ancillary assets available across Melbourne CBD
-              and greater Victoria.
+            <p className="text-xl text-white/75 max-w-2xl">
+              Residential properties, car parks and ancillary assets across Melbourne —
+              managed by Touchwood Asset Management.
             </p>
           </FadeIn>
         </div>
       </section>
 
-      {/* Filters and Listings */}
-      <section className="py-8 sm:py-16">
-        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 lg:gap-12">
-            {/* Filters Sidebar */}
-            <FadeIn direction="left" distance={40} duration={0.6}>
-              <div className="w-full lg:w-80 flex-shrink-0 order-2 lg:order-1">
-                <ListingsFilters filters={filters} onFiltersChange={setFilters} />
-              </div>
-            </FadeIn>
+      {/* ── Filter bar (sticky below nav) ─────────────────────────────────── */}
+      <div className="sticky top-16 z-30 bg-white border-b border-gray-200 shadow-sm">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center gap-3">
 
-            {/* Main Content */}
-            <FadeIn direction="right" distance={40} delay={0.3} duration={0.6}>
-              <div className="flex-1 min-w-0 order-1 lg:order-2">
-                {/* Category Tabs */}
-                <CategoryTabs totalCounts={mockCounts} />
+          <Select value={suburb} onValueChange={setSuburb}>
+            <SelectTrigger className="w-40 sm:w-48 bg-white text-gray-900 border-gray-300 text-sm h-9">
+              <SelectValue placeholder="All Suburbs" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Suburbs</SelectItem>
+              {suburbs.map((s) => (
+                <SelectItem key={s} value={s}>{s}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
 
-                {/* Listings Grid */}
-                <ListingsGrid category={category} filters={filters} />
-              </div>
-            </FadeIn>
-          </div>
+          <Select value={sort} onValueChange={setSort}>
+            <SelectTrigger className="w-44 sm:w-52 bg-white text-gray-900 border-gray-300 text-sm h-9">
+              <SelectValue placeholder="Most Recent" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="default">Most Recent</SelectItem>
+              <SelectItem value="price-asc">Price: Low → High</SelectItem>
+              <SelectItem value="price-desc">Price: High → Low</SelectItem>
+            </SelectContent>
+          </Select>
+
+          <span className="ml-auto text-sm text-gray-500 hidden sm:block">
+            {totalActive} active listing{totalActive !== 1 ? 's' : ''}
+          </span>
         </div>
-      </section>
+      </div>
+
+      {/* ── Listing sections ──────────────────────────────────────────────── */}
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-20">
+
+        <ListingSection
+          title="Car Parks"
+          subtitle="Secure parking spaces across Melbourne CBD and surrounds"
+          active={activeAncillary}
+          inactive={inactiveAncillary}
+          leasedLabel="Leased"
+        />
+
+        <ListingSection
+          title="Residential Properties"
+          subtitle="Apartments and houses managed by Touchwood Asset Management"
+          active={activeProperties}
+          inactive={inactiveProperties}
+          leasedLabel="Leased / Sold"
+        />
+
+        {/* ── Storage CTA ──────────────────────────────────────────────── */}
+        <section>
+          <FadeIn>
+            <div className="rounded-2xl bg-gray-50 border border-gray-100 px-8 py-12 text-center">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                Looking for Storage?
+              </h3>
+              <p className="text-gray-500 mb-6 max-w-md mx-auto">
+                Browse our secure storage units at 601 Lt. Collins Street, Melbourne.
+                Units available from $80 pcm.
+              </p>
+              <Link
+                href="/the-archive"
+                className="inline-flex items-center gap-2 bg-primary text-white px-7 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-200"
+              >
+                Browse Storage Units →
+              </Link>
+            </div>
+          </FadeIn>
+        </section>
+      </div>
     </div>
   )
 }

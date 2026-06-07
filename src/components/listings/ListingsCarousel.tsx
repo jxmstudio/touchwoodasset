@@ -449,7 +449,7 @@ export function ListingsCarousel({
               {listings.map((listing, index) => (
                 <div
                   key={listing.id}
-                  className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] xl:flex-[0_0_25%] min-w-0 px-2"
+                  className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_40%] xl:flex-[0_0_33.333%] min-w-0 px-3"
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -457,9 +457,9 @@ export function ListingsCarousel({
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <Card className="overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <Card className="overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-300 group min-h-[320px] lg:min-h-[420px]">
                       {/* Image */}
-                      <div className="relative aspect-[4/3] overflow-hidden" suppressHydrationWarning>
+                      <div className="relative aspect-[3/2] overflow-hidden" suppressHydrationWarning>
                         <CarouselImage
                           src={listing.heroImageUrl}
                           alt={listing.title}

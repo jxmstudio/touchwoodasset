@@ -15,7 +15,19 @@ import { Badge } from '@/components/ui/badge'
 import { Search, Filter, X } from 'lucide-react'
 import { AnimatedButton } from '@/components/ui/animated-button'
 import { motion, useReducedMotion } from 'framer-motion'
-import type { FilterState } from './ListingsPageContent'
+// FilterState defined locally (no longer exported from ListingsPageContent)
+interface FilterState {
+  search: string
+  type: string
+  status: string
+  minPrice: string
+  maxPrice: string
+  bedrooms: string
+  suiteSize: string
+  storageSize: string
+  parkingLevel: string
+  suburb: string
+}
 
 interface ListingsFiltersProps {
   filters: FilterState
