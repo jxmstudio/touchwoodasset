@@ -103,7 +103,7 @@ export default function RootLayout({
                 name: 'Melbourne, Victoria, Australia',
               },
               priceRange: '$$',
-              openingHours: 'Mo-Fr 09:00-17:00',
+              openingHours: ['Mo-Fr 09:00-18:00', 'Sa 09:00-13:00'],
             }),
           }}
         />

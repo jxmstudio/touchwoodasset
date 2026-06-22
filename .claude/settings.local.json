@@ -15,7 +15,14 @@
       "Bash(cmd /c \"where npm\")",
       "Bash(cmd /c \"where npm.cmd node.exe npx.cmd\")",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(find /c/Users/alexn/touchwoodasset-1/public -type f \\\\\\(-name *favicon* -o -name *icon* -o -name *apple* \\\\\\))",
+      "Bash(cp \"C:/Users/alexn/touchwoodasset-1/public/logo-touchwood.png\" \"C:/Users/alexn/touchwoodasset-1/src/app/icon.png\")",
+      "Bash(rm \"C:/Users/alexn/touchwoodasset-1/src/app/favicon.ico\")",
+      "Bash(ffmpeg -version)",
+      "Bash(ffprobe -v quiet -print_format json -show_streams \"C:/Users/alexn/touchwoodasset-1/public/videos/landing.mp4\")",
+      "Bash(ffmpeg -i \"C:/Users/alexn/touchwoodasset-1/public/videos/landing.mp4\" -vf \"scale=-2:1080\" -c:v libx264 -crf 28 -preset slow -an -movflags +faststart \"C:/Users/alexn/touchwoodasset-1/public/videos/landing-desktop.mp4\" -y)",
+      "Bash(ffmpeg -i \"C:/Users/alexn/touchwoodasset-1/public/videos/landing.mp4\" -vf \"scale=-2:720\" -c:v libx264 -crf 32 -preset slow -an -movflags +faststart \"C:/Users/alexn/touchwoodasset-1/public/videos/landing-mobile.mp4\" -y)"
     ]
   }
 }
