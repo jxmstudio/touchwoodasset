@@ -63,14 +63,15 @@ export function ArchiveGrid({ units, isLoading = false }: ArchiveGridProps) {
         >
           <Link href={`/the-archive/${unit.id}`}>
             <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 group h-full">
-              {/* Image */}
-              <div className="relative aspect-video overflow-hidden bg-gray-100">
+              {/* Image — object-contain on a neutral backdrop so the unit's
+                  full floor and the Touchwood logo watermark stay visible */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-gray-50">
                 {isMounted ? (
                 <Image
                   src={unit.images[0]}
                   alt={`${unit.unitNumber} - ${unit.size}sqm storage unit`}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-contain group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 ) : (
@@ -78,7 +79,7 @@ export function ArchiveGrid({ units, isLoading = false }: ArchiveGridProps) {
                   <img
                     src={unit.images[0]}
                     alt={`${unit.unitNumber} - ${unit.size}sqm storage unit`}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-contain"
                   />
                 )}
 

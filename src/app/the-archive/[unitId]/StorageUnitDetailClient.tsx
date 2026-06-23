@@ -81,13 +81,14 @@ export function StorageUnitDetailClient({
       <section className="bg-white py-8">
         <div className="container mx-auto max-w-7xl px-4 md:px-6">
           <FadeIn>
-            {/* Main Image */}
-            <div className="relative aspect-video md:aspect-[21/9] rounded-xl overflow-hidden mb-4 bg-gray-100">
+            {/* Main Image — object-contain so the full storage floor and the
+                Touchwood logo watermark are never cropped (client request) */}
+            <div className="relative aspect-[4/3] md:aspect-[16/10] rounded-xl overflow-hidden mb-4 bg-gray-100">
               <Image
                 src={unit.images[selectedImage]}
                 alt={`${unit.unitNumber} - View ${selectedImage + 1}`}
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
                 sizes="(max-width: 768px) 100vw, 1200px"
               />
@@ -100,7 +101,7 @@ export function StorageUnitDetailClient({
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                    className={`relative aspect-[4/3] rounded-lg overflow-hidden border-2 bg-gray-50 transition-all ${
                       selectedImage === index
                         ? 'border-primary scale-105'
                         : 'border-gray-200 hover:border-gray-400'
@@ -110,7 +111,7 @@ export function StorageUnitDetailClient({
                       src={image}
                       alt={`Thumbnail ${index + 1}`}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="150px"
                     />
                   </button>

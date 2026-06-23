@@ -19,12 +19,21 @@ const PRICE_OVERRIDE = {
   D21: 270, D5: 90, F132: 120, H42: 350,
 }
 
-// Original 4 units had marketing videos — preserve them
-const VIDEO = {
-  D21: 'https://youtu.be/TouzGw20rDY',
-  D32B: 'https://youtu.be/Mj9S80tGVVw',
-  D56: 'https://youtu.be/0q0pWNz2o08',
-  D71: 'https://youtu.be/ZZAMDxuywTo',
+// Per-unit YouTube video + authoritative status, derived from the client's
+// playlist (PLC7m8CVmXqwpISbE_9IfEuXTCzXuzTF6d). Titles encode unit/status/size.
+// Map: { UNIT: { video, status } } — see src/data/archive-video-map.json
+const VIDEO_MAP = JSON.parse(
+  fs.readFileSync(path.resolve('src/data/archive-video-map.json'), 'utf8')
+)
+function videoFor(unit) {
+  const e = VIDEO_MAP[unit]
+  return e ? `https://youtu.be/${e.video}` : undefined
+}
+// Status from the playlist titles (LEASED / AVAILABLE). Pricing still pending
+// from Support@Touchwood — only availability is set here.
+function statusFor(unit, fallback = 'AVAILABLE') {
+  const e = VIDEO_MAP[unit]
+  return e && (e.status === 'LEASED' || e.status === 'AVAILABLE') ? e.status : fallback
 }
 
 const SHARED_FEATURES = [
@@ -82,13 +91,14 @@ for (const folder of folders) {
     (f) => f.toLowerCase().startsWith(token.toLowerCase()) || /loading/i.test(f)
   )
 
-  // Order: clean internal → furniture → external/marketing → Loading & Lift (facility, last)
+  // Order: FURNISHED first (client wants it as the hero), then clean internal,
+  // then external/marketing, then Loading & Lift (shared facility photo, last)
   const loading = own.filter((f) => /loading/i.test(f))
   const rest = own.filter((f) => !/loading/i.test(f))
   const cleanInternal = rest.filter((f) => /internal/i.test(f) && !/furnitur/i.test(f) && !/external|marketing/i.test(f))
   const furniture = rest.filter((f) => /furnitur/i.test(f))
   const extra = rest.filter((f) => /external|marketing/i.test(f))
-  const orderedNames = [...cleanInternal, ...furniture, ...extra, ...loading]
+  const orderedNames = [...furniture, ...cleanInternal, ...extra, ...loading]
   const images = orderedNames.map((f) => `/${folder}/${f}`)
 
   // Infer size: first "Xsqm" or "X.Xsqm" found in any filename, else fallback
@@ -107,9 +117,9 @@ for (const folder of folders) {
     size: sqm,
     sizeCategory: sizeCategory(sqm),
     price,
-    status: 'AVAILABLE',
+    status: statusFor(unitNumber),
     images,
-    videoUrl: VIDEO[unitNumber],
+    videoUrl: videoFor(unitNumber),
     description: descFor(sqm),
     features: SHARED_FEATURES,
     floor: FLOOR[letter] ?? 'Level 3',
@@ -128,9 +138,9 @@ for (const p of PLACEHOLDER_UNITS) {
     size: p.size,
     sizeCategory: sizeCategory(p.size),
     price: p.price,
-    status: 'AVAILABLE',
+    status: statusFor(p.unitNumber),
     images: ['/F5.jpg'],
-    videoUrl: undefined,
+    videoUrl: videoFor(p.unitNumber),
     description: descFor(p.size),
     features: SHARED_FEATURES,
     floor: p.floor,
@@ -257,7 +267,15 @@ export function getUnitsByPriceRange(
 
 fs.writeFileSync(OUT, file)
 console.log(`Wrote ${units.length} units to ${OUT}`)
-// Print a quick price/size table for review
+// Print a quick review table
+let withVideo = 0, leased = 0
 for (const u of units) {
-  console.log(`${u.unitNumber.padEnd(6)} ${String(u.size).padStart(4)}sqm  $${String(u.price).padStart(3)}  ${u.floor}  (${u.images.length} photos)`)
+  if (u.videoUrl) withVideo++
+  if (u.status === 'LEASED') leased++
+  console.log(
+    `${u.unitNumber.padEnd(6)} ${String(u.size).padStart(4)}sqm  $${String(u.price).padStart(3)}  ${u.status.padEnd(9)} ${u.floor}  ${u.videoUrl ? '▶ video' : '— no video'}  (${u.images.length} img)`
+  )
 }
+console.log(`\n${withVideo}/${units.length} units have a video · ${leased} leased · ${units.length - leased} available`)
+const noVideo = units.filter((u) => !u.videoUrl).map((u) => u.unitNumber)
+if (noVideo.length) console.log(`No video matched: ${noVideo.join(', ')}`)
