@@ -78,7 +78,7 @@ export const storageUnits: StorageUnit[] = [
   },
   {
     id: "archive-unit-d32",
-    unitNumber: "D32",
+    unitNumber: "D32A",
     size: 2.2,
     sizeCategory: "2sqm",
     price: 80,

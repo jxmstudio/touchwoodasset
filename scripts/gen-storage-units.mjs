@@ -47,6 +47,12 @@ const AVAILABLE_FROM = {
   D71: '2026-07-12', // "with current renter, avail on July 12"
 }
 
+// Display-label corrections (folder token differs from the client's label).
+// Client confirmed the D32.601 unit is "D32a" (D32b is a separate unit).
+const LABEL_OVERRIDE = {
+  D32: 'D32A',
+}
+
 // Status priority: client override → playlist title → fallback.
 function statusFor(unit, fallback = 'AVAILABLE') {
   if (STATUS_OVERRIDE[unit]) return STATUS_OVERRIDE[unit]
@@ -132,7 +138,7 @@ for (const folder of folders) {
 
   units.push({
     id: `archive-unit-${token.toLowerCase()}`,
-    unitNumber,
+    unitNumber: LABEL_OVERRIDE[unitNumber] ?? unitNumber,
     size: sqm,
     sizeCategory: sizeCategory(sqm),
     price,
