@@ -290,6 +290,20 @@ export function StorageUnitDetailClient({
                             This unit is ready for immediate lease
                           </p>
                         </div>
+                      ) : unit.availableFrom ? (
+                        <div className="text-center">
+                          <div className="text-primary font-semibold mb-2">
+                            Available from{' '}
+                            {new Date(unit.availableFrom).toLocaleDateString(
+                              'en-AU',
+                              { day: 'numeric', month: 'long', year: 'numeric' }
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-600">
+                            Currently tenanted — enquire now to secure it for
+                            when it becomes available
+                          </p>
+                        </div>
                       ) : (
                         <div className="text-center">
                           <div className="text-gray-600 font-semibold mb-2">

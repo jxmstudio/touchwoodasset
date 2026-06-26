@@ -29,9 +29,27 @@ function videoFor(unit) {
   const e = VIDEO_MAP[unit]
   return e ? `https://youtu.be/${e.video}` : undefined
 }
-// Status from the playlist titles (LEASED / AVAILABLE). Pricing still pending
-// from Support@Touchwood — only availability is set here.
+// ── Client status update (latest, takes precedence over video titles) ──────
+// Units the client asked to take down entirely.
+const REMOVE = new Set(['D56B', 'D115', 'G46'])
+
+// Explicit status from the client's latest list (overrides video-derived status).
+// Note: client's "D32a" maps to our unit "D32".
+const STATUS_OVERRIDE = {
+  D5: 'LEASED', D10A: 'LEASED', D32: 'LEASED', D32B: 'LEASED', D71: 'LEASED',
+  D74: 'LEASED', D75: 'LEASED', D82: 'LEASED', D101: 'LEASED', E3: 'LEASED',
+  E21: 'LEASED', E46: 'LEASED', E86: 'LEASED', E87: 'LEASED', E106: 'LEASED',
+  F37: 'LEASED', F76: 'LEASED', H39: 'LEASED',
+}
+
+// Units with an upcoming availability date (currently tenanted until then).
+const AVAILABLE_FROM = {
+  D71: '2026-07-12', // "with current renter, avail on July 12"
+}
+
+// Status priority: client override → playlist title → fallback.
 function statusFor(unit, fallback = 'AVAILABLE') {
+  if (STATUS_OVERRIDE[unit]) return STATUS_OVERRIDE[unit]
   const e = VIDEO_MAP[unit]
   return e && (e.status === 'LEASED' || e.status === 'AVAILABLE') ? e.status : fallback
 }
@@ -83,6 +101,7 @@ const units = []
 for (const folder of folders) {
   const token = folder.replace(/\.601$/, '')      // e.g. "D101", "D56b", "H42"
   const unitNumber = token.toUpperCase()           // display: D56B, H42
+  if (REMOVE.has(unitNumber)) continue             // client asked to take these down
   const letter = token[0].toUpperCase()
   const files = fs.readdirSync(path.join(PUBLIC, folder))
 
@@ -118,6 +137,7 @@ for (const folder of folders) {
     sizeCategory: sizeCategory(sqm),
     price,
     status: statusFor(unitNumber),
+    availableFrom: AVAILABLE_FROM[unitNumber],
     images,
     videoUrl: videoFor(unitNumber),
     description: descFor(sqm),
@@ -132,6 +152,7 @@ const PLACEHOLDER_UNITS = [
   { unitNumber: 'G46', size: 6,   price: 200, floor: 'Level 6' },
 ]
 for (const p of PLACEHOLDER_UNITS) {
+  if (REMOVE.has(p.unitNumber)) continue
   units.push({
     id: `archive-unit-${p.unitNumber.toLowerCase()}`,
     unitNumber: p.unitNumber,
@@ -139,6 +160,7 @@ for (const p of PLACEHOLDER_UNITS) {
     sizeCategory: sizeCategory(p.size),
     price: p.price,
     status: statusFor(p.unitNumber),
+    availableFrom: AVAILABLE_FROM[p.unitNumber],
     images: ['/F5.jpg'],
     videoUrl: videoFor(p.unitNumber),
     description: descFor(p.size),
@@ -158,9 +180,10 @@ const body = units.map((u) => {
     `    size: ${u.size},`,
     `    sizeCategory: ${JSON.stringify(u.sizeCategory)},`,
     `    price: ${u.price},`,
-    `    status: 'AVAILABLE',`,
+    `    status: ${JSON.stringify(u.status)},`,
     `    images: ${JSON.stringify(u.images)},`,
   ]
+  if (u.availableFrom) lines.push(`    availableFrom: ${JSON.stringify(u.availableFrom)},`)
   if (u.videoUrl) lines.push(`    videoUrl: ${JSON.stringify(u.videoUrl)},`)
   lines.push(`    description: ${JSON.stringify(u.description)},`)
   lines.push(`    features: SHARED_FEATURES,`)
