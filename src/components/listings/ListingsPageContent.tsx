@@ -99,17 +99,13 @@ export function ListingsPageContent() {
     return items
   }, [filtered, sort])
 
-  // Split by category
-  const ancillary  = useMemo(() => withSort.filter((l) => l.category === 'car-park'), [withSort])
+  // Properties only — car parks live at /carparks, storage at /the-archive
   const properties = useMemo(() => withSort.filter((l) => l.category === 'properties'), [withSort])
 
-  // Split each category into active vs inactive
-  const activeAncillary   = ancillary.filter((l) => ACTIVE_STATUSES.includes(l.status))
-  const inactiveAncillary = ancillary.filter((l) => INACTIVE_STATUSES.includes(l.status))
   const activeProperties  = properties.filter((l) => ACTIVE_STATUSES.includes(l.status))
   const inactiveProperties = properties.filter((l) => INACTIVE_STATUSES.includes(l.status))
 
-  const totalActive = activeAncillary.length + activeProperties.length
+  const totalActive = activeProperties.length
 
   return (
     <div className="min-h-screen bg-white">
@@ -119,11 +115,14 @@ export function ListingsPageContent() {
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeIn direction="up" duration={0.6}>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-              Current Listings
+              Properties
             </h1>
             <p className="text-xl text-white/75 max-w-2xl">
-              Residential properties, car parks and ancillary assets across Melbourne —
-              managed by Touchwood Asset Management.
+              Apartments, houses and units across Melbourne — managed by
+              Touchwood Asset Management. Also looking for a{' '}
+              <Link href="/carparks" className="underline hover:text-white">car park</Link>{' '}
+              or{' '}
+              <Link href="/the-archive" className="underline hover:text-white">storage</Link>?
             </p>
           </FadeIn>
         </div>
@@ -166,37 +165,47 @@ export function ListingsPageContent() {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 space-y-20">
 
         <ListingSection
-          title="Car Parks"
-          subtitle="Secure parking spaces across Melbourne CBD and surrounds"
-          active={activeAncillary}
-          inactive={inactiveAncillary}
-          leasedLabel="Leased"
-        />
-
-        <ListingSection
           title="Residential Properties"
-          subtitle="Apartments and houses managed by Touchwood Asset Management"
+          subtitle="Apartments, houses and units managed by Touchwood Asset Management"
           active={activeProperties}
           inactive={inactiveProperties}
           leasedLabel="Leased / Sold"
         />
 
-        {/* ── Storage CTA ──────────────────────────────────────────────── */}
+        {/* ── Category cross-links ─────────────────────────────────────── */}
         <section>
           <FadeIn>
-            <div className="rounded-2xl bg-gray-50 border border-gray-100 px-8 py-12 text-center">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                Looking for Storage?
-              </h3>
-              <p className="text-gray-500 mb-6 max-w-md mx-auto">
-                Browse our secure storage units at 601 Lt. Collins Street, Melbourne.
-                Units available from $80 pcm.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Link
+                href="/carparks"
+                className="group rounded-2xl bg-gray-50 border border-gray-100 px-8 py-12 text-center hover:shadow-lg hover:border-gray-200 transition-all duration-300"
+              >
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  Looking for a Car Park?
+                </h3>
+                <p className="text-gray-500 mb-6 max-w-md mx-auto">
+                  Secure parking bays across Carlton, Docklands, the CBD,
+                  South Yarra and more.
+                </p>
+                <span className="inline-flex items-center gap-2 bg-primary text-white px-7 py-3 rounded-lg font-semibold group-hover:bg-red-700 transition-colors duration-200">
+                  Browse Car Parks →
+                </span>
+              </Link>
+
               <Link
                 href="/the-archive"
-                className="inline-flex items-center gap-2 bg-primary text-white px-7 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors duration-200"
+                className="group rounded-2xl bg-gray-50 border border-gray-100 px-8 py-12 text-center hover:shadow-lg hover:border-gray-200 transition-all duration-300"
               >
-                Browse Storage Units →
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  Looking for Storage?
+                </h3>
+                <p className="text-gray-500 mb-6 max-w-md mx-auto">
+                  Secure storage units at The Archive, 601 Lt. Collins Street,
+                  Melbourne — from $80 pcm.
+                </p>
+                <span className="inline-flex items-center gap-2 bg-primary text-white px-7 py-3 rounded-lg font-semibold group-hover:bg-red-700 transition-colors duration-200">
+                  Browse Storage Units →
+                </span>
               </Link>
             </div>
           </FadeIn>

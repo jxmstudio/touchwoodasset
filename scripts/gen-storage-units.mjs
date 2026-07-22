@@ -12,6 +12,8 @@ const FLOOR = { D: 'Level 3', E: 'Level 4', F: 'Level 5', G: 'Level 6', H: 'Leve
 // Size fallback (sqm) for units whose filenames don't encode a size
 const SIZE_FALLBACK = {
   D71: 3.2, D74: 2.2, E105: 2.4, E106: 2.2, E132: 6, E46: 2.2, F5: 10, F76: 3.2,
+  // F90/F98/F99: size not in filenames — awaiting confirmation from Raquel
+  F90: 2.2, F98: 2.2, F99: 2.2,
 }
 
 // Price overrides to preserve existing live prices (otherwise derived from size)
@@ -111,17 +113,20 @@ for (const folder of folders) {
   const letter = token[0].toUpperCase()
   const files = fs.readdirSync(path.join(PUBLIC, folder))
 
-  // Only keep this unit's own photos (filters out mislabeled stray files) + the shared Loading photo
-  const own = files.filter(
+  // Only keep this unit's own photos (filters out mislabeled stray files) + the shared Loading photo.
+  // Some newer folders (F90/F98/F99) use generic names like "Empty Img.jpeg" —
+  // if nothing matches the token prefix, keep every file in the folder.
+  let own = files.filter(
     (f) => f.toLowerCase().startsWith(token.toLowerCase()) || /loading/i.test(f)
   )
+  if (!own.some((f) => !/loading/i.test(f))) own = files
 
   // Order: FURNISHED first (client wants it as the hero), then clean internal,
   // then external/marketing, then Loading & Lift (shared facility photo, last)
   const loading = own.filter((f) => /loading/i.test(f))
   const rest = own.filter((f) => !/loading/i.test(f))
-  const cleanInternal = rest.filter((f) => /internal/i.test(f) && !/furnitur/i.test(f) && !/external|marketing/i.test(f))
-  const furniture = rest.filter((f) => /furnitur/i.test(f))
+  const cleanInternal = rest.filter((f) => /internal|empty/i.test(f) && !/furnitur|stuff/i.test(f) && !/external|marketing/i.test(f))
+  const furniture = rest.filter((f) => /furnitur|stuff/i.test(f))
   const extra = rest.filter((f) => /external|marketing/i.test(f))
   const orderedNames = [...furniture, ...cleanInternal, ...extra, ...loading]
   const images = orderedNames.map((f) => `/${folder}/${f}`)

@@ -34,7 +34,9 @@ type NavItem =
   | { name: string; href: string; children: NavChild[] }
 
 const navItems: NavItem[] = [
-  { name: 'Listings', href: '/listings' },
+  { name: 'Properties', href: '/listings' },
+  { name: 'Carparks', href: '/carparks' },
+  { name: 'Storage', href: '/the-archive' },
   {
     name: 'Locations',
     href: '/locations',
@@ -58,7 +60,6 @@ const navItems: NavItem[] = [
       { name: 'Book Inspection', href: '/inspection', icon: Calendar, description: 'Schedule a viewing' },
     ],
   },
-  { name: 'The Archive', href: '/the-archive' },
   { name: 'Articles', href: '/blog' },
 ]
 

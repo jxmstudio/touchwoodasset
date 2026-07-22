@@ -31,7 +31,7 @@ const heroData = [
     imageSrc: '/hero/parking.jpg',
     imageAlt: 'Secure car park space with orange roller door',
     ctaText: 'View Parking',
-    ctaLink: '/listings?category=car-park',
+    ctaLink: '/carparks',
   },
   {
     title: 'Storage',
