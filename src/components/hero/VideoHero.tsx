@@ -129,7 +129,7 @@ export function VideoHero({
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-medium"
+                  className="bg-transparent dark:bg-transparent border-white dark:border-white text-white hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black px-8 py-4 text-lg font-medium"
                   asChild
                 >
                   <a href="/contact">Get In Touch</a>
@@ -151,21 +151,36 @@ export function VideoHero({
       <div className="absolute inset-0 bg-gray-900">
         {!prefersReducedMotion && isClient && !videoError ? (
           <video
-            ref={videoRef}
+            key={isMobile && videoSrcMobile ? videoSrcMobile : videoSrc}
+            ref={(el) => {
+              videoRef.current = el
+              if (el) {
+                // iOS Safari requires the muted PROPERTY set before play() —
+                // React's muted prop alone is not always enough
+                el.muted = true
+                el.defaultMuted = true
+              }
+            }}
             className="w-full h-full object-cover"
+            src={isMobile && videoSrcMobile ? videoSrcMobile : videoSrc}
             autoPlay={autoPlay && !prefersReducedMotion}
             loop={loop}
-            muted={true}
+            muted
             playsInline
+            // eslint-disable-next-line react/no-unknown-property
+            webkit-playsinline="true"
             x-webkit-airplay="allow"
-            preload="metadata"
+            preload="auto"
             aria-hidden="true"
             poster={posterImage}
             onError={() => setVideoError(true)}
-          >
-            <source src={isMobile && videoSrcMobile ? videoSrcMobile : videoSrc} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+            onCanPlay={(e) => {
+              // Retry autoplay once the video can actually play (iOS often
+              // rejects the first programmatic play() before data is ready)
+              const v = e.currentTarget
+              if (v.paused) v.play().catch(() => {})
+            }}
+          />
         ) : (
           /* Fallback to poster image for reduced motion or when video fails */
           posterImage && (
@@ -263,7 +278,7 @@ export function VideoHero({
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-medium"
+                className="bg-transparent dark:bg-transparent border-white dark:border-white text-white hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black px-8 py-4 text-lg font-medium"
                 asChild
               >
                 <a href="/contact">Get In Touch</a>
