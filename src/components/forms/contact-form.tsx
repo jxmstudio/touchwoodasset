@@ -25,6 +25,7 @@ import {
 import { toast } from 'sonner'
 import { Send, Loader2 } from 'lucide-react'
 import { submitToJxmForms } from '@/lib/jxm-forms'
+import { trackLead } from '@/lib/tracking'
 
 const contactFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -72,6 +73,7 @@ export function ContactForm() {
       })
 
       if (result.success) {
+        trackLead({ formName: 'contact' })
         toast.success(
           'Thank you for your message! We\u2019ll get back to you within 24 hours.'
         )

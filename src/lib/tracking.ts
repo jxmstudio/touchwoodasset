@@ -103,6 +103,27 @@ export function trackLead(detail: {
   })
 }
 
+/**
+ * A confirmed appointment/inspection booking. Meta's standard `Schedule`
+ * event — kept separate from `Lead` so campaigns can optimise on either.
+ */
+export function trackSchedule(detail: {
+  formName: string
+  appointmentType?: string
+}): void {
+  fbq()?.('track', 'Schedule', {
+    content_name: detail.formName,
+    ...(detail.appointmentType
+      ? { content_category: detail.appointmentType }
+      : {}),
+  })
+
+  gtag()?.('event', 'schedule_appointment', {
+    form_name: detail.formName,
+    appointment_type: detail.appointmentType,
+  })
+}
+
 /** Someone started filling the form — the top of the conversion funnel. */
 export function trackLeadStart(formName: string): void {
   fbq()?.('trackCustom', 'LeadFormStart', { content_name: formName })

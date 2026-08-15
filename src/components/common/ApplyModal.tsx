@@ -17,6 +17,7 @@ import { Badge } from '@/components/ui/badge'
 import { Loader2, CheckCircle, Shield, Mail } from 'lucide-react'
 import { toast } from 'sonner'
 import { submitToJxmForms } from '@/lib/jxm-forms'
+import { trackLead } from '@/lib/tracking'
 
 interface ApplyModalProps {
   isOpen: boolean
@@ -109,6 +110,7 @@ export function ApplyModal({
         throw new Error(result.error || 'Failed to submit application')
       }
 
+      trackLead({ formName: 'application' })
       setIsSubmitted(true)
       toast.success('Application submitted successfully!')
 

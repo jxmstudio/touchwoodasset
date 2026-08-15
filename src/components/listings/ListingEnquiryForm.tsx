@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, Loader2 } from 'lucide-react'
 import { submitToJxmForms } from '@/lib/jxm-forms'
+import { trackLead } from '@/lib/tracking'
 
 interface ListingEnquiryFormProps {
   listingId: string
@@ -43,6 +44,7 @@ export function ListingEnquiryForm({ listingId, listingTitle }: ListingEnquiryFo
       })
 
       if (result.success) {
+        trackLead({ formName: 'listing-enquiry' })
         setStatus('success')
       } else {
         setErrorMsg('Something went wrong. Please try again.')
