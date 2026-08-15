@@ -185,6 +185,7 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3000',
     price: 240,
     status: 'AVAILABLE',
+    images: ['/carparks/58-franklin-st-melbourne/bay-863/1.jpeg'],
     description:
       'Secure car park bay #863 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
@@ -239,6 +240,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'South Yarra',
     postcode: '3141',
     status: 'LEASED',
+    images: ['/carparks/11-daly-st-south-yarra/bay-592/1.jpeg'],
     description:
       'Secure car park bay #592 at 11 Daly Street, South Yarra. Moments from Chapel Street and South Yarra Station.',
   }),
@@ -251,6 +253,7 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3141',
     price: 240,
     status: 'AVAILABLE',
+    images: ['/carparks/11-daly-st-south-yarra/bay-593/1.jpeg'],
     description:
       'Secure car park bay #593 at 11 Daly Street, South Yarra. Moments from Chapel Street and South Yarra Station.',
   }),
@@ -280,6 +283,7 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3002',
     status: 'COMING_SOON',
     clearance: '2.1m',
+    images: ['/carparks/211-powlett-st-east-melbourne/bay-31/1.jpeg'],
     description:
       'Secure car park lot 31 at Tribeca, 211 Powlett Street, East Melbourne — details coming soon. 5 minutes walk to the MCG, moments to Jolimont Station and the CBD.',
   }),
@@ -327,6 +331,7 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3101',
     price: 290,
     status: 'AVAILABLE',
+    images: ['/carparks/118-high-st-kew/bay-501/1.jpeg'],
     description:
       'Secure car park bay #501 at 118 High Street, Kew. Convenient access to Kew Junction shops and cafes.',
   }),
@@ -341,6 +346,7 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3182',
     price: 220,
     status: 'AVAILABLE',
+    images: ['/carparks/135-fitzroy-st-st-kilda/bay-273/1.jpeg'],
     description:
       'Secure car park bay #273 at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach.',
   }),

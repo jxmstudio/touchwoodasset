@@ -3,7 +3,9 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'The Archive — Storage at 601 Little Collins St',
   description: 'Self-storage units at 601 Little Collins St, Melbourne CBD. Secure, flexible storage for residents & businesses. View available units and pricing online.',
-  alternates: { canonical: '/the-archive' },
+  // No `alternates.canonical` here: layout metadata is inherited by every route
+  // beneath it, so a canonical set at this level pointed all /the-archive/[unitId]
+  // detail pages at the section index and de-indexed them. Each page sets its own.
   openGraph: {
     title: 'The Archive — Storage at 601 Little Collins St | Touchwood',
     description: 'Self-storage units at 601 Little Collins St, Melbourne CBD. Secure, flexible storage for residents & businesses. View available units and pricing online.',

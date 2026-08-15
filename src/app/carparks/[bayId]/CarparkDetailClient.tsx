@@ -123,9 +123,11 @@ export function CarparkDetailClient({ bay }: CarparkDetailClientProps) {
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        <CardTitle className="text-3xl font-bold mb-2">
-                          Bay {bay.bayNumber}
-                        </CardTitle>
+                        {/* Real <h1>: CardTitle renders a plain <div>, so this
+                            page previously had no heading element at all. */}
+                        <h1 className="text-3xl font-bold mb-2 leading-none">
+                          Car Park Bay {bay.bayNumber}
+                        </h1>
                         <div className="flex items-center text-gray-600 space-x-4">
                           <div className="flex items-center">
                             <Building2 className="h-4 w-4 mr-1" />

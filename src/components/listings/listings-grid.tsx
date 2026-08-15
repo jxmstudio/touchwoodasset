@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Bed, Bath, Car, Ruler, MapPin, ArrowRight } from 'lucide-react'
 import type { ListingItem } from '@/data/listings'
 
@@ -54,22 +55,18 @@ export function ListingCard({ listing, muted = false }: ListingCardProps) {
     >
       {/* ── Image ── */}
       <div className="relative aspect-[16/9] overflow-hidden bg-gray-100">
-        {isMounted ? (
-          <img
-            src={imageUrl}
-            alt={listing.title}
-            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${
-              muted ? 'grayscale-[20%]' : ''
-            }`}
-          />
-        ) : (
-          /* SSR fallback — no hydration mismatch */
-          <img
-            src={imageUrl}
-            alt={listing.title}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        )}
+        {/* next/image on both paths: the SSR branch is what the browser
+            actually fetches first, so serving the unoptimised original there
+            defeated the optimisation entirely. */}
+        <Image
+          src={imageUrl}
+          alt={listing.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className={`object-cover transition-transform duration-500 group-hover:scale-105 ${
+            isMounted && muted ? 'grayscale-[20%]' : ''
+          }`}
+        />
 
         {/* Status badge */}
         <div className="absolute top-3 left-3">

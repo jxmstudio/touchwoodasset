@@ -1,266 +1,49 @@
-'use client'
+import type { Metadata } from 'next'
+import HomeClient from './HomeClient'
+import { SITE_URL, SITE_NAME, absoluteUrl } from '@/lib/site'
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { FadeIn } from '@/components/ui/fade-in'
+export const metadata: Metadata = {
+  title: 'Melbourne Property Management, Car Parks & Storage',
+  description:
+    'Touchwood Asset Management manages residential and commercial property, secure car park bays and self-storage across Melbourne. 220+ assets under management. Book a free property review.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: `Melbourne Property Management, Car Parks & Storage | ${SITE_NAME}`,
+    description:
+      'Touchwood Asset Management manages residential and commercial property, secure car park bays and self-storage across Melbourne. Book a free property review.',
+    url: '/',
+  },
+}
 
-import { VideoHero } from '@/components/hero/VideoHero'
-import { HeroSplit } from '@/components/marketing/HeroSplit'
-import { ListingsCarousel } from '@/components/listings/ListingsCarousel'
-import { OwnerPromo } from '@/components/OwnerPromo'
-import { listings } from '@/data/listings'
-import { Building2, Star, Phone, Mail, Users, TrendingUp } from 'lucide-react'
-
-// Get featured listings from real data - mix of residential and commercial properties
-const featuredListings = listings
-  .filter(
-    (listing) =>
-      listing.category === 'properties' ||
-      listing.type === 'RESIDENTIAL' ||
-      listing.type === 'COMMERCIAL'
-  )
-  .slice(0, 4)
-
-// Testimonials
-const testimonials = [
-  {
-    id: '1',
-    quote:
-      'Touchwood made our property investment journey seamless. Their expertise in the Melbourne market is unmatched.',
-    author: 'Sarah Chen',
-    role: 'Property Investor',
-    rating: 5,
-  },
-  {
-    id: '2',
-    quote:
-      'Professional service from start to finish. They found us the perfect commercial space for our business.',
-    author: 'Michael Roberts',
-    role: 'Business Owner',
-    rating: 5,
-  },
-  {
-    id: '3',
-    quote:
-      'Outstanding property management services. They take care of everything so we don&apos;t have to worry.',
-    author: 'Lisa Wong',
-    role: 'Property Owner',
-    rating: 5,
-  },
-]
-
-// Statistics
-const stats = [
-  {
-    number: '220+',
-    label: 'Assets Under Management',
-    icon: <Building2 className="h-6 w-6" />,
-  },
-  {
-    number: '260+',
-    label: 'Happy Clients',
-    icon: <Users className="h-6 w-6" />,
-  },
-  {
-    number: '25+',
-    label: 'Combined Years Experience',
-    icon: <Star className="h-6 w-6" />,
-  },
-  {
-    number: '24/7',
-    label: 'Support Available',
-    icon: <TrendingUp className="h-6 w-6" />,
-  },
-]
-
-const organizationJsonLd = {
+// WebSite entity, tied to the RealEstateAgent declared in the root layout via
+// @id. The previous version of this block carried a hardcoded aggregateRating
+// (5 stars / 3 reviews); self-serving review markup about your own business
+// breaches Google's structured data policy, so it has been removed.
+const webSiteJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Touchwood Asset Management',
-  url: 'https://touchwoodasset.com',
-  logo: 'https://touchwoodasset.com/logo-touchwood.png',
-  sameAs: [],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5',
-    reviewCount: '3',
-    bestRating: '5',
-    worstRating: '1',
+  '@type': 'WebSite',
+  '@id': absoluteUrl('/#website'),
+  url: SITE_URL,
+  name: SITE_NAME,
+  publisher: { '@id': absoluteUrl('/#organization') },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: absoluteUrl('/listings?q={search_term_string}'),
+    },
+    'query-input': 'required name=search_term_string',
   },
 }
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
       />
-      {/* Video Hero Section */}
-      <VideoHero
-        videoSrc="/videos/landing-desktop.mp4"
-        videoSrcMobile="/videos/landing-mobile.mp4"
-        posterImage="/hero/residential.jpg"
-        title="Your Property Journey Starts Here"
-        subtitle="Touchwood Asset Management"
-        description="Discover exceptional properties and expert real estate services across Melbourne and Victoria. We're here to help you buy, sell, or invest with confidence."
-        ctaText="Explore Properties"
-        ctaLink="/listings"
-        autoPlay={true}
-        loop={true}
-        muted={true}
-      />
-
-      {/* Hero Split Section */}
-      <HeroSplit />
-
-      {/* Featured Listings Carousel */}
-      <ListingsCarousel
-        listings={featuredListings}
-        title="Featured Property"
-        subtitle="Handpicked premium property showcase"
-        showViewAll={true}
-        autoPlay={true}
-        variant="hero"
-      />
-
-      {/* Stats Section - Soft and Spacious */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-gray-50/50 to-white">
-        <div className="container mx-auto max-w-7xl px-4 md:px-6">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Trusted by Melbourne&apos;s Property Owners
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Our track record speaks for itself
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <FadeIn key={stat.label} delay={index * 0.1}>
-                <motion.div
-                  className="text-center group"
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl mb-4 text-primary group-hover:from-primary/20 group-hover:to-primary/30 transition-all duration-300">
-                    {stat.icon}
-                  </div>
-                  <div className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-muted-foreground font-medium">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials - Soft Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50/30 to-white">
-        <div className="container mx-auto max-w-7xl px-4 md:px-6">
-          <FadeIn>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                What Our Clients Say
-              </h2>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-                Trusted by property owners and investors across Victoria
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <FadeIn key={testimonial.id} delay={index * 0.2}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Card className="p-8 text-center hover:shadow-xl transition-all duration-300 h-full bg-white border-0 shadow-lg">
-                    <div className="flex justify-center mb-6">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-5 w-5 text-yellow-400 fill-current"
-                        />
-                      ))}
-                    </div>
-                    <blockquote className="text-foreground mb-6 italic text-lg leading-relaxed">
-                      &ldquo;{testimonial.quote}&rdquo;
-                    </blockquote>
-                    <div>
-                      <div className="font-semibold text-foreground text-lg">
-                        {testimonial.author}
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        {testimonial.role}
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Owner Promo Section */}
-      <section className="py-20 bg-gray-50/50">
-        <div className="container mx-auto max-w-7xl px-4 md:px-6">
-          <OwnerPromo />
-        </div>
-      </section>
-
-      {/* CTA Section - Soft and Inviting */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-gray-100 via-gray-50 to-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-100/50 to-transparent" />
-        <div className="relative z-10">
-          <div className="container mx-auto max-w-7xl px-4 md:px-6 text-center">
-            <FadeIn>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-foreground">
-                Ready to Get Started?
-              </h2>
-              <p className="text-lg md:text-xl mb-10 text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Whether you&apos;re looking to buy, sell, rent, or manage
-                property, our expert team is here to help you achieve your real
-                estate goals.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 text-lg px-8 py-4 h-auto font-bold"
-                >
-                  <a href="/contact">
-                    <Phone className="mr-2 h-5 w-5" />
-                    Contact Us Today
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-gray-300 text-foreground hover:bg-gray-100 text-lg px-8 py-4 h-auto"
-                >
-                  <a href="/valuation">
-                    <Mail className="mr-2 h-5 w-5" />
-                    Free Property Valuation
-                  </a>
-                </Button>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-    </div>
+      <HomeClient />
+    </>
   )
 }

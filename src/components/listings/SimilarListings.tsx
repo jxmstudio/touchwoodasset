@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { listings } from '@/data/listings'
 import type { ListingItem } from '@/data/listings'
 import { Bed, Bath, Car, Ruler, MapPin, ArrowRight } from 'lucide-react'
@@ -33,10 +34,12 @@ function SimilarCard({ listing }: { listing: ListingItem }) {
       className="group block rounded-xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300"
     >
       <div className="relative aspect-[16/9] overflow-hidden bg-gray-100">
-        <img
+        <Image
           src={imageUrl}
           alt={listing.title}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute top-3 left-3">
           <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-primary text-white">

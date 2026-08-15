@@ -78,15 +78,19 @@ export function VideoHero({
         className={`relative w-full min-h-screen overflow-hidden ${className}`}
         suppressHydrationWarning
       >
-        {/* Fallback poster image - use native img to avoid hydration mismatch */}
+        {/* Poster image. This is the pre-hydration paint and therefore the LCP
+            element — it must go through next/image, otherwise the browser
+            downloads the full-size original (residential.jpg is 1.7 MB) before
+            the video ever loads. */}
         {posterImage && (
           <div className="absolute inset-0 bg-gray-900">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={posterImage}
-              alt="Property background"
-              className="absolute inset-0 w-full h-full object-cover opacity-90"
-              suppressHydrationWarning
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover opacity-90"
             />
           </div>
         )}

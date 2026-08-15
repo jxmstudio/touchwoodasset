@@ -52,3 +52,6 @@ next-env.d.ts
 Thumbs.db
 
 .vercel
+
+# Local dev form submissions (fallback when SHEETS_WEBHOOK unset)
+/data/

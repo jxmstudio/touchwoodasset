@@ -1,16 +1,25 @@
 import { MetadataRoute } from 'next'
+import { SITE_URL } from '@/lib/site'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = (process.env.NEXTAUTH_URL || 'https://touchwoodasset.com').replace(/\/$/, '')
-  
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/*', '/api/*', '/auth/*'],
+        disallow: [
+          // Trailing /* only matched sub-paths, leaving /admin and /auth
+          // themselves crawlable. Match the bare path and everything under it.
+          '/admin',
+          '/admin/',
+          '/api/',
+          '/auth',
+          '/auth/',
+          '/test-images', // internal QA page, was fully indexable
+        ],
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   }
 }

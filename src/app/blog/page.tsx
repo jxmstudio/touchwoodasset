@@ -102,14 +102,18 @@ export default function BlogPage() {
                       ))}
                     </div>
                     <Button asChild className="w-full">
-                      <a
-                        href={article.externalLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        View Original Article
-                      </a>
+                      {article.externalLink ? (
+                        <a
+                          href={article.externalLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          View Original Article
+                        </a>
+                      ) : (
+                        <Link href={`/blog/${article.slug}`}>Read article</Link>
+                      )}
                     </Button>
                   </CardContent>
                 </Card>
@@ -160,14 +164,18 @@ export default function BlogPage() {
                   </CardHeader>
                   <CardContent className="flex-grow flex flex-col justify-end">
                     <Button asChild className="w-full">
-                      <a
-                        href={article.externalLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        View Original Article
-                      </a>
+                      {article.externalLink ? (
+                        <a
+                          href={article.externalLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          View Original Article
+                        </a>
+                      ) : (
+                        <Link href={`/blog/${article.slug}`}>Read article</Link>
+                      )}
                     </Button>
                   </CardContent>
                 </Card>

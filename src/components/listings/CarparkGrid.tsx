@@ -65,11 +65,12 @@ export function CarparkGrid({ bays }: CarparkGridProps) {
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img
+                    <Image
                       src={unit.images[0]}
                       alt={`Car park bay ${unit.bayNumber} at ${unit.address}`}
-                      className="absolute inset-0 w-full h-full object-contain"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-contain"
                     />
                   )}
 

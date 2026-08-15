@@ -8,9 +8,11 @@ import { articles } from '@/data/articles'
 import { ArrowLeft, ExternalLink, Calendar, Building2, Tag } from 'lucide-react'
 
 interface ArticlePageProps {
-  params: {
+  // Next 15 passes route params as a Promise; typing it synchronously made the
+  // generated route types fail to satisfy PageProps.
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -22,7 +24,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
-  const article = articles.find((a) => a.slug === params.slug)
+  const { slug } = await params
+  const article = articles.find((a) => a.slug === slug)
 
   if (!article) {
     return {
@@ -42,8 +45,9 @@ export async function generateMetadata({
   }
 }
 
-export default function ArticlePage({ params }: ArticlePageProps) {
-  const article = articles.find((a) => a.slug === params.slug)
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const { slug } = await params
+  const article = articles.find((a) => a.slug === slug)
 
   if (!article) {
     notFound()
@@ -156,18 +160,20 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                 ))}
               </div>
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons. The external link only exists for press mentions. */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="flex-1 sm:flex-none">
-                  <a
-                    href={article.externalLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Read Full Article on {article.publication}
-                  </a>
-                </Button>
+                {article.externalLink && (
+                  <Button asChild size="lg" className="flex-1 sm:flex-none">
+                    <a
+                      href={article.externalLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Read Full Article on {article.publication}
+                    </a>
+                  </Button>
+                )}
                 <Button
                   asChild
                   variant="outline"
@@ -181,11 +187,40 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
             {/* Article Body */}
             {article.content && (
-              <div className="prose prose-lg max-w-none bg-white rounded-xl p-8 md:p-12 shadow-sm">
-                <div className="space-y-6 text-gray-700 leading-relaxed">
-                  {article.content.split('\n\n').map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
+              <div className="prose prose-lg max-w-none rounded-xl bg-white p-8 shadow-sm md:p-12">
+                <div className="space-y-5 leading-relaxed text-gray-700">
+                  {article.content.split('\n\n').map((block, index) => {
+                    const text = block.trim()
+                    if (!text) return null
+
+                    // `## ` marks a section heading. Rendering these as real
+                    // <h2> elements is what lets long-form articles compete for
+                    // featured snippets — a wall of <p> tags cannot.
+                    if (text.startsWith('## ')) {
+                      return (
+                        <h2
+                          key={index}
+                          className="!mb-3 !mt-8 text-2xl font-bold text-gray-900"
+                        >
+                          {text.slice(3)}
+                        </h2>
+                      )
+                    }
+
+                    // A block where every line starts with "- " is a list.
+                    const lines = text.split('\n')
+                    if (lines.every((l) => l.trim().startsWith('- '))) {
+                      return (
+                        <ul key={index} className="list-disc space-y-1.5 pl-6">
+                          {lines.map((l, i) => (
+                            <li key={i}>{l.trim().slice(2)}</li>
+                          ))}
+                        </ul>
+                      )
+                    }
+
+                    return <p key={index}>{text}</p>
+                  })}
                 </div>
               </div>
             )}

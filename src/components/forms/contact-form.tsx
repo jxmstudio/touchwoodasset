@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -24,7 +24,7 @@ import {
 } from '@/components/ui/form'
 import { toast } from 'sonner'
 import { Send, Loader2 } from 'lucide-react'
-import { submitContactForm } from '@/lib/sheets-webhook'
+import { submitToJxmForms } from '@/lib/jxm-forms'
 
 const contactFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -39,6 +39,9 @@ type ContactFormData = z.infer<typeof contactFormSchema>
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  // Honeypot: hidden from humans, bots auto-fill it. Its value is sent as
+  // `_gotcha` and JXM Forms drops any submission where it's non-empty.
+  const honeypotRef = useRef<HTMLInputElement>(null)
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -56,14 +59,15 @@ export function ContactForm() {
     setIsSubmitting(true)
 
     try {
-      // Submit to Google Sheets via our proxy
-      const result = await submitContactForm({
+      // Submit to JXM Forms (stores the lead + emails it, with `email` as Reply-To)
+      const result = await submitToJxmForms({
         name: data.name,
         email: data.email,
         phone: data.phone,
         subject: data.subject,
         message: data.message,
         enquiryType: data.enquiryType,
+        _gotcha: honeypotRef.current?.value ?? '',
       })
 
       if (result.success) {
@@ -87,6 +91,15 @@ export function ContactForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <input
+          ref={honeypotRef}
+          type="text"
+          name="_gotcha"
+          style={{ display: 'none' }}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
             control={form.control}

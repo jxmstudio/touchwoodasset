@@ -8,6 +8,9 @@ import { Building2, Users, Mail, TrendingUp, Plus, Eye, Edit, Settings } from 'l
 export const metadata: Metadata = {
   title: 'Admin Dashboard - Touchwood Asset Management',
   description: 'Admin dashboard for Touchwood Asset Management property management system.',
+  // robots.txt disallow stops crawling but not indexing of a discovered URL;
+  // the meta tag is what actually keeps it out of the index.
+  robots: { index: false, follow: false },
 }
 
 export default function AdminDashboard() {

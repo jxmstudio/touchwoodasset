@@ -77,6 +77,30 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="/carparks"
+                  className="text-gray-900 font-medium hover:text-primary transition-colors"
+                >
+                  Car Parks
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/the-archive"
+                  className="text-gray-900 font-medium hover:text-primary transition-colors"
+                >
+                  Storage
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/property-review"
+                  className="text-gray-900 font-medium hover:text-primary transition-colors"
+                >
+                  Free Property Review
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/blog"
                   className="text-gray-900 font-medium hover:text-primary transition-colors"
                 >

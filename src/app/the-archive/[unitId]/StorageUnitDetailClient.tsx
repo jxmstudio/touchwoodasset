@@ -134,9 +134,11 @@ export function StorageUnitDetailClient({
                   <CardHeader>
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        <CardTitle className="text-3xl font-bold mb-2">
-                          {unit.unitNumber}
-                        </CardTitle>
+                        {/* Real <h1>: CardTitle renders a plain <div>, so this
+                            page previously had no heading element at all. */}
+                        <h1 className="text-3xl font-bold mb-2 leading-none">
+                          Storage Unit {unit.unitNumber}
+                        </h1>
                         <div className="flex items-center text-gray-600 space-x-4">
                           <div className="flex items-center">
                             <Maximize2 className="h-4 w-4 mr-1" />

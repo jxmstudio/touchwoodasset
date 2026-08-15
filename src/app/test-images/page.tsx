@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
+
+// Internal QA page — must never be indexed.
+export const metadata: Metadata = {
+  title: 'Image Test',
+  robots: { index: false, follow: false },
+}
 
 export default function TestImagesPage() {
   const images = [

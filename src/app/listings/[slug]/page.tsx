@@ -12,6 +12,12 @@ interface ListingDetailPageProps {
   }
 }
 
+// Pre-render every listing at build time — these were server-rendered on demand,
+// which costs crawlers (and users) a round trip on the site's key money pages.
+export function generateStaticParams() {
+  return mockListings.map((l) => ({ slug: l.slug }))
+}
+
 export async function generateMetadata({ params }: ListingDetailPageProps): Promise<Metadata> {
   const { slug } = await params
   const listing = mockListings.find(l => l.slug === slug)

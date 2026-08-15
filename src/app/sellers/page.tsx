@@ -129,10 +129,13 @@ const achievements = [
 export default function SellersPage() {
   return (
     <div className="min-h-screen">
-      {/* Video Hero */}
+      {/* Video Hero. Previously pointed at /videos/property-sales.mp4 and
+          /images/sales-hero.jpg — neither asset exists, so this hero fell back
+          to a flat dark panel. */}
       <VideoHero
-        videoSrc="/videos/property-sales.mp4"
-        posterImage="/images/sales-hero.jpg"
+        videoSrc="/videos/landing-desktop.mp4"
+        videoSrcMobile="/videos/landing-mobile.mp4"
+        posterImage="/hero/residential.jpg"
         title="Sell Your Property for Maximum Value"
         subtitle="Expert Property Sales"
         description="Our experienced sales team delivers exceptional results with proven marketing strategies and expert negotiation skills."

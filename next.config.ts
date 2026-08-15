@@ -24,7 +24,12 @@ const nextConfig: NextConfig = {
     ]
   },
   images: {
-    domains: ['localhost', 'touchwoodasset.com', 'www.touchwoodasset.com'],
+    // `images.domains` is deprecated in Next 15 and warns on every build.
+    remotePatterns: [
+      { protocol: 'http', hostname: 'localhost' },
+      { protocol: 'https', hostname: 'touchwoodasset.com' },
+      { protocol: 'https', hostname: 'www.touchwoodasset.com' },
+    ],
     formats: ['image/webp', 'image/avif'],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

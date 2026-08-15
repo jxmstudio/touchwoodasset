@@ -82,11 +82,33 @@ export async function POST(request: NextRequest) {
         { status: response.status }
       )
     }
-    
-    const result = await response.json()
-    
+
+    // Apps Script answers 200 for everything, including a rejected shared secret
+    // and its own exceptions, and serves an HTML error page when the deployment
+    // is stale. Parse the body before trusting the status, or a lost lead looks
+    // exactly like a saved one.
+    const raw = await response.text()
+    let result: any
+    try {
+      result = JSON.parse(raw)
+    } catch {
+      console.error('Google Sheets webhook returned non-JSON:', raw.slice(0, 500))
+      return NextResponse.json(
+        { error: 'Sheets webhook returned an unexpected response' },
+        { status: 502 }
+      )
+    }
+
+    if (result?.error || result?.success === false) {
+      console.error('Google Sheets webhook rejected submission:', result)
+      return NextResponse.json(
+        { error: result?.error || 'Sheets webhook rejected the submission' },
+        { status: 502 }
+      )
+    }
+
     return NextResponse.json(result, { status: 200 })
-    
+
   } catch (error) {
     console.error('Error in sheets webhook proxy:', error)
     return NextResponse.json(

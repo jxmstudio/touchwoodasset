@@ -45,6 +45,37 @@ export interface ListingItem {
 // Centralised listings dataset to be reused by list and detail pages
 export const listings: ListingItem[] = [
   {
+    // PLACEHOLDER — awaiting price, floorplan details, copy and photos from Raquel.
+    // Flip status to 'AVAILABLE' (renders as "For Sale") once the real details land.
+    id: '2002-555-swanston',
+    slug: 'apartment-2002-555-swanston-street-carlton',
+    title: '2002/555 Swanston Street, Carlton',
+    summary: 'Apartment for sale in Carlton — full details and photography coming soon',
+    type: 'RESIDENTIAL',
+    status: 'COMING_SOON',
+    address: '2002/555 Swanston Street',
+    suburb: 'Carlton',
+    state: 'VIC',
+    postcode: '3053',
+    heroImageUrl: '/placeholder-property.svg',
+    description:
+      'A residential apartment at 555 Swanston Street, Carlton, coming to market for sale. Full property details, floorplan and photography will be published shortly. For early enquiries or to arrange an inspection, please get in touch with our team.',
+    gallery: [
+      {
+        url: '/placeholder-property.svg',
+        alt: 'Photography coming soon for 2002/555 Swanston Street, Carlton',
+        width: 400,
+        height: 300,
+      },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
     id: '3',
     slug: 'carpark-211-powlett-st-east-melbourne',
     title: 'Secure Car Park for Lease at Tribeca, East Melbourne (lot. 31)',
@@ -55,7 +86,15 @@ export const listings: ListingItem[] = [
     suburb: 'East Melbourne',
     state: 'VIC',
     postcode: '3002',
-    heroImageUrl: '/placeholder-property.svg',
+    heroImageUrl: '/carparks/211-powlett-st-east-melbourne/bay-31/1.jpeg',
+    gallery: [
+      {
+        url: '/carparks/211-powlett-st-east-melbourne/bay-31/1.jpeg',
+        alt: 'Car park lot 31 at Tribeca, 211 Powlett Street, East Melbourne',
+        width: 1448,
+        height: 1086,
+      },
+    ],
     agent: {
       name: 'Eamon Chau',
       phone: '+61 413 889 388',
@@ -518,7 +557,51 @@ Property Code: 14110 - Please quote this number when phoning or texting.`,
     postcode: '3000',
     bedrooms: 2,
     bathrooms: 1,
-    heroImageUrl: '/placeholder-property.svg',
+    heroImageUrl: '/1316-lonsdale/Living%20room.jpg',
+    gallery: [
+      {
+        url: '/1316-lonsdale/Living%20room.jpg',
+        alt: 'Living area at 1316/39 Lonsdale Street, Melbourne',
+        width: 1536,
+        height: 1024,
+      },
+      {
+        url: '/1316-lonsdale/Kitchen%20shot.jpg',
+        alt: 'Kitchen at 1316/39 Lonsdale Street, Melbourne',
+        width: 1536,
+        height: 1024,
+      },
+      {
+        url: '/1316-lonsdale/Bedroom%201.jpg',
+        alt: 'Bedroom 1 at 1316/39 Lonsdale Street, Melbourne',
+        width: 1620,
+        height: 1080,
+      },
+      {
+        url: '/1316-lonsdale/Bedroom%202.jpg',
+        alt: 'Bedroom 2 at 1316/39 Lonsdale Street, Melbourne',
+        width: 1620,
+        height: 1080,
+      },
+      {
+        url: '/1316-lonsdale/Bathroom%20shot.jpg',
+        alt: 'Bathroom at 1316/39 Lonsdale Street, Melbourne',
+        width: 1620,
+        height: 1080,
+      },
+      {
+        url: '/1316-lonsdale/Building%20shot.jpg',
+        alt: 'Building exterior at 39 Lonsdale Street, Melbourne',
+        width: 2000,
+        height: 1204,
+      },
+      {
+        url: '/1316-lonsdale/1316.39%20(floorplan).jpg',
+        alt: 'Floorplan for 1316/39 Lonsdale Street, Melbourne',
+        width: 750,
+        height: 1080,
+      },
+    ],
     agent: {
       name: 'Eamon Chau',
       phone: '+61 413 889 388',
@@ -539,7 +622,15 @@ Property Code: 14110 - Please quote this number when phoning or texting.`,
     suburb: 'South Yarra',
     state: 'VIC',
     postcode: '3141',
-    heroImageUrl: '/placeholder-property.svg',
+    heroImageUrl: '/carparks/11-daly-st-south-yarra/bay-593/1.jpeg',
+    gallery: [
+      {
+        url: '/carparks/11-daly-st-south-yarra/bay-593/1.jpeg',
+        alt: 'Car park bay 593 at 11 Daly Street, South Yarra',
+        width: 1448,
+        height: 1086,
+      },
+    ],
     agent: {
       name: 'Eamon Chau',
       phone: '+61 413 889 388',
@@ -558,7 +649,15 @@ Property Code: 14110 - Please quote this number when phoning or texting.`,
     suburb: 'South Yarra',
     state: 'VIC',
     postcode: '3141',
-    heroImageUrl: '/placeholder-property.svg',
+    heroImageUrl: '/carparks/11-daly-st-south-yarra/bay-592/1.jpeg',
+    gallery: [
+      {
+        url: '/carparks/11-daly-st-south-yarra/bay-592/1.jpeg',
+        alt: 'Car park bay 592 at 11 Daly Street, South Yarra',
+        width: 1448,
+        height: 1086,
+      },
+    ],
     agent: {
       name: 'Eamon Chau',
       phone: '+61 413 889 388',
@@ -579,7 +678,15 @@ Property Code: 14110 - Please quote this number when phoning or texting.`,
     suburb: 'Melbourne',
     state: 'VIC',
     postcode: '3000',
-    heroImageUrl: '/placeholder-property.svg',
+    heroImageUrl: '/carparks/58-franklin-st-melbourne/bay-863/1.jpeg',
+    gallery: [
+      {
+        url: '/carparks/58-franklin-st-melbourne/bay-863/1.jpeg',
+        alt: 'Car park bay 863 at 58 Franklin Street, Melbourne',
+        width: 1448,
+        height: 1086,
+      },
+    ],
     agent: {
       name: 'Eamon Chau',
       phone: '+61 413 889 388',
@@ -600,7 +707,15 @@ Property Code: 14110 - Please quote this number when phoning or texting.`,
     suburb: 'Kew',
     state: 'VIC',
     postcode: '3101',
-    heroImageUrl: '/placeholder-property.svg',
+    heroImageUrl: '/carparks/118-high-st-kew/bay-501/1.jpeg',
+    gallery: [
+      {
+        url: '/carparks/118-high-st-kew/bay-501/1.jpeg',
+        alt: 'Car park bay 501 at 118 High Street, Kew',
+        width: 1448,
+        height: 1086,
+      },
+    ],
     agent: {
       name: 'Eamon Chau',
       phone: '+61 413 889 388',
@@ -621,7 +736,15 @@ Property Code: 14110 - Please quote this number when phoning or texting.`,
     suburb: 'St Kilda',
     state: 'VIC',
     postcode: '3182',
-    heroImageUrl: '/placeholder-property.svg',
+    heroImageUrl: '/carparks/135-fitzroy-st-st-kilda/bay-273/1.jpeg',
+    gallery: [
+      {
+        url: '/carparks/135-fitzroy-st-st-kilda/bay-273/1.jpeg',
+        alt: 'Car park bay 273 at 135 Fitzroy Street, St Kilda',
+        width: 1448,
+        height: 1086,
+      },
+    ],
     agent: {
       name: 'Eamon Chau',
       phone: '+61 413 889 388',
