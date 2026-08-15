@@ -61,6 +61,7 @@ export function ContactForm() {
     try {
       // Submit to JXM Forms (stores the lead + emails it, with `email` as Reply-To)
       const result = await submitToJxmForms({
+        _form: 'contact',
         name: data.name,
         email: data.email,
         phone: data.phone,

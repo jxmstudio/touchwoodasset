@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, Loader2 } from 'lucide-react'
+import { submitToJxmForms } from '@/lib/jxm-forms'
 
 interface ListingEnquiryFormProps {
   listingId: string
@@ -18,6 +19,7 @@ export function ListingEnquiryForm({ listingId, listingTitle }: ListingEnquiryFo
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  const honeypotRef = useRef<HTMLInputElement>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -29,26 +31,21 @@ export function ListingEnquiryForm({ listingId, listingTitle }: ListingEnquiryFo
     setErrorMsg('')
 
     try {
-      const res = await fetch('/api/enquiries', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          subject: `Enquiry: ${listingTitle}`,
-          message: form.message.length < 20 ? form.message + '                    ' : form.message,
-          type: 'GENERAL',
-          listingId,
-        }),
+      const result = await submitToJxmForms({
+        _form: 'listing-enquiry',
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        subject: `Enquiry: ${listingTitle}`,
+        message: form.message,
+        listingId,
+        _gotcha: honeypotRef.current?.value ?? '',
       })
 
-      const data = await res.json()
-
-      if (data.success) {
+      if (result.success) {
         setStatus('success')
       } else {
-        setErrorMsg(data.message || 'Something went wrong. Please try again.')
+        setErrorMsg('Something went wrong. Please try again.')
         setStatus('error')
       }
     } catch {
@@ -79,6 +76,15 @@ export function ListingEnquiryForm({ listingId, listingTitle }: ListingEnquiryFo
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5 max-w-xl">
+      <input
+        ref={honeypotRef}
+        type="text"
+        name="_gotcha"
+        style={{ display: 'none' }}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="enq-name" className="block text-sm font-medium text-gray-700 mb-1">

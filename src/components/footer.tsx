@@ -26,23 +26,32 @@ export function Footer() {
               assets such as car parks and storage units across Melbourne and
               greater Victoria.
             </p>
-            <div className="flex space-x-4">
-              <Link
-                href={process.env.NEXT_PUBLIC_FACEBOOK_URL || '#'}
-                className="text-gray-600 hover:text-gray-900 transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </Link>
-              {/* LinkedIn removed per request */}
-              <Link
-                href={process.env.NEXT_PUBLIC_INSTAGRAM_URL || '#'}
-                className="text-gray-600 hover:text-gray-900 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </Link>
-            </div>
+            {/* Icons only render when the URL is configured — a dead "#" link
+                is worse than no icon. */}
+            {(process.env.NEXT_PUBLIC_FACEBOOK_URL ||
+              process.env.NEXT_PUBLIC_INSTAGRAM_URL) && (
+              <div className="flex space-x-4">
+                {process.env.NEXT_PUBLIC_FACEBOOK_URL && (
+                  <Link
+                    href={process.env.NEXT_PUBLIC_FACEBOOK_URL}
+                    className="text-gray-600 hover:text-gray-900 transition-colors"
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="h-5 w-5" />
+                  </Link>
+                )}
+                {/* LinkedIn removed per request */}
+                {process.env.NEXT_PUBLIC_INSTAGRAM_URL && (
+                  <Link
+                    href={process.env.NEXT_PUBLIC_INSTAGRAM_URL}
+                    className="text-gray-600 hover:text-gray-900 transition-colors"
+                    aria-label="Instagram"
+                  >
+                    <Instagram className="h-5 w-5" />
+                  </Link>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Quick Links */}

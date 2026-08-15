@@ -16,6 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Loader2, CheckCircle, Shield, Mail } from 'lucide-react'
 import { toast } from 'sonner'
+import { submitToJxmForms } from '@/lib/jxm-forms'
 
 interface ApplyModalProps {
   isOpen: boolean
@@ -73,10 +74,8 @@ export function ApplyModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Honeypot check
-    if (formData.honeypot) {
-      return // Silent fail for bots
-    }
+    // Honeypot value is passed through as _gotcha — JXM Forms records the hit
+    // as spam and still returns success, so bots are never tipped off.
 
     // Basic validation
     if (!formData.name || !formData.email || !formData.phone) {
@@ -94,20 +93,21 @@ export function ApplyModal({
     setIsSubmitting(true)
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      const result = await submitToJxmForms({
+        _form: 'application',
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        listing: listingTitle,
+        listingId,
+        category,
+        ...(formData.message ? { message: formData.message } : {}),
+        _gotcha: formData.honeypot,
+      })
 
-      // In a real app, this would be an API call:
-      // await fetch('/api/applications', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({
-      //     ...formData,
-      //     listingId,
-      //     category,
-      //     timestamp: new Date().toISOString()
-      //   })
-      // })
+      if (!result.success) {
+        throw new Error(result.error || 'Failed to submit application')
+      }
 
       setIsSubmitted(true)
       toast.success('Application submitted successfully!')

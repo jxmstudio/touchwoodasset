@@ -25,6 +25,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { submitToJxmForms } from '@/lib/jxm-forms'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const bookingSchema = z.object({
@@ -56,6 +57,7 @@ export function BookingCalendar({
 }: BookingCalendarProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   const {
     register,
@@ -164,6 +166,7 @@ export function BookingCalendar({
 
   const onFormSubmit = async (data: BookingFormData) => {
     setIsSubmitting(true)
+    setSubmitError('')
     try {
       // Format the data for submission
       const submissionData = {
@@ -186,17 +189,21 @@ export function BookingCalendar({
       if (onSubmit) {
         onSubmit(submissionData)
       } else {
-        // Default API submission
-        const response = await fetch('/api/bookings', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(submissionData),
+        const result = await submitToJxmForms({
+          _form: 'booking',
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          appointmentType: data.appointmentType,
+          preferredDate: data.preferredDate.toLocaleDateString('en-AU'),
+          preferredTime: data.preferredTime,
+          userType: type,
+          ...(propertyId ? { propertyId } : {}),
+          ...(data.message ? { message: data.message } : {}),
         })
 
-        if (!response.ok) {
-          throw new Error('Failed to submit booking')
+        if (!result.success) {
+          throw new Error(result.error || 'Failed to submit booking')
         }
       }
 
@@ -204,6 +211,9 @@ export function BookingCalendar({
       reset()
     } catch (error) {
       console.error('Booking submission error:', error)
+      setSubmitError(
+        'Sorry, your booking did not go through. Please try again or call us on +61 413 889 388.'
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -407,6 +417,12 @@ export function BookingCalendar({
                 />
               </div>
             </div>
+
+            {submitError && (
+              <p className="text-sm text-red-600" role="alert">
+                {submitError}
+              </p>
+            )}
 
             {/* Submit Button */}
             <Button

@@ -1,7 +1,9 @@
 /**
- * JXM Forms — self-hosted form backend (replaces the Sheets pipeline for the
- * contact form; the /property-review funnel, valuation and inspection forms
- * still post to /api/sheets-webhook).
+ * JXM Forms — self-hosted form backend (contact, listing enquiry, booking and
+ * application forms; the /property-review funnel, valuation and inspection
+ * forms still post to /api/sheets-webhook).
+ *
+ * Pass `_form` to name the form — it shows in the dashboard and email subject.
  *
  * The endpoint and key are deliberately hardcoded client-side: JXM's design
  * treats the key as public (it only scopes submissions to this site's tenant),
