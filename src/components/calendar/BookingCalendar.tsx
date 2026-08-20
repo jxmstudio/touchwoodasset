@@ -26,7 +26,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { submitToJxmForms } from '@/lib/jxm-forms'
-import { trackSchedule } from '@/lib/tracking'
+import { setAdvancedMatching, trackSchedule } from '@/lib/tracking'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const bookingSchema = z.object({
@@ -208,6 +208,11 @@ export function BookingCalendar({
         }
       }
 
+      setAdvancedMatching({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+      })
       trackSchedule({
         formName: 'booking',
         appointmentType: data.appointmentType,

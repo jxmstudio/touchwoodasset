@@ -40,6 +40,53 @@ function gtag(...args: unknown[]): void {
   }, args)
 }
 
+const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID
+
+const MATCH_KEY = 'tw_match'
+
+/**
+ * Manual advanced matching: attach the visitor's contact details to the
+ * pixel so Meta can match events to accounts (this is what lifts Event Match
+ * Quality). Meta's automatic matching only scrapes fields present on the page
+ * when an event fires — useless for conversions fired on the thank-you page —
+ * so forms call this at submit time. fbevents.js normalises and SHA-256
+ * hashes the values in the browser; plain text never leaves the page.
+ *
+ * Persisted for the session so a full page load between submit and the
+ * conversion firing (e.g. the thank-you page) re-initialises with the same
+ * match data — see MetaPixel's init.
+ */
+export function setAdvancedMatching(detail: {
+  name?: string
+  email?: string
+  phone?: string
+}): void {
+  if (!PIXEL_ID || typeof window === 'undefined') return
+
+  const match: Record<string, string> = {}
+  const email = detail.email?.trim().toLowerCase()
+  if (email) match.em = email
+  const digits = (detail.phone ?? '').replace(/\D/g, '')
+  if (digits) {
+    // Meta expects digits with country code: 0413… → 61413…
+    match.ph = digits.startsWith('0') ? `61${digits.slice(1)}` : digits
+  }
+  const nameParts = (detail.name ?? '').trim().toLowerCase().split(/\s+/)
+  if (nameParts[0]) match.fn = nameParts[0]
+  if (nameParts.length > 1) match.ln = nameParts[nameParts.length - 1]
+  if (Object.keys(match).length === 0) return
+
+  try {
+    window.sessionStorage.setItem(MATCH_KEY, JSON.stringify(match))
+  } catch {
+    // sessionStorage can throw in private modes — matching is best-effort.
+  }
+
+  // Re-init with user data is Meta's documented way to add matching after
+  // the pixel has loaded; the "duplicate pixel ID" console warning is benign.
+  fbq('init', PIXEL_ID, match)
+}
+
 /** UTM / click-id keys worth persisting so a lead can be traced to its ad. */
 const ATTRIBUTION_KEYS = [
   'utm_source',

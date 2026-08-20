@@ -4,7 +4,7 @@ import { useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, Loader2 } from 'lucide-react'
 import { submitToJxmForms } from '@/lib/jxm-forms'
-import { trackLead } from '@/lib/tracking'
+import { setAdvancedMatching, trackLead } from '@/lib/tracking'
 
 interface ListingEnquiryFormProps {
   listingId: string
@@ -44,6 +44,11 @@ export function ListingEnquiryForm({ listingId, listingTitle }: ListingEnquiryFo
       })
 
       if (result.success) {
+        setAdvancedMatching({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+        })
         trackLead({ formName: 'listing-enquiry' })
         setStatus('success')
       } else {

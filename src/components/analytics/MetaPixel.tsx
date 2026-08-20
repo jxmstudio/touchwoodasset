@@ -15,6 +15,10 @@ const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID
  * The App Router does not do full page loads on navigation, so the base script
  * fires PageView once and this component fires it again on each route change —
  * without that, Meta only ever sees the landing URL.
+ *
+ * Init includes any advanced-matching data persisted by setAdvancedMatching
+ * (lib/tracking), so match fields survive a full page load between a form
+ * submit and the conversion firing on the thank-you page.
  */
 export function MetaPixel() {
   const pathname = usePathname()
@@ -40,7 +44,7 @@ if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
 n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
 s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '${PIXEL_ID}');
+fbq('init', '${PIXEL_ID}', function(){var m={};try{m=JSON.parse(sessionStorage.getItem('tw_match'))||{}}catch(e){}return m}());
 fbq('track', 'PageView');
         `}
       </Script>

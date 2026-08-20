@@ -25,7 +25,11 @@ import {
 import { toast } from 'sonner'
 import { Loader2, ShieldCheck } from 'lucide-react'
 import { submitToJxmForms } from '@/lib/jxm-forms'
-import { attributionSummary, trackLeadStart } from '@/lib/tracking'
+import {
+  attributionSummary,
+  setAdvancedMatching,
+  trackLeadStart,
+} from '@/lib/tracking'
 
 // Deliberately short: every extra field on a cold-traffic funnel costs leads.
 const schema = z.object({
@@ -101,7 +105,13 @@ export function ReviewForm() {
       }
 
       // The conversion event fires on the thank-you page, not here, so it only
-      // counts submissions that genuinely completed.
+      // counts submissions that genuinely completed. Set the match data now,
+      // while we still have it — the thank-you page doesn't.
+      setAdvancedMatching({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+      })
       const params = new URLSearchParams({
         suburb: data.suburb,
         size: data.portfolioSize,

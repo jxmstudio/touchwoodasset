@@ -12,7 +12,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { toast } from 'sonner'
 import { Calculator, Loader2, Building2, MapPin, Calendar } from 'lucide-react'
 import { submitValuationForm } from '@/lib/sheets-webhook'
-import { trackLead } from '@/lib/tracking'
+import { setAdvancedMatching, trackLead } from '@/lib/tracking'
 
 const valuationFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -68,6 +68,11 @@ export function ValuationForm() {
       })
 
       if (result.success) {
+        setAdvancedMatching({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+        })
         trackLead({ formName: 'valuation', suburb: data.suburb })
         toast.success('Thank you for your valuation request! We\'ll contact you within 24 hours to arrange an inspection.')
         form.reset()

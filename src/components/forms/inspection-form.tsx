@@ -12,7 +12,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { toast } from 'sonner'
 import { Search, Loader2, Building2, MapPin, Calendar, Clock } from 'lucide-react'
 import { submitInspectionForm } from '@/lib/sheets-webhook'
-import { trackSchedule } from '@/lib/tracking'
+import { setAdvancedMatching, trackSchedule } from '@/lib/tracking'
 
 const inspectionFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -65,6 +65,11 @@ export function InspectionForm() {
       })
 
       if (result.success) {
+        setAdvancedMatching({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+        })
         trackSchedule({ formName: 'inspection' })
         toast.success('Thank you for your inspection request! We\'ll contact you within 24 hours to confirm the appointment.')
         form.reset()
