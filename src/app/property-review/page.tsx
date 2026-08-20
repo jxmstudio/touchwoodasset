@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { FunnelVideo } from './FunnelVideo'
 import { ReviewForm } from './ReviewForm'
+import { PastWorkCarousel, type PastWorkItem } from './PastWorkCarousel'
 import { CallLink } from '@/components/analytics/CallLink'
 import { SITE_NAME, CONTACT, absoluteUrl } from '@/lib/site'
 import {
@@ -105,11 +106,48 @@ const testimonials = [
   },
 ]
 
+// Real outcomes pulled from src/data/listings.ts — keep in sync if a
+// property's status or numbers change there.
+const pastWork: PastWorkItem[] = [
+  {
+    image: '/15088/Living%20room.jpg',
+    alt: 'Renovated living room with city views at 1508/8 Franklin Street, Melbourne',
+    badge: 'Sold',
+    title: '1508/8 Franklin Street, Melbourne',
+    stat: 'Sold $427,500 · 7.7% gross yield',
+    body: 'Renovated turn-key two-bedroom in The Milano, sold with the rental numbers doing the talking.',
+  },
+  {
+    image: '/6-1070-sydney-rd-fawkner/Living-room-1.jpg',
+    alt: 'Open plan living area at 6/1070 Sydney Road, Fawkner',
+    badge: 'Leased',
+    title: '6/1070 Sydney Road, Fawkner',
+    stat: 'Leased at $500/week',
+    body: 'Boutique townhouse leased quickly — the owner moved their management across to Touchwood in the same step.',
+  },
+  {
+    image: '/1316-lonsdale/Living%20room.jpg',
+    alt: 'Furnished living area at 1316/39 Lonsdale Street, Melbourne',
+    badge: 'Leased',
+    title: '1316/39 Lonsdale Street, Melbourne',
+    stat: 'Furnished 2-bed · Melbourne CBD',
+    body: 'Fully furnished CBD apartment leased with minimal vacancy between tenancies.',
+  },
+  {
+    image: '/150-Albert-Rd-SOUTH-MELBOURNE-1.jpg',
+    alt: 'Building at 150 Albert Road, South Melbourne',
+    badge: 'Leased',
+    title: '150 Albert Road, South Melbourne',
+    stat: '7 car parks leased',
+    body: 'A block of seven secure car parks leased out for one owner — income from every corner of the asset.',
+  },
+]
+
 const steps = [
   {
     n: '1',
     title: 'Drop your details',
-    body: 'Thirty seconds. Name, number and the suburb your property is in.',
+    body: 'Thirty seconds. Name, number, email and the suburb your property is in.',
   },
   {
     n: '2',
@@ -319,6 +357,34 @@ export default function PropertyReviewPage() {
                   </p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Past work — real sold / leased outcomes, no links out of the funnel */}
+        <section className="border-t border-gray-100 bg-gray-50 py-16 lg:py-24">
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Recent results, not promises
+              </h2>
+              <p className="mt-4 text-lg text-gray-600">
+                A few of the properties we&apos;ve sold and leased for Melbourne
+                owners recently.
+              </p>
+            </div>
+
+            <div className="mt-12">
+              <PastWorkCarousel items={pastWork} />
+            </div>
+
+            <div className="mt-10 text-center">
+              <a
+                href="#review-form"
+                className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg transition hover:opacity-90"
+              >
+                See what your property could do
+              </a>
             </div>
           </div>
         </section>

@@ -25,6 +25,16 @@ import {
 import { toast } from 'sonner'
 import { Loader2, ShieldCheck } from 'lucide-react'
 import { submitToJxmForms } from '@/lib/jxm-forms'
+
+// Every field on this form is mandatory; the asterisk tells visitors so
+// before they hit submit.
+function RequiredMark() {
+  return (
+    <span aria-hidden="true" className="text-red-500">
+      *
+    </span>
+  )
+}
 import {
   attributionSummary,
   setAdvancedMatching,
@@ -32,10 +42,17 @@ import {
 } from '@/lib/tracking'
 
 // Deliberately short: every extra field on a cold-traffic funnel costs leads.
+// Email and phone are both mandatory — a lead we can't call or email is not a lead.
 const schema = z.object({
   name: z.string().min(2, 'Please enter your name'),
-  email: z.string().email('Please enter a valid email address'),
-  phone: z.string().min(8, 'Please enter a valid phone number'),
+  email: z
+    .string()
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address'),
+  phone: z
+    .string()
+    .min(1, 'Phone number is required')
+    .regex(/^[0-9+()\-\s]{8,}$/, 'Please enter a valid phone number'),
   suburb: z.string().min(2, 'Please enter the property suburb'),
   portfolioSize: z.enum(['1', '2-3', '4-9', '10+']),
   currentSituation: z.enum([
@@ -134,7 +151,7 @@ export function ReviewForm() {
       </h2>
       <p className="mt-2 text-sm text-gray-600">
         Takes 30 seconds. We&apos;ll call you for a 2-minute chat — no
-        obligation to switch.
+        obligation to switch. All fields are required.
       </p>
 
       <Form {...form}>
@@ -157,9 +174,16 @@ export function ReviewForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Your name</FormLabel>
+                <FormLabel>
+                  Your name <RequiredMark />
+                </FormLabel>
                 <FormControl>
-                  <Input placeholder="Jane Smith" autoComplete="name" {...field} />
+                  <Input
+                    placeholder="Jane Smith"
+                    autoComplete="name"
+                    aria-required="true"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -172,13 +196,16 @@ export function ReviewForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>
+                    Email <RequiredMark />
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type="email"
                       inputMode="email"
                       placeholder="jane@example.com"
                       autoComplete="email"
+                      aria-required="true"
                       {...field}
                     />
                   </FormControl>
@@ -191,13 +218,16 @@ export function ReviewForm() {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone</FormLabel>
+                  <FormLabel>
+                    Phone <RequiredMark />
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type="tel"
                       inputMode="tel"
                       placeholder="0413 889 388"
                       autoComplete="tel"
+                      aria-required="true"
                       {...field}
                     />
                   </FormControl>
@@ -212,9 +242,15 @@ export function ReviewForm() {
             name="suburb"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Property suburb</FormLabel>
+                <FormLabel>
+                  Property suburb <RequiredMark />
+                </FormLabel>
                 <FormControl>
-                  <Input placeholder="South Melbourne" {...field} />
+                  <Input
+                    placeholder="South Melbourne"
+                    aria-required="true"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
