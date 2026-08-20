@@ -8,16 +8,36 @@
 type Fbq = (...args: unknown[]) => void
 type Gtag = (...args: unknown[]) => void
 
-function fbq(): Fbq | undefined {
-  if (typeof window === 'undefined') return undefined
-  const fn = (window as unknown as { fbq?: Fbq }).fbq
-  return typeof fn === 'function' ? fn : undefined
+// The pixel/tag scripts load `afterInteractive`, so on a fresh page load they
+// are usually NOT there yet when a mount-time conversion fires (e.g. the
+// thank-you page's Lead). Retry briefly instead of silently dropping the
+// event; give up after ~5s, which means the tag genuinely isn't installed.
+function withRetry(getFn: () => Fbq | undefined, args: unknown[]): void {
+  if (typeof window === 'undefined') return
+  let attempts = 0
+  const attempt = () => {
+    const fn = getFn()
+    if (fn) {
+      fn(...args)
+      return
+    }
+    if (attempts++ < 20) setTimeout(attempt, 250)
+  }
+  attempt()
 }
 
-function gtag(): Gtag | undefined {
-  if (typeof window === 'undefined') return undefined
-  const fn = (window as unknown as { gtag?: Gtag }).gtag
-  return typeof fn === 'function' ? fn : undefined
+function fbq(...args: unknown[]): void {
+  withRetry(() => {
+    const fn = (window as unknown as { fbq?: Fbq }).fbq
+    return typeof fn === 'function' ? fn : undefined
+  }, args)
+}
+
+function gtag(...args: unknown[]): void {
+  withRetry(() => {
+    const fn = (window as unknown as { gtag?: Gtag }).gtag
+    return typeof fn === 'function' ? fn : undefined
+  }, args)
 }
 
 /** UTM / click-id keys worth persisting so a lead can be traced to its ad. */
@@ -90,13 +110,13 @@ export function trackLead(detail: {
   suburb?: string
   portfolioSize?: string
 }): void {
-  fbq()?.('track', 'Lead', {
+  fbq('track', 'Lead', {
     content_name: detail.formName,
     content_category: 'property_management',
     ...(detail.suburb ? { suburb: detail.suburb } : {}),
   })
 
-  gtag()?.('event', 'generate_lead', {
+  gtag('event', 'generate_lead', {
     form_name: detail.formName,
     suburb: detail.suburb,
     portfolio_size: detail.portfolioSize,
@@ -111,14 +131,14 @@ export function trackSchedule(detail: {
   formName: string
   appointmentType?: string
 }): void {
-  fbq()?.('track', 'Schedule', {
+  fbq('track', 'Schedule', {
     content_name: detail.formName,
     ...(detail.appointmentType
       ? { content_category: detail.appointmentType }
       : {}),
   })
 
-  gtag()?.('event', 'schedule_appointment', {
+  gtag('event', 'schedule_appointment', {
     form_name: detail.formName,
     appointment_type: detail.appointmentType,
   })
@@ -126,12 +146,12 @@ export function trackSchedule(detail: {
 
 /** Someone started filling the form — the top of the conversion funnel. */
 export function trackLeadStart(formName: string): void {
-  fbq()?.('trackCustom', 'LeadFormStart', { content_name: formName })
-  gtag()?.('event', 'form_start', { form_name: formName })
+  fbq('trackCustom', 'LeadFormStart', { content_name: formName })
+  gtag('event', 'form_start', { form_name: formName })
 }
 
 /** A click on a phone number. For a service business these are real leads. */
 export function trackCall(location: string): void {
-  fbq()?.('track', 'Contact', { content_name: location })
-  gtag()?.('event', 'click_to_call', { location })
+  fbq('track', 'Contact', { content_name: location })
+  gtag('event', 'click_to_call', { location })
 }

@@ -55,3 +55,5 @@ Thumbs.db
 
 # Local dev form submissions (fallback when SHEETS_WEBHOOK unset)
 /data/
+
+.env*

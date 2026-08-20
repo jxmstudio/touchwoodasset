@@ -101,26 +101,6 @@ export async function submitInspectionForm(formData: {
 }
 
 /**
- * Submit a free property performance review request from the /property-review
- * funnel page. Rows land in the same sheet under type "property-review".
- */
-export async function submitPropertyReviewForm(formData: {
-  name: string
-  email: string
-  phone: string
-  suburb: string
-  portfolioSize: string
-  currentSituation: string
-  message?: string
-}) {
-  return submitToSheets({
-    type: 'property-review',
-    timestamp: new Date().toISOString(),
-    ...formData,
-  })
-}
-
-/**
  * Submit valuation form data specifically
  * @param formData - Valuation form data
  */

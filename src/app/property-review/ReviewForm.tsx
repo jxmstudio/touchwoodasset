@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -24,7 +24,7 @@ import {
 } from '@/components/ui/select'
 import { toast } from 'sonner'
 import { Loader2, ShieldCheck } from 'lucide-react'
-import { submitPropertyReviewForm } from '@/lib/sheets-webhook'
+import { submitToJxmForms } from '@/lib/jxm-forms'
 import { attributionSummary, trackLeadStart } from '@/lib/tracking'
 
 // Deliberately short: every extra field on a cold-traffic funnel costs leads.
@@ -55,6 +55,9 @@ export function ReviewForm() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [startedTracked, setStartedTracked] = useState(false)
+  // Honeypot: hidden from humans, bots auto-fill it. Its value is sent as
+  // `_gotcha` and JXM Forms drops any submission where it's non-empty.
+  const honeypotRef = useRef<HTMLInputElement>(null)
 
   // Fire once, when the visitor first touches the form. The ratio of starts to
   // completions is what tells you whether the form itself is the problem.
@@ -79,16 +82,18 @@ export function ReviewForm() {
   const onSubmit = async (data: ReviewFormData) => {
     setIsSubmitting(true)
     try {
-      const result = await submitPropertyReviewForm({
+      const result = await submitToJxmForms({
+        _form: 'property-review',
         name: data.name,
         email: data.email,
         phone: data.phone,
         suburb: data.suburb,
         portfolioSize: data.portfolioSize,
         currentSituation: SITUATION_LABELS[data.currentSituation],
-        // Carries utm_source / fbclid etc. into the sheet so each lead can be
-        // traced back to the ad or campaign that produced it.
+        // Carries utm_source / fbclid etc. into the lead record so each lead
+        // can be traced back to the ad or campaign that produced it.
         message: `Free property performance review requested via /property-review. Source: ${attributionSummary()}`,
+        _gotcha: honeypotRef.current?.value ?? '',
       })
 
       if (!result.success) {
@@ -128,6 +133,15 @@ export function ReviewForm() {
           onFocusCapture={handleFirstInteraction}
           className="mt-6 space-y-4"
         >
+          <input
+            ref={honeypotRef}
+            type="text"
+            name="_gotcha"
+            style={{ display: 'none' }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <FormField
             control={form.control}
             name="name"

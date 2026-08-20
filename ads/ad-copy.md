@@ -77,6 +77,27 @@ site from ads 1–3, not as cold traffic.
 - **CTA button:** Learn more
 - **Landing page:** `/` or `/about`
 
+## 5 — `05-switch-500-hook.png` · Landlord acquisition (hook variant)
+**Angle:** the "$500 to switch" hook, stated verbatim. Typographic ink-navy hero —
+no property photo (same availability reasoning as ad 1). Built with
+`node ads/build-switch-ads.mjs`.
+
+- **Primary text:** Own an investment property in Melbourne? Get $500 to switch property managers. Transfer your management to Touchwood, we credit you $500 and handle the entire handover — you don't lift a finger. Plus $100 for every storage unit or car park you bring across. Free rental appraisal, no obligation.
+- **Headline:** Get $500 to switch property managers
+- **Description:** Free appraisal · Melbourne & VIC
+- **CTA button:** Get quote
+- **Landing page:** `/property-review`
+
+## 6 — `06-switch-500-compare.png` · Landlord acquisition ($0 vs $500 comparison)
+**Angle:** the do-nothing comparison — staying pays $0, switching pays $500.
+Typographic red hero, no property photo. Built with `node ads/build-switch-ads.mjs`.
+
+- **Primary text:** Staying with your current property manager pays you $0. Switching to Touchwood pays you $500 — same property, same tenants, and we handle the entire handover. Plus $100 for every storage unit or car park you bring across. Free rental appraisal, no obligation.
+- **Headline:** The easiest $500 you'll make this year
+- **Description:** $500 credit when you switch · Terms apply
+- **CTA button:** Get quote
+- **Landing page:** `/property-review`
+
 ---
 
 ## Before you publish

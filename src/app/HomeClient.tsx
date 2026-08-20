@@ -44,7 +44,7 @@ const testimonials = [
   {
     id: '3',
     quote:
-      'Outstanding property management services. They take care of everything so we don&apos;t have to worry.',
+      'Outstanding property management services. They take care of everything so we don’t have to worry.',
     author: 'Lisa Wong',
     role: 'Property Owner',
     rating: 5,
