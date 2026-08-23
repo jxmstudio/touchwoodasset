@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ReviewForm } from './ReviewForm'
 import { PastWorkCarousel, type PastWorkItem } from './PastWorkCarousel'
+import { TrustStats } from './TrustStats'
 import { CallLink } from '@/components/analytics/CallLink'
 import { SITE_NAME, CONTACT, absoluteUrl } from '@/lib/site'
 import {
@@ -187,14 +188,6 @@ const steps = [
   },
 ]
 
-// Trust bar. All three are Touchwood's established claims, used sitewide
-// and in the live ad creatives.
-const trustStats: Array<[string, string]> = [
-  ['220+', 'Properties under management'],
-  ['260+', 'Owners served'],
-  ['25+', 'Years combined experience'],
-]
-
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -337,17 +330,8 @@ export default function PropertyReviewPage() {
                   Get my free appraisal
                 </a>
 
-                {/* Trust bar */}
-                <dl className="mt-8 grid grid-cols-3 gap-4 border-y border-gray-200 py-5">
-                  {trustStats.map(([value, label]) => (
-                    <div key={label} className="flex flex-col-reverse">
-                      <dt className="text-xs text-gray-600 sm:text-sm">{label}</dt>
-                      <dd className="text-xl font-bold text-gray-900 sm:text-3xl">
-                        {value}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
+                {/* Trust bar — counts up when scrolled into view */}
+                <TrustStats />
               </div>
 
               {/* scroll margin clears the sticky offer strip when jumping to the form
