@@ -41,6 +41,10 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
+    q: 'How does the $500 switch offer work?',
+    a: 'When you transfer the management of an investment property to Touchwood, you receive a $500 Visa gift card or cashback, plus $100 for each car park or storage unit you bring across. We handle the entire handover with your current agency — you don’t lift a finger. It’s a limited-time offer and terms apply; we’ll run through the details on the call.',
+  },
+  {
     q: 'How much does the appraisal cost?',
     a: 'Nothing. The appraisal is free and there is no obligation to switch agencies. We do it because a meaningful share of owners who see the numbers choose to move their management to us — but plenty do not, and that is fine.',
   },
@@ -268,6 +272,17 @@ export default function PropertyReviewPage() {
       />
 
       <div className="min-h-screen bg-white pb-24 lg:pb-0">
+        {/* Offer strip — the "$500 to switch" ads land here, so the page's
+            first pixels must repeat the promise the ad made. Wording matches
+            the established offer copy on /contact and OwnerPromo. */}
+        <div className="bg-primary px-4 py-2.5 text-center">
+          <p className="text-sm font-semibold text-primary-foreground">
+            Switching agencies? Get a $500 Visa gift card or cashback when you
+            transfer your management to Touchwood.
+            <span className="font-normal opacity-80"> *Terms apply</span>
+          </p>
+        </div>
+
         {/* Minimal funnel header — logo (deliberately NOT a link: no exit
             ramps off a paid-traffic funnel) and click-to-call only. */}
         <header className="border-b border-gray-200">
