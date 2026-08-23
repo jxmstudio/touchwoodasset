@@ -8,11 +8,15 @@ import { usePathname } from 'next/navigation'
  */
 const FUNNEL_ROUTES = ['/property-review']
 
-export function HideOnFunnel({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-  const isFunnel = FUNNEL_ROUTES.some(
+export function isFunnelRoute(pathname: string | null): boolean {
+  return FUNNEL_ROUTES.some(
     (route) => pathname === route || pathname?.startsWith(`${route}/`)
   )
+}
+
+export function HideOnFunnel({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  const isFunnel = isFunnelRoute(pathname)
 
   if (isFunnel) return null
   return <>{children}</>

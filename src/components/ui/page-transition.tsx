@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
+import { isFunnelRoute } from '@/components/layout/HideOnFunnel'
 
 interface PageTransitionProps {
   children: React.ReactNode
@@ -11,12 +12,19 @@ export function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname()
   const shouldReduceMotion = useReducedMotion()
 
-  if (shouldReduceMotion) {
+  // Paid-traffic funnel pages skip the animation wrapper entirely: the
+  // motion div re-styles itself at hydration, which repaints the hero and
+  // pushes LCP out to whenever the JS bundle finishes on a 4G phone.
+  if (shouldReduceMotion || isFunnelRoute(pathname)) {
     return <>{children}</>
   }
 
   return (
-    <AnimatePresence mode="wait">
+    // initial={false}: without it the server-rendered HTML carries
+    // opacity:0 and the entire page stays invisible until the JS bundle
+    // hydrates — ~4s of blank page on 4G mobile, fatal for ad traffic.
+    // First paint renders visible; client-side navigations still animate.
+    <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={pathname}
         initial={{ opacity: 0, y: 20 }}

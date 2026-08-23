@@ -24,7 +24,6 @@ export function ThankYouTracking() {
     trackLead({
       formName: 'property_review',
       suburb: searchParams.get('suburb') ?? undefined,
-      portfolioSize: searchParams.get('size') ?? undefined,
     })
   }, [searchParams])
 

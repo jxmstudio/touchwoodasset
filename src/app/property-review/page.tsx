@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { FunnelVideo } from './FunnelVideo'
 import { ReviewForm } from './ReviewForm'
 import { PastWorkCarousel, type PastWorkItem } from './PastWorkCarousel'
 import { CallLink } from '@/components/analytics/CallLink'
@@ -13,25 +12,28 @@ import {
   ClipboardList,
   Phone,
   Star,
+  BadgeDollarSign,
+  MessageCircle,
+  MapPin,
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Free Investment Property Review — Melbourne Landlords',
+  title: 'Free Rental Appraisal — Melbourne Investment Property',
   description:
-    'When was the last time anyone reviewed how your Melbourne investment property is actually performing? Get a free 2-minute rent, fee and vacancy review from Touchwood Asset Management. No obligation to switch agencies.',
+    'Get a free rental appraisal for your Melbourne investment property. Rent benchmark, fee audit and vacancy check from Touchwood Asset Management — 2-minute call, no obligation to switch.',
   keywords: [
+    'free rental appraisal Melbourne',
+    'investment property appraisal',
     'free property review Melbourne',
-    'investment property performance review',
-    'rental appraisal Melbourne',
     'property management review',
     'am I charging enough rent Melbourne',
     'switch property manager Melbourne',
   ],
   alternates: { canonical: '/property-review' },
   openGraph: {
-    title: `Free Investment Property Review | ${SITE_NAME}`,
+    title: `Free Rental Appraisal — Melbourne Investment Property | ${SITE_NAME}`,
     description:
-      'Get a free 2-minute review of how your Melbourne investment property is performing — rent benchmark, fee audit and vacancy check.',
+      'Get a free rental appraisal for your Melbourne investment property — rent benchmark, fee audit and vacancy check. No obligation.',
     url: '/property-review',
     type: 'website',
   },
@@ -39,19 +41,19 @@ export const metadata: Metadata = {
 
 const faqs = [
   {
-    q: 'How much does the property review cost?',
-    a: 'Nothing. The review is free and there is no obligation to switch agencies. We do it because a meaningful share of owners who see the numbers choose to move their management to us — but plenty do not, and that is fine.',
+    q: 'How much does the appraisal cost?',
+    a: 'Nothing. The appraisal is free and there is no obligation to switch agencies. We do it because a meaningful share of owners who see the numbers choose to move their management to us — but plenty do not, and that is fine.',
   },
   {
     q: 'Do I have to leave my current property manager?',
-    a: 'No. Many owners use the review purely as a second opinion, then take the findings back to their existing agency. You keep the report either way.',
+    a: 'No. Many owners use the appraisal purely as a second opinion, then take the findings back to their existing agency. You keep the report either way.',
   },
   {
-    q: 'How long does the review take?',
+    q: 'How long does it take?',
     a: 'The initial call takes about two minutes. If you want the full written review, we send it within two business days once we have the property address and current lease details.',
   },
   {
-    q: 'What does the review actually cover?',
+    q: 'What does the appraisal actually cover?',
     a: 'Four things: what your property should be renting for against comparable Melbourne listings, what you are paying in management and hidden fees, how your vacancy and arrears history compares to the market, and a short list of specific actions to lift your net return.',
   },
   {
@@ -80,6 +82,26 @@ const deliverables = [
     icon: ClipboardList,
     title: 'A short action list',
     body: 'Three to five specific, costed moves to lift your net return — yours to keep whether you switch or not.',
+  },
+]
+
+// [COPY REVIEW NEEDED] — three "why switch" benefits. The claims below are
+// drafted from existing site copy; confirm each one is true before launch.
+const benefits = [
+  {
+    icon: BadgeDollarSign,
+    title: 'Fair, transparent fees',
+    body: 'One management fee, no hidden add-on charges. We show you exactly what you pay and what the market charges before you commit.',
+  },
+  {
+    icon: MessageCircle,
+    title: 'One point of contact, 24/7',
+    body: 'You deal with one person who knows your property — not a call centre. Urgent issues get answered around the clock.',
+  },
+  {
+    icon: MapPin,
+    title: 'Melbourne locals, 220+ assets',
+    body: 'We manage apartments, car parks and storage across inner Melbourne, so we see real leasing outcomes weekly — not portal asking prices.',
   },
 ]
 
@@ -147,7 +169,7 @@ const steps = [
   {
     n: '1',
     title: 'Drop your details',
-    body: 'Thirty seconds. Name, number, email and the suburb your property is in.',
+    body: 'Fifteen seconds. Name, mobile and the suburb your property is in.',
   },
   {
     n: '2',
@@ -156,9 +178,19 @@ const steps = [
   },
   {
     n: '3',
-    title: 'You get the review',
+    title: 'You get the appraisal',
     body: 'A written summary with your rent benchmark, fee comparison and action list within two business days.',
   },
+]
+
+// Trust bar. 220+ assets and 25+ years are Touchwood's established claims
+// (used sitewide and in the live ad creatives). The Google rating is a
+// placeholder — [PLACEHOLDER: supply real rating + review count] — and the
+// star is hidden until it is filled in.
+const trustStats: Array<[string, string]> = [
+  ['220+', 'Properties under management'],
+  ['25+', 'Years combined experience'],
+  ['[X.X]★', 'Google rating'],
 ]
 
 const jsonLd = {
@@ -171,7 +203,7 @@ const jsonLd = {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Free Property Review',
+          name: 'Free Rental Appraisal',
           item: absoluteUrl('/property-review'),
         },
       ],
@@ -190,8 +222,8 @@ const jsonLd = {
     {
       '@type': 'Service',
       '@id': absoluteUrl('/property-review#service'),
-      name: 'Free Investment Property Performance Review',
-      serviceType: 'Property management review',
+      name: 'Free Rental Appraisal for Melbourne Investment Property',
+      serviceType: 'Rental appraisal and property management review',
       provider: { '@id': absoluteUrl('/#organization') },
       areaServed: { '@type': 'City', name: 'Melbourne, VIC, Australia' },
       audience: { '@type': 'Audience', audienceType: 'Residential property investors' },
@@ -202,17 +234,6 @@ const jsonLd = {
         availability: 'https://schema.org/InStock',
         url: absoluteUrl('/property-review'),
       },
-    },
-    {
-      '@type': 'VideoObject',
-      name: 'Is your Melbourne investment property actually performing?',
-      description:
-        'A look inside a managed Melbourne investment apartment — the kind of property covered by the free rent, fee and vacancy review.',
-      thumbnailUrl: absoluteUrl('/videos/property-review-poster.jpg'),
-      contentUrl: absoluteUrl('/videos/property-review.mp4'),
-      uploadDate: '2026-08-13',
-      duration: 'PT20S',
-      publisher: { '@id': absoluteUrl('/#organization') },
     },
   ],
 }
@@ -249,92 +270,85 @@ export default function PropertyReviewPage() {
       />
 
       <div className="min-h-screen bg-white pb-24 lg:pb-0">
-        {/* Minimal funnel header — logo and phone only, no nav links out */}
+        {/* Minimal funnel header — logo (deliberately NOT a link: no exit
+            ramps off a paid-traffic funnel) and click-to-call only. */}
         <header className="border-b border-gray-200">
-          <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-            <Link href="/" aria-label={`${SITE_NAME} home`}>
-              <Image
-                src="/logo-touchwood.png"
-                alt={SITE_NAME}
-                width={180}
-                height={73}
-                priority
-                className="h-9 w-auto sm:h-11"
-              />
-            </Link>
+          <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
+            <Image
+              src="/logo-touchwood.png"
+              alt={SITE_NAME}
+              width={180}
+              height={73}
+              priority
+              className="h-8 w-auto sm:h-11"
+            />
             <CallLink
               location="funnel_header"
-              className="flex items-center gap-2 text-sm font-semibold text-gray-900 hover:text-primary sm:text-base"
+              className="flex min-h-12 items-center gap-2 text-sm font-semibold text-gray-900 hover:text-primary sm:text-base"
             >
               <Phone className="h-4 w-4" />
               <span className="hidden sm:inline">{CONTACT.phoneDisplay}</span>
-              <span className="sm:hidden">Call</span>
+              <span className="sm:hidden">Call us</span>
             </CallLink>
           </div>
         </header>
 
-        {/* Hero */}
+        {/* Hero — offer, one-line subhead, then the form itself. On mobile the
+            headline + CTA fill the first screen and the form is one short
+            scroll (or one tap on the CTA) away. No hero image/video: text
+            paints instantly, which is the whole LCP budget on 4G. */}
         <section className="border-b border-gray-100 bg-gradient-to-b from-gray-50 to-white">
-          <div className="container mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-20">
-            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="container mx-auto max-w-6xl px-4 pb-12 pt-8 sm:px-6 lg:py-20">
+            <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-16">
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
-                  For Melbourne property owners
+                  Free · No obligation
                 </span>
-                <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight text-gray-900 sm:text-5xl">
-                  When was the last time anyone actually reviewed how your
-                  investment property is performing?
+                {/* [COPY REVIEW NEEDED] — headline wording per brief, confirm final */}
+                <h1 className="mt-4 text-[2rem] font-bold leading-[1.12] tracking-tight text-gray-900 sm:text-5xl">
+                  Get a free rental appraisal for your Melbourne investment
+                  property
                 </h1>
-                <p className="mt-5 text-lg leading-relaxed text-gray-600">
-                  If the answer is &ldquo;never&rdquo; or &ldquo;I can&apos;t
-                  remember&rdquo;, it&apos;s costing you. We help owners across
-                  Melbourne squeeze more out of the same property — without
-                  lifting a finger.
+                <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                  Find out what your property should really be renting for —
+                  and what you&apos;re overpaying in fees. One 2-minute call.
                 </p>
 
-                <dl className="mt-8 grid grid-cols-3 gap-4 border-y border-gray-200 py-6">
-                  {[
-                    ['220+', 'Assets managed'],
-                    ['260+', 'Owners served'],
-                    ['25+', 'Years experience'],
-                  ].map(([value, label]) => (
+                {/* Full-width jump CTA — the first-screen action on mobile.
+                    Hidden on desktop, where the form sits right alongside. */}
+                <a
+                  href="#review-form"
+                  className="mt-6 flex w-full items-center justify-center rounded-lg bg-primary px-6 py-4 text-base font-semibold text-primary-foreground shadow-lg transition hover:opacity-90 lg:hidden"
+                >
+                  Get my free appraisal
+                </a>
+
+                {/* Trust bar */}
+                <dl className="mt-8 grid grid-cols-3 gap-4 border-y border-gray-200 py-5">
+                  {trustStats.map(([value, label]) => (
                     <div key={label} className="flex flex-col-reverse">
-                      <dt className="text-xs text-gray-600 sm:text-sm">
-                        {label}
-                      </dt>
-                      <dd className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                      <dt className="text-xs text-gray-600 sm:text-sm">{label}</dt>
+                      <dd className="text-xl font-bold text-gray-900 sm:text-3xl">
                         {value}
                       </dd>
                     </div>
                   ))}
                 </dl>
-
-                <div className="mt-8 hidden lg:block">
-                  <a
-                    href="#review-form"
-                    className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg transition hover:opacity-90"
-                  >
-                    Get my free review
-                  </a>
-                  <p className="mt-3 text-sm text-gray-500">
-                    Free · 2-minute chat · No obligation to switch
-                  </p>
-                </div>
               </div>
 
-              <div>
-                <FunnelVideo />
+              <div id="review-form" className="scroll-mt-6">
+                <ReviewForm />
               </div>
             </div>
           </div>
         </section>
 
         {/* What you get */}
-        <section className="py-16 lg:py-24">
+        <section className="py-14 lg:py-24">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                What&apos;s in the review
+                What&apos;s in your free appraisal
               </h2>
               <p className="mt-4 text-lg text-gray-600">
                 Four numbers most owners have never been shown about their own
@@ -361,8 +375,45 @@ export default function PropertyReviewPage() {
           </div>
         </section>
 
+        {/* Why switch — 3 short benefit blocks */}
+        <section className="border-t border-gray-100 bg-gray-50 py-14 lg:py-24">
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Why Melbourne owners switch to Touchwood
+              </h2>
+            </div>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {benefits.map((b) => (
+                <div
+                  key={b.title}
+                  className="rounded-2xl border border-gray-200 bg-white p-6"
+                >
+                  <b.icon className="h-8 w-8 text-primary" />
+                  <h3 className="mt-4 text-lg font-semibold text-gray-900">
+                    {b.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-600">
+                    {b.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <a
+                href="#review-form"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg transition hover:opacity-90"
+              >
+                Get my free appraisal
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Past work — real sold / leased outcomes, no links out of the funnel */}
-        <section className="border-t border-gray-100 bg-gray-50 py-16 lg:py-24">
+        <section className="border-t border-gray-100 py-14 lg:py-24">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -377,28 +428,16 @@ export default function PropertyReviewPage() {
             <div className="mt-12">
               <PastWorkCarousel items={pastWork} />
             </div>
-
-            <div className="mt-10 text-center">
-              <a
-                href="#review-form"
-                className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg transition hover:opacity-90"
-              >
-                See what your property could do
-              </a>
-            </div>
           </div>
         </section>
 
         {/* Social proof */}
-        <section className="border-t border-gray-100 py-16 lg:py-24">
+        <section className="border-t border-gray-100 bg-gray-50 py-14 lg:py-24">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 What owners say about us
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
-                260+ Melbourne owners trust Touchwood with their properties.
-              </p>
               <p className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-gray-500">
                 <GoogleLogo className="h-4 w-4" />
                 Reviews from Google
@@ -412,10 +451,7 @@ export default function PropertyReviewPage() {
                   className="flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
                 >
                   <div className="flex items-center justify-between">
-                    <div
-                      className="flex gap-1"
-                      aria-label="Rated 5 out of 5 stars"
-                    >
+                    <div className="flex gap-1" aria-label="Rated 5 out of 5 stars">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star
                           key={i}
@@ -441,8 +477,9 @@ export default function PropertyReviewPage() {
           </div>
         </section>
 
-        {/* How it works + form */}
-        <section id="review-form" className="scroll-mt-8 bg-gray-50 py-16 lg:py-24">
+        {/* How it works + repeated form, so a visitor who reads to the bottom
+            never has to scroll back up to convert. */}
+        <section className="border-t border-gray-100 py-14 lg:py-24">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
               <div>
@@ -466,26 +503,6 @@ export default function PropertyReviewPage() {
                     </li>
                   ))}
                 </ol>
-
-                {/* Factual credibility block — complements the testimonial
-                    section above with verifiable numbers. */}
-                <div className="mt-10 rounded-2xl border border-gray-200 bg-white p-6">
-                  <h3 className="text-base font-semibold text-gray-900">
-                    Why owners let us look
-                  </h3>
-                  <ul className="mt-4 space-y-3 text-sm text-gray-600">
-                    {[
-                      'Touchwood manages 220+ assets across Melbourne — we see real leasing outcomes weekly, not portal asking prices.',
-                      'We manage residential, commercial, car parks and storage, so the review covers every asset class you hold.',
-                      'The review is yours to keep and act on, with or without us.',
-                    ].map((point) => (
-                      <li key={point} className="flex gap-3">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                        <span className="leading-relaxed">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
 
               <div className="lg:sticky lg:top-8 lg:self-start">
@@ -496,7 +513,7 @@ export default function PropertyReviewPage() {
         </section>
 
         {/* FAQ */}
-        <section className="py-16 lg:py-24">
+        <section className="border-t border-gray-100 py-14 lg:py-24">
           <div className="container mx-auto max-w-3xl px-4 sm:px-6">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Questions owners ask
@@ -519,15 +536,16 @@ export default function PropertyReviewPage() {
               </p>
               <a
                 href="#review-form"
-                className="mt-6 inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-base font-semibold text-gray-900 transition hover:bg-gray-100"
+                className="mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-8 py-4 text-base font-semibold text-gray-900 transition hover:bg-gray-100"
               >
-                Get my free review
+                Get my free appraisal
               </a>
             </div>
           </div>
         </section>
 
-        {/* Minimal funnel footer */}
+        {/* Minimal funnel footer. The Privacy Policy link stays: a lead form
+            collecting personal details needs a reachable privacy policy. */}
         <footer className="border-t border-gray-200 py-8">
           <div className="container mx-auto max-w-6xl px-4 text-center text-sm text-gray-500 sm:px-6">
             <p>
@@ -551,7 +569,7 @@ export default function PropertyReviewPage() {
           href="#review-form"
           className="flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-lg"
         >
-          Get my free review
+          Get my free appraisal
         </a>
       </div>
     </>

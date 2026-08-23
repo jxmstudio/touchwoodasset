@@ -15,62 +15,38 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { toast } from 'sonner'
 import { Loader2, ShieldCheck } from 'lucide-react'
 import { submitToJxmForms } from '@/lib/jxm-forms'
-
-// Every field on this form is mandatory; the asterisk tells visitors so
-// before they hit submit.
-function RequiredMark() {
-  return (
-    <span aria-hidden="true" className="text-red-500">
-      *
-    </span>
-  )
-}
 import {
   attributionSummary,
   setAdvancedMatching,
   trackLeadStart,
 } from '@/lib/tracking'
 
-// Deliberately short: every extra field on a cold-traffic funnel costs leads.
-// Email and phone are both mandatory — a lead we can't call or email is not a lead.
+// Exactly three fields, on purpose. This form takes cold Meta ad traffic on
+// mobile; every extra field or dropdown measurably costs leads. Email,
+// portfolio size and current situation were cut — the 2-minute call collects
+// all of that anyway.
 const schema = z.object({
   name: z.string().min(2, 'Please enter your name'),
-  email: z
-    .string()
-    .min(1, 'Email is required')
-    .email('Please enter a valid email address'),
   phone: z
     .string()
-    .min(1, 'Phone number is required')
-    .regex(/^[0-9+()\-\s]{8,}$/, 'Please enter a valid phone number'),
+    .min(1, 'Mobile number is required')
+    .refine((value) => {
+      // Lenient AU mobile check: any formatting (spaces, dashes, parens, +61)
+      // is fine — only the digits have to look like an Australian mobile.
+      const digits = value.replace(/\D/g, '')
+      return (
+        /^04\d{8}$/.test(digits) || // 0413 889 388
+        /^614\d{8}$/.test(digits) || // +61 413 889 388
+        /^4\d{8}$/.test(digits) // 413 889 388
+      )
+    }, 'Please enter an Australian mobile, e.g. 04xx xxx xxx'),
   suburb: z.string().min(2, 'Please enter the property suburb'),
-  portfolioSize: z.enum(['1', '2-3', '4-9', '10+']),
-  currentSituation: z.enum([
-    'AGENCY_MANAGED',
-    'SELF_MANAGED',
-    'VACANT',
-    'BUYING_SOON',
-  ]),
 })
 
 type ReviewFormData = z.infer<typeof schema>
-
-const SITUATION_LABELS: Record<ReviewFormData['currentSituation'], string> = {
-  AGENCY_MANAGED: 'Managed by another agency',
-  SELF_MANAGED: 'I manage it myself',
-  VACANT: 'Currently vacant',
-  BUYING_SOON: 'Buying / settling soon',
-}
 
 export function ReviewForm() {
   const router = useRouter()
@@ -90,14 +66,7 @@ export function ReviewForm() {
 
   const form = useForm<ReviewFormData>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      suburb: '',
-      portfolioSize: '1',
-      currentSituation: 'AGENCY_MANAGED',
-    },
+    defaultValues: { name: '', phone: '', suburb: '' },
   })
 
   const onSubmit = async (data: ReviewFormData) => {
@@ -106,14 +75,11 @@ export function ReviewForm() {
       const result = await submitToJxmForms({
         _form: 'property-review',
         name: data.name,
-        email: data.email,
         phone: data.phone,
         suburb: data.suburb,
-        portfolioSize: data.portfolioSize,
-        currentSituation: SITUATION_LABELS[data.currentSituation],
         // Carries utm_source / fbclid etc. into the lead record so each lead
         // can be traced back to the ad or campaign that produced it.
-        message: `Free property performance review requested via /property-review. Source: ${attributionSummary()}`,
+        message: `Free rental appraisal requested via /property-review. Source: ${attributionSummary()}`,
         _gotcha: honeypotRef.current?.value ?? '',
       })
 
@@ -121,18 +87,13 @@ export function ReviewForm() {
         throw new Error(result.error || 'Submission failed')
       }
 
-      // The conversion event fires on the thank-you page, not here, so it only
-      // counts submissions that genuinely completed. Set the match data now,
-      // while we still have it — the thank-you page doesn't.
-      setAdvancedMatching({
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-      })
-      const params = new URLSearchParams({
-        suburb: data.suburb,
-        size: data.portfolioSize,
-      })
+      // The Meta `Lead` event fires on the thank-you page, not here, so it
+      // only counts submissions that genuinely completed. (Verify with Meta
+      // Pixel Helper or Events Manager → Test Events.) Set the advanced
+      // matching data now, while we still have it — the thank-you page
+      // doesn't see the form values.
+      setAdvancedMatching({ name: data.name, phone: data.phone })
+      const params = new URLSearchParams({ suburb: data.suburb })
       router.push(`/property-review/thank-you?${params.toString()}`)
     } catch (error) {
       console.error('Property review submission failed:', error)
@@ -147,11 +108,11 @@ export function ReviewForm() {
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-xl sm:p-8">
       <h2 className="text-2xl font-bold text-gray-900">
-        Get your free property review
+        Get your free rental appraisal
       </h2>
       <p className="mt-2 text-sm text-gray-600">
-        Takes 30 seconds. We&apos;ll call you for a 2-minute chat — no
-        obligation to switch. All fields are required.
+        Takes 15 seconds. We&apos;ll call you back within one business day — no
+        obligation to switch.
       </p>
 
       <Form {...form}>
@@ -174,14 +135,14 @@ export function ReviewForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  Your name <RequiredMark />
-                </FormLabel>
+                <FormLabel>Your name</FormLabel>
                 <FormControl>
+                  {/* h-12 = 48px minimum tap target for mobile */}
                   <Input
                     placeholder="Jane Smith"
                     autoComplete="name"
                     aria-required="true"
+                    className="h-12 text-base"
                     {...field}
                   />
                 </FormControl>
@@ -190,65 +151,40 @@ export function ReviewForm() {
             )}
           />
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Email <RequiredMark />
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      inputMode="email"
-                      placeholder="jane@example.com"
-                      autoComplete="email"
-                      aria-required="true"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Phone <RequiredMark />
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      type="tel"
-                      inputMode="tel"
-                      placeholder="0413 889 388"
-                      autoComplete="tel"
-                      aria-required="true"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Mobile</FormLabel>
+                <FormControl>
+                  <Input
+                    type="tel"
+                    inputMode="tel"
+                    placeholder="04xx xxx xxx"
+                    autoComplete="tel"
+                    aria-required="true"
+                    className="h-12 text-base"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <FormField
             control={form.control}
             name="suburb"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  Property suburb <RequiredMark />
-                </FormLabel>
+                <FormLabel>Property suburb</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="South Melbourne"
+                    placeholder="e.g. South Melbourne"
+                    autoComplete="address-level2"
                     aria-required="true"
+                    className="h-12 text-base"
                     {...field}
                   />
                 </FormControl>
@@ -257,65 +193,11 @@ export function ReviewForm() {
             )}
           />
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <FormField
-              control={form.control}
-              name="portfolioSize"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Properties owned</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="1">1 property</SelectItem>
-                      <SelectItem value="2-3">2–3 properties</SelectItem>
-                      <SelectItem value="4-9">4–9 properties</SelectItem>
-                      <SelectItem value="10+">10+ properties</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="currentSituation"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Right now it&apos;s…</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {(
-                        Object.keys(SITUATION_LABELS) as Array<
-                          keyof typeof SITUATION_LABELS
-                        >
-                      ).map((key) => (
-                        <SelectItem key={key} value={key}>
-                          {SITUATION_LABELS[key]}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-
           <Button
             type="submit"
             size="lg"
             disabled={isSubmitting}
-            className="w-full text-base font-semibold"
+            className="h-14 w-full text-base font-semibold"
           >
             {isSubmitting ? (
               <>
@@ -323,7 +205,7 @@ export function ReviewForm() {
                 Sending…
               </>
             ) : (
-              'Get my free review'
+              'Get my free appraisal'
             )}
           </Button>
 
