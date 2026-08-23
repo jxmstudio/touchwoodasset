@@ -183,14 +183,12 @@ const steps = [
   },
 ]
 
-// Trust bar. 220+ assets and 25+ years are Touchwood's established claims
-// (used sitewide and in the live ad creatives). The Google rating is a
-// placeholder — [PLACEHOLDER: supply real rating + review count] — and the
-// star is hidden until it is filled in.
+// Trust bar. All three are Touchwood's established claims, used sitewide
+// and in the live ad creatives.
 const trustStats: Array<[string, string]> = [
   ['220+', 'Properties under management'],
+  ['260+', 'Owners served'],
   ['25+', 'Years combined experience'],
-  ['[X.X]★', 'Google rating'],
 ]
 
 const jsonLd = {
