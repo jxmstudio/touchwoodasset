@@ -274,8 +274,9 @@ export default function PropertyReviewPage() {
       <div className="min-h-screen bg-white pb-24 lg:pb-0">
         {/* Offer strip — the "$500 to switch" ads land here, so the page's
             first pixels must repeat the promise the ad made. Wording matches
-            the established offer copy on /contact and OwnerPromo. */}
-        <div className="bg-primary px-4 py-2.5 text-center">
+            the established offer copy on /contact and OwnerPromo. Sticky so
+            the offer stays visible the whole way down the page. */}
+        <div className="sticky top-0 z-40 bg-primary px-4 py-2.5 text-center">
           <p className="text-sm font-semibold text-primary-foreground">
             Switching agencies? Get a $500 Visa gift card or cashback when you
             transfer your management to Touchwood.
@@ -349,7 +350,9 @@ export default function PropertyReviewPage() {
                 </dl>
               </div>
 
-              <div id="review-form" className="scroll-mt-6">
+              {/* scroll margin clears the sticky offer strip when jumping to the form
+                  (it wraps to two lines on mobile, one on desktop) */}
+              <div id="review-form" className="scroll-mt-24 lg:scroll-mt-16">
                 <ReviewForm />
               </div>
             </div>
@@ -518,7 +521,8 @@ export default function PropertyReviewPage() {
                 </ol>
               </div>
 
-              <div className="lg:sticky lg:top-8 lg:self-start">
+              {/* top-14 clears the sticky offer strip (~40px on desktop) */}
+              <div className="lg:sticky lg:top-14 lg:self-start">
                 <ReviewForm />
               </div>
             </div>
