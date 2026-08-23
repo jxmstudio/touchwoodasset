@@ -24,6 +24,21 @@ import {
   trackLeadStart,
 } from '@/lib/tracking'
 
+// The mobile number IS the lead — the notification email carries no
+// Reply-To, so a bad number means an unreachable lead. Normalise whatever
+// the visitor types (spaces, dashes, parens, +61, missing leading 0) into
+// a local 04xx xxx xxx number, or return null if it isn't a real AU mobile.
+function normaliseAuMobile(value: string): string | null {
+  let digits = value.replace(/\D/g, '')
+  if (digits.startsWith('0011')) digits = digits.slice(4) // 0011 61 4…
+  if (digits.startsWith('61')) digits = `0${digits.slice(2)}` // +61 4…
+  if (digits.length === 9 && digits.startsWith('4')) digits = `0${digits}` // 4…
+  if (!/^04\d{8}$/.test(digits)) return null
+  // Keyboard-mash junk: 0400 000 000, 0411 111 111 and friends.
+  if (/^(\d)\1{7}$/.test(digits.slice(2))) return null
+  return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`
+}
+
 // Exactly three fields, on purpose. This form takes cold Meta ad traffic on
 // mobile; every extra field or dropdown measurably costs leads. Email,
 // portfolio size and current situation were cut — the 2-minute call collects
@@ -33,16 +48,10 @@ const schema = z.object({
   phone: z
     .string()
     .min(1, 'Mobile number is required')
-    .refine((value) => {
-      // Lenient AU mobile check: any formatting (spaces, dashes, parens, +61)
-      // is fine — only the digits have to look like an Australian mobile.
-      const digits = value.replace(/\D/g, '')
-      return (
-        /^04\d{8}$/.test(digits) || // 0413 889 388
-        /^614\d{8}$/.test(digits) || // +61 413 889 388
-        /^4\d{8}$/.test(digits) // 413 889 388
-      )
-    }, 'Please enter an Australian mobile, e.g. 04xx xxx xxx'),
+    .refine(
+      (value) => normaliseAuMobile(value) !== null,
+      'Please enter a valid Australian mobile, e.g. 04xx xxx xxx'
+    ),
   suburb: z.string().min(2, 'Please enter the property suburb'),
 })
 
@@ -71,11 +80,14 @@ export function ReviewForm() {
 
   const onSubmit = async (data: ReviewFormData) => {
     setIsSubmitting(true)
+    // Schema guarantees this is non-null; send the normalised 04xx xxx xxx
+    // form so the number in the notification email is always call-ready.
+    const mobile = normaliseAuMobile(data.phone) ?? data.phone
     try {
       const result = await submitToJxmForms({
         _form: 'property-review',
         name: data.name,
-        phone: data.phone,
+        phone: mobile,
         suburb: data.suburb,
         // Carries utm_source / fbclid etc. into the lead record so each lead
         // can be traced back to the ad or campaign that produced it.
@@ -92,7 +104,7 @@ export function ReviewForm() {
       // Pixel Helper or Events Manager → Test Events.) Set the advanced
       // matching data now, while we still have it — the thank-you page
       // doesn't see the form values.
-      setAdvancedMatching({ name: data.name, phone: data.phone })
+      setAdvancedMatching({ name: data.name, phone: mobile })
       const params = new URLSearchParams({ suburb: data.suburb })
       router.push(`/property-review/thank-you?${params.toString()}`)
     } catch (error) {
