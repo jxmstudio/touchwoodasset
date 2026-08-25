@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -16,11 +15,14 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { toast } from 'sonner'
-import { Loader2, ShieldCheck } from 'lucide-react'
+import { CheckCircle2, Loader2, Phone, ShieldCheck } from 'lucide-react'
 import { submitToJxmForms } from '@/lib/jxm-forms'
+import { submitToSheets } from '@/lib/sheets-webhook'
+import { CONTACT } from '@/lib/site'
 import {
   attributionSummary,
   setAdvancedMatching,
+  trackLead,
   trackLeadStart,
 } from '@/lib/tracking'
 
@@ -58,8 +60,8 @@ const schema = z.object({
 type ReviewFormData = z.infer<typeof schema>
 
 export function ReviewForm() {
-  const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const [startedTracked, setStartedTracked] = useState(false)
   // Honeypot: hidden from humans, bots auto-fill it. Its value is sent as
   // `_gotcha` and JXM Forms drops any submission where it's non-empty.
@@ -83,30 +85,52 @@ export function ReviewForm() {
     // Schema guarantees this is non-null; send the normalised 04xx xxx xxx
     // form so the number in the notification email is always call-ready.
     const mobile = normaliseAuMobile(data.phone) ?? data.phone
+    // Carries utm_source / fbclid etc. into the lead record so each lead
+    // can be traced back to the ad or campaign that produced it.
+    const message = `Free rental appraisal requested via /property-review. Suburb: ${data.suburb}. Source: ${attributionSummary()}`
     try {
-      const result = await submitToJxmForms({
-        _form: 'property-review',
-        name: data.name,
-        phone: mobile,
-        suburb: data.suburb,
-        // Carries utm_source / fbclid etc. into the lead record so each lead
-        // can be traced back to the ad or campaign that produced it.
-        message: `Free rental appraisal requested via /property-review. Source: ${attributionSummary()}`,
-        _gotcha: honeypotRef.current?.value ?? '',
-      })
+      // JXM Forms is the lead of record (dashboard + notification email);
+      // the Google Sheet is the ops view the team actually watches. Post to
+      // both in parallel, but only JXM decides success — a sheet hiccup must
+      // never cost the lead or show the visitor an error.
+      const [result, sheetResult] = await Promise.all([
+        submitToJxmForms({
+          _form: 'property-review',
+          name: data.name,
+          phone: mobile,
+          suburb: data.suburb,
+          message,
+          _gotcha: honeypotRef.current?.value ?? '',
+        }),
+        submitToSheets({
+          type: 'property-review',
+          timestamp: new Date().toISOString(),
+          name: data.name,
+          phone: mobile,
+          message,
+        }).catch((error: unknown) => {
+          console.error('Sheets webhook post failed:', error)
+          return { success: false as const }
+        }),
+      ])
 
       if (!result.success) {
         throw new Error(result.error || 'Submission failed')
       }
+      if (!sheetResult.success) {
+        console.error('Lead saved to JXM Forms but the Google Sheet row failed')
+      }
 
-      // The Meta `Lead` event fires on the thank-you page, not here, so it
-      // only counts submissions that genuinely completed. (Verify with Meta
-      // Pixel Helper or Events Manager → Test Events.) Set the advanced
-      // matching data now, while we still have it — the thank-you page
-      // doesn't see the form values.
+      // Fire the Meta `Lead` in place, only after the backend confirmed the
+      // submission — no navigation to a thank-you page, because on a 4G phone
+      // that second page load is where conversions (and their pixel events)
+      // used to go to die. Matching data goes first so fbevents hashes it
+      // into the Lead.
       setAdvancedMatching({ name: data.name, phone: mobile })
-      const params = new URLSearchParams({ suburb: data.suburb })
-      router.push(`/property-review/thank-you?${params.toString()}`)
+      trackLead({ formName: 'property_review', suburb: data.suburb })
+      setSubmitted(true)
+      // Tells the sticky mobile CTA to retire — its job is done.
+      window.dispatchEvent(new Event('tw-lead-submitted'))
     } catch (error) {
       console.error('Property review submission failed:', error)
       toast.error(
@@ -117,12 +141,42 @@ export function ReviewForm() {
     }
   }
 
+  if (submitted) {
+    return (
+      <div
+        className="rounded-2xl border border-gray-200 bg-white p-6 shadow-xl sm:p-8"
+        role="status"
+        aria-live="polite"
+      >
+        <CheckCircle2 className="h-12 w-12 text-green-600" />
+        <h2 className="mt-4 text-2xl font-bold text-gray-900">
+          You&apos;re booked in.
+        </h2>
+        <p className="mt-2 leading-relaxed text-gray-600">
+          Eamon will call you within one business day — watch for a call from{' '}
+          {CONTACT.phoneDisplay}. The chat takes about two minutes, and your
+          written appraisal follows within two business days.
+        </p>
+        <a
+          href={`tel:${CONTACT.phone}`}
+          className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-lg bg-gray-900 px-6 py-3 text-base font-semibold text-white transition hover:bg-gray-800"
+        >
+          <Phone className="h-4 w-4" />
+          Rather not wait? Call us now
+        </a>
+      </div>
+    )
+  }
+
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-xl sm:p-8">
-      <h2 className="text-2xl font-bold text-gray-900">
+    <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-xl sm:p-8">
+      {/* Hidden on phones: the page h1 sits directly above this card there,
+          and repeating it costs ~60px of the one screen that must also fit
+          the submit button. */}
+      <h2 className="hidden text-lg font-bold text-gray-900 sm:block sm:text-2xl">
         Get your free rental appraisal
       </h2>
-      <p className="mt-2 text-sm text-gray-600">
+      <p className="mt-1 text-sm text-gray-600 sm:mt-2">
         Takes 15 seconds. We&apos;ll call you back within one business day — no
         obligation to switch.
       </p>
@@ -131,7 +185,7 @@ export function ReviewForm() {
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           onFocusCapture={handleFirstInteraction}
-          className="mt-6 space-y-4"
+          className="mt-4 space-y-3 sm:mt-6 sm:space-y-4"
         >
           <input
             ref={honeypotRef}
@@ -172,7 +226,7 @@ export function ReviewForm() {
                 <FormControl>
                   <Input
                     type="tel"
-                    inputMode="tel"
+                    inputMode="numeric"
                     placeholder="04xx xxx xxx"
                     autoComplete="tel"
                     aria-required="true"

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ReviewForm } from './ReviewForm'
 import { PastWorkCarousel, type PastWorkItem } from './PastWorkCarousel'
+import { StickyCta } from './StickyCta'
 import { TrustStats } from './TrustStats'
 import { CallLink } from '@/components/analytics/CallLink'
 import { SITE_NAME, CONTACT, absoluteUrl } from '@/lib/site'
@@ -269,8 +270,14 @@ export default function PropertyReviewPage() {
             first pixels must repeat the promise the ad made. Wording matches
             the established offer copy on /contact and OwnerPromo. Sticky so
             the offer stays visible the whole way down the page. */}
-        <div className="sticky top-0 z-40 bg-primary px-4 py-2.5 text-center">
-          <p className="text-sm font-semibold text-primary-foreground">
+        <div className="sticky top-0 z-40 bg-primary px-4 py-2 text-center sm:py-2.5">
+          {/* Phone copy is cut to hold one line — a wrapping strip steals
+              first-screen height the form needs at 390×844. */}
+          <p className="text-xs font-semibold text-primary-foreground sm:hidden">
+            Switching? Get a $500 Visa gift card or cashback.
+            <span className="font-normal opacity-80"> *T&amp;Cs</span>
+          </p>
+          <p className="hidden text-sm font-semibold text-primary-foreground sm:block">
             Switching agencies? Get a $500 Visa gift card or cashback when you
             transfer your management to Touchwood.
             <span className="font-normal opacity-80"> *Terms apply</span>
@@ -300,44 +307,54 @@ export default function PropertyReviewPage() {
           </div>
         </header>
 
-        {/* Hero — offer, one-line subhead, then the form itself. On mobile the
-            headline + CTA fill the first screen and the form is one short
-            scroll (or one tap on the CTA) away. No hero image/video: text
-            paints instantly, which is the whole LCP budget on 4G. */}
+        {/* Hero — headline straight into the form. At 390×844 the headline,
+            the $500 strip above and the whole form (three fields + submit)
+            fit the first screen with no scrolling: the visitor can act on
+            the ad's offer the moment the page paints. Badge, subhead and
+            trust stats move below the form on phones — reassurance, not
+            gatekeepers. No hero image/video: text paints instantly, which
+            is the whole LCP budget on 4G. */}
         <section className="border-b border-gray-100 bg-gradient-to-b from-gray-50 to-white">
-          <div className="container mx-auto max-w-6xl px-4 pb-12 pt-8 sm:px-6 lg:py-20">
-            <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-16">
+          <div className="container mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6 sm:pt-8 lg:py-20">
+            <div className="grid items-start gap-5 lg:grid-cols-2 lg:gap-16">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
+                <span className="hidden items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary lg:inline-flex">
                   Free · No obligation
                 </span>
                 {/* [COPY REVIEW NEEDED] — headline wording per brief, confirm final */}
-                <h1 className="mt-4 text-[2rem] font-bold leading-[1.12] tracking-tight text-gray-900 sm:text-5xl">
+                <h1 className="text-2xl font-bold leading-[1.15] tracking-tight text-gray-900 sm:text-5xl sm:leading-[1.12] lg:mt-4">
                   Get a free rental appraisal for your Melbourne investment
                   property
                 </h1>
-                <p className="mt-4 text-lg leading-relaxed text-gray-600">
+                <p className="mt-4 hidden text-lg leading-relaxed text-gray-600 lg:block">
                   Find out what your property should really be renting for —
                   and what you&apos;re overpaying in fees. One 2-minute call.
                 </p>
 
-                {/* Full-width jump CTA — the first-screen action on mobile.
-                    Hidden on desktop, where the form sits right alongside. */}
-                <a
-                  href="#review-form"
-                  className="mt-6 flex w-full items-center justify-center rounded-lg bg-primary px-6 py-4 text-base font-semibold text-primary-foreground shadow-lg transition hover:opacity-90 lg:hidden"
-                >
-                  Get my free appraisal
-                </a>
-
                 {/* Trust bar — counts up when scrolled into view */}
-                <TrustStats />
+                <div className="hidden lg:block">
+                  <TrustStats />
+                </div>
               </div>
 
-              {/* scroll margin clears the sticky offer strip when jumping to the form
-                  (it wraps to two lines on mobile, one on desktop) */}
-              <div id="review-form" className="scroll-mt-24 lg:scroll-mt-16">
+              {/* scroll margin clears the sticky offer strip when jumping to the form */}
+              <div
+                id="review-form"
+                data-review-form
+                className="scroll-mt-16 lg:scroll-mt-16"
+              >
                 <ReviewForm />
+              </div>
+
+              {/* Phone-only: the reassurance the left column shows on desktop,
+                  now after the form instead of in front of it. */}
+              <div className="lg:hidden">
+                <p className="text-base leading-relaxed text-gray-600">
+                  Find out what your property should really be renting for —
+                  and what you&apos;re overpaying in fees. One 2-minute call,
+                  free and no obligation.
+                </p>
+                <TrustStats />
               </div>
             </div>
           </div>
@@ -506,7 +523,7 @@ export default function PropertyReviewPage() {
               </div>
 
               {/* top-14 clears the sticky offer strip (~40px on desktop) */}
-              <div className="lg:sticky lg:top-14 lg:self-start">
+              <div data-review-form className="lg:sticky lg:top-14 lg:self-start">
                 <ReviewForm />
               </div>
             </div>
@@ -564,15 +581,9 @@ export default function PropertyReviewPage() {
         </footer>
       </div>
 
-      {/* Sticky mobile CTA — the funnel's main conversion path on phones */}
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-white/95 p-3 backdrop-blur lg:hidden">
-        <a
-          href="#review-form"
-          className="flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-lg"
-        >
-          Get my free appraisal
-        </a>
-      </div>
+      {/* Sticky mobile CTA — appears only once both forms are off screen,
+          and retires after a submission. */}
+      <StickyCta />
     </>
   )
 }
