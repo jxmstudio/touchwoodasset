@@ -114,5 +114,16 @@ row shows `utm_source=meta | utm_medium=paid | utm_campaign=switch-500 |
 landing_page=/switch`.
 
 `/switch` is `noindex` and deliberately excluded from `src/app/sitemap.ts`
-(static allowlist — it was never added). `/property-review` remains the
+(static allowlist — it was never added). `robots.txt` does **not** block it:
+crawlers must be able to fetch the page to see the noindex meta, and Meta's
+link crawler needs it for the ad preview. `/property-review` remains the
 indexed, canonical organic page.
+
+Hero screenshots (390×844 and 1440×900) live in `docs/screenshots/`.
+
+## After deploy (manual)
+
+1. Swap the destination URL on both active ads to the `/switch` URL above.
+2. Confirm the ad set's conversion event is the pixel `Lead` and that Events
+   Manager shows recent `Lead` activity.
+3. Give it 7 days / ~100 landing page views before judging.
