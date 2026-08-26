@@ -6,6 +6,7 @@ import { PastWorkCarousel, type PastWorkItem } from './PastWorkCarousel'
 import { StickyCta } from './StickyCta'
 import { TrustStats } from './TrustStats'
 import { CallLink } from '@/components/analytics/CallLink'
+import { ViewContentTracker } from '@/components/analytics/ViewContentTracker'
 import { SITE_NAME, CONTACT, absoluteUrl } from '@/lib/site'
 import {
   BarChart3,
@@ -264,6 +265,8 @@ export default function PropertyReviewPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
+      <ViewContentTracker contentName="property_review" />
 
       <div className="min-h-screen bg-white pb-24 lg:pb-0">
         {/* Offer strip — the "$500 to switch" ads land here, so the page's
