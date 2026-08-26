@@ -149,6 +149,25 @@ export function attributionSummary(): string {
 }
 
 /**
+ * A funnel landing page was viewed. Meta's standard `ViewContent` gives the
+ * campaign a mid-funnel signal between `PageView` and `Lead` — enough volume
+ * to sanity-check that traffic is reaching the page even while leads are rare.
+ */
+export function trackViewContent(detail: {
+  contentName: string
+  contentCategory?: string
+}): void {
+  fbq('track', 'ViewContent', {
+    content_name: detail.contentName,
+    ...(detail.contentCategory
+      ? { content_category: detail.contentCategory }
+      : {}),
+  })
+
+  gtag('event', 'view_item', { item_name: detail.contentName })
+}
+
+/**
  * A completed lead form. Fires Meta's standard `Lead` event and GA4's
  * `generate_lead` so both platforms can optimise against the same action.
  */
@@ -156,10 +175,12 @@ export function trackLead(detail: {
   formName: string
   suburb?: string
   portfolioSize?: string
+  /** Landing-page variant, e.g. 'switch-500'. Defaults to the vertical. */
+  variant?: string
 }): void {
   fbq('track', 'Lead', {
     content_name: detail.formName,
-    content_category: 'property_management',
+    content_category: detail.variant ?? 'property_management',
     ...(detail.suburb ? { suburb: detail.suburb } : {}),
   })
 

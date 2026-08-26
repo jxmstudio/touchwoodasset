@@ -8,7 +8,11 @@ import { useEffect, useState } from 'react'
  * it or just duplicate the submit button next to it. Retires for good when
  * the visitor submits (ReviewForm dispatches `tw-lead-submitted`).
  */
-export function StickyCta() {
+export function StickyCta({
+  label = 'Get my free appraisal',
+}: {
+  label?: string
+}) {
   const [formsOffScreen, setFormsOffScreen] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
@@ -47,7 +51,7 @@ export function StickyCta() {
         href="#review-form"
         className="flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-lg"
       >
-        Get my free appraisal
+        {label}
       </a>
     </div>
   )

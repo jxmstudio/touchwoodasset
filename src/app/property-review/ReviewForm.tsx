@@ -59,7 +59,67 @@ const schema = z.object({
 
 type ReviewFormData = z.infer<typeof schema>
 
-export function ReviewForm() {
+// The same form serves both funnel pages; only the copy and the tracking
+// labels differ. 'appraisal' is /property-review (organic), 'switch' is
+// /switch (paid Meta traffic sold on the $500 offer).
+export type ReviewFormVariant = 'appraisal' | 'switch'
+
+const COPY: Record<
+  ReviewFormVariant,
+  {
+    /** content_name on the pixel Lead + GA4 form_name */
+    formName: string
+    /** content_category override on the Lead (undefined = default) */
+    trackingVariant?: string
+    /** `_form` label in the JXM Forms dashboard / email subject */
+    jxmForm: string
+    heading: string
+    sub: string
+    button: string
+    micro: string
+    leadMessage: (suburb: string) => string
+    successBody: string
+  }
+> = {
+  appraisal: {
+    formName: 'property_review',
+    jxmForm: 'property-review',
+    heading: 'Get your free rental appraisal',
+    sub: 'Takes 15 seconds. We’ll call you back within one business day — no obligation to switch.',
+    button: 'Get my free appraisal',
+    micro: 'Your details stay with Touchwood. No spam, no obligation.',
+    leadMessage: (suburb) =>
+      `Free rental appraisal requested via /property-review. Suburb: ${suburb}. Source: ${attributionSummary()}`,
+    successBody:
+      'Eamon will call you within one business day — watch for a call from ' +
+      `${CONTACT.phoneDisplay}. The chat takes about two minutes, and your ` +
+      'written appraisal follows within two business days.',
+  },
+  switch: {
+    formName: 'switch_500',
+    trackingVariant: 'switch-500',
+    jxmForm: 'switch-500',
+    heading: 'Claim your $500 switch offer',
+    sub: 'Takes 15 seconds. We call you back within one business day. *T&Cs apply.',
+    button: 'Claim my $500 + free appraisal',
+    // The single allowed "no obligation to switch" on /switch lives here.
+    micro: 'No obligation to switch. Your details stay with Touchwood.',
+    leadMessage: (suburb) =>
+      `$500 switch offer claimed via /switch. Suburb: ${suburb}. Source: ${attributionSummary()}`,
+    successBody:
+      'Eamon will call you within one business day — watch for a call from ' +
+      `${CONTACT.phoneDisplay}. Two minutes to confirm the property and ` +
+      'current lease, then we handle the entire handover with your current ' +
+      'agency. Your $500 is issued once the transfer completes. *T&Cs apply.',
+  },
+}
+
+export function ReviewForm({
+  variant = 'appraisal',
+}: {
+  variant?: ReviewFormVariant
+}) {
+  const copy = COPY[variant]
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [startedTracked, setStartedTracked] = useState(false)
@@ -72,7 +132,7 @@ export function ReviewForm() {
   const handleFirstInteraction = () => {
     if (startedTracked) return
     setStartedTracked(true)
-    trackLeadStart('property_review')
+    trackLeadStart(copy.formName)
   }
 
   const form = useForm<ReviewFormData>({
@@ -87,7 +147,7 @@ export function ReviewForm() {
     const mobile = normaliseAuMobile(data.phone) ?? data.phone
     // Carries utm_source / fbclid etc. into the lead record so each lead
     // can be traced back to the ad or campaign that produced it.
-    const message = `Free rental appraisal requested via /property-review. Suburb: ${data.suburb}. Source: ${attributionSummary()}`
+    const message = copy.leadMessage(data.suburb)
     try {
       // JXM Forms is the lead of record (dashboard + notification email);
       // the Google Sheet is the ops view the team actually watches. Post to
@@ -95,7 +155,7 @@ export function ReviewForm() {
       // never cost the lead or show the visitor an error.
       const [result, sheetResult] = await Promise.all([
         submitToJxmForms({
-          _form: 'property-review',
+          _form: copy.jxmForm,
           name: data.name,
           phone: mobile,
           suburb: data.suburb,
@@ -127,7 +187,11 @@ export function ReviewForm() {
       // used to go to die. Matching data goes first so fbevents hashes it
       // into the Lead.
       setAdvancedMatching({ name: data.name, phone: mobile })
-      trackLead({ formName: 'property_review', suburb: data.suburb })
+      trackLead({
+        formName: copy.formName,
+        suburb: data.suburb,
+        variant: copy.trackingVariant,
+      })
       setSubmitted(true)
       // Tells the sticky mobile CTA to retire — its job is done.
       window.dispatchEvent(new Event('tw-lead-submitted'))
@@ -152,11 +216,7 @@ export function ReviewForm() {
         <h2 className="mt-4 text-2xl font-bold text-gray-900">
           You&apos;re booked in.
         </h2>
-        <p className="mt-2 leading-relaxed text-gray-600">
-          Eamon will call you within one business day — watch for a call from{' '}
-          {CONTACT.phoneDisplay}. The chat takes about two minutes, and your
-          written appraisal follows within two business days.
-        </p>
+        <p className="mt-2 leading-relaxed text-gray-600">{copy.successBody}</p>
         <a
           href={`tel:${CONTACT.phone}`}
           className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-lg bg-gray-900 px-6 py-3 text-base font-semibold text-white transition hover:bg-gray-800"
@@ -174,12 +234,9 @@ export function ReviewForm() {
           and repeating it costs ~60px of the one screen that must also fit
           the submit button. */}
       <h2 className="hidden text-lg font-bold text-gray-900 sm:block sm:text-2xl">
-        Get your free rental appraisal
+        {copy.heading}
       </h2>
-      <p className="mt-1 text-sm text-gray-600 sm:mt-2">
-        Takes 15 seconds. We&apos;ll call you back within one business day — no
-        obligation to switch.
-      </p>
+      <p className="mt-1 text-sm text-gray-600 sm:mt-2">{copy.sub}</p>
 
       <Form {...form}>
         <form
@@ -271,13 +328,13 @@ export function ReviewForm() {
                 Sending…
               </>
             ) : (
-              'Get my free appraisal'
+              copy.button
             )}
           </Button>
 
           <p className="flex items-center justify-center gap-1.5 text-xs text-gray-500">
             <ShieldCheck className="h-3.5 w-3.5" />
-            Your details stay with Touchwood. No spam, no obligation.
+            {copy.micro}
           </p>
         </form>
       </Form>

@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
  * Standalone landing pages deliberately drop the site nav and footer so the
  * only exit from the page is the lead form. Wrap shared chrome in this.
  */
-const FUNNEL_ROUTES = ['/property-review']
+const FUNNEL_ROUTES = ['/property-review', '/switch']
 
 export function isFunnelRoute(pathname: string | null): boolean {
   return FUNNEL_ROUTES.some(
