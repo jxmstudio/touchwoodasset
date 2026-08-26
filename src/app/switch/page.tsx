@@ -1,60 +1,50 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ReviewForm } from './ReviewForm'
-import { PastWorkCarousel } from './PastWorkCarousel'
-import { StickyCta } from './StickyCta'
-import { TrustStats } from './TrustStats'
+import { ReviewForm } from '../property-review/ReviewForm'
+import { PastWorkCarousel } from '../property-review/PastWorkCarousel'
+import { StickyCta } from '../property-review/StickyCta'
+import { TrustStats } from '../property-review/TrustStats'
 import {
   GoogleLogo,
   benefits,
   deliverables,
-  pastWork,
+  residentialLeasedWork,
   testimonials,
-} from './funnel-content'
+} from '../property-review/funnel-content'
 import { CallLink } from '@/components/analytics/CallLink'
 import { ViewContentTracker } from '@/components/analytics/ViewContentTracker'
-import { SITE_NAME, CONTACT, absoluteUrl } from '@/lib/site'
+import { SITE_NAME, CONTACT } from '@/lib/site'
 import { Phone, Star } from 'lucide-react'
 
+// Paid-traffic variant of /property-review, message-matched to the live Meta
+// ads ("Get $500 to Switch Property Managers"). /property-review stays the
+// indexed organic page with the appraisal-first framing; this page is noindex
+// and exists only as an ad destination, so its copy can lead with the offer.
 export const metadata: Metadata = {
-  title: 'Free Rental Appraisal — Melbourne Investment Property',
+  title: 'Get $500 to Switch Property Managers — Melbourne',
   description:
-    'Get a free rental appraisal for your Melbourne investment property. Rent benchmark, fee audit and vacancy check from Touchwood Asset Management — 2-minute call, no obligation to switch.',
-  keywords: [
-    'free rental appraisal Melbourne',
-    'investment property appraisal',
-    'free property review Melbourne',
-    'property management review',
-    'am I charging enough rent Melbourne',
-    'switch property manager Melbourne',
-  ],
-  alternates: { canonical: '/property-review' },
-  openGraph: {
-    title: `Free Rental Appraisal — Melbourne Investment Property | ${SITE_NAME}`,
-    description:
-      'Get a free rental appraisal for your Melbourne investment property — rent benchmark, fee audit and vacancy check. No obligation.',
-    url: '/property-review',
-    type: 'website',
-  },
+    'Get $500 when you transfer your Melbourne investment property to Touchwood, plus a free rental appraisal. We handle the entire handover. T&Cs apply.',
+  // Ad landing page: never indexed, never in the sitemap (src/app/sitemap.ts
+  // is a static allowlist that deliberately omits this route).
+  robots: { index: false, follow: true },
 }
 
+// The switch-first FAQ. Reuses /property-review answers where they fit, but
+// note the copy rule for this page: "no obligation to switch" appears exactly
+// once, in the form micro-copy — never here.
 const faqs = [
   {
     q: 'How does the $500 switch offer work?',
     a: 'When you transfer the management of an investment property to Touchwood, you receive a $500 Visa gift card or cashback, plus $100 for each car park or storage unit you bring across. We handle the entire handover with your current agency — you don’t lift a finger. It’s a limited-time offer and terms apply; we’ll run through the details on the call.',
   },
   {
+    q: 'Will my current agency make it hard to leave?',
+    a: 'No. Standard notice periods under your current management agreement apply, and Touchwood serves the notice and manages the file transfer with your current agency. You sign one authority form — we handle everything else, and your tenants barely notice the change.',
+  },
+  {
     q: 'How much does the appraisal cost?',
-    a: 'Nothing. The appraisal is free and there is no obligation to switch agencies. We do it because a meaningful share of owners who see the numbers choose to move their management to us — but plenty do not, and that is fine.',
-  },
-  {
-    q: 'Do I have to leave my current property manager?',
-    a: 'No. Many owners use the appraisal purely as a second opinion, then take the findings back to their existing agency. You keep the report either way.',
-  },
-  {
-    q: 'How long does it take?',
-    a: 'The initial call takes about two minutes. If you want the full written review, we send it within two business days once we have the property address and current lease details.',
+    a: 'Nothing. The free rental appraisal comes with the switch offer — rent benchmark, fee audit, vacancy check and action list — and you keep the report either way.',
   },
   {
     q: 'What does the appraisal actually cover?',
@@ -74,92 +64,26 @@ const steps = [
   },
   {
     n: '2',
-    title: 'We call you for 2 minutes',
-    body: 'A quick chat to understand the property, the lease and what you want out of it.',
+    title: 'We call for 2 minutes',
+    body: 'A quick chat to confirm the property and the current lease.',
   },
   {
     n: '3',
-    title: 'You get the appraisal',
-    body: 'A written summary with your rent benchmark, fee comparison and action list within two business days.',
+    title: 'We handle the handover',
+    body: 'We contact your current agency, serve the notice and transfer the file. Your $500 Visa gift card or cashback is issued on completion.*',
   },
 ]
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Free Rental Appraisal',
-          item: absoluteUrl('/property-review'),
-        },
-      ],
-    },
-    {
-      // FAQPage markup is what earns "People also ask" placement and gives
-      // answer engines (ChatGPT Search, Perplexity, Gemini) extractable Q&A.
-      '@type': 'FAQPage',
-      '@id': absoluteUrl('/property-review#faq'),
-      mainEntity: faqs.map((f) => ({
-        '@type': 'Question',
-        name: f.q,
-        acceptedAnswer: { '@type': 'Answer', text: f.a },
-      })),
-    },
-    {
-      '@type': 'Service',
-      '@id': absoluteUrl('/property-review#service'),
-      name: 'Free Rental Appraisal for Melbourne Investment Property',
-      serviceType: 'Rental appraisal and property management review',
-      provider: { '@id': absoluteUrl('/#organization') },
-      areaServed: { '@type': 'City', name: 'Melbourne, VIC, Australia' },
-      audience: { '@type': 'Audience', audienceType: 'Residential property investors' },
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'AUD',
-        availability: 'https://schema.org/InStock',
-        url: absoluteUrl('/property-review'),
-      },
-    },
-  ],
-}
-
-export default function PropertyReviewPage() {
+export default function SwitchPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      <ViewContentTracker contentName="property_review" />
+      <ViewContentTracker contentName="switch" contentCategory="switch-500" />
 
       <div className="min-h-screen bg-white pb-24 lg:pb-0">
-        {/* Offer strip — the "$500 to switch" ads land here, so the page's
-            first pixels must repeat the promise the ad made. Wording matches
-            the established offer copy on /contact and OwnerPromo. Sticky so
-            the offer stays visible the whole way down the page. */}
-        <div className="sticky top-0 z-40 bg-primary px-4 py-2 text-center sm:py-2.5">
-          {/* Phone copy is cut to hold one line — a wrapping strip steals
-              first-screen height the form needs at 390×844. */}
-          <p className="text-xs font-semibold text-primary-foreground sm:hidden">
-            Switching? Get a $500 Visa gift card or cashback.
-            <span className="font-normal opacity-80"> *T&amp;Cs</span>
-          </p>
-          <p className="hidden text-sm font-semibold text-primary-foreground sm:block">
-            Switching agencies? Get a $500 Visa gift card or cashback when you
-            transfer your management to Touchwood.
-            <span className="font-normal opacity-80"> *Terms apply</span>
-          </p>
-        </div>
-
         {/* Minimal funnel header — logo (deliberately NOT a link: no exit
-            ramps off a paid-traffic funnel) and click-to-call only. */}
+            ramps off a paid-traffic funnel) and click-to-call only. No $500
+            top strip here: unlike /property-review, the H1 itself repeats the
+            ad's offer, and the strip would just tax first-screen height. */}
         <header className="border-b border-gray-200">
           <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
             <Image
@@ -171,7 +95,7 @@ export default function PropertyReviewPage() {
               className="h-8 w-auto sm:h-11"
             />
             <CallLink
-              location="funnel_header"
+              location="switch_header"
               className="flex min-h-12 items-center gap-2 text-sm font-semibold text-gray-900 hover:text-primary sm:text-base"
             >
               <Phone className="h-4 w-4" />
@@ -181,28 +105,25 @@ export default function PropertyReviewPage() {
           </div>
         </header>
 
-        {/* Hero — headline straight into the form. At 390×844 the headline,
-            the $500 strip above and the whole form (three fields + submit)
-            fit the first screen with no scrolling: the visitor can act on
-            the ad's offer the moment the page paints. Badge, subhead and
-            trust stats move below the form on phones — reassurance, not
-            gatekeepers. No hero image/video: text paints instantly, which
-            is the whole LCP budget on 4G. */}
+        {/* Hero — same above-the-fold discipline as /property-review: at
+            390×844 the eyebrow, H1 and the whole form (three fields + submit)
+            must fit the first screen. Subhead and trust stats move below the
+            form on phones. No hero image/video. */}
         <section className="border-b border-gray-100 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6 sm:pt-8 lg:py-20">
             <div className="grid items-start gap-5 lg:grid-cols-2 lg:gap-16">
               <div>
-                <span className="hidden items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary lg:inline-flex">
-                  Free · No obligation
-                </span>
-                {/* [COPY REVIEW NEEDED] — headline wording per brief, confirm final */}
-                <h1 className="text-2xl font-bold leading-[1.15] tracking-tight text-gray-900 sm:text-5xl sm:leading-[1.12] lg:mt-4">
-                  Get a free rental appraisal for your Melbourne investment
-                  property
+                <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+                  Melbourne investment property owners
+                </p>
+                <h1 className="mt-2 text-2xl font-bold leading-[1.15] tracking-tight text-gray-900 sm:text-5xl sm:leading-[1.12]">
+                  Get $500 when you switch your property management to
+                  Touchwood*
                 </h1>
                 <p className="mt-4 hidden text-lg leading-relaxed text-gray-600 lg:block">
-                  Find out what your property should really be renting for —
-                  and what you&apos;re overpaying in fees. One 2-minute call.
+                  Plus a free rental appraisal — rent benchmark, fee audit,
+                  vacancy check. We handle the entire handover with your
+                  current agency.
                 </p>
 
                 {/* Trust bar — counts up when scrolled into view */}
@@ -211,22 +132,17 @@ export default function PropertyReviewPage() {
                 </div>
               </div>
 
-              {/* scroll margin clears the sticky offer strip when jumping to the form */}
-              <div
-                id="review-form"
-                data-review-form
-                className="scroll-mt-16 lg:scroll-mt-16"
-              >
-                <ReviewForm />
+              <div id="review-form" data-review-form className="scroll-mt-4">
+                <ReviewForm variant="switch" />
               </div>
 
               {/* Phone-only: the reassurance the left column shows on desktop,
                   now after the form instead of in front of it. */}
               <div className="lg:hidden">
                 <p className="text-base leading-relaxed text-gray-600">
-                  Find out what your property should really be renting for —
-                  and what you&apos;re overpaying in fees. One 2-minute call,
-                  free and no obligation.
+                  Plus a free rental appraisal — rent benchmark, fee audit,
+                  vacancy check. We handle the entire handover with your
+                  current agency.
                 </p>
                 <TrustStats />
               </div>
@@ -234,39 +150,37 @@ export default function PropertyReviewPage() {
           </div>
         </section>
 
-        {/* What you get */}
+        {/* How the switch works — up top, because "is switching painful?" is
+            this audience's real objection, not "is the appraisal any good?". */}
         <section className="py-14 lg:py-24">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                What&apos;s in your free appraisal
+                How the switch works
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
-                Four numbers most owners have never been shown about their own
-                property.
-              </p>
             </div>
 
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {deliverables.map((d) => (
-                <div
-                  key={d.title}
-                  className="rounded-2xl border border-gray-200 bg-white p-6 transition hover:border-primary/40 hover:shadow-md"
-                >
-                  <d.icon className="h-8 w-8 text-primary" />
-                  <h3 className="mt-4 text-lg font-semibold text-gray-900">
-                    {d.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                    {d.body}
-                  </p>
-                </div>
+            <ol className="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-3">
+              {steps.map((s) => (
+                <li key={s.n} className="flex gap-5 md:flex-col md:gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-primary-foreground">
+                    {s.n}
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {s.title}
+                    </h3>
+                    <p className="mt-1 leading-relaxed text-gray-600">
+                      {s.body}
+                    </p>
+                  </div>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </section>
 
-        {/* Why switch — 3 short benefit blocks */}
+        {/* Why owners switch — same three blocks as /property-review */}
         <section className="border-t border-gray-100 bg-gray-50 py-14 lg:py-24">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6">
             <div className="mx-auto max-w-2xl text-center">
@@ -297,32 +211,47 @@ export default function PropertyReviewPage() {
                 href="#review-form"
                 className="inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-lg transition hover:opacity-90"
               >
-                Get my free appraisal
+                Claim my $500 + free appraisal
               </a>
             </div>
           </div>
         </section>
 
-        {/* Past work — real sold / leased outcomes, no links out of the funnel */}
+        {/* The free appraisal — reframed as the consolation prize */}
         <section className="border-t border-gray-100 py-14 lg:py-24">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Recent results, not promises
+                Not ready to switch? Get the numbers anyway.
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                A few of the properties we&apos;ve sold and leased for Melbourne
-                owners recently.
+                Every enquiry gets a free appraisal — four numbers most owners
+                have never been shown about their own property.
               </p>
             </div>
 
-            <div className="mt-12">
-              <PastWorkCarousel items={pastWork} />
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {deliverables.map((d) => (
+                <div
+                  key={d.title}
+                  className="rounded-2xl border border-gray-200 bg-white p-6 transition hover:border-primary/40 hover:shadow-md"
+                >
+                  <d.icon className="h-8 w-8 text-primary" />
+                  <h3 className="mt-4 text-lg font-semibold text-gray-900">
+                    {d.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-600">
+                    {d.body}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Social proof */}
+        {/* Social proof — testimonials + residential leased results only.
+            The $427k sale and the car park block are off-message for an
+            audience switching a rental's management. */}
         <section className="border-t border-gray-100 bg-gray-50 py-14 lg:py-24">
           <div className="container mx-auto max-w-6xl px-4 sm:px-6">
             <div className="mx-auto max-w-2xl text-center">
@@ -365,46 +294,14 @@ export default function PropertyReviewPage() {
                 </figure>
               ))}
             </div>
-          </div>
-        </section>
 
-        {/* How it works + repeated form, so a visitor who reads to the bottom
-            never has to scroll back up to convert. */}
-        <section className="border-t border-gray-100 py-14 lg:py-24">
-          <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-              <div>
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                  How it works
-                </h2>
-                <ol className="mt-8 space-y-8">
-                  {steps.map((s) => (
-                    <li key={s.n} className="flex gap-5">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-primary-foreground">
-                        {s.n}
-                      </span>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900">
-                          {s.title}
-                        </h3>
-                        <p className="mt-1 leading-relaxed text-gray-600">
-                          {s.body}
-                        </p>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              {/* top-14 clears the sticky offer strip (~40px on desktop) */}
-              <div data-review-form className="lg:sticky lg:top-14 lg:self-start">
-                <ReviewForm />
-              </div>
+            <div className="mt-12">
+              <PastWorkCarousel items={residentialLeasedWork} />
             </div>
           </div>
         </section>
 
-        {/* FAQ */}
+        {/* FAQ + closing CTA */}
         <section className="border-t border-gray-100 py-14 lg:py-24">
           <div className="container mx-auto max-w-3xl px-4 sm:px-6">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -421,18 +318,25 @@ export default function PropertyReviewPage() {
 
             <div className="mt-12 rounded-2xl bg-gray-900 p-8 text-center sm:p-10">
               <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                Two minutes now, or another year of not knowing.
+                $500 for switching. Free appraisal either way.*
               </h2>
               <p className="mx-auto mt-3 max-w-lg text-gray-300">
-                Drop your details and let&apos;s have a quick chat.
+                Drop your details and we&apos;ll call you back within one
+                business day.
               </p>
               <a
                 href="#review-form"
                 className="mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-8 py-4 text-base font-semibold text-gray-900 transition hover:bg-gray-100"
               >
-                Get my free appraisal
+                Claim my $500 + free appraisal
               </a>
             </div>
+
+            <p className="mt-6 text-center text-xs text-gray-500">
+              *The $500 switch offer is a Visa gift card or cashback, issued
+              once the management transfer completes. Limited-time offer;
+              terms and conditions apply.
+            </p>
           </div>
         </section>
 
@@ -455,9 +359,9 @@ export default function PropertyReviewPage() {
         </footer>
       </div>
 
-      {/* Sticky mobile CTA — appears only once both forms are off screen,
+      {/* Sticky mobile CTA — appears only once the form is off screen,
           and retires after a submission. */}
-      <StickyCta />
+      <StickyCta label="Claim my $500 + free appraisal" />
     </>
   )
 }
