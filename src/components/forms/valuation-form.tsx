@@ -73,7 +73,11 @@ export function ValuationForm() {
           email: data.email,
           phone: data.phone,
         })
-        trackLead({ formName: 'valuation', suburb: data.suburb })
+        trackLead({
+          formName: 'valuation',
+          suburb: data.suburb,
+          user: { name: data.name, email: data.email, phone: data.phone },
+        })
         toast.success('Thank you for your valuation request! We\'ll contact you within 24 hours to arrange an inspection.')
         form.reset()
       } else {

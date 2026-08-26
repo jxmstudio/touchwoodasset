@@ -49,7 +49,10 @@ export function ListingEnquiryForm({ listingId, listingTitle }: ListingEnquiryFo
           email: form.email,
           phone: form.phone,
         })
-        trackLead({ formName: 'listing-enquiry' })
+        trackLead({
+          formName: 'listing-enquiry',
+          user: { name: form.name, email: form.email, phone: form.phone },
+        })
         setStatus('success')
       } else {
         setErrorMsg('Something went wrong. Please try again.')

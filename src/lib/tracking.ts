@@ -87,6 +87,70 @@ export function setAdvancedMatching(detail: {
   fbq('init', PIXEL_ID, match)
 }
 
+/**
+ * One shared event ID per conversion, sent with BOTH the browser pixel event
+ * (`eventID`) and the Conversions API event (`event_id`), so Meta dedupes the
+ * pair into a single Lead instead of counting it twice.
+ */
+export function newEventId(): string {
+  try {
+    return crypto.randomUUID()
+  } catch {
+    // Very old WebViews: not cryptographically strong, but unique enough for
+    // deduplication, which is all Meta uses it for.
+    return `tw-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
+  }
+}
+
+function readCookie(name: string): string | undefined {
+  if (typeof document === 'undefined') return undefined
+  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`))
+  return match ? decodeURIComponent(match[1]) : undefined
+}
+
+const TEST_EVENT_CODE_KEY = 'tw_meta_test_code'
+
+/**
+ * Sends the server-side (Conversions API) copy of a conversion via our own
+ * API route, which hashes the user data and forwards to Meta's Graph API.
+ * Fire-and-forget: a CAPI hiccup must never affect the visitor or the
+ * browser-side event.
+ */
+function sendCapiEvent(detail: {
+  eventName: string
+  eventId: string
+  customData: Record<string, unknown>
+  user?: { name?: string; email?: string; phone?: string }
+}): void {
+  if (typeof window === 'undefined') return
+  let testEventCode: string | undefined
+  try {
+    testEventCode =
+      window.sessionStorage.getItem(TEST_EVENT_CODE_KEY) ?? undefined
+  } catch {
+    // best-effort
+  }
+  fetch('/api/meta-capi', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    keepalive: true,
+    body: JSON.stringify({
+      event_name: detail.eventName,
+      event_id: detail.eventId,
+      // Captured at submit time in the browser: fbevents' own URL can go
+      // stale after client-side navigations, so never rely on it.
+      event_source_url: window.location.href,
+      custom_data: detail.customData,
+      user: detail.user,
+      fbp: readCookie('_fbp'),
+      fbc: readCookie('_fbc'),
+      test_event_code: testEventCode,
+    }),
+  }).catch((error) => {
+    console.error('CAPI event failed to send:', error)
+  })
+}
+
 /** UTM / click-id keys worth persisting so a lead can be traced to its ad. */
 const ATTRIBUTION_KEYS = [
   'utm_source',
@@ -109,6 +173,15 @@ export function captureAttribution(search: string): void {
   if (typeof window === 'undefined') return
   try {
     const params = new URLSearchParams(search)
+
+    // Land on any page with ?test_event_code=TEST1234 (from Events Manager's
+    // Test Events tab) and every CAPI event this session is tagged with it,
+    // so server events show up in the test stream alongside browser ones.
+    const testCode = params.get('test_event_code')
+    if (testCode) {
+      window.sessionStorage.setItem(TEST_EVENT_CODE_KEY, testCode)
+    }
+
     const found: Record<string, string> = {}
     for (const key of ATTRIBUTION_KEYS) {
       const value = params.get(key)
@@ -177,12 +250,27 @@ export function trackLead(detail: {
   portfolioSize?: string
   /** Landing-page variant, e.g. 'switch-500'. Defaults to the vertical. */
   variant?: string
+  /** Shared browser/server event ID; generated here when not supplied. */
+  eventId?: string
+  /** Raw contact details for CAPI matching — hashed server-side, never sent
+   * to Meta in plain text. */
+  user?: { name?: string; email?: string; phone?: string }
 }): void {
-  fbq('track', 'Lead', {
+  const eventId = detail.eventId ?? newEventId()
+  const customData = {
     content_name: detail.formName,
     content_category: detail.variant ?? 'property_management',
     ...(detail.suburb ? { suburb: detail.suburb } : {}),
-  })
+    // fbevents' own URL param can go stale after client-side navigations
+    // (a Lead submitted on /property-review can report the landing URL);
+    // carry the real page explicitly.
+    ...(typeof window !== 'undefined' ? { page_url: window.location.href } : {}),
+  }
+
+  // 4th argument is Meta's documented slot for the dedupe ID — without it
+  // fbevents auto-generates one (ob3_…) that CAPI can never match.
+  fbq('track', 'Lead', customData, { eventID: eventId })
+  sendCapiEvent({ eventName: 'Lead', eventId, customData, user: detail.user })
 
   gtag('event', 'generate_lead', {
     form_name: detail.formName,

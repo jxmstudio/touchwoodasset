@@ -64,8 +64,23 @@ click-to-call (`CallLink`), `Schedule` on bookings.
 
 ### Conversions API / server-side
 
-None. All events are browser-side pixel calls. (Gap worth knowing about, not
-in scope for this rebuild.)
+`src/app/api/meta-capi/route.ts` relays a server-side copy of every `Lead`
+to Meta's Graph API. The browser generates one UUID per submission
+(`newEventId()` in `src/lib/tracking.ts`) and sends it as `eventID` on the
+pixel call and `event_id` on the CAPI call, so Meta dedupes the pair into a
+single Lead. Contact details are SHA-256 hashed server-side; the route also
+attaches client IP, user agent and the `_fbp`/`_fbc` cookies for matching,
+and forwards `event_source_url` captured at submit time (fbevents' own URL
+goes stale after client-side navigations — this is why a test Lead once
+reported the homepage).
+
+**Requires `META_CAPI_ACCESS_TOKEN` in the production environment** (Events
+Manager → Settings → Conversions API → Generate access token). Without it
+the route no-ops and only browser events fire.
+
+To tag server events into the Test Events stream, land on the site with
+`?test_event_code=TESTxxxx` (the code shown in Events Manager's Test Events
+tab) — it persists for the session and is attached to every CAPI event.
 
 ## Gaps found in this audit
 
@@ -88,16 +103,22 @@ in scope for this rebuild.)
 1. **Env check first**: production must have `NEXT_PUBLIC_META_PIXEL_ID` set.
    View page source on the live site and search for `fbevents.js` — if absent,
    the env var is missing and nothing below will work.
-2. Open Meta **Events Manager → Test events**, enter the site, browse to
-   `/switch` (or `/property-review`).
+2. Open Meta **Events Manager → Test events**, copy the test code, and open
+   the site as `https://touchwoodasset.com/switch?test_event_code=TESTxxxx`
+   (any funnel page works) so server events are tagged into the stream.
    - Expect `PageView` + `ViewContent` (content_name `switch` /
-     `property_review`) on load.
-   - Focus a form field → custom event `LeadFormStart`.
+     `property_review`) on load. No `LeadFormStart` yet — it must not fire
+     until you click or type in the form (autofill focus no longer counts).
+   - Click into a form field or start typing → custom event `LeadFormStart`,
+     once.
    - Submit the form with a real-looking AU mobile (e.g. `0413 111 222` —
      note repeated-digit junk like `0411 111 111` is rejected client-side) →
-     expect **one** `Lead` with `content_name` = `switch_500` (on `/switch`)
-     or `property_review`. This creates a real lead in JXM Forms + the
-     Google Sheet — tell the team to ignore it.
+     expect **one** `Lead` row showing **Browser and Server together**, with
+     an event ID that is a UUID (not `ob3_…`), the correct page URL, and
+     `content_name` = `switch_500` (on `/switch`) or `property_review`. This
+     creates a real lead in JXM Forms + the Google Sheet — tell the team to
+     ignore it. If the Server column is missing, `META_CAPI_ACCESS_TOKEN`
+     isn't set (or the `?test_event_code=` param wasn't on the URL).
 3. Alternatively install the **Meta Pixel Helper** Chrome extension and watch
    events fire on the page.
 4. In Ads Manager, the ad set's conversion event should be the pixel `Lead`.

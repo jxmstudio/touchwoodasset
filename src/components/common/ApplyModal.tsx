@@ -115,7 +115,14 @@ export function ApplyModal({
         email: formData.email,
         phone: formData.phone,
       })
-      trackLead({ formName: 'application' })
+      trackLead({
+        formName: 'application',
+        user: {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+        },
+      })
       setIsSubmitted(true)
       toast.success('Application submitted successfully!')
 

@@ -21,6 +21,7 @@ import { submitToSheets } from '@/lib/sheets-webhook'
 import { CONTACT } from '@/lib/site'
 import {
   attributionSummary,
+  newEventId,
   setAdvancedMatching,
   trackLead,
   trackLeadStart,
@@ -127,8 +128,11 @@ export function ReviewForm({
   // `_gotcha` and JXM Forms drops any submission where it's non-empty.
   const honeypotRef = useRef<HTMLInputElement>(null)
 
-  // Fire once, when the visitor first touches the form. The ratio of starts to
-  // completions is what tells you whether the form itself is the problem.
+  // Fire once, on the visitor's first REAL interaction with the form — a
+  // pointer press or a keystroke inside it. Not focus: Chrome autofill fires
+  // focus events on inputs at page load, which made LeadFormStart fire one
+  // second after PageView with nobody touching anything. The ratio of starts
+  // to completions is what tells you whether the form itself is the problem.
   const handleFirstInteraction = () => {
     if (startedTracked) return
     setStartedTracked(true)
@@ -191,6 +195,11 @@ export function ReviewForm({
         formName: copy.formName,
         suburb: data.suburb,
         variant: copy.trackingVariant,
+        // One UUID shared by the browser pixel event and the CAPI event so
+        // Meta dedupes them into a single Lead; user details are hashed
+        // server-side for CAPI matching.
+        eventId: newEventId(),
+        user: { name: data.name, phone: mobile },
       })
       setSubmitted(true)
       // Tells the sticky mobile CTA to retire — its job is done.
@@ -241,7 +250,8 @@ export function ReviewForm({
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          onFocusCapture={handleFirstInteraction}
+          onPointerDownCapture={handleFirstInteraction}
+          onKeyDownCapture={handleFirstInteraction}
           className="mt-4 space-y-3 sm:mt-6 sm:space-y-4"
         >
           <input

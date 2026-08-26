@@ -78,7 +78,10 @@ export function ContactForm() {
           email: data.email,
           phone: data.phone,
         })
-        trackLead({ formName: 'contact' })
+        trackLead({
+          formName: 'contact',
+          user: { name: data.name, email: data.email, phone: data.phone },
+        })
         toast.success(
           'Thank you for your message! We\u2019ll get back to you within 24 hours.'
         )
