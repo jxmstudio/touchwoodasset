@@ -49,7 +49,7 @@ export const listings: ListingItem[] = [
     slug: 'townhouse-22-23-coate-avenue-alphington',
     title: '22/23 Coate Avenue, Alphington',
     summary:
-      'Beautifully presented two-bedroom townhouse with private courtyard and garage',
+      'Beautifully presented three-bedroom semi-detached home with private courtyard and garage',
     type: 'RESIDENTIAL',
     status: 'FOR_RENT',
     price: 695,
@@ -58,22 +58,22 @@ export const listings: ListingItem[] = [
     suburb: 'Alphington',
     state: 'VIC',
     postcode: '3078',
-    bedrooms: 2,
+    bedrooms: 3,
     bathrooms: 1,
-    carSpaces: 2,
+    carSpaces: 1,
     floorAreaSqm: 116,
     heroImageUrl: '/22-23-coate-ave-alphington/Front-exterior.jpeg',
-    description: `Nestled in a quiet, well-kept development in one of Melbourne's most sought-after inner-north pockets, this beautifully presented single-level townhouse combines light-filled interiors, quality updates and easy low-maintenance living.
+    description: `Nestled in a quiet, well-kept development in one of Melbourne's most sought-after inner-north pockets, this beautifully presented single-level semi-detached home combines light-filled interiors, quality updates and easy low-maintenance living.
 
 Property Highlights:
 
 Sun-drenched open plan living and dining area with split system heating & cooling and ceiling fans
 Crisp white kitchen with island bench, gas cooktop, stainless steel appliances & dishwasher
-Well-sized bedrooms with mirrored built-in robes and garden outlooks
+Three well-sized bedrooms with built-in robes and garden outlooks
 Stylishly renovated bathroom with bathtub, walk-in shower and brushed brass tapware
 Separate toilet and full-sized internal laundry
 Private landscaped courtyard garden — perfect for relaxing or entertaining outdoors
-Single lock-up garage plus additional car space
+Single lock-up garage with convenient internal access
 Freshly presented throughout with a warm, neutral palette
 
 Lifestyle & Location:
@@ -91,12 +91,12 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
       'Split system heating & cooling plus ceiling fans',
       'White kitchen with island bench and gas cooktop',
       'Stainless steel appliances and dishwasher',
-      'Bedrooms with mirrored built-in robes',
+      'Three bedrooms with built-in robes',
       'Renovated bathroom with bathtub and walk-in shower',
       'Brushed brass tapware and quality finishes',
       'Separate toilet and full-sized laundry',
       'Private landscaped courtyard garden',
-      'Single lock-up garage plus additional car space',
+      'Single lock-up garage',
       'Moments to Alphington Station — easy CBD commute',
       'Close to Darebin Parklands and Yarra River trails',
       'Near local shops, cafes and Alphington Village',
