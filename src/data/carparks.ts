@@ -97,6 +97,7 @@ export const carparkBays: CarparkBay[] = [
     address: '255 Drummond Street',
     suburb: 'Carlton',
     postcode: '3053',
+    availableFrom: '2026-07-20',
     images: [
       '/carparks/255-drummond-st-carlton/bay-265/1.jpeg',
       '/carparks/255-drummond-st-carlton/bay-265/2.jpeg',
@@ -106,6 +107,22 @@ export const carparkBays: CarparkBay[] = [
     ],
     description:
       'Secure car park bay #265 at 255 Drummond Street, Carlton. Moments from Lygon Street, Melbourne University and RMIT. Contact us for pricing.',
+  }),
+  bay({
+    bayNumber: '271',
+    building: '255 Drummond Street',
+    buildingSlug: '255-drummond-st-carlton',
+    address: '255 Drummond Street',
+    suburb: 'Carlton',
+    postcode: '3053',
+    availableFrom: '2026-07-20',
+    images: [
+      '/carparks/255-drummond-st-carlton/bay-271/1.jpeg',
+      '/carparks/255-drummond-st-carlton/bay-271/2.jpeg',
+      '/carparks/255-drummond-st-carlton/bay-271/3.jpeg',
+    ],
+    description:
+      'Secure car park bay #271 at the Carlton Clocktower carpark, 255 Drummond Street, Carlton. Moments from Lygon Street, Melbourne University and RMIT. Contact us for pricing.',
   }),
 
   // ── 401 Docklands Drive, Docklands ───────────────────────────────────────
@@ -152,7 +169,30 @@ export const carparkBays: CarparkBay[] = [
 
   // ── 58 Franklin Street, Melbourne ────────────────────────────────────────
   // Photos coming from Raquel — placeholder for now.
-  ...['330', '603', '710', '749', '753', '755', '807', '810'].map((n) =>
+  bay({
+    bayNumber: '330',
+    building: '58 Franklin Street',
+    buildingSlug: '58-franklin-st-melbourne',
+    address: '58 Franklin Street',
+    suburb: 'Melbourne',
+    postcode: '3000',
+    price: 320,
+    availableFrom: '2026-08-15',
+    description:
+      'Secure car park bay #330 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
+  }),
+  bay({
+    bayNumber: '810',
+    building: '58 Franklin Street',
+    buildingSlug: '58-franklin-st-melbourne',
+    address: '58 Franklin Street',
+    suburb: 'Melbourne',
+    postcode: '3000',
+    availableFrom: '2026-09-12',
+    description:
+      'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Contact us for pricing.',
+  }),
+  ...['603', '710', '749', '753', '755', '807'].map((n) =>
     bay({
       bayNumber: n,
       building: '58 Franklin Street',
@@ -208,7 +248,18 @@ export const carparkBays: CarparkBay[] = [
   }),
 
   // ── 20 Convention Centre Place, South Wharf ──────────────────────────────
-  ...['C5', 'C6', 'C7', 'C8'].map((n) =>
+  bay({
+    bayNumber: 'C7',
+    building: '20 Convention Centre Place',
+    buildingSlug: '20-convention-centre-pl-south-wharf',
+    address: '20 Convention Centre Place',
+    suburb: 'South Wharf',
+    postcode: '3006',
+    availableFrom: '2026-07-16',
+    description:
+      'Secure car park bay C7 at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Contact us for pricing.',
+  }),
+  ...['C5', 'C6', 'C8'].map((n) =>
     bay({
       bayNumber: n,
       building: '20 Convention Centre Place',
@@ -219,6 +270,32 @@ export const carparkBays: CarparkBay[] = [
       description: `Secure car park bay ${n} at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Contact us for pricing.`,
     })
   ),
+
+  // ── 180 City Road, Southbank ─────────────────────────────────────────────
+  bay({
+    bayNumber: '1308A',
+    building: '180 City Road',
+    buildingSlug: '180-city-rd-southbank',
+    address: '180 City Road',
+    suburb: 'Southbank',
+    postcode: '3006',
+    availableFrom: '2026-08-21',
+    description:
+      'Secure car park bay #1308A at 180 City Road, Southbank. Moments from Crown, the Melbourne CBD and the Southbank arts precinct. Contact us for pricing.',
+  }),
+
+  // ── 83 Whiteman Street, Southbank ────────────────────────────────────────
+  bay({
+    bayNumber: '16',
+    building: '83 Whiteman Street',
+    buildingSlug: '83-whiteman-st-southbank',
+    address: '83 Whiteman Street',
+    suburb: 'Southbank',
+    postcode: '3006',
+    availableFrom: '2026-08-29',
+    description:
+      'Secure car park bay #16 at 83 Whiteman Street, Southbank. Short walk to Crown, South Wharf and Southbank Promenade. Contact us for pricing.',
+  }),
 
   // ── 11 Daly Street, South Yarra ──────────────────────────────────────────
   ...['375', '376', '595', '628'].map((n) =>

@@ -274,7 +274,22 @@ export function CarparkDetailClient({ bay }: CarparkDetailClientProps) {
 
                     {/* Status Info */}
                     <div className="pt-6 border-t">
-                      {bay.status === 'AVAILABLE' ? (
+                      {bay.status === 'AVAILABLE' &&
+                      bay.availableFrom &&
+                      new Date(bay.availableFrom) > new Date() ? (
+                        <div className="text-center">
+                          <div className="text-green-600 font-semibold mb-2">
+                            Available from{' '}
+                            {new Date(bay.availableFrom).toLocaleDateString(
+                              'en-AU',
+                              { day: 'numeric', month: 'long', year: 'numeric' }
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-600">
+                            Enquire now to secure this bay
+                          </p>
+                        </div>
+                      ) : bay.status === 'AVAILABLE' ? (
                         <div className="text-center">
                           <div className="text-green-600 font-semibold mb-2">
                             ✓ Available Now
