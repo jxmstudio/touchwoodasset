@@ -45,6 +45,88 @@ export interface ListingItem {
 // Centralised listings dataset to be reused by list and detail pages
 export const listings: ListingItem[] = [
   {
+    id: '22-23-coate-ave-alphington',
+    slug: 'townhouse-22-23-coate-avenue-alphington',
+    title: '22/23 Coate Avenue, Alphington',
+    summary:
+      'Beautifully presented two-bedroom townhouse with private courtyard and garage',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    price: 695,
+    pricePeriod: 'per_week',
+    address: '22/23 Coate Avenue',
+    suburb: 'Alphington',
+    state: 'VIC',
+    postcode: '3078',
+    bedrooms: 2,
+    bathrooms: 1,
+    carSpaces: 2,
+    floorAreaSqm: 116,
+    heroImageUrl: '/22-23-coate-ave-alphington/Front-exterior.jpeg',
+    description: `Nestled in a quiet, well-kept development in one of Melbourne's most sought-after inner-north pockets, this beautifully presented single-level townhouse combines light-filled interiors, quality updates and easy low-maintenance living.
+
+Property Highlights:
+
+Sun-drenched open plan living and dining area with split system heating & cooling and ceiling fans
+Crisp white kitchen with island bench, gas cooktop, stainless steel appliances & dishwasher
+Well-sized bedrooms with mirrored built-in robes and garden outlooks
+Stylishly renovated bathroom with bathtub, walk-in shower and brushed brass tapware
+Separate toilet and full-sized internal laundry
+Private landscaped courtyard garden — perfect for relaxing or entertaining outdoors
+Single lock-up garage plus additional car space
+Freshly presented throughout with a warm, neutral palette
+
+Lifestyle & Location:
+
+Moments to Alphington Station for an easy CBD commute
+Close to Darebin Parklands, the Yarra River trails and Alphington Park
+Handy to local shops, cafes and the Alphington Village strip
+Zoned access to well-regarded local schools
+
+Why You'll Love It:
+
+A move-in ready home offering space, style and serenity in a tightly held Alphington enclave — ideal for professionals, couples or small families seeking lifestyle and convenience.`,
+    features: [
+      'Sun-drenched open plan living and dining area',
+      'Split system heating & cooling plus ceiling fans',
+      'White kitchen with island bench and gas cooktop',
+      'Stainless steel appliances and dishwasher',
+      'Bedrooms with mirrored built-in robes',
+      'Renovated bathroom with bathtub and walk-in shower',
+      'Brushed brass tapware and quality finishes',
+      'Separate toilet and full-sized laundry',
+      'Private landscaped courtyard garden',
+      'Single lock-up garage plus additional car space',
+      'Moments to Alphington Station — easy CBD commute',
+      'Close to Darebin Parklands and Yarra River trails',
+      'Near local shops, cafes and Alphington Village',
+    ],
+    gallery: [
+      { url: '/22-23-coate-ave-alphington/Front-exterior.jpeg', alt: 'Front exterior of 22/23 Coate Avenue, Alphington', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Front-door-garage.jpeg', alt: 'Front entry with lock-up garage', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Living-room.jpeg', alt: 'Light-filled living room with garden outlook', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Living-dining.jpeg', alt: 'Living and dining area', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Kitchen-1.jpeg', alt: 'White kitchen with island bench and stainless steel appliances', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Kitchen-2.jpeg', alt: 'Kitchen with gas cooktop, dishwasher and garden views', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Master-bedroom.jpeg', alt: 'Main bedroom with mirrored built-in robes and ceiling fan', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Bedroom-2.jpeg', alt: 'Second bedroom with garden outlook', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Bathroom-1.jpeg', alt: 'Renovated bathroom with bathtub and brushed brass tapware', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Bathroom-2.jpeg', alt: 'Bathroom with walk-in shower over bath', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Toilet-1.jpeg', alt: 'Separate toilet', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Toilet-2.jpeg', alt: 'Separate toilet with window', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Laundry-1.jpeg', alt: 'Full-sized laundry with trough and storage', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Laundry-2.jpeg', alt: 'Laundry with garden window', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Backyard.jpeg', alt: 'Private landscaped courtyard garden', width: 1448, height: 1086 },
+      { url: '/22-23-coate-ave-alphington/Floorplan.jpeg', alt: 'Floorplan for 22/23 Coate Avenue, Alphington', width: 1122, height: 1402 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
     // PLACEHOLDER — awaiting price, floorplan details, copy and photos from Raquel.
     // Flip status to 'AVAILABLE' (renders as "For Sale") once the real details land.
     id: '2002-555-swanston',
