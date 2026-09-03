@@ -81,6 +81,7 @@ export const carparkBays: CarparkBay[] = [
     address: '255 Drummond Street',
     suburb: 'Carlton',
     postcode: '3053',
+    status: 'LEASED',
     images: [
       '/carparks/255-drummond-st-carlton/bay-136/1.jpeg',
       '/carparks/255-drummond-st-carlton/bay-136/2.jpeg',
@@ -108,22 +109,6 @@ export const carparkBays: CarparkBay[] = [
     description:
       'Secure car park bay #265 at 255 Drummond Street, Carlton. Moments from Lygon Street, Melbourne University and RMIT. Contact us for pricing.',
   }),
-  bay({
-    bayNumber: '271',
-    building: '255 Drummond Street',
-    buildingSlug: '255-drummond-st-carlton',
-    address: '255 Drummond Street',
-    suburb: 'Carlton',
-    postcode: '3053',
-    availableFrom: '2026-07-20',
-    images: [
-      '/carparks/255-drummond-st-carlton/bay-271/1.jpeg',
-      '/carparks/255-drummond-st-carlton/bay-271/2.jpeg',
-      '/carparks/255-drummond-st-carlton/bay-271/3.jpeg',
-    ],
-    description:
-      'Secure car park bay #271 at the Carlton Clocktower carpark, 255 Drummond Street, Carlton. Moments from Lygon Street, Melbourne University and RMIT. Contact us for pricing.',
-  }),
 
   // ── 401 Docklands Drive, Docklands ───────────────────────────────────────
   bay({
@@ -133,6 +118,7 @@ export const carparkBays: CarparkBay[] = [
     address: '401 Docklands Drive',
     suburb: 'Docklands',
     postcode: '3008',
+    status: 'LEASED',
     images: [
       '/carparks/401-docklands-drive-docklands/bay-430/1.jpeg',
       '/carparks/401-docklands-drive-docklands/bay-430/2.jpeg',
@@ -148,6 +134,7 @@ export const carparkBays: CarparkBay[] = [
     address: '401 Docklands Drive',
     suburb: 'Docklands',
     postcode: '3008',
+    status: 'LEASED',
     images: [
       '/carparks/401-docklands-drive-docklands/bay-537/1.jpeg',
       '/carparks/401-docklands-drive-docklands/bay-537/2.jpeg',
@@ -162,6 +149,7 @@ export const carparkBays: CarparkBay[] = [
     address: '401 Docklands Drive',
     suburb: 'Docklands',
     postcode: '3008',
+    status: 'LEASED',
     images: ['/carparks/401-docklands-drive-docklands/bay-538/1.jpeg'],
     description:
       'Secure car park bay #538 at 401 Docklands Drive, Docklands. Near The District, Marvel Stadium and the free City Circle tram. Contact us for pricing.',
@@ -177,7 +165,6 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Melbourne',
     postcode: '3000',
     price: 320,
-    availableFrom: '2026-08-15',
     description:
       'Secure car park bay #330 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
@@ -188,9 +175,10 @@ export const carparkBays: CarparkBay[] = [
     address: '58 Franklin Street',
     suburb: 'Melbourne',
     postcode: '3000',
+    status: 'COMING_SOON',
     availableFrom: '2026-09-12',
     description:
-      'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Contact us for pricing.',
+      'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Available from 12 September 2026 — enquire now to secure it. Contact us for pricing.',
   }),
   ...['603', '710', '749', '753', '755', '807'].map((n) =>
     bay({
@@ -200,6 +188,7 @@ export const carparkBays: CarparkBay[] = [
       address: '58 Franklin Street',
       suburb: 'Melbourne',
       postcode: '3000',
+      status: 'LEASED',
       description: `Secure car park bay #${n} at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Contact us for pricing.`,
     })
   ),
@@ -224,7 +213,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Melbourne',
     postcode: '3000',
     price: 240,
-    status: 'AVAILABLE',
+    status: 'LEASED',
     images: ['/carparks/58-franklin-st-melbourne/bay-863/1.jpeg'],
     description:
       'Secure car park bay #863 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
@@ -238,6 +227,7 @@ export const carparkBays: CarparkBay[] = [
     address: '68 La Trobe Street',
     suburb: 'Melbourne',
     postcode: '3000',
+    status: 'LEASED',
     images: [
       '/carparks/68-la-trobe-st-melbourne/bay-c25/1.jpeg',
       '/carparks/68-la-trobe-st-melbourne/bay-c25/2.jpeg',
@@ -255,9 +245,10 @@ export const carparkBays: CarparkBay[] = [
     address: '20 Convention Centre Place',
     suburb: 'South Wharf',
     postcode: '3006',
-    availableFrom: '2026-07-16',
+    status: 'COMING_SOON',
+    availableFrom: '2026-09-20',
     description:
-      'Secure car park bay C7 at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Contact us for pricing.',
+      'Secure car park bay C7 (carpark #35) at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Available from 20 September 2026 — enquire now to secure it. Contact us for pricing.',
   }),
   ...['C5', 'C6', 'C8'].map((n) =>
     bay({
@@ -267,6 +258,7 @@ export const carparkBays: CarparkBay[] = [
       address: '20 Convention Centre Place',
       suburb: 'South Wharf',
       postcode: '3006',
+      status: 'LEASED',
       description: `Secure car park bay ${n} at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Contact us for pricing.`,
     })
   ),
@@ -281,7 +273,7 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3006',
     availableFrom: '2026-08-21',
     description:
-      'Secure car park bay #1308A at 180 City Road, Southbank. Moments from Crown, the Melbourne CBD and the Southbank arts precinct. Contact us for pricing.',
+      'Secure car park bay #1308A on Level 6 at 180 City Road, Southbank. Moments from Crown, the Melbourne CBD and the Southbank arts precinct. Contact us for pricing.',
   }),
 
   // ── 83 Whiteman Street, Southbank ────────────────────────────────────────
@@ -306,6 +298,7 @@ export const carparkBays: CarparkBay[] = [
       address: '11 Daly Street',
       suburb: 'South Yarra',
       postcode: '3141',
+      status: 'LEASED',
       description: `Secure car park bay #${n} at 11 Daly Street, South Yarra. Moments from Chapel Street, South Yarra Station and the Yarra trails. Contact us for pricing.`,
     })
   ),
@@ -329,7 +322,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'South Yarra',
     postcode: '3141',
     price: 240,
-    status: 'AVAILABLE',
+    status: 'LEASED',
     images: ['/carparks/11-daly-st-south-yarra/bay-593/1.jpeg'],
     description:
       'Secure car park bay #593 at 11 Daly Street, South Yarra. Moments from Chapel Street and South Yarra Station.',
@@ -407,7 +400,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Kew',
     postcode: '3101',
     price: 290,
-    status: 'AVAILABLE',
+    status: 'LEASED',
     images: ['/carparks/118-high-st-kew/bay-501/1.jpeg'],
     description:
       'Secure car park bay #501 at 118 High Street, Kew. Convenient access to Kew Junction shops and cafes.',
@@ -422,10 +415,35 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'St Kilda',
     postcode: '3182',
     price: 220,
-    status: 'AVAILABLE',
+    status: 'LEASED',
     images: ['/carparks/135-fitzroy-st-st-kilda/bay-273/1.jpeg'],
     description:
       'Secure car park bay #273 at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach.',
+  }),
+  // Photos coming — placeholder for now.
+  ...['270', '331', '332'].map((n) =>
+    bay({
+      bayNumber: n,
+      building: '135 Fitzroy Street',
+      buildingSlug: '135-fitzroy-st-st-kilda',
+      address: '135 Fitzroy Street',
+      suburb: 'St Kilda',
+      postcode: '3182',
+      description: `Secure car park bay #${n} at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach. Contact us for pricing.`,
+    })
+  ),
+
+  // ── 63 Dorcas Street, South Melbourne ────────────────────────────────────
+  // Photos coming — placeholder for now.
+  bay({
+    bayNumber: '94',
+    building: '63 Dorcas Street',
+    buildingSlug: '63-dorcas-st-south-melbourne',
+    address: '63 Dorcas Street',
+    suburb: 'South Melbourne',
+    postcode: '3205',
+    description:
+      'Secure car park bay #94 at 63 Dorcas Street, South Melbourne. Moments from South Melbourne Market, Clarendon Street and the CBD. Contact us for pricing.',
   }),
 ]
 
