@@ -4,8 +4,8 @@
 export interface StorageUnit {
   id: string
   unitNumber: string
-  size: number // in square meters
-  sizeCategory:
+  size?: number // in square meters — undefined => size to be confirmed
+  sizeCategory?:
     | '2sqm'
     | '3sqm'
     | '4sqm'
@@ -16,7 +16,7 @@ export interface StorageUnit {
     | '9sqm'
     | '10sqm'
     | '10sqm+'
-  price: number // monthly rent
+  price?: number // monthly rent — undefined => "Contact for price"
   status: 'AVAILABLE' | 'LEASED'
   images: string[]
   videoUrl?: string
@@ -102,15 +102,24 @@ export const storageUnits: StorageUnit[] = [
     floor: "Level 3",
   },
   {
+    // Size and pricing to be confirmed — listed per availability update from the client.
+    id: "archive-unit-d45",
+    unitNumber: "D45",
+    status: "AVAILABLE",
+    images: ["/F5.jpg"],
+    description: "Secure storage unit at The Archive, 601 Little Collins Street. Available now. Contact us for size and pricing.",
+    features: SHARED_FEATURES,
+    floor: "Level 3",
+  },
+  {
     id: "archive-unit-d56",
     unitNumber: "D56",
     size: 2.2,
     sizeCategory: "2sqm",
     price: 80,
-    status: "LEASED",
-    availableFrom: "2026-09-12",
+    status: "AVAILABLE",
     images: ["/D56.601/D56.601 (internal + furniture).jpg","/D56.601/D56.601 (internal 2.2sqm).jpg","/D56.601/Loading & Lift.jpg"],
-    description: "Entry-level storage unit at The Archive, 601 Little Collins Street. Available from 12 September 2026.",
+    description: "Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.",
     features: SHARED_FEATURES,
     floor: "Level 3",
   },
@@ -575,6 +584,16 @@ export const storageUnits: StorageUnit[] = [
     features: SHARED_FEATURES,
     floor: "Level 7",
   },
+  {
+    // Size and pricing to be confirmed — listed per availability update from the client.
+    id: "archive-unit-h56",
+    unitNumber: "H56",
+    status: "AVAILABLE",
+    images: ["/F5.jpg"],
+    description: "Secure storage unit at The Archive, 601 Little Collins Street. Available now. Contact us for size and pricing.",
+    features: SHARED_FEATURES,
+    floor: "Level 7",
+  },
 ]
 
 // Facility information
@@ -624,6 +643,7 @@ export function getUnitsByPriceRange(
   maxPrice?: number
 ): StorageUnit[] {
   return storageUnits.filter((unit) => {
+    if (unit.price == null) return !minPrice && !maxPrice
     if (minPrice && unit.price < minPrice) return false
     if (maxPrice && unit.price > maxPrice) return false
     return true

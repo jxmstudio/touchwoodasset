@@ -69,7 +69,7 @@ export function ArchiveGrid({ units, isLoading = false }: ArchiveGridProps) {
                 {isMounted ? (
                 <Image
                   src={unit.images[0]}
-                  alt={`${unit.unitNumber} - ${unit.size}sqm storage unit`}
+                  alt={`${unit.unitNumber}${unit.size != null ? ` - ${unit.size}sqm` : ''} storage unit`}
                   fill
                   className="object-contain group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -77,7 +77,7 @@ export function ArchiveGrid({ units, isLoading = false }: ArchiveGridProps) {
                 ) : (
                   <Image
                     src={unit.images[0]}
-                    alt={`${unit.unitNumber} - ${unit.size}sqm storage unit`}
+                    alt={`${unit.unitNumber}${unit.size != null ? ` - ${unit.size}sqm` : ''} storage unit`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-contain"
@@ -106,9 +106,13 @@ export function ArchiveGrid({ units, isLoading = false }: ArchiveGridProps) {
                     {unit.unitNumber}
                   </h3>
                   <div className="flex items-center text-sm text-gray-600">
-                    <Maximize2 className="h-4 w-4 mr-1" />
-                    <span>{unit.size} sqm</span>
-                    <span className="mx-2">•</span>
+                    {unit.size != null && (
+                      <>
+                        <Maximize2 className="h-4 w-4 mr-1" />
+                        <span>{unit.size} sqm</span>
+                        <span className="mx-2">•</span>
+                      </>
+                    )}
                     <MapPin className="h-4 w-4 mr-1" />
                     <span>{unit.floor}</span>
                   </div>
@@ -121,12 +125,18 @@ export function ArchiveGrid({ units, isLoading = false }: ArchiveGridProps) {
 
                 {/* Price */}
                 <div className="pt-2 border-t border-gray-100">
-                  <div className="text-2xl font-bold text-primary">
-                    ${unit.price}
-                    <span className="text-sm font-normal text-gray-600 ml-1">
-                      / month
-                    </span>
-                  </div>
+                  {unit.price != null ? (
+                    <div className="text-2xl font-bold text-primary">
+                      ${unit.price}
+                      <span className="text-sm font-normal text-gray-600 ml-1">
+                        / month
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="text-lg font-semibold text-gray-700">
+                      Contact for price
+                    </div>
+                  )}
                 </div>
 
                 {/* Features Preview */}

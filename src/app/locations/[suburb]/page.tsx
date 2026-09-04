@@ -230,11 +230,15 @@ export default function LocationPage({ params }: LocationPageProps) {
                       <Badge className="bg-green-600 text-white text-xs">Available</Badge>
                     </div>
                     <div className="flex items-center gap-4 text-sm text-gray-600">
-                      <span className="flex items-center gap-1">
-                        <Package className="h-3.5 w-3.5" />
-                        {unit.size}sqm
+                      {unit.size != null && (
+                        <span className="flex items-center gap-1">
+                          <Package className="h-3.5 w-3.5" />
+                          {unit.size}sqm
+                        </span>
+                      )}
+                      <span className="font-medium text-gray-900">
+                        {unit.price != null ? `$${unit.price}/mo` : 'Contact for price'}
                       </span>
-                      <span className="font-medium text-gray-900">${unit.price}/mo</span>
                     </div>
                     <p className="text-xs text-gray-500 mt-2 line-clamp-1">{unit.description}</p>
                   </Link>

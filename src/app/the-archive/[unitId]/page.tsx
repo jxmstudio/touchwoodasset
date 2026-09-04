@@ -28,14 +28,16 @@ export async function generateMetadata({
     }
   }
 
+  const sizeLabel = unit.size != null ? `${unit.size}sqm ` : ''
+
   return {
-    title: `${unit.unitNumber} — ${unit.size}sqm Storage Unit, Melbourne CBD`,
+    title: `${unit.unitNumber} — ${sizeLabel}Storage Unit, Melbourne CBD`,
     description: unit.description,
     // Required: the parent the-archive layout previously supplied a canonical
     // of /the-archive, which every unit page inherited and self-de-indexed with.
     alternates: { canonical: `/the-archive/${unit.id}` },
     openGraph: {
-      title: `${unit.unitNumber} — ${unit.size}sqm Storage at The Archive`,
+      title: `${unit.unitNumber} — ${sizeLabel}Storage at The Archive`,
       description: unit.description,
       url: `/the-archive/${unit.id}`,
       images: unit.images,
@@ -77,7 +79,7 @@ export default async function StorageUnitDetailPage({
       {
         '@type': 'Product',
         '@id': absoluteUrl(`/the-archive/${unit.id}#product`),
-        name: `Storage Unit ${unit.unitNumber} — ${unit.size}sqm, Melbourne CBD`,
+        name: `Storage Unit ${unit.unitNumber}${unit.size != null ? ` — ${unit.size}sqm` : ''}, Melbourne CBD`,
         description: unit.description,
         image: unit.images.map((src) => absoluteUrl(src)),
         category: 'Self storage unit',

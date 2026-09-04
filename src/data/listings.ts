@@ -49,9 +49,9 @@ export const listings: ListingItem[] = [
     slug: 'townhouse-22-23-coate-avenue-alphington',
     title: '22/23 Coate Avenue, Alphington',
     summary:
-      'Beautifully presented three-bedroom semi-detached home with private courtyard and garage',
+      'Beautifully presented three-bedroom semi-detached home with private courtyard and garage — leased',
     type: 'RESIDENTIAL',
-    status: 'FOR_RENT',
+    status: 'LEASED',
     price: 695,
     pricePeriod: 'per_week',
     address: '22/23 Coate Avenue',
@@ -127,14 +127,14 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
     category: 'properties',
   },
   {
-    // PLACEHOLDER — awaiting price, floorplan details, copy and photos from Raquel.
-    // Flip status to 'AVAILABLE' (renders as "For Sale") once the real details land.
+    // Awaiting price, floorplan details, copy and photos from Raquel —
+    // listed as available per client instruction, placeholder imagery for now.
     id: '2002-555-swanston',
     slug: 'apartment-2002-555-swanston-street-carlton',
     title: '2002/555 Swanston Street, Carlton',
-    summary: 'Apartment for sale in Carlton — full details and photography coming soon',
+    summary: 'Apartment for sale in Carlton — photography coming soon',
     type: 'RESIDENTIAL',
-    status: 'COMING_SOON',
+    status: 'AVAILABLE',
     address: '2002/555 Swanston Street',
     suburb: 'Carlton',
     state: 'VIC',
@@ -158,15 +158,14 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
     category: 'properties',
   },
   {
-    // PLACEHOLDER — awaiting price, property details, copy and photos.
-    // Flip status to 'AVAILABLE' once the real details land.
+    // Awaiting price, property details, copy and photos —
+    // listed as available per client instruction, placeholder imagery for now.
     id: '2111-22-24-jane-bell',
     slug: 'apartment-2111-22-24-jane-bell-lane-melbourne',
     title: '2111/22-24 Jane Bell Lane, Melbourne',
-    summary:
-      'Apartment in Melbourne CBD — full details and photography coming soon',
+    summary: 'Apartment in Melbourne CBD — photography coming soon',
     type: 'RESIDENTIAL',
-    status: 'COMING_SOON',
+    status: 'AVAILABLE',
     address: '2111/22-24 Jane Bell Lane',
     suburb: 'Melbourne',
     state: 'VIC',
@@ -190,60 +189,12 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
     category: 'properties',
   },
   {
-    // PLACEHOLDER — awaiting size, price and photos.
-    id: 'storage-271-255-drummond',
-    slug: 'storage-271-255-drummond-st-carlton',
-    title: 'Storage Cage – 271/255 Drummond Street, Carlton',
-    summary: 'Secure storage cage available in Carlton',
-    type: 'ANCILLARY',
-    status: 'AVAILABLE',
-    address: '271/255 Drummond Street',
-    suburb: 'Carlton',
-    state: 'VIC',
-    postcode: '3053',
-    heroImageUrl: '/carparks/255-drummond-st-carlton/bay-271/1.jpeg',
-    description:
-      'Secure storage cage #271 at the Carlton Clocktower building, 255 Drummond Street, Carlton. Moments from Lygon Street, Melbourne University and RMIT. Contact us for pricing and to arrange an inspection.',
-    features: [
-      'Secure access',
-      'Well-maintained building',
-      'Carlton location near Lygon Street',
-      'Flexible lease terms',
-    ],
-    gallery: [
-      {
-        url: '/carparks/255-drummond-st-carlton/bay-271/1.jpeg',
-        alt: 'Entrance at the Carlton Clocktower, 255 Drummond Street, Carlton',
-        width: 1305,
-        height: 979,
-      },
-      {
-        url: '/carparks/255-drummond-st-carlton/bay-271/2.jpeg',
-        alt: 'The Clock Tower building at 255 Drummond Street, Carlton',
-        width: 1276,
-        height: 975,
-      },
-      {
-        url: '/carparks/255-drummond-st-carlton/bay-271/3.jpeg',
-        alt: 'Building views at 255 Drummond Street, Carlton',
-        width: 1276,
-        height: 975,
-      },
-    ],
-    agent: {
-      name: 'Eamon Chau',
-      phone: '+61 413 889 388',
-      email: 'admin@touchwoodasset.com',
-    },
-    category: 'storage-cage',
-  },
-  {
     id: '3',
     slug: 'carpark-211-powlett-st-east-melbourne',
-    title: 'Secure Car Park for Lease at Tribeca, East Melbourne (lot. 31)',
-    summary: 'Secure car park space — details coming soon',
+    title: 'Secure Car Park at Tribeca, East Melbourne (lot. 31)',
+    summary: 'Secure car park space — leased',
     type: 'ANCILLARY',
-    status: 'COMING_SOON',
+    status: 'LEASED',
     address: '31/211 Powlett Street',
     suburb: 'East Melbourne',
     state: 'VIC',

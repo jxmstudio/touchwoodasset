@@ -109,6 +109,21 @@ export const carparkBays: CarparkBay[] = [
     description:
       'Secure car park bay #265 at 255 Drummond Street, Carlton. Moments from Lygon Street, Melbourne University and RMIT. Contact us for pricing.',
   }),
+  bay({
+    bayNumber: '271',
+    building: '255 Drummond Street',
+    buildingSlug: '255-drummond-st-carlton',
+    address: '255 Drummond Street',
+    suburb: 'Carlton',
+    postcode: '3053',
+    images: [
+      '/carparks/255-drummond-st-carlton/bay-271/1.jpeg',
+      '/carparks/255-drummond-st-carlton/bay-271/2.jpeg',
+      '/carparks/255-drummond-st-carlton/bay-271/3.jpeg',
+    ],
+    description:
+      'Secure car park bay #271 at the Carlton Clocktower carpark, 255 Drummond Street, Carlton. Moments from Lygon Street, Melbourne University and RMIT. Contact us for pricing.',
+  }),
 
   // ── 401 Docklands Drive, Docklands ───────────────────────────────────────
   bay({
@@ -284,7 +299,7 @@ export const carparkBays: CarparkBay[] = [
     address: '83 Whiteman Street',
     suburb: 'Southbank',
     postcode: '3006',
-    availableFrom: '2026-08-29',
+    status: 'LEASED',
     description:
       'Secure car park bay #16 at 83 Whiteman Street, Southbank. Short walk to Crown, South Wharf and Southbank Promenade. Contact us for pricing.',
   }),
@@ -351,11 +366,11 @@ export const carparkBays: CarparkBay[] = [
     address: '211 Powlett Street',
     suburb: 'East Melbourne',
     postcode: '3002',
-    status: 'COMING_SOON',
+    status: 'LEASED',
     clearance: '2.1m',
     images: ['/carparks/211-powlett-st-east-melbourne/bay-31/1.jpeg'],
     description:
-      'Secure car park lot 31 at Tribeca, 211 Powlett Street, East Melbourne — details coming soon. 5 minutes walk to the MCG, moments to Jolimont Station and the CBD.',
+      'Secure car park lot 31 at Tribeca, 211 Powlett Street, East Melbourne. 5 minutes walk to the MCG, moments to Jolimont Station and the CBD.',
   }),
 
   // ── St Kilda Tower, Queens Lane ──────────────────────────────────────────

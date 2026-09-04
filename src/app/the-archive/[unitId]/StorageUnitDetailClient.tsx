@@ -140,10 +140,12 @@ export function StorageUnitDetailClient({
                           Storage Unit {unit.unitNumber}
                         </h1>
                         <div className="flex items-center text-gray-600 space-x-4">
-                          <div className="flex items-center">
-                            <Maximize2 className="h-4 w-4 mr-1" />
-                            <span>{unit.size} sqm</span>
-                          </div>
+                          {unit.size != null && (
+                            <div className="flex items-center">
+                              <Maximize2 className="h-4 w-4 mr-1" />
+                              <span>{unit.size} sqm</span>
+                            </div>
+                          )}
                           <div className="flex items-center">
                             <Building2 className="h-4 w-4 mr-1" />
                             <span>{unit.floor}</span>
@@ -155,12 +157,18 @@ export function StorageUnitDetailClient({
                       </Badge>
                     </div>
 
-                    <div className="text-4xl font-bold text-primary mt-4">
-                      ${unit.price}
-                      <span className="text-lg font-normal text-gray-600 ml-2">
-                        / month
-                      </span>
-                    </div>
+                    {unit.price != null ? (
+                      <div className="text-4xl font-bold text-primary mt-4">
+                        ${unit.price}
+                        <span className="text-lg font-normal text-gray-600 ml-2">
+                          / month
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="text-2xl font-bold text-gray-700 mt-4">
+                        Contact for price
+                      </div>
+                    )}
                   </CardHeader>
 
                   <CardContent>

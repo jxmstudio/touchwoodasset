@@ -98,8 +98,10 @@ export default function ArchiveClient() {
       ? parseInt(activeFilters.maxPrice)
       : Infinity
 
-    filtered = filtered.filter(
-      (unit) => unit.price >= minPrice && unit.price <= maxPrice
+    filtered = filtered.filter((unit) =>
+      unit.price == null
+        ? minPrice === 0 && maxPrice === Infinity
+        : unit.price >= minPrice && unit.price <= maxPrice
     )
 
     // Filter by status (only show available for now)
