@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8f9fa"/>
+      <stop offset="1" stop-color="#eceef0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1448" height="1086" fill="url(#bg)"/>
+  <!-- subtle parking bay lines -->
+  <g stroke="#d7dadd" stroke-width="10" fill="none">
+    <path d="M 220 1086 L 420 700 L 1028 700 L 1228 1086"/>
+    <path d="M 724 700 L 724 1086" stroke-dasharray="36 28"/>
+  </g>
+  <!-- P roundel -->
+  <g>
+    <rect x="649" y="330" width="150" height="150" rx="28" fill="#E1262B"/>
+    <text x="724" y="443" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="104" font-weight="bold" fill="#ffffff">P</text>
+  </g>
+  <text x="724" y="580" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="bold" fill="#3a3f45">Photos coming soon</text>
+  <text x="724" y="636" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#7a8085">Secure car park bay — enquire for details</text>
+  <text x="724" y="1010" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" letter-spacing="3" fill="#E1262B">TOUCHWOOD <tspan fill="#9aa0a6">ASSET MANAGEMENT</tspan></text>
+</svg>

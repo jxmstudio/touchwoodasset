@@ -22,7 +22,13 @@ export interface CarparkBay {
   features: string[]
 }
 
-const PLACEHOLDER = '/placeholder-property.svg'
+// Branded fallback tile for bays whose photos haven't been supplied yet
+const PLACEHOLDER = '/carparks/photos-coming-soon.svg'
+
+// Real facility photos (bay numbers digitally removed) reused across bays
+// in the same building until per-bay shots arrive from Raquel.
+const FRANKLIN_FACILITY = '/carparks/58-franklin-st-melbourne/facility-1.jpeg'
+const DALY_FACILITY = '/carparks/11-daly-st-south-yarra/facility-1.jpeg'
 
 const SHARED_FEATURES = [
   'Secure access',
@@ -180,6 +186,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Melbourne',
     postcode: '3000',
     price: 320,
+    images: [FRANKLIN_FACILITY],
     description:
       'Secure car park bay #330 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
@@ -192,6 +199,7 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3000',
     status: 'COMING_SOON',
     availableFrom: '2026-09-12',
+    images: [FRANKLIN_FACILITY],
     description:
       'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Available from 12 September 2026 — enquire now to secure it. Contact us for pricing.',
   }),
@@ -204,6 +212,7 @@ export const carparkBays: CarparkBay[] = [
       suburb: 'Melbourne',
       postcode: '3000',
       status: 'LEASED',
+      images: [FRANKLIN_FACILITY],
       description: `Secure car park bay #${n} at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Contact us for pricing.`,
     })
   ),
@@ -217,6 +226,7 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3000',
     price: 230,
     status: 'LEASED',
+    images: [FRANKLIN_FACILITY],
     description:
       'Secure car park bay #729 (Level 7) at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
@@ -314,6 +324,7 @@ export const carparkBays: CarparkBay[] = [
       suburb: 'South Yarra',
       postcode: '3141',
       status: 'LEASED',
+      images: [DALY_FACILITY],
       description: `Secure car park bay #${n} at 11 Daly Street, South Yarra. Moments from Chapel Street, South Yarra Station and the Yarra trails. Contact us for pricing.`,
     })
   ),
