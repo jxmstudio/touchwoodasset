@@ -105,9 +105,9 @@ export const storageUnits: StorageUnit[] = [
     // Size and pricing to be confirmed — listed per availability update from the client.
     id: "archive-unit-d45",
     unitNumber: "D45",
-    status: "AVAILABLE",
+    status: "LEASED",
     images: ["/F5.jpg"],
-    description: "Secure storage unit at The Archive, 601 Little Collins Street. Available now. Contact us for size and pricing.",
+    description: "Secure storage unit at The Archive, 601 Little Collins Street. Contact us for size and pricing.",
     features: SHARED_FEATURES,
     floor: "Level 3",
   },
@@ -577,7 +577,7 @@ export const storageUnits: StorageUnit[] = [
     size: 9,
     sizeCategory: "9sqm",
     price: 300,
-    status: "LEASED",
+    status: "AVAILABLE",
     images: ["/H43.601/H43.601 (internal + furniture).jpg","/H43.601/H43.601 (internal 9sqm).jpg","/H43.601/Loading & Lift.jpg"],
     videoUrl: "https://youtu.be/xjfx2vxAbhM",
     description: "Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture. Available now.",
@@ -593,6 +593,16 @@ export const storageUnits: StorageUnit[] = [
     description: "Secure storage unit at The Archive, 601 Little Collins Street. Available now. Contact us for size and pricing.",
     features: SHARED_FEATURES,
     floor: "Level 7",
+  },
+  {
+    // Size and pricing to be confirmed — listed per availability update from the client (9 Sep 2026).
+    id: "archive-unit-g68",
+    unitNumber: "G68",
+    status: "AVAILABLE",
+    images: ["/F5.jpg"],
+    description: "Secure storage unit at The Archive, 601 Little Collins Street. Available now. Contact us for size and pricing.",
+    features: SHARED_FEATURES,
+    floor: "Level 6",
   },
 ]
 

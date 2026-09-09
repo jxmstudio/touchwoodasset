@@ -194,11 +194,10 @@ export const carparkBays: CarparkBay[] = [
     address: '58 Franklin Street',
     suburb: 'Melbourne',
     postcode: '3000',
-    status: 'COMING_SOON',
-    availableFrom: '2026-09-12',
+    price: 210,
     images: ['/carparks/58-franklin-st-melbourne/bay-810/1.jpeg'],
     description:
-      'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Available from 12 September 2026 — enquire now to secure it. Contact us for pricing.',
+      'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
   ...(
     [
@@ -319,7 +318,7 @@ export const carparkBays: CarparkBay[] = [
     address: '180 City Road',
     suburb: 'Southbank',
     postcode: '3006',
-    availableFrom: '2026-08-21',
+    status: 'LEASED',
     images: [
       '/carparks/180-city-rd-southbank/bay-1308a/1.jpeg',
       '/carparks/180-city-rd-southbank/bay-1308a/2.jpeg',
@@ -513,16 +512,24 @@ export const carparkBays: CarparkBay[] = [
   ),
 
   // ── 63 Dorcas Street, South Melbourne ────────────────────────────────────
-  // Photos coming — placeholder for now.
+  // Bay number confirmed as 93B per client email 9 Sep 2026.
   bay({
-    bayNumber: '94',
+    bayNumber: '93B',
     building: '63 Dorcas Street',
     buildingSlug: '63-dorcas-st-south-melbourne',
     address: '63 Dorcas Street',
     suburb: 'South Melbourne',
     postcode: '3205',
+    price: 320,
+    images: [
+      '/carparks/63-dorcas-st-south-melbourne/bay-93b/1.jpeg',
+      '/carparks/63-dorcas-st-south-melbourne/bay-93b/2.jpeg',
+      '/carparks/63-dorcas-st-south-melbourne/bay-93b/3.jpeg',
+      '/carparks/63-dorcas-st-south-melbourne/bay-93b/4.png',
+      '/carparks/63-dorcas-st-south-melbourne/bay-93b/5.png',
+    ],
     description:
-      'Secure car park bay #94 at 63 Dorcas Street, South Melbourne. Moments from South Melbourne Market, Clarendon Street and the CBD. Contact us for pricing.',
+      'Secure car park bay #93B at 63 Dorcas Street, South Melbourne. Moments from South Melbourne Market, Clarendon Street and the CBD.',
   }),
 ]
 
