@@ -25,11 +25,6 @@ export interface CarparkBay {
 // Branded fallback tile for bays whose photos haven't been supplied yet
 const PLACEHOLDER = '/carparks/photos-coming-soon.svg'
 
-// Real facility photos (bay numbers digitally removed) reused across bays
-// in the same building until per-bay shots arrive from Raquel.
-const FRANKLIN_FACILITY = '/carparks/58-franklin-st-melbourne/facility-1.jpeg'
-const DALY_FACILITY = '/carparks/11-daly-st-south-yarra/facility-1.jpeg'
-
 const SHARED_FEATURES = [
   'Secure access',
   '24/7 entry',
@@ -177,7 +172,6 @@ export const carparkBays: CarparkBay[] = [
   }),
 
   // ── 58 Franklin Street, Melbourne ────────────────────────────────────────
-  // Photos coming from Raquel — placeholder for now.
   bay({
     bayNumber: '330',
     building: '58 Franklin Street',
@@ -186,7 +180,10 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Melbourne',
     postcode: '3000',
     price: 320,
-    images: [FRANKLIN_FACILITY],
+    images: [
+      '/carparks/58-franklin-st-melbourne/bay-330/1.png',
+      '/carparks/58-franklin-st-melbourne/bay-330/2.png',
+    ],
     description:
       'Secure car park bay #330 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
@@ -199,11 +196,20 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3000',
     status: 'COMING_SOON',
     availableFrom: '2026-09-12',
-    images: [FRANKLIN_FACILITY],
+    images: ['/carparks/58-franklin-st-melbourne/bay-810/1.jpeg'],
     description:
       'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Available from 12 September 2026 — enquire now to secure it. Contact us for pricing.',
   }),
-  ...['603', '710', '749', '753', '755', '807'].map((n) =>
+  ...(
+    [
+      ['603', 'png'],
+      ['710', 'jpeg'],
+      ['749', 'jpeg'],
+      ['753', 'png'],
+      ['755', 'png'],
+      ['807', 'png'],
+    ] as const
+  ).map(([n, ext]) =>
     bay({
       bayNumber: n,
       building: '58 Franklin Street',
@@ -212,7 +218,7 @@ export const carparkBays: CarparkBay[] = [
       suburb: 'Melbourne',
       postcode: '3000',
       status: 'LEASED',
-      images: [FRANKLIN_FACILITY],
+      images: [`/carparks/58-franklin-st-melbourne/bay-${n}/1.${ext}`],
       description: `Secure car park bay #${n} at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Contact us for pricing.`,
     })
   ),
@@ -226,7 +232,10 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3000',
     price: 230,
     status: 'LEASED',
-    images: [FRANKLIN_FACILITY],
+    images: [
+      '/carparks/58-franklin-st-melbourne/bay-729/1.png',
+      '/carparks/58-franklin-st-melbourne/bay-729/2.png',
+    ],
     description:
       'Secure car park bay #729 (Level 7) at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
@@ -272,10 +281,21 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3006',
     status: 'COMING_SOON',
     availableFrom: '2026-09-20',
+    images: [
+      '/carparks/20-convention-centre-pl-south-wharf/bay-c7/1.png',
+      '/carparks/20-convention-centre-pl-south-wharf/bay-c7/2.png',
+      '/carparks/20-convention-centre-pl-south-wharf/bay-c7/3.png',
+    ],
     description:
       'Secure car park bay C7 (carpark #35) at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Available from 20 September 2026 — enquire now to secure it. Contact us for pricing.',
   }),
-  ...['C5', 'C6', 'C8'].map((n) =>
+  ...(
+    [
+      ['C5', ['1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg']],
+      ['C6', ['1.png', '2.png']],
+      ['C8', ['1.png', '2.png', '3.png']],
+    ] as const
+  ).map(([n, files]) =>
     bay({
       bayNumber: n,
       building: '20 Convention Centre Place',
@@ -284,6 +304,9 @@ export const carparkBays: CarparkBay[] = [
       suburb: 'South Wharf',
       postcode: '3006',
       status: 'LEASED',
+      images: files.map(
+        (f) => `/carparks/20-convention-centre-pl-south-wharf/bay-${n.toLowerCase()}/${f}`
+      ),
       description: `Secure car park bay ${n} at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Contact us for pricing.`,
     })
   ),
@@ -297,6 +320,12 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Southbank',
     postcode: '3006',
     availableFrom: '2026-08-21',
+    images: [
+      '/carparks/180-city-rd-southbank/bay-1308a/1.jpeg',
+      '/carparks/180-city-rd-southbank/bay-1308a/2.jpeg',
+      '/carparks/180-city-rd-southbank/bay-1308a/3.jpeg',
+      '/carparks/180-city-rd-southbank/bay-1308a/4.jpeg',
+    ],
     description:
       'Secure car park bay #1308A on Level 6 at 180 City Road, Southbank. Moments from Crown, the Melbourne CBD and the Southbank arts precinct. Contact us for pricing.',
   }),
@@ -315,7 +344,14 @@ export const carparkBays: CarparkBay[] = [
   }),
 
   // ── 11 Daly Street, South Yarra ──────────────────────────────────────────
-  ...['375', '376', '595', '628'].map((n) =>
+  ...(
+    [
+      ['375', ['1.png', '2.jpeg']],
+      ['376', ['1.jpeg', '2.jpeg', '3.jpeg']],
+      ['595', ['1.jpeg', '2.jpeg']],
+      ['628', ['1.jpeg', '2.jpeg', '3.jpeg']],
+    ] as const
+  ).map(([n, files]) =>
     bay({
       bayNumber: n,
       building: '11 Daly Street',
@@ -324,7 +360,7 @@ export const carparkBays: CarparkBay[] = [
       suburb: 'South Yarra',
       postcode: '3141',
       status: 'LEASED',
-      images: [DALY_FACILITY],
+      images: files.map((f) => `/carparks/11-daly-st-south-yarra/bay-${n}/${f}`),
       description: `Secure car park bay #${n} at 11 Daly Street, South Yarra. Moments from Chapel Street, South Yarra Station and the Yarra trails. Contact us for pricing.`,
     })
   ),
@@ -446,8 +482,18 @@ export const carparkBays: CarparkBay[] = [
     description:
       'Secure car park bay #273 at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach.',
   }),
-  // Photos coming — placeholder for now.
-  ...['270', '331', '332'].map((n) =>
+  // Bay 270 photos still to come — placeholder for now.
+  bay({
+    bayNumber: '270',
+    building: '135 Fitzroy Street',
+    buildingSlug: '135-fitzroy-st-st-kilda',
+    address: '135 Fitzroy Street',
+    suburb: 'St Kilda',
+    postcode: '3182',
+    description:
+      'Secure car park bay #270 at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach. Contact us for pricing.',
+  }),
+  ...['331', '332'].map((n) =>
     bay({
       bayNumber: n,
       building: '135 Fitzroy Street',
@@ -455,6 +501,13 @@ export const carparkBays: CarparkBay[] = [
       address: '135 Fitzroy Street',
       suburb: 'St Kilda',
       postcode: '3182',
+      images: [
+        `/carparks/135-fitzroy-st-st-kilda/bay-${n}/6.png`, // bay with car
+        `/carparks/135-fitzroy-st-st-kilda/bay-${n}/5.png`, // empty bay
+        `/carparks/135-fitzroy-st-st-kilda/bay-${n}/3.jpeg`, // carpark interior
+        `/carparks/135-fitzroy-st-st-kilda/bay-${n}/1.jpeg`, // building
+        `/carparks/135-fitzroy-st-st-kilda/bay-${n}/2.png`, // street
+      ],
       description: `Secure car park bay #${n} at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach. Contact us for pricing.`,
     })
   ),

@@ -127,28 +127,35 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
     category: 'properties',
   },
   {
-    // Awaiting price, floorplan details, copy and photos from Raquel —
-    // listed as available per client instruction, placeholder imagery for now.
+    // Awaiting price and copy from Raquel — listed as available per client instruction.
     id: '2002-555-swanston',
     slug: 'apartment-2002-555-swanston-street-carlton',
     title: '2002/555 Swanston Street, Carlton',
-    summary: 'Apartment for sale in Carlton — photography coming soon',
+    summary: 'Two-bedroom, two-bathroom apartment with balcony and secure car space in Carlton',
     type: 'RESIDENTIAL',
     status: 'AVAILABLE',
     address: '2002/555 Swanston Street',
     suburb: 'Carlton',
     state: 'VIC',
     postcode: '3053',
-    heroImageUrl: '/placeholder-property.svg',
+    heroImageUrl: '/2002-555-swanston-st-carlton/2.jpeg',
     description:
-      'A residential apartment at 555 Swanston Street, Carlton, coming to market for sale. Full property details, floorplan and photography will be published shortly. For early enquiries or to arrange an inspection, please get in touch with our team.',
+      'A two-bedroom, two-bathroom apartment with balcony and secure car space at 555 Swanston Street, Carlton, coming to market for sale. Moments from Melbourne University, RMIT and Lygon Street. Full pricing details will be published shortly — for early enquiries or to arrange an inspection, please get in touch with our team.',
     gallery: [
-      {
-        url: '/placeholder-property.svg',
-        alt: 'Photography coming soon for 2002/555 Swanston Street, Carlton',
-        width: 400,
-        height: 300,
-      },
+      { url: '/2002-555-swanston-st-carlton/2.jpeg', alt: 'Balcony with city views at 2002/555 Swanston Street, Carlton', width: 1448, height: 1086 },
+      { url: '/2002-555-swanston-st-carlton/3.jpeg', alt: 'Interior at 2002/555 Swanston Street, Carlton', width: 1448, height: 1086 },
+      { url: '/2002-555-swanston-st-carlton/4.jpeg', alt: 'Interior at 2002/555 Swanston Street, Carlton', width: 1448, height: 1086 },
+      { url: '/2002-555-swanston-st-carlton/5.jpeg', alt: 'Interior at 2002/555 Swanston Street, Carlton', width: 1448, height: 1086 },
+      { url: '/2002-555-swanston-st-carlton/6.jpeg', alt: 'Interior at 2002/555 Swanston Street, Carlton', width: 1448, height: 1086 },
+      { url: '/2002-555-swanston-st-carlton/7.jpeg', alt: 'Interior at 2002/555 Swanston Street, Carlton', width: 1448, height: 1086 },
+      { url: '/2002-555-swanston-st-carlton/8.jpeg', alt: 'Interior at 2002/555 Swanston Street, Carlton', width: 1448, height: 1086 },
+      { url: '/2002-555-swanston-st-carlton/9.jpeg', alt: 'Interior at 2002/555 Swanston Street, Carlton', width: 1448, height: 1086 },
+      { url: '/2002-555-swanston-st-carlton/10.jpeg', alt: 'Interior at 2002/555 Swanston Street, Carlton', width: 1448, height: 1086 },
+      { url: '/2002-555-swanston-st-carlton/11.jpeg', alt: 'Interior at 2002/555 Swanston Street, Carlton', width: 1449, height: 1086 },
+      { url: '/2002-555-swanston-st-carlton/12.jpeg', alt: 'Building at 555 Swanston Street, Carlton', width: 1545, height: 1018 },
+      { url: '/2002-555-swanston-st-carlton/13.jpeg', alt: 'Building at 555 Swanston Street, Carlton', width: 1537, height: 1023 },
+      { url: '/2002-555-swanston-st-carlton/14.jpeg', alt: 'Building at 555 Swanston Street, Carlton', width: 1537, height: 1023 },
+      { url: '/2002-555-swanston-st-carlton/1.jpeg', alt: 'Floorplan for 2002/555 Swanston Street, Carlton', width: 1126, height: 1397 },
     ],
     agent: {
       name: 'Eamon Chau',
@@ -158,28 +165,31 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
     category: 'properties',
   },
   {
-    // Awaiting price, property details, copy and photos —
-    // listed as available per client instruction, placeholder imagery for now.
+    // Awaiting price and copy — listed as available per client instruction.
     id: '2111-22-24-jane-bell',
     slug: 'apartment-2111-22-24-jane-bell-lane-melbourne',
     title: '2111/22-24 Jane Bell Lane, Melbourne',
-    summary: 'Apartment in Melbourne CBD — photography coming soon',
+    summary: 'Two-bedroom apartment with secure car space in the Melbourne CBD',
     type: 'RESIDENTIAL',
     status: 'AVAILABLE',
     address: '2111/22-24 Jane Bell Lane',
     suburb: 'Melbourne',
     state: 'VIC',
     postcode: '3000',
-    heroImageUrl: '/placeholder-property.svg',
+    heroImageUrl: '/2111-22-24-jane-bell-lane/6.jpeg',
     description:
-      'A residential apartment at 22-24 Jane Bell Lane, Melbourne, coming to market. Full property details, floorplan and photography will be published shortly. For early enquiries or to arrange an inspection, please get in touch with our team.',
+      'A two-bedroom apartment with secure car space at 22-24 Jane Bell Lane, Melbourne, coming to market. Steps from Melbourne Central, the State Library and RMIT. Full pricing details will be published shortly — for early enquiries or to arrange an inspection, please get in touch with our team.',
     gallery: [
-      {
-        url: '/placeholder-property.svg',
-        alt: 'Photography coming soon for 2111/22-24 Jane Bell Lane, Melbourne',
-        width: 400,
-        height: 300,
-      },
+      { url: '/2111-22-24-jane-bell-lane/6.jpeg', alt: 'Kitchen at 2111/22-24 Jane Bell Lane, Melbourne', width: 1448, height: 1086 },
+      { url: '/2111-22-24-jane-bell-lane/2.jpeg', alt: 'Bedroom at 2111/22-24 Jane Bell Lane, Melbourne', width: 1447, height: 1087 },
+      { url: '/2111-22-24-jane-bell-lane/3.jpeg', alt: 'Interior at 2111/22-24 Jane Bell Lane, Melbourne', width: 1448, height: 1086 },
+      { url: '/2111-22-24-jane-bell-lane/4.jpeg', alt: 'Interior at 2111/22-24 Jane Bell Lane, Melbourne', width: 1448, height: 1086 },
+      { url: '/2111-22-24-jane-bell-lane/5.jpeg', alt: 'Interior at 2111/22-24 Jane Bell Lane, Melbourne', width: 1307, height: 969 },
+      { url: '/2111-22-24-jane-bell-lane/7.jpeg', alt: 'Interior at 2111/22-24 Jane Bell Lane, Melbourne', width: 1086, height: 1448 },
+      { url: '/2111-22-24-jane-bell-lane/8.jpeg', alt: 'Interior at 2111/22-24 Jane Bell Lane, Melbourne', width: 1448, height: 1086 },
+      { url: '/2111-22-24-jane-bell-lane/9.jpeg', alt: 'Building at 22-24 Jane Bell Lane, Melbourne', width: 1536, height: 1024 },
+      { url: '/2111-22-24-jane-bell-lane/10.jpeg', alt: 'Building at 22-24 Jane Bell Lane, Melbourne', width: 1529, height: 1029 },
+      { url: '/2111-22-24-jane-bell-lane/1.png', alt: 'Floorplan for 2111/22-24 Jane Bell Lane, Melbourne', width: 1067, height: 1474 },
     ],
     agent: {
       name: 'Eamon Chau',
