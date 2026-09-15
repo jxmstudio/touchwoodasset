@@ -82,6 +82,18 @@ To tag server events into the Test Events stream, land on the site with
 `?test_event_code=TESTxxxx` (the code shown in Events Manager's Test Events
 tab) — it persists for the session and is attached to every CAPI event.
 
+**The test code only tags SERVER (CAPI) events.** Meta has no browser-side
+equivalent: fbevents.js ignores `test_event_code` entirely (verified against
+the shipped source — the `/tr` pixel request never carries it). Browser
+events reach the Test Events stream a different way: Meta associates the
+browser session that was opened via the **Open website** button inside the
+Test Events tab, and only records activity **while that Test Events tab
+stays open**. So to see `PageView`/`ViewContent`/`LeadFormStart` alongside
+the server rows you must launch the site from that button (in a browser with
+no ad blocker / tracking protection blocking `facebook.com/tr`, logged into
+the same Meta account) — a tab opened by hand with only `?test_event_code=`
+in the URL shows server events only.
+
 ## Gaps found in this audit
 
 1. **No `ViewContent`** anywhere — no mid-funnel signal between `PageView`
@@ -103,9 +115,13 @@ tab) — it persists for the session and is attached to every CAPI event.
 1. **Env check first**: production must have `NEXT_PUBLIC_META_PIXEL_ID` set.
    View page source on the live site and search for `fbevents.js` — if absent,
    the env var is missing and nothing below will work.
-2. Open Meta **Events Manager → Test events**, copy the test code, and open
-   the site as `https://touchwoodasset.com/switch?test_event_code=TESTxxxx`
-   (any funnel page works) so server events are tagged into the stream.
+2. Open Meta **Events Manager → Test events**, copy the test code, then in
+   the **Open website** box enter
+   `https://touchwoodasset.com/switch?test_event_code=TESTxxxx` (any funnel
+   page works) and launch it from there. The button-opened session is what
+   puts BROWSER events in the stream (keep the Test Events tab open, ad
+   blockers off); the `?test_event_code=` param is what tags the SERVER
+   events. Skip either half and that half's rows won't appear.
    - Expect `PageView` + `ViewContent` (content_name `switch` /
      `property_review`) on load. No `LeadFormStart` yet — it must not fire
      until you click or type in the form (autofill focus no longer counts).
