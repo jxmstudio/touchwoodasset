@@ -5,6 +5,7 @@ import { ReviewForm } from './ReviewForm'
 import { PastWorkCarousel } from './PastWorkCarousel'
 import { StickyCta } from './StickyCta'
 import { TrustStats } from './TrustStats'
+import { StagingShowcase } from '@/components/marketing/StagingShowcase'
 import {
   GoogleLogo,
   benefits,
@@ -302,6 +303,13 @@ export default function PropertyReviewPage() {
             </div>
           </div>
         </section>
+
+        {/* Marketing showcase — before/after virtual staging. CTA stays
+            in-page: no exit ramps off the funnel. */}
+        <StagingShowcase
+          ctaHref="#review-form"
+          ctaLabel="Get my free appraisal"
+        />
 
         {/* Past work — real sold / leased outcomes, no links out of the funnel */}
         <section className="border-t border-gray-100 py-14 lg:py-24">

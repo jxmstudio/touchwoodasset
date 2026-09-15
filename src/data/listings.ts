@@ -45,6 +45,470 @@ export interface ListingItem {
 // Centralised listings dataset to be reused by list and detail pages
 export const listings: ListingItem[] = [
   {
+    // New management (Sept 2026). Eamon is re-shooting photos and video; the two
+    // virtually staged images below are the interim marketing shots (tagged
+    // Unfurnished). Bed/bath/car from the public record for this address.
+    // Rent to come — Coming Soon until the new photos and price arrive.
+    id: '17-third-ave-dandenong-north',
+    slug: 'house-17-third-avenue-dandenong-north',
+    title: '17 Third Avenue, Dandenong North',
+    summary: 'Three-bedroom brick home with carport, close to Dandenong Plaza and schools — new photos coming',
+    type: 'RESIDENTIAL',
+    status: 'COMING_SOON',
+    address: '17 Third Avenue',
+    suburb: 'Dandenong North',
+    state: 'VIC',
+    postcode: '3175',
+    bedrooms: 3,
+    bathrooms: 1,
+    carSpaces: 1,
+    heroImageUrl: '/17-third-ave-dandenong-north/kitchen-staged.jpg',
+    description: `A solid three-bedroom brick home on a generous block in Dandenong North, freshly presented and coming to market with Touchwood.
+
+Property Highlights:
+
+Kitchen and meals area with electric cooking and plenty of bench space, opening to the rear yard
+Three bedrooms with roller blinds and garden outlooks
+Bathroom with separate toilet
+Split system heating and cooling
+Carport plus a long driveway for extra off-street parking
+
+Lifestyle & Location:
+
+Minutes to Dandenong Plaza, Dandenong Market and Dandenong Station
+Local primary and secondary schools within walking distance
+Easy access to the Monash Freeway and EastLink
+
+Images shown are virtually staged and the property is offered unfurnished. Fresh photography is on its way — contact our team for the weekly rent and availability date, or to register your interest.`,
+    features: [
+      'Three bedrooms with built-in robes',
+      'Kitchen and meals area opening to the yard',
+      'Split system heating and cooling',
+      'Bathroom with separate toilet',
+      'Carport plus long driveway',
+      'Close to Dandenong Plaza and Dandenong Station',
+      'Offered unfurnished',
+    ],
+    gallery: [
+      { url: '/17-third-ave-dandenong-north/kitchen-staged.jpg', alt: 'Kitchen and meals area at 17 Third Avenue, Dandenong North (virtually staged, offered unfurnished)', width: 1448, height: 1086 },
+      { url: '/17-third-ave-dandenong-north/bedroom-staged.jpg', alt: 'Main bedroom at 17 Third Avenue, Dandenong North (virtually staged, offered unfurnished)', width: 1448, height: 1086 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    // Photos + floorplan supplied via Dropbox 14 Sep 2026 (floorplan states
+    // 2 bed / 1 bath / 1 car, 79 sqm approx, furnished). Rent and available
+    // date still to come from Touchwood — listed as Coming Soon meanwhile.
+    id: '23-114-dodds-st-southbank',
+    slug: 'apartment-23-114-dodds-street-southbank',
+    title: '23/114 Dodds Street, Southbank',
+    summary: 'Furnished two-bedroom apartment with balcony and secure car space in Southbank Gardens',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    address: '23/114 Dodds Street',
+    suburb: 'Southbank',
+    state: 'VIC',
+    postcode: '3006',
+    bedrooms: 2,
+    bathrooms: 1,
+    carSpaces: 1,
+    floorAreaSqm: 79,
+    heroImageUrl: '/23-114-dodds-st-southbank/living-1.jpeg',
+    description: `A light-filled, fully furnished two-bedroom apartment in the leafy, low-rise Southbank Gardens complex on Dodds Street.
+
+Property Highlights:
+
+Open plan living and dining opening to a private balcony with a leafy outlook
+Kitchen with electric cooktop, oven and dishwasher
+Two bedrooms with built-in robes
+Bathroom with bath and shower, separate toilet
+Split system heating and cooling
+Secure undercover car space and intercom entry
+Approximately 79 sqm internal (as per floorplan), furnished
+
+Lifestyle & Location:
+
+Walk to South Melbourne Market, Clarendon Street cafes and the Southbank arts precinct
+Trams on Clarendon Street and Sturt Street for a quick trip to the CBD
+Close to the Royal Botanic Gardens and Albert Park Lake
+
+Contact our team for the weekly rent and availability date, or to arrange an inspection.`,
+    features: [
+      'Fully furnished',
+      'Open plan living and dining',
+      'Private balcony with leafy outlook',
+      'Kitchen with dishwasher',
+      'Two bedrooms with built-in robes',
+      'Bathroom with bath and shower',
+      'Split system heating and cooling',
+      'Secure undercover car space',
+      'Intercom entry',
+      'Walk to South Melbourne Market',
+    ],
+    gallery: [
+      { url: '/23-114-dodds-st-southbank/living-1.jpeg', alt: 'Furnished living room at 23/114 Dodds Street, Southbank', width: 1448, height: 1086 },
+      { url: '/23-114-dodds-st-southbank/living-2.jpeg', alt: 'Living area opening to the balcony at 23/114 Dodds Street, Southbank', width: 1536, height: 1024 },
+      { url: '/23-114-dodds-st-southbank/dining.jpeg', alt: 'Dining area at 23/114 Dodds Street, Southbank', width: 1536, height: 1024 },
+      { url: '/23-114-dodds-st-southbank/kitchen.jpeg', alt: 'Kitchen with dishwasher at 23/114 Dodds Street, Southbank', width: 1536, height: 1024 },
+      { url: '/23-114-dodds-st-southbank/bedroom-1.jpeg', alt: 'Main bedroom at 23/114 Dodds Street, Southbank', width: 1537, height: 1023 },
+      { url: '/23-114-dodds-st-southbank/bedroom-2.jpeg', alt: 'Second bedroom with study desk at 23/114 Dodds Street, Southbank', width: 1448, height: 1086 },
+      { url: '/23-114-dodds-st-southbank/bathroom.jpeg', alt: 'Bathroom with bath and shower at 23/114 Dodds Street, Southbank', width: 1448, height: 1086 },
+      { url: '/23-114-dodds-st-southbank/balcony.jpeg', alt: 'Balcony with leafy outlook at 23/114 Dodds Street, Southbank', width: 1536, height: 1024 },
+      { url: '/23-114-dodds-st-southbank/exterior-dusk.jpeg', alt: 'Southbank Gardens complex at 114 Dodds Street at dusk', width: 1553, height: 1013 },
+      { url: '/23-114-dodds-st-southbank/floorplan.jpeg', alt: 'Floorplan for 23/114 Dodds Street, Southbank', width: 1536, height: 1024 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    // Photos supplied via Dropbox 14 Sep 2026. Furnished two-bedroom in the
+    // UniLodge on Lonsdale building. Rent still to come — Coming Soon meanwhile.
+    id: '2016-39-lonsdale',
+    slug: 'apartment-2016-39-lonsdale-street-melbourne',
+    title: '2016/39 Lonsdale Street, Melbourne',
+    summary: 'Furnished two-bedroom apartment in the Paris end of the Melbourne CBD',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    address: '2016/39 Lonsdale Street',
+    suburb: 'Melbourne',
+    state: 'VIC',
+    postcode: '3000',
+    bedrooms: 2,
+    bathrooms: 1,
+    carSpaces: 0,
+    heroImageUrl: '/2016-39-lonsdale-st-melbourne/living.jpeg',
+    description: `A fully furnished two-bedroom apartment on level 20 of 39 Lonsdale Street, at the quieter Paris end of the CBD.
+
+Property Highlights:
+
+Furnished living area with sofa and wall-mounted TV
+Open plan kitchenette with cooktop, microwave and bar fridge
+Two bedrooms, each with a bed, desk and built-in storage
+Modern bathroom with shower
+Secure building entry with on-site management, communal laundry and residents' lounge
+
+Lifestyle & Location:
+
+Steps to RMIT, the State Library, QV and Chinatown
+Parliament and Melbourne Central stations both within a short walk
+Trams on Swanston Street and Lonsdale Street at the door
+
+Contact our team for the weekly rent and availability date, or to arrange an inspection.`,
+    features: [
+      'Fully furnished',
+      'Two bedrooms with desks and built-in storage',
+      'Kitchenette with cooktop and microwave',
+      'Modern bathroom',
+      'Secure entry and on-site building management',
+      'Communal laundry and residents\' lounge',
+      'Walk to RMIT, State Library and QV',
+    ],
+    gallery: [
+      { url: '/2016-39-lonsdale-st-melbourne/living.jpeg', alt: 'Furnished living area at 2016/39 Lonsdale Street, Melbourne', width: 1448, height: 1086 },
+      { url: '/2016-39-lonsdale-st-melbourne/living-kitchen.jpeg', alt: 'Living area and kitchenette at 2016/39 Lonsdale Street, Melbourne', width: 1448, height: 1086 },
+      { url: '/2016-39-lonsdale-st-melbourne/kitchen.jpeg', alt: 'Kitchenette at 2016/39 Lonsdale Street, Melbourne', width: 1448, height: 1086 },
+      { url: '/2016-39-lonsdale-st-melbourne/bedroom-1.jpeg', alt: 'Main bedroom with desk at 2016/39 Lonsdale Street, Melbourne', width: 1448, height: 1086 },
+      { url: '/2016-39-lonsdale-st-melbourne/bedroom-2.jpeg', alt: 'Second bedroom with desk at 2016/39 Lonsdale Street, Melbourne', width: 1448, height: 1086 },
+      { url: '/2016-39-lonsdale-st-melbourne/bathroom.jpeg', alt: 'Bathroom at 2016/39 Lonsdale Street, Melbourne', width: 1448, height: 1086 },
+      { url: '/2016-39-lonsdale-st-melbourne/building.jpeg', alt: '39 Lonsdale Street building exterior, Melbourne', width: 1632, height: 964 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    // Photos + floorplan supplied via Dropbox (Aug 2026). Rent still to come.
+    id: '2-15-victoria-ave-mitcham',
+    slug: 'unit-2-15-victoria-avenue-mitcham',
+    title: '2/15 Victoria Avenue, Mitcham',
+    summary: 'Modern two-bedroom unit with landscaped courtyard and lock-up garage, walk to Mitcham Station',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    address: '2/15 Victoria Avenue',
+    suburb: 'Mitcham',
+    state: 'VIC',
+    postcode: '3132',
+    bedrooms: 2,
+    bathrooms: 1,
+    carSpaces: 1,
+    heroImageUrl: '/2-15-victoria-ave-mitcham/exterior-front.jpeg',
+    description: `A contemporary brick unit in a quiet Mitcham street, with a private landscaped courtyard and a single lock-up garage.
+
+Property Highlights:
+
+Open plan living and dining with split system heating and cooling
+Stone-bench kitchen with island, gas cooktop, stainless steel appliances and dishwasher
+Two bedrooms with built-in robes, the main with courtyard outlook
+Central bathroom with shower and vanity, plus separate powder room
+Private paved courtyard with Japanese-style garden and feature lighting
+Single lock-up garage with internal access
+
+Lifestyle & Location:
+
+Short walk to Mitcham Station and Mitcham Village shops
+Close to Eastland, Whitehorse Road and the Eastlink
+Well-regarded local schools and parkland nearby
+
+Contact our team for the weekly rent and availability date, or to arrange an inspection.`,
+    features: [
+      'Open plan living and dining',
+      'Split system heating and cooling',
+      'Stone-bench kitchen with island and dishwasher',
+      'Two bedrooms with built-in robes',
+      'Bathroom plus separate powder room',
+      'Private landscaped courtyard',
+      'Single lock-up garage',
+      'Walk to Mitcham Station',
+    ],
+    gallery: [
+      { url: '/2-15-victoria-ave-mitcham/exterior-front.jpeg', alt: 'Front exterior of 2/15 Victoria Avenue, Mitcham', width: 1320, height: 978 },
+      { url: '/2-15-victoria-ave-mitcham/living-1.jpeg', alt: 'Open plan living area at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 968 },
+      { url: '/2-15-victoria-ave-mitcham/living-2.jpeg', alt: 'Living and dining with kitchen beyond at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 977 },
+      { url: '/2-15-victoria-ave-mitcham/kitchen.jpeg', alt: 'Stone-bench kitchen with island at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 982 },
+      { url: '/2-15-victoria-ave-mitcham/living-3.jpeg', alt: 'Living area at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 981 },
+      { url: '/2-15-victoria-ave-mitcham/bedroom-1a.jpeg', alt: 'Main bedroom at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 975 },
+      { url: '/2-15-victoria-ave-mitcham/bedroom-1b.jpeg', alt: 'Main bedroom with built-in robes at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 981 },
+      { url: '/2-15-victoria-ave-mitcham/bedroom-2a.jpeg', alt: 'Second bedroom at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 977 },
+      { url: '/2-15-victoria-ave-mitcham/bedroom-2b.jpeg', alt: 'Second bedroom with built-in robes at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 973 },
+      { url: '/2-15-victoria-ave-mitcham/bathroom.jpeg', alt: 'Bathroom at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 979 },
+      { url: '/2-15-victoria-ave-mitcham/powder-room.jpeg', alt: 'Powder room at 2/15 Victoria Avenue, Mitcham', width: 1212, height: 1600 },
+      { url: '/2-15-victoria-ave-mitcham/courtyard-day.jpeg', alt: 'Landscaped courtyard at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 960 },
+      { url: '/2-15-victoria-ave-mitcham/courtyard-night.jpeg', alt: 'Courtyard with feature lighting at night at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 973 },
+      { url: '/2-15-victoria-ave-mitcham/garage.jpeg', alt: 'Lock-up garage at 2/15 Victoria Avenue, Mitcham', width: 1320, height: 973 },
+      { url: '/2-15-victoria-ave-mitcham/floorplan.jpeg', alt: 'Floorplan for 2/15 Victoria Avenue, Mitcham', width: 1322, height: 1190 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    // Photos + floorplan supplied via Dropbox (Jul/Aug 2026). Bed/bath/car
+    // counts taken from the public record for this address — confirm with
+    // Touchwood. The public record also shows a 2026 sale campaign for this
+    // address, so confirm it is for lease (not sale). Rent still to come.
+    id: '22-teal-court-dandenong-north',
+    slug: 'house-22-teal-court-dandenong-north',
+    title: '22 Teal Court, Dandenong North',
+    summary: 'Renovated four-bedroom family home on a quiet court with landscaped gardens',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    address: '22 Teal Court',
+    suburb: 'Dandenong North',
+    state: 'VIC',
+    postcode: '3175',
+    bedrooms: 4,
+    bathrooms: 1,
+    carSpaces: 2,
+    heroImageUrl: '/22-teal-court-dandenong-north/exterior-front.jpeg',
+    description: `A freshly presented brick family home in a quiet Dandenong North court, with polished timber floors, updated kitchen and bathroom, and landscaped front and rear gardens.
+
+Property Highlights:
+
+Spacious living and dining with split system heating and cooling
+Timber kitchen with stainless steel appliances, gas cooktop and dishwasher
+Four bedrooms with built-in robes — the fourth ideal as a study
+Renovated bathroom with walk-in shower and floating vanity
+Separate laundry with dryer
+Landscaped rear garden with paved entertaining area and lawn
+Garage plus carport and off-street parking
+
+Lifestyle & Location:
+
+Close to Dandenong Plaza, Dandenong Market and Dandenong Station
+Local primary and secondary schools within easy reach
+Easy access to the Monash Freeway and EastLink
+
+Contact our team for the weekly rent and availability date, or to arrange an inspection.`,
+    features: [
+      'Four bedrooms with built-in robes',
+      'Polished timber floors',
+      'Split system heating and cooling',
+      'Kitchen with gas cooktop and dishwasher',
+      'Renovated bathroom with walk-in shower',
+      'Separate laundry',
+      'Landscaped rear garden with paved entertaining area',
+      'Garage plus carport',
+    ],
+    gallery: [
+      { url: '/22-teal-court-dandenong-north/exterior-front.jpeg', alt: 'Front exterior of 22 Teal Court, Dandenong North at dusk', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/living-1.jpeg', alt: 'Living room at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/living-2.jpeg', alt: 'Living and dining area at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/dining.jpeg', alt: 'Dining area at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/kitchen.jpeg', alt: 'Timber kitchen with stainless steel appliances at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/hallway.jpeg', alt: 'Hallway at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/bedroom-1.jpeg', alt: 'Main bedroom at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/bedroom-2.jpeg', alt: 'Bedroom with mirrored built-in robes at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/bedroom-3.jpeg', alt: 'Bedroom at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/bedroom-4.jpeg', alt: 'Fourth bedroom or study at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/bathroom.jpeg', alt: 'Renovated bathroom at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/laundry.jpeg', alt: 'Laundry at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/backyard-1.jpeg', alt: 'Landscaped rear garden at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/backyard-2.jpeg', alt: 'Rear garden and clothesline at 22 Teal Court, Dandenong North', width: 1448, height: 1086 },
+      { url: '/22-teal-court-dandenong-north/floorplan.jpeg', alt: 'Floorplan for 22 Teal Court, Dandenong North', width: 1086, height: 1448 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    // Photos + floorplan supplied via Dropbox (floorplan states 3 bed / 1 bath /
+    // 2 car). The set also included AI-rendered local-amenity images
+    // (Watergardens, park, school, childcare) which are not used here.
+    // Rent still to come.
+    id: '37-boberrit-wynd-sydenham',
+    slug: 'house-37-boberrit-wynd-sydenham',
+    title: '37 Boberrit Wynd, Sydenham',
+    summary: 'Three-bedroom brick home with double garage and shed, minutes from Watergardens',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    address: '37 Boberrit Wynd',
+    suburb: 'Sydenham',
+    state: 'VIC',
+    postcode: '3037',
+    bedrooms: 3,
+    bathrooms: 1,
+    carSpaces: 2,
+    heroImageUrl: '/37-boberrit-wynd-sydenham/exterior-front.jpg',
+    description: `A neatly presented single-level brick home on a quiet Sydenham street, with a double garage, rear shed and easy-care gardens.
+
+Property Highlights:
+
+Front lounge with ceiling fan and large windows
+Separate meals area adjoining the kitchen
+Kitchen with electric cooktop, wall oven and ample bench space
+Three bedrooms, the main with ensuite access to the bathroom and built-in robes
+Bathroom with bath, shower and skylight
+Study or home office space
+Double lock-up garage plus garden shed
+
+Lifestyle & Location:
+
+Minutes to Watergardens Town Centre and Watergardens Station
+Close to Sydenham Park, local primary schools and childcare
+Quick access to the Calder Freeway
+
+Contact our team for the weekly rent and availability date, or to arrange an inspection.`,
+    features: [
+      'Three bedrooms with built-in robes',
+      'Separate lounge and meals area',
+      'Kitchen with wall oven and electric cooktop',
+      'Bathroom with bath and shower',
+      'Study or home office',
+      'Double lock-up garage',
+      'Garden shed',
+      'Minutes to Watergardens',
+    ],
+    gallery: [
+      { url: '/37-boberrit-wynd-sydenham/exterior-front.jpg', alt: 'Front exterior of 37 Boberrit Wynd, Sydenham', width: 1536, height: 1024 },
+      { url: '/37-boberrit-wynd-sydenham/living.jpg', alt: 'Lounge room at 37 Boberrit Wynd, Sydenham', width: 1448, height: 1086 },
+      { url: '/37-boberrit-wynd-sydenham/dining.jpg', alt: 'Meals area at 37 Boberrit Wynd, Sydenham', width: 1536, height: 1024 },
+      { url: '/37-boberrit-wynd-sydenham/kitchen.jpg', alt: 'Kitchen at 37 Boberrit Wynd, Sydenham', width: 1536, height: 1024 },
+      { url: '/37-boberrit-wynd-sydenham/bedroom-1.jpg', alt: 'Main bedroom at 37 Boberrit Wynd, Sydenham', width: 1448, height: 1086 },
+      { url: '/37-boberrit-wynd-sydenham/bedroom-2.jpg', alt: 'Bedroom at 37 Boberrit Wynd, Sydenham', width: 1448, height: 1086 },
+      { url: '/37-boberrit-wynd-sydenham/study.jpg', alt: 'Study at 37 Boberrit Wynd, Sydenham', width: 1448, height: 1086 },
+      { url: '/37-boberrit-wynd-sydenham/bathroom.jpg', alt: 'Bathroom with bath and skylight at 37 Boberrit Wynd, Sydenham', width: 1448, height: 1086 },
+      { url: '/37-boberrit-wynd-sydenham/garage.jpg', alt: 'Double garage at 37 Boberrit Wynd, Sydenham', width: 1536, height: 1024 },
+      { url: '/37-boberrit-wynd-sydenham/exterior-rear.jpg', alt: 'Rear of the house and lawn at 37 Boberrit Wynd, Sydenham', width: 1536, height: 1024 },
+      { url: '/37-boberrit-wynd-sydenham/floorplan.jpg', alt: 'Floorplan for 37 Boberrit Wynd, Sydenham', width: 1092, height: 1001 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    // Professional photos supplied via Dropbox (shot 17 Aug 2026). No floorplan:
+    // bedroom/bathroom counts are read from the photo set (three distinct
+    // bedrooms, two distinct bathrooms) — confirm with Touchwood. Rent still to come.
+    id: '1-veronia-st-dromana',
+    slug: 'house-1-veronia-street-dromana',
+    title: '1 Veronia Street, Dromana',
+    summary: 'Renovated three-bedroom coastal home with vaulted ceilings and a wraparound entertaining deck',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    address: '1 Veronia Street',
+    suburb: 'Dromana',
+    state: 'VIC',
+    postcode: '3936',
+    bedrooms: 3,
+    bathrooms: 2,
+    heroImageUrl: '/1-veronia-st-dromana/exterior-front.jpg',
+    description: `A beautifully renovated single-level home in a leafy Dromana street, with soaring vaulted ceilings, timber floors and a huge covered deck that wraps around the living areas.
+
+Property Highlights:
+
+Open plan living and dining under a vaulted ceiling, with split system heating and cooling
+Sage-green kitchen with stone benchtops, island bench, dishwasher and quality appliances
+Three bedrooms, the main with a designer ensuite
+Second bathroom with terrazzo tiling, walk-in shower and backlit mirror
+Stacker doors from the living area to a large covered timber deck
+Established gardens with mature trees and lawn
+
+Lifestyle & Location:
+
+Minutes to Dromana beach, the foreshore and the Dromana township
+Close to Arthurs Seat, Mornington Peninsula wineries and the Peninsula Link
+
+Contact our team for the weekly rent and availability date, or to arrange an inspection.`,
+    features: [
+      'Vaulted ceilings and timber floors',
+      'Open plan living and dining',
+      'Stone-bench kitchen with island and dishwasher',
+      'Three bedrooms, main with ensuite',
+      'Two designer bathrooms',
+      'Split system heating and cooling',
+      'Large covered entertaining deck',
+      'Established gardens',
+      'Minutes to Dromana beach',
+    ],
+    gallery: [
+      { url: '/1-veronia-st-dromana/exterior-front.jpg', alt: 'Front exterior and garden of 1 Veronia Street, Dromana', width: 2048, height: 1365 },
+      { url: '/1-veronia-st-dromana/living-1.jpg', alt: 'Open plan living under vaulted ceiling at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
+      { url: '/1-veronia-st-dromana/living-dining.jpg', alt: 'Living and dining area at 1 Veronia Street, Dromana', width: 2048, height: 1370 },
+      { url: '/1-veronia-st-dromana/living-2.jpg', alt: 'Living area with kitchen beyond at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
+      { url: '/1-veronia-st-dromana/living-3.jpg', alt: 'Living area opening to the deck at 1 Veronia Street, Dromana', width: 1365, height: 2048 },
+      { url: '/1-veronia-st-dromana/kitchen-1.jpg', alt: 'Sage-green kitchen with stone benchtops at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
+      { url: '/1-veronia-st-dromana/kitchen-2.jpg', alt: 'Kitchen island bench at 1 Veronia Street, Dromana', width: 2048, height: 1366 },
+      { url: '/1-veronia-st-dromana/deck-1.jpg', alt: 'Covered entertaining deck at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
+      { url: '/1-veronia-st-dromana/deck-2.jpg', alt: 'Deck wrapping around the living area at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
+      { url: '/1-veronia-st-dromana/bedroom-1.jpg', alt: 'Main bedroom at 1 Veronia Street, Dromana', width: 2048, height: 1361 },
+      { url: '/1-veronia-st-dromana/bedroom-2.jpg', alt: 'Second bedroom at 1 Veronia Street, Dromana', width: 2048, height: 1363 },
+      { url: '/1-veronia-st-dromana/bedroom-3.jpg', alt: 'Third bedroom opening to the deck at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
+      { url: '/1-veronia-st-dromana/ensuite.jpg', alt: 'Ensuite with green tiling and round mirror at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
+      { url: '/1-veronia-st-dromana/vanity.jpg', alt: 'Ensuite vanity at 1 Veronia Street, Dromana', width: 1365, height: 2048 },
+      { url: '/1-veronia-st-dromana/bathroom.jpg', alt: 'Ensuite with toilet, vanity and rain shower at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
+      { url: '/1-veronia-st-dromana/shower.jpg', alt: 'Second bathroom with terracotta tiling and walk-in shower at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
+      { url: '/1-veronia-st-dromana/garden.jpg', alt: 'Established garden with mature tree at 1 Veronia Street, Dromana', width: 1638, height: 2048 },
+      { url: '/1-veronia-st-dromana/exterior-side.jpg', alt: 'Side view of the house and deck at 1 Veronia Street, Dromana', width: 1365, height: 2048 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
     id: '22-23-coate-ave-alphington',
     slug: 'townhouse-22-23-coate-avenue-alphington',
     title: '22/23 Coate Avenue, Alphington',

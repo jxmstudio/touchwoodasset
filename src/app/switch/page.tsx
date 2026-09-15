@@ -5,6 +5,7 @@ import { ReviewForm } from '../property-review/ReviewForm'
 import { PastWorkCarousel } from '../property-review/PastWorkCarousel'
 import { StickyCta } from '../property-review/StickyCta'
 import { TrustStats } from '../property-review/TrustStats'
+import { StagingShowcase } from '@/components/marketing/StagingShowcase'
 import {
   GoogleLogo,
   benefits,
@@ -216,6 +217,13 @@ export default function SwitchPage() {
             </div>
           </div>
         </section>
+
+        {/* Marketing showcase — before/after virtual staging. CTA stays
+            in-page: no exit ramps off paid traffic. */}
+        <StagingShowcase
+          ctaHref="#review-form"
+          ctaLabel="Claim my $500 + free appraisal"
+        />
 
         {/* The free appraisal — reframed as the consolation prize */}
         <section className="border-t border-gray-100 py-14 lg:py-24">

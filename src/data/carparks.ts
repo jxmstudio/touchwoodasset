@@ -481,7 +481,8 @@ export const carparkBays: CarparkBay[] = [
     description:
       'Secure car park bay #273 at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach.',
   }),
-  // Bay 270 photos still to come — placeholder for now.
+  // Bay 270: no bay-specific photos supplied yet, so it uses the shared
+  // building/street/car-park photos of 135 Fitzroy St (same files as 331/332).
   bay({
     bayNumber: '270',
     building: '135 Fitzroy Street',
@@ -489,6 +490,11 @@ export const carparkBays: CarparkBay[] = [
     address: '135 Fitzroy Street',
     suburb: 'St Kilda',
     postcode: '3182',
+    images: [
+      '/carparks/135-fitzroy-st-st-kilda/bay-331/3.jpeg',
+      '/carparks/135-fitzroy-st-st-kilda/bay-331/1.jpeg',
+      '/carparks/135-fitzroy-st-st-kilda/bay-331/2.png',
+    ],
     description:
       'Secure car park bay #270 at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach. Contact us for pricing.',
   }),
@@ -530,6 +536,24 @@ export const carparkBays: CarparkBay[] = [
     ],
     description:
       'Secure car park bay #93B at 63 Dorcas Street, South Melbourne. Moments from South Melbourne Market, Clarendon Street and the CBD.',
+  }),
+
+  // ── 416 St Kilda Road, Melbourne (City Condos) ───────────────────────────
+  // Photos supplied via Dropbox 11 Sep 2026. Price to be confirmed.
+  bay({
+    bayNumber: '65',
+    building: '416 St Kilda Road',
+    buildingSlug: '416-st-kilda-rd-melbourne',
+    address: '416A St Kilda Road',
+    suburb: 'Melbourne',
+    postcode: '3004',
+    images: [
+      '/carparks/416-st-kilda-rd-melbourne/bay-65/1.jpeg',
+      '/carparks/416-st-kilda-rd-melbourne/bay-65/3.jpeg',
+      '/carparks/416-st-kilda-rd-melbourne/bay-65/2.jpeg',
+    ],
+    description:
+      'Secure undercover car park bay #65 in the City Condos building at 416 St Kilda Road, Melbourne. On the St Kilda Road tram corridor, minutes to the CBD, Albert Park Lake and the Domain precinct. Contact us for pricing.',
   }),
 ]
 

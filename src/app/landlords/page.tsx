@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { VideoHero } from '@/components/hero/VideoHero'
 import { BookingCalendar } from '@/components/calendar/BookingCalendar'
 import { OwnerPromo } from '@/components/OwnerPromo'
+import { StagingShowcase } from '@/components/marketing/StagingShowcase'
 import {
   Card,
   CardContent,
@@ -99,8 +100,9 @@ export default function LandlordsPage() {
     <div className="min-h-screen">
       {/* Video Hero */}
       <VideoHero
-        videoSrc="/videos/property-lifestyle.mp4"
-        posterImage="/images/property-hero.jpg"
+        videoSrc="/videos/landing-desktop.mp4"
+        videoSrcMobile="/videos/landing-mobile.mp4"
+        posterImage="/hero/residential.jpg"
         title="Maximize Your Property Investment"
         subtitle="Professional Property Management"
         description="Let our expert team handle your property while you enjoy passive income. Comprehensive management services that deliver results."
@@ -158,6 +160,12 @@ export default function LandlordsPage() {
           </StaggerContainer>
         </div>
       </section>
+
+      {/* Marketing showcase — before/after virtual staging */}
+      <StagingShowcase
+        ctaHref="#booking"
+        ctaLabel="Book a free consultation"
+      />
 
       {/* Owner Promo Section */}
       <section className="py-20 bg-white">
