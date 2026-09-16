@@ -199,9 +199,20 @@ export const carparkBays: CarparkBay[] = [
     description:
       'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
+  // Bay 603: Available per client email 16 Sep 2026. Price to be confirmed.
+  bay({
+    bayNumber: '603',
+    building: '58 Franklin Street',
+    buildingSlug: '58-franklin-st-melbourne',
+    address: '58 Franklin Street',
+    suburb: 'Melbourne',
+    postcode: '3000',
+    images: ['/carparks/58-franklin-st-melbourne/bay-603/1.png'],
+    description:
+      'Secure car park bay #603 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Contact us for pricing.',
+  }),
   ...(
     [
-      ['603', 'png'],
       ['710', 'jpeg'],
       ['749', 'jpeg'],
       ['753', 'png'],
