@@ -180,6 +180,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Melbourne',
     postcode: '3000',
     price: 320,
+    status: 'LEASED', // per client email 17 Sep 2026
     images: [
       '/carparks/58-franklin-st-melbourne/bay-330/1.png',
       '/carparks/58-franklin-st-melbourne/bay-330/2.png',
@@ -199,7 +200,7 @@ export const carparkBays: CarparkBay[] = [
     description:
       'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
-  // Bay 603: Available per client email 16 Sep 2026. Price to be confirmed.
+  // Bay 603: Available per client email 16 Sep 2026; $260/month confirmed 17 Sep 2026.
   bay({
     bayNumber: '603',
     building: '58 Franklin Street',
@@ -207,9 +208,10 @@ export const carparkBays: CarparkBay[] = [
     address: '58 Franklin Street',
     suburb: 'Melbourne',
     postcode: '3000',
+    price: 260,
     images: ['/carparks/58-franklin-st-melbourne/bay-603/1.png'],
     description:
-      'Secure car park bay #603 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access. Contact us for pricing.',
+      'Secure car park bay #603 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
   ...(
     [
@@ -289,15 +291,14 @@ export const carparkBays: CarparkBay[] = [
     address: '20 Convention Centre Place',
     suburb: 'South Wharf',
     postcode: '3006',
-    status: 'COMING_SOON',
-    availableFrom: '2026-09-20',
+    // Was Coming Soon (from 20 Sep 2026); confirmed Available per client email 17 Sep 2026.
     images: [
       '/carparks/20-convention-centre-pl-south-wharf/bay-c7/1.png',
       '/carparks/20-convention-centre-pl-south-wharf/bay-c7/2.png',
       '/carparks/20-convention-centre-pl-south-wharf/bay-c7/3.png',
     ],
     description:
-      'Secure car park bay C7 (carpark #35) at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Available from 20 September 2026 — enquire now to secure it. Contact us for pricing.',
+      'Secure car park bay C7 (carpark #35) at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Available now. Contact us for pricing.',
   }),
   ...(
     [
@@ -501,6 +502,7 @@ export const carparkBays: CarparkBay[] = [
     address: '135 Fitzroy Street',
     suburb: 'St Kilda',
     postcode: '3182',
+    status: 'LEASED', // per client email 17 Sep 2026
     images: [
       '/carparks/135-fitzroy-st-st-kilda/bay-331/3.jpeg',
       '/carparks/135-fitzroy-st-st-kilda/bay-331/1.jpeg',
@@ -509,6 +511,7 @@ export const carparkBays: CarparkBay[] = [
     description:
       'Secure car park bay #270 at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach. Contact us for pricing.',
   }),
+  // 331 Available, 332 Leased per client email 17 Sep 2026.
   ...['331', '332'].map((n) =>
     bay({
       bayNumber: n,
@@ -517,6 +520,7 @@ export const carparkBays: CarparkBay[] = [
       address: '135 Fitzroy Street',
       suburb: 'St Kilda',
       postcode: '3182',
+      status: n === '332' ? 'LEASED' : 'AVAILABLE',
       images: [
         `/carparks/135-fitzroy-st-st-kilda/bay-${n}/6.png`, // bay with car
         `/carparks/135-fitzroy-st-st-kilda/bay-${n}/5.png`, // empty bay
@@ -550,7 +554,7 @@ export const carparkBays: CarparkBay[] = [
   }),
 
   // ── 416 St Kilda Road, Melbourne (City Condos) ───────────────────────────
-  // Photos supplied via Dropbox 11 Sep 2026. Price to be confirmed.
+  // Photos supplied via Dropbox 11 Sep 2026. $300/month confirmed 17 Sep 2026.
   bay({
     bayNumber: '65',
     building: '416 St Kilda Road',
@@ -558,13 +562,14 @@ export const carparkBays: CarparkBay[] = [
     address: '416A St Kilda Road',
     suburb: 'Melbourne',
     postcode: '3004',
+    price: 300,
     images: [
       '/carparks/416-st-kilda-rd-melbourne/bay-65/1.jpeg',
       '/carparks/416-st-kilda-rd-melbourne/bay-65/3.jpeg',
       '/carparks/416-st-kilda-rd-melbourne/bay-65/2.jpeg',
     ],
     description:
-      'Secure undercover car park bay #65 in the City Condos building at 416 St Kilda Road, Melbourne. On the St Kilda Road tram corridor, minutes to the CBD, Albert Park Lake and the Domain precinct. Contact us for pricing.',
+      'Secure undercover car park bay #65 in the City Condos building at 416 St Kilda Road, Melbourne. On the St Kilda Road tram corridor, minutes to the CBD, Albert Park Lake and the Domain precinct.',
   }),
 ]
 

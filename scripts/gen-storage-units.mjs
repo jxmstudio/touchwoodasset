@@ -33,7 +33,7 @@ function videoFor(unit) {
 }
 // ── Client status update (latest, takes precedence over video titles) ──────
 // Units the client asked to take down entirely.
-const REMOVE = new Set(['D56B', 'D115', 'G46'])
+const REMOVE = new Set(['D56B', 'D115', 'G46', 'H56']) // H56 removed per client email 17 Sep 2026
 
 // Explicit status from the client's latest list (overrides video-derived status).
 // Note: client's "D32a" maps to our unit "D32".

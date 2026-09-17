@@ -103,13 +103,13 @@ Images shown are virtually staged and the property is offered unfurnished. Fresh
   {
     // Photos + floorplan supplied via Dropbox 14 Sep 2026 (floorplan states
     // 2 bed / 1 bath / 1 car, 79 sqm approx, furnished). Rent and available
-    // date still to come from Touchwood — listed as Coming Soon meanwhile.
+    // date never supplied. Leased per client email 17 Sep 2026.
     id: '23-114-dodds-st-southbank',
     slug: 'apartment-23-114-dodds-street-southbank',
     title: '23/114 Dodds Street, Southbank',
     summary: 'Furnished two-bedroom apartment with balcony and secure car space in Southbank Gardens',
     type: 'RESIDENTIAL',
-    status: 'FOR_RENT',
+    status: 'LEASED',
     address: '23/114 Dodds Street',
     suburb: 'Southbank',
     state: 'VIC',
@@ -171,13 +171,15 @@ Contact our team for the weekly rent and availability date, or to arrange an ins
   },
   {
     // Photos supplied via Dropbox 14 Sep 2026. Furnished two-bedroom in the
-    // UniLodge on Lonsdale building. Rent still to come — Coming Soon meanwhile.
+    // UniLodge on Lonsdale building. Rent $600/week confirmed by client 17 Sep 2026.
     id: '2016-39-lonsdale',
     slug: 'apartment-2016-39-lonsdale-street-melbourne',
     title: '2016/39 Lonsdale Street, Melbourne',
     summary: 'Furnished two-bedroom apartment in the Paris end of the Melbourne CBD',
     type: 'RESIDENTIAL',
     status: 'FOR_RENT',
+    price: 600,
+    pricePeriod: 'per_week',
     address: '2016/39 Lonsdale Street',
     suburb: 'Melbourne',
     state: 'VIC',
@@ -202,7 +204,7 @@ Steps to RMIT, the State Library, QV and Chinatown
 Parliament and Melbourne Central stations both within a short walk
 Trams on Swanston Street and Lonsdale Street at the door
 
-Contact our team for the weekly rent and availability date, or to arrange an inspection.`,
+Contact our team to arrange an inspection.`,
     features: [
       'Fully furnished',
       'Two bedrooms with desks and built-in storage',
@@ -229,13 +231,13 @@ Contact our team for the weekly rent and availability date, or to arrange an ins
     category: 'properties',
   },
   {
-    // Photos + floorplan supplied via Dropbox (Aug 2026). Rent still to come.
+    // Photos + floorplan supplied via Dropbox (Aug 2026). Leased per client email 17 Sep 2026.
     id: '2-15-victoria-ave-mitcham',
     slug: 'unit-2-15-victoria-avenue-mitcham',
     title: '2/15 Victoria Avenue, Mitcham',
     summary: 'Modern two-bedroom unit with landscaped courtyard and lock-up garage, walk to Mitcham Station',
     type: 'RESIDENTIAL',
-    status: 'FOR_RENT',
+    status: 'LEASED',
     address: '2/15 Victoria Avenue',
     suburb: 'Mitcham',
     state: 'VIC',
@@ -300,13 +302,13 @@ Contact our team for the weekly rent and availability date, or to arrange an ins
     // Photos + floorplan supplied via Dropbox (Jul/Aug 2026). Bed/bath/car
     // counts taken from the public record for this address — confirm with
     // Touchwood. The public record also shows a 2026 sale campaign for this
-    // address, so confirm it is for lease (not sale). Rent still to come.
+    // address, so confirm it is for lease (not sale). Rent still to come. Leased per client email 17 Sep 2026.
     id: '22-teal-court-dandenong-north',
     slug: 'house-22-teal-court-dandenong-north',
     title: '22 Teal Court, Dandenong North',
     summary: 'Renovated four-bedroom family home on a quiet court with landscaped gardens',
     type: 'RESIDENTIAL',
-    status: 'FOR_RENT',
+    status: 'LEASED',
     address: '22 Teal Court',
     suburb: 'Dandenong North',
     state: 'VIC',
@@ -372,13 +374,13 @@ Contact our team for the weekly rent and availability date, or to arrange an ins
     // Photos + floorplan supplied via Dropbox (floorplan states 3 bed / 1 bath /
     // 2 car). The set also included AI-rendered local-amenity images
     // (Watergardens, park, school, childcare) which are not used here.
-    // Rent still to come.
+    // Rent still to come. Leased per client email 17 Sep 2026.
     id: '37-boberrit-wynd-sydenham',
     slug: 'house-37-boberrit-wynd-sydenham',
     title: '37 Boberrit Wynd, Sydenham',
     summary: 'Three-bedroom brick home with double garage and shed, minutes from Watergardens',
     type: 'RESIDENTIAL',
-    status: 'FOR_RENT',
+    status: 'LEASED',
     address: '37 Boberrit Wynd',
     suburb: 'Sydenham',
     state: 'VIC',
@@ -428,78 +430,6 @@ Contact our team for the weekly rent and availability date, or to arrange an ins
       { url: '/37-boberrit-wynd-sydenham/garage.jpg', alt: 'Double garage at 37 Boberrit Wynd, Sydenham', width: 1536, height: 1024 },
       { url: '/37-boberrit-wynd-sydenham/exterior-rear.jpg', alt: 'Rear of the house and lawn at 37 Boberrit Wynd, Sydenham', width: 1536, height: 1024 },
       { url: '/37-boberrit-wynd-sydenham/floorplan.jpg', alt: 'Floorplan for 37 Boberrit Wynd, Sydenham', width: 1092, height: 1001 },
-    ],
-    agent: {
-      name: 'Eamon Chau',
-      phone: '+61 413 889 388',
-      email: 'admin@touchwoodasset.com',
-    },
-    category: 'properties',
-  },
-  {
-    // Professional photos supplied via Dropbox (shot 17 Aug 2026). No floorplan:
-    // bedroom/bathroom counts are read from the photo set (three distinct
-    // bedrooms, two distinct bathrooms) — confirm with Touchwood. Rent still to come.
-    id: '1-veronia-st-dromana',
-    slug: 'house-1-veronia-street-dromana',
-    title: '1 Veronia Street, Dromana',
-    summary: 'Renovated three-bedroom coastal home with vaulted ceilings and a wraparound entertaining deck',
-    type: 'RESIDENTIAL',
-    status: 'FOR_RENT',
-    address: '1 Veronia Street',
-    suburb: 'Dromana',
-    state: 'VIC',
-    postcode: '3936',
-    bedrooms: 3,
-    bathrooms: 2,
-    heroImageUrl: '/1-veronia-st-dromana/exterior-front.jpg',
-    description: `A beautifully renovated single-level home in a leafy Dromana street, with soaring vaulted ceilings, timber floors and a huge covered deck that wraps around the living areas.
-
-Property Highlights:
-
-Open plan living and dining under a vaulted ceiling, with split system heating and cooling
-Sage-green kitchen with stone benchtops, island bench, dishwasher and quality appliances
-Three bedrooms, the main with a designer ensuite
-Second bathroom with terrazzo tiling, walk-in shower and backlit mirror
-Stacker doors from the living area to a large covered timber deck
-Established gardens with mature trees and lawn
-
-Lifestyle & Location:
-
-Minutes to Dromana beach, the foreshore and the Dromana township
-Close to Arthurs Seat, Mornington Peninsula wineries and the Peninsula Link
-
-Contact our team for the weekly rent and availability date, or to arrange an inspection.`,
-    features: [
-      'Vaulted ceilings and timber floors',
-      'Open plan living and dining',
-      'Stone-bench kitchen with island and dishwasher',
-      'Three bedrooms, main with ensuite',
-      'Two designer bathrooms',
-      'Split system heating and cooling',
-      'Large covered entertaining deck',
-      'Established gardens',
-      'Minutes to Dromana beach',
-    ],
-    gallery: [
-      { url: '/1-veronia-st-dromana/exterior-front.jpg', alt: 'Front exterior and garden of 1 Veronia Street, Dromana', width: 2048, height: 1365 },
-      { url: '/1-veronia-st-dromana/living-1.jpg', alt: 'Open plan living under vaulted ceiling at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
-      { url: '/1-veronia-st-dromana/living-dining.jpg', alt: 'Living and dining area at 1 Veronia Street, Dromana', width: 2048, height: 1370 },
-      { url: '/1-veronia-st-dromana/living-2.jpg', alt: 'Living area with kitchen beyond at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
-      { url: '/1-veronia-st-dromana/living-3.jpg', alt: 'Living area opening to the deck at 1 Veronia Street, Dromana', width: 1365, height: 2048 },
-      { url: '/1-veronia-st-dromana/kitchen-1.jpg', alt: 'Sage-green kitchen with stone benchtops at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
-      { url: '/1-veronia-st-dromana/kitchen-2.jpg', alt: 'Kitchen island bench at 1 Veronia Street, Dromana', width: 2048, height: 1366 },
-      { url: '/1-veronia-st-dromana/deck-1.jpg', alt: 'Covered entertaining deck at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
-      { url: '/1-veronia-st-dromana/deck-2.jpg', alt: 'Deck wrapping around the living area at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
-      { url: '/1-veronia-st-dromana/bedroom-1.jpg', alt: 'Main bedroom at 1 Veronia Street, Dromana', width: 2048, height: 1361 },
-      { url: '/1-veronia-st-dromana/bedroom-2.jpg', alt: 'Second bedroom at 1 Veronia Street, Dromana', width: 2048, height: 1363 },
-      { url: '/1-veronia-st-dromana/bedroom-3.jpg', alt: 'Third bedroom opening to the deck at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
-      { url: '/1-veronia-st-dromana/ensuite.jpg', alt: 'Ensuite with green tiling and round mirror at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
-      { url: '/1-veronia-st-dromana/vanity.jpg', alt: 'Ensuite vanity at 1 Veronia Street, Dromana', width: 1365, height: 2048 },
-      { url: '/1-veronia-st-dromana/bathroom.jpg', alt: 'Ensuite with toilet, vanity and rain shower at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
-      { url: '/1-veronia-st-dromana/shower.jpg', alt: 'Second bathroom with terracotta tiling and walk-in shower at 1 Veronia Street, Dromana', width: 2048, height: 1365 },
-      { url: '/1-veronia-st-dromana/garden.jpg', alt: 'Established garden with mature tree at 1 Veronia Street, Dromana', width: 1638, height: 2048 },
-      { url: '/1-veronia-st-dromana/exterior-side.jpg', alt: 'Side view of the house and deck at 1 Veronia Street, Dromana', width: 1365, height: 2048 },
     ],
     agent: {
       name: 'Eamon Chau',
@@ -591,7 +521,7 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
     category: 'properties',
   },
   {
-    // Awaiting price and copy from Raquel — listed as available per client instruction.
+    // For Sale confirmed by client 17 Sep 2026. Price and copy still to come.
     id: '2002-555-swanston',
     slug: 'apartment-2002-555-swanston-street-carlton',
     title: '2002/555 Swanston Street, Carlton',
@@ -629,20 +559,20 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
     category: 'properties',
   },
   {
-    // Awaiting price and copy — listed as available per client instruction.
+    // Rental (For Lease) confirmed by client 17 Sep 2026. Rent still to come.
     id: '2111-22-24-jane-bell',
     slug: 'apartment-2111-22-24-jane-bell-lane-melbourne',
     title: '2111/22-24 Jane Bell Lane, Melbourne',
     summary: 'Two-bedroom apartment with secure car space in the Melbourne CBD',
     type: 'RESIDENTIAL',
-    status: 'AVAILABLE',
+    status: 'FOR_RENT',
     address: '2111/22-24 Jane Bell Lane',
     suburb: 'Melbourne',
     state: 'VIC',
     postcode: '3000',
     heroImageUrl: '/2111-22-24-jane-bell-lane/6.jpeg',
     description:
-      'A two-bedroom apartment with secure car space at 22-24 Jane Bell Lane, Melbourne, coming to market. Steps from Melbourne Central, the State Library and RMIT. Full pricing details will be published shortly — for early enquiries or to arrange an inspection, please get in touch with our team.',
+      'A two-bedroom apartment with secure car space at 22-24 Jane Bell Lane, Melbourne, coming to market for lease. Steps from Melbourne Central, the State Library and RMIT. Full pricing details will be published shortly — for early enquiries or to arrange an inspection, please get in touch with our team.',
     gallery: [
       { url: '/2111-22-24-jane-bell-lane/6.jpeg', alt: 'Kitchen at 2111/22-24 Jane Bell Lane, Melbourne', width: 1448, height: 1086 },
       { url: '/2111-22-24-jane-bell-lane/2.jpeg', alt: 'Bedroom at 2111/22-24 Jane Bell Lane, Melbourne', width: 1447, height: 1087 },
