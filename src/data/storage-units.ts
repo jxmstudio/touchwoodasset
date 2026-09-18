@@ -526,7 +526,7 @@ export const storageUnits: StorageUnit[] = [
     size: 3,
     sizeCategory: "3sqm",
     price: 120,
-    status: "AVAILABLE",
+    status: "LEASED",
     images: ["/F132.601/F132.601 (3sqm internal).jpg","/F132.601/F132.601 (internal).jpg","/F132.601/Loading & Lift.jpg"],
     description: "Secure storage unit at The Archive, 601 Little Collins Street. Available now.",
     features: SHARED_FEATURES,
