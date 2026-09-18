@@ -306,16 +306,6 @@ export function trackLeadStart(formName: string): void {
   gtag('event', 'form_start', { form_name: formName })
 }
 
-/**
- * The SMS verification code was sent — the visitor completed the details
- * step and is now one code away from a Lead. Starts vs code-sent vs Lead is
- * the ratio that says what the verification step costs in conversions.
- */
-export function trackLeadCodeSent(formName: string): void {
-  fbq('trackCustom', 'LeadCodeSent', { content_name: formName })
-  gtag('event', 'form_code_sent', { form_name: formName })
-}
-
 /** A click on a phone number. For a service business these are real leads. */
 export function trackCall(location: string): void {
   fbq('track', 'Contact', { content_name: location })
