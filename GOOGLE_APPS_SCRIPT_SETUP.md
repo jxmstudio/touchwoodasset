@@ -3,6 +3,29 @@
 ## Current Status ✅
 Your contact form is now working! It's saving form submissions locally to `/data/form-submissions-*.json` files.
 
+## Phone verification columns (funnel leads)
+
+`/api/lead` sends three extra fields with every `/property-review` and
+`/switch` lead: `phoneVerified` (e.g. `YES — SMS code confirmed 18 Sep 2026
+10:32 AEST (Twilio VE…)`), `verifiedAt` (ISO timestamp) and `verificationId`
+(the Twilio verification SID). The same stamp is also appended to `message`,
+so nothing breaks if the script below is left as-is — but for a billing-ready
+sheet add three columns and extend the `row` array:
+
+```javascript
+// header: ..., 'Enquiry Type', 'Phone Verified', 'Verified At', 'Verification ID'
+const row = [
+  // ...existing columns...
+  data.enquiryType || '',
+  data.phoneVerified || '',
+  data.verifiedAt || '',
+  data.verificationId || ''
+];
+```
+
+Then filter the sheet on `Phone Verified` starting with `YES` to get the
+billable list. See `docs/phone-verification.md`.
+
 ## To Connect to Google Sheets:
 
 ### 1. Create Google Apps Script

@@ -61,7 +61,7 @@ const steps = [
   {
     n: '1',
     title: 'Drop your details',
-    body: 'Fifteen seconds. Name, mobile and the suburb your property is in.',
+    body: 'Thirty seconds. Name, mobile and suburb, then a 6-digit code we text you to confirm your number.',
   },
   {
     n: '2',

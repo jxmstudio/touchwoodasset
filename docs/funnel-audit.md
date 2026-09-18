@@ -18,6 +18,11 @@ above the fold, in-place Lead, sheet path restored).
 The form takes exactly three fields (name, AU mobile with strict validation +
 normalisation, suburb) plus a `_gotcha` honeypot.
 
+> **Superseded 2026-09-18:** the form is now two steps (details → SMS code)
+> and the lead is recorded server-side by `/api/lead` only after Twilio
+> confirms the code. See `docs/phone-verification.md`. The tracking notes
+> below still apply; `Lead` now fires after the verified submission.
+
 ### Submit flow (`ReviewForm.tsx` → `onSubmit`)
 
 1. Posts in parallel to:

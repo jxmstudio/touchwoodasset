@@ -71,6 +71,11 @@ ENQUIRY_INBOX="enquiries@touchwood.com.au"
 # File Upload (UploadThing)
 UPLOADTHING_SECRET="your-uploadthing-secret"
 UPLOADTHING_APP_ID="your-uploadthing-app-id"
+
+# SMS verification for funnel leads (Twilio Verify) — see docs/phone-verification.md
+TWILIO_ACCOUNT_SID="ACxxxxxxxx"
+TWILIO_AUTH_TOKEN="your-twilio-auth-token"
+TWILIO_VERIFY_SERVICE_SID="VAxxxxxxxx"
 ```
 
 4. Set up the database:
