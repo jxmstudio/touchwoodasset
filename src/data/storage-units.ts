@@ -594,6 +594,20 @@ export const storageUnits: StorageUnit[] = [
     features: SHARED_FEATURES,
     floor: "Level 6",
   },
+  {
+    // New listing per client email 24 Sep 2026 (7 sqm, Available). Photos are on
+    // the client's Dropbox but not yet imported — replace /F5.jpg with
+    // /F106.601/... once they arrive. Monthly price still to be confirmed.
+    id: "archive-unit-f106",
+    unitNumber: "F106",
+    size: 7,
+    sizeCategory: "7sqm",
+    status: "AVAILABLE",
+    images: ["/F5.jpg"],
+    description: "Secure 7 sqm storage unit at The Archive, 601 Little Collins Street. Available now. Contact us for pricing.",
+    features: SHARED_FEATURES,
+    floor: "Level 5",
+  },
 ]
 
 // Facility information
