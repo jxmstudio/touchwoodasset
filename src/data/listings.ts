@@ -439,6 +439,73 @@ Contact our team for the weekly rent and availability date, or to arrange an ins
     category: 'properties',
   },
   {
+    // Watermarked photos supplied via Dropbox 29 Sep 2026; client asked for it
+    // to go up as Leased. Bed/bath/car counts are from the photos (two bedrooms,
+    // two bathrooms, single garage) — no floorplan or rent supplied.
+    id: '12-293-hawthorn-rd-caulfield',
+    slug: 'townhouse-12-293-hawthorn-road-caulfield',
+    title: '12/293 Hawthorn Road, Caulfield',
+    summary: 'Light-filled two-bedroom townhouse with upstairs living, balcony, leafy courtyard and garage',
+    type: 'RESIDENTIAL',
+    status: 'LEASED',
+    address: '12/293 Hawthorn Road',
+    suburb: 'Caulfield',
+    state: 'VIC',
+    postcode: '3162',
+    bedrooms: 2,
+    bathrooms: 2,
+    carSpaces: 1,
+    heroImageUrl: '/12-293-hawthorn-rd-caulfield/exterior-front.jpeg',
+    description: `A bright, modern townhouse in a boutique Hawthorn Road complex, with open plan living upstairs, a sunny balcony and a private courtyard garden.
+
+Property Highlights:
+
+Open plan living, dining and kitchen on the upper level with timber parquetry floors
+White kitchen with gas cooktop, wall oven and stainless steel appliances
+Sliding doors from the living area to a balcony with glass balustrade
+Two bedrooms, one opening straight onto the courtyard
+Two bathrooms, one with a bath and one with a shower
+Private courtyard garden with established trees
+Single lock-up garage with remote door and laundry space
+
+Lifestyle & Location:
+
+Trams along Hawthorn Road at the door
+Close to Caulfield Park and the Glen Huntly Road shops and cafes
+Easy reach of Monash University's Caulfield campus and Caulfield Station
+
+Contact our team about similar properties in the area.`,
+    features: [
+      'Upstairs open plan living and dining',
+      'Timber parquetry floors',
+      'Kitchen with gas cooktop and wall oven',
+      'Balcony with glass balustrade',
+      'Two bedrooms',
+      'Two bathrooms',
+      'Private courtyard garden',
+      'Single lock-up garage with laundry space',
+    ],
+    gallery: [
+      { url: '/12-293-hawthorn-rd-caulfield/exterior-front.jpeg', alt: 'Front of the townhouse at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+      { url: '/12-293-hawthorn-rd-caulfield/living-dining.jpeg', alt: 'Open plan kitchen, dining and living at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+      { url: '/12-293-hawthorn-rd-caulfield/kitchen.jpeg', alt: 'White kitchen at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+      { url: '/12-293-hawthorn-rd-caulfield/living.jpeg', alt: 'Upstairs living area at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+      { url: '/12-293-hawthorn-rd-caulfield/balcony.jpeg', alt: 'Balcony off the living area at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+      { url: '/12-293-hawthorn-rd-caulfield/bedroom-1.jpeg', alt: 'Bedroom opening to the courtyard at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+      { url: '/12-293-hawthorn-rd-caulfield/bedroom-2.jpeg', alt: 'Second bedroom with desk at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+      { url: '/12-293-hawthorn-rd-caulfield/bathroom-1.jpeg', alt: 'Bathroom with bath at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+      { url: '/12-293-hawthorn-rd-caulfield/bathroom-2.jpeg', alt: 'Bathroom with shower at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+      { url: '/12-293-hawthorn-rd-caulfield/courtyard.jpeg', alt: 'Private courtyard garden at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+      { url: '/12-293-hawthorn-rd-caulfield/garage.jpeg', alt: 'Lock-up garage with laundry space at 12/293 Hawthorn Road, Caulfield', width: 1448, height: 1086 },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
     id: '22-23-coate-ave-alphington',
     slug: 'townhouse-22-23-coate-avenue-alphington',
     title: '22/23 Coate Avenue, Alphington',
