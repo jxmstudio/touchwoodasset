@@ -259,7 +259,7 @@ export const storageUnits: StorageUnit[] = [
     sizeCategory: "2sqm",
     price: 80,
     status: "AVAILABLE",
-    images: ["/E46.601/E46.601 (internal).jpg","/E46.601/Loading & Lift.jpg"],
+    images: ["/E46.601/E46.601 (internal + furniture).jpg","/E46.601/E46.601 (internal).jpg","/E46.601/Loading & Lift.jpg"],
     videoUrl: "https://youtu.be/LnCWsc_q6mI",
     description: "Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.",
     features: SHARED_FEATURES,

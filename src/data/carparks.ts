@@ -118,9 +118,10 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Carlton',
     postcode: '3053',
     images: [
-      '/carparks/255-drummond-st-carlton/bay-271/1.jpeg',
-      '/carparks/255-drummond-st-carlton/bay-271/2.jpeg',
-      '/carparks/255-drummond-st-carlton/bay-271/3.jpeg',
+      '/carparks/255-drummond-st-carlton/bay-271/bay.jpeg',
+      '/carparks/255-drummond-st-carlton/bay-271/entrance.jpeg',
+      '/carparks/255-drummond-st-carlton/bay-271/building.jpeg',
+      '/carparks/255-drummond-st-carlton/bay-271/pay-station.jpeg',
     ],
     description:
       'Secure car park bay #271 at the Carlton Clocktower carpark, 255 Drummond Street, Carlton. Moments from Lygon Street, Melbourne University and RMIT. Contact us for pricing.',
@@ -260,7 +261,7 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3000',
     price: 240,
     status: 'LEASED',
-    images: ['/carparks/58-franklin-st-melbourne/bay-863/1.jpeg'],
+    images: ['/carparks/58-franklin-st-melbourne/bay-863/bay.jpeg'],
     description:
       'Secure car park bay #863 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
@@ -383,7 +384,11 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'South Yarra',
     postcode: '3141',
     status: 'LEASED',
-    images: ['/carparks/11-daly-st-south-yarra/bay-592/1.jpeg'],
+    images: [
+      '/carparks/11-daly-st-south-yarra/bay-592/bay.jpeg',
+      '/carparks/11-daly-st-south-yarra/bay-592/bay-empty.jpeg',
+      '/carparks/11-daly-st-south-yarra/bay-592/building.jpeg',
+    ],
     description:
       'Secure car park bay #592 at 11 Daly Street, South Yarra. Moments from Chapel Street and South Yarra Station.',
   }),
@@ -396,7 +401,11 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3141',
     price: 240,
     status: 'LEASED',
-    images: ['/carparks/11-daly-st-south-yarra/bay-593/1.jpeg'],
+    images: [
+      '/carparks/11-daly-st-south-yarra/bay-593/bay.jpeg',
+      '/carparks/11-daly-st-south-yarra/bay-593/bay-empty.jpeg',
+      '/carparks/11-daly-st-south-yarra/bay-593/entrance.jpeg',
+    ],
     description:
       'Secure car park bay #593 at 11 Daly Street, South Yarra. Moments from Chapel Street and South Yarra Station.',
   }),
