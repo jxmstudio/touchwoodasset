@@ -317,7 +317,8 @@ export const carparkBays: CarparkBay[] = [
       postcode: '3006',
       status: 'LEASED',
       images: files.map(
-        (f) => `/carparks/20-convention-centre-pl-south-wharf/bay-${n.toLowerCase()}/${f}`
+        (f) =>
+          `/carparks/20-convention-centre-pl-south-wharf/bay-${n.toLowerCase()}/${f}`
       ),
       description: `Secure car park bay ${n} at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Contact us for pricing.`,
     })
@@ -372,7 +373,9 @@ export const carparkBays: CarparkBay[] = [
       suburb: 'South Yarra',
       postcode: '3141',
       status: 'LEASED',
-      images: files.map((f) => `/carparks/11-daly-st-south-yarra/bay-${n}/${f}`),
+      images: files.map(
+        (f) => `/carparks/11-daly-st-south-yarra/bay-${n}/${f}`
+      ),
       description: `Secure car park bay #${n} at 11 Daly Street, South Yarra. Moments from Chapel Street, South Yarra Station and the Yarra trails. Contact us for pricing.`,
     })
   ),
