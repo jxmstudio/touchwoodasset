@@ -201,7 +201,8 @@ export const carparkBays: CarparkBay[] = [
     description:
       'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
-  // Bay 603: Available per client email 16 Sep 2026; $260/month confirmed 17 Sep 2026.
+  // Bay 603: $250/month, available from 3 Nov 2026 per client list 2 Oct 2026
+  // (was $260/month, available now per 16–17 Sep emails).
   bay({
     bayNumber: '603',
     building: '58 Franklin Street',
@@ -209,7 +210,8 @@ export const carparkBays: CarparkBay[] = [
     address: '58 Franklin Street',
     suburb: 'Melbourne',
     postcode: '3000',
-    price: 260,
+    price: 250,
+    availableFrom: '2026-11-03',
     images: ['/carparks/58-franklin-st-melbourne/bay-603/1.png'],
     description:
       'Secure car park bay #603 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
@@ -267,6 +269,7 @@ export const carparkBays: CarparkBay[] = [
   }),
 
   // ── 68 La Trobe Street, Melbourne ────────────────────────────────────────
+  // Bay C25: $320/month, available from 24 Oct 2026 per client list 2 Oct 2026.
   bay({
     bayNumber: 'C25',
     building: '68 La Trobe Street',
@@ -274,14 +277,15 @@ export const carparkBays: CarparkBay[] = [
     address: '68 La Trobe Street',
     suburb: 'Melbourne',
     postcode: '3000',
-    status: 'LEASED',
+    price: 320,
+    availableFrom: '2026-10-24',
     images: [
       '/carparks/68-la-trobe-st-melbourne/bay-c25/1.jpeg',
       '/carparks/68-la-trobe-st-melbourne/bay-c25/2.jpeg',
       '/carparks/68-la-trobe-st-melbourne/bay-c25/3.jpeg',
     ],
     description:
-      'Secure car park bay #C25 at 68 La Trobe Street, Melbourne CBD. Steps from Melbourne Central, RMIT and the State Library. Contact us for pricing.',
+      'Secure car park bay #C25 at 68 La Trobe Street, Melbourne CBD. Steps from Melbourne Central, RMIT and the State Library.',
   }),
 
   // ── 20 Convention Centre Place, South Wharf ──────────────────────────────
@@ -566,7 +570,8 @@ export const carparkBays: CarparkBay[] = [
   }),
 
   // ── 416 St Kilda Road, Melbourne (City Condos) ───────────────────────────
-  // Photos supplied via Dropbox 11 Sep 2026. $300/month confirmed 17 Sep 2026.
+  // Photos supplied via Dropbox 11 Sep 2026. $280/month per client list 2 Oct 2026
+  // (was $300/month per 17 Sep email).
   bay({
     bayNumber: '65',
     building: '416 St Kilda Road',
@@ -574,7 +579,7 @@ export const carparkBays: CarparkBay[] = [
     address: '416A St Kilda Road',
     suburb: 'Melbourne',
     postcode: '3004',
-    price: 300,
+    price: 280,
     images: [
       '/carparks/416-st-kilda-rd-melbourne/bay-65/1.jpeg',
       '/carparks/416-st-kilda-rd-melbourne/bay-65/3.jpeg',

@@ -173,11 +173,12 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 3',
   },
   {
+    // $120/month per client list 2 Oct 2026.
     id: 'archive-unit-d74',
     unitNumber: 'D74',
     size: 2.2,
     sizeCategory: '2sqm',
-    price: 80,
+    price: 120,
     status: 'AVAILABLE',
     images: [
       '/D74.601/D74.601 (internal + furniture).jpg',
@@ -191,12 +192,14 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 3',
   },
   {
+    // $120/month, available from 1 Nov 2026 per client list 2 Oct 2026.
     id: 'archive-unit-d75',
     unitNumber: 'D75',
     size: 3.2,
     sizeCategory: '3sqm',
-    price: 110,
+    price: 120,
     status: 'LEASED',
+    availableFrom: '2026-11-01',
     images: [
       '/D75.601/D75.601 (internal + furniture).jpg',
       '/D75.601/D75.601 (internal 3.2sqm).jpg',
@@ -334,11 +337,12 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 4',
   },
   {
+    // Size corrected to 5 sqm and rent to $180/month per client email 12 Oct 2026.
     id: 'archive-unit-e46',
     unitNumber: 'E46',
-    size: 2.2,
-    sizeCategory: '2sqm',
-    price: 80,
+    size: 5,
+    sizeCategory: '5sqm',
+    price: 180,
     status: 'AVAILABLE',
     images: [
       '/E46.601/E46.601 (internal + furniture).jpg',
@@ -347,7 +351,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/LnCWsc_q6mI',
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Mid-size storage unit at The Archive, 601 Little Collins Street. Available now.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -406,12 +410,13 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 4',
   },
   {
+    // Available at $80/month per client list 2 Oct 2026.
     id: 'archive-unit-e87',
     unitNumber: 'E87',
     size: 2.2,
     sizeCategory: '2sqm',
     price: 80,
-    status: 'LEASED',
+    status: 'AVAILABLE',
     images: [
       '/E87.601/E87.601 (internal +furniture 2.2sqm).jpg',
       '/E87.601/E87.601 (internal).jpg',
@@ -438,6 +443,20 @@ export const storageUnits: StorageUnit[] = [
     videoUrl: 'https://youtu.be/pooTRRgvYE4',
     description:
       'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+    features: SHARED_FEATURES,
+    floor: 'Level 4',
+  },
+  {
+    // New listing per client list 2 Oct 2026 ($90/month, Available). Size and
+    // photos still to come from the client — replace /F5.jpg with /E97.601/...
+    // once they arrive.
+    id: 'archive-unit-e97',
+    unitNumber: 'E97',
+    price: 90,
+    status: 'AVAILABLE',
+    images: ['/F5.jpg'],
+    description:
+      'Secure storage unit at The Archive, 601 Little Collins Street. Available now. Contact us for size details.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -512,11 +531,12 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 5',
   },
   {
+    // $220/month per client list 2 Oct 2026.
     id: 'archive-unit-f36',
     unitNumber: 'F36',
     size: 5.2,
     sizeCategory: '5sqm',
-    price: 180,
+    price: 220,
     status: 'AVAILABLE',
     images: [
       '/F36.601/F36.601 (internal 5.2sqm).jpg',

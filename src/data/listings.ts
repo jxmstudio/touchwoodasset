@@ -1139,20 +1139,23 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
     category: 'properties',
   },
   {
-    // Rental (For Lease) confirmed by client 17 Sep 2026. Rent still to come.
+    // Rental (For Lease) confirmed by client 17 Sep 2026. Rent $750/week per
+    // client list 2 Oct 2026.
     id: '2111-22-24-jane-bell',
     slug: 'apartment-2111-22-24-jane-bell-lane-melbourne',
     title: '2111/22-24 Jane Bell Lane, Melbourne',
     summary: 'Two-bedroom apartment with secure car space in the Melbourne CBD',
     type: 'RESIDENTIAL',
     status: 'FOR_RENT',
+    price: 750,
+    pricePeriod: 'per_week',
     address: '2111/22-24 Jane Bell Lane',
     suburb: 'Melbourne',
     state: 'VIC',
     postcode: '3000',
     heroImageUrl: '/2111-22-24-jane-bell-lane/6.jpeg',
     description:
-      'A two-bedroom apartment with secure car space at 22-24 Jane Bell Lane, Melbourne, coming to market for lease. Steps from Melbourne Central, the State Library and RMIT. Full pricing details will be published shortly — for early enquiries or to arrange an inspection, please get in touch with our team.',
+      'A two-bedroom apartment with secure car space at 22-24 Jane Bell Lane, Melbourne, now available for lease. Steps from Melbourne Central, the State Library and RMIT. To enquire or arrange an inspection, please get in touch with our team.',
     gallery: [
       {
         url: '/2111-22-24-jane-bell-lane/6.jpeg',
