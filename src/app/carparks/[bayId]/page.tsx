@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { CarparkDetailClient } from './CarparkDetailClient'
 import { carparkBays } from '@/data/carparks'
-import { absoluteUrl } from '@/lib/site'
+import { absoluteUrl, encodeAssetPath } from '@/lib/site'
 
 interface CarparkDetailPageProps {
   params: {
@@ -37,7 +37,7 @@ export async function generateMetadata({
       title: `Car Park Bay ${bayItem.bayNumber} – ${bayItem.address}`,
       description: bayItem.description,
       url: `/carparks/${bayItem.id}`,
-      images: [bayItem.images[0]],
+      images: [encodeAssetPath(bayItem.images[0])],
     },
   }
 }
@@ -58,8 +58,18 @@ export default async function CarparkDetailPage({
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
-          { '@type': 'ListItem', position: 2, name: 'Car Parks', item: absoluteUrl('/carparks') },
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: absoluteUrl('/'),
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Car Parks',
+            item: absoluteUrl('/carparks'),
+          },
           {
             '@type': 'ListItem',
             position: 3,
@@ -73,7 +83,7 @@ export default async function CarparkDetailPage({
         '@id': absoluteUrl(`/carparks/${bayItem.id}#product`),
         name: `Car Park Bay ${bayItem.bayNumber} — ${bayItem.building}, ${bayItem.suburb}`,
         description: bayItem.description,
-        image: bayItem.images.map((src) => absoluteUrl(src)),
+        image: bayItem.images.map((src) => absoluteUrl(encodeAssetPath(src))),
         category: 'Parking space rental',
         brand: { '@id': absoluteUrl('/#organization') },
         offers: {

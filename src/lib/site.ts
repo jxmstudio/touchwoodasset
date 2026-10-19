@@ -23,6 +23,25 @@ export function absoluteUrl(path = '/'): string {
 }
 
 /**
+ * Percent-encode a /public asset path for metadata (og:image, JSON-LD).
+ * Dropbox photo names contain spaces, "&" and "+", and a literal "+" in a
+ * URL path is served as a space, so the image 404s. Already-encoded paths
+ * are decoded first so they are not double-encoded.
+ */
+export function encodeAssetPath(path: string): string {
+  return path
+    .split('/')
+    .map((segment) => {
+      try {
+        return encodeURIComponent(decodeURIComponent(segment))
+      } catch {
+        return encodeURIComponent(segment)
+      }
+    })
+    .join('/')
+}
+
+/**
  * Profiles that represent the same business elsewhere. Google uses `sameAs` to
  * reconcile the site with the entity it already knows about, which is one of
  * the stronger local ranking signals available from the codebase.

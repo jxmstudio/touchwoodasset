@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { StorageUnitDetailClient } from './StorageUnitDetailClient'
 import { storageUnits } from '@/data/storage-units'
-import { absoluteUrl } from '@/lib/site'
+import { absoluteUrl, encodeAssetPath } from '@/lib/site'
 
 interface StorageUnitDetailPageProps {
   params: {
@@ -40,7 +40,7 @@ export async function generateMetadata({
       title: `${unit.unitNumber} — ${sizeLabel}Storage at The Archive`,
       description: unit.description,
       url: `/the-archive/${unit.id}`,
-      images: unit.images,
+      images: unit.images.map(encodeAssetPath),
     },
   }
 }
@@ -61,7 +61,12 @@ export default async function StorageUnitDetailPage({
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: absoluteUrl('/'),
+          },
           {
             '@type': 'ListItem',
             position: 2,
@@ -81,7 +86,7 @@ export default async function StorageUnitDetailPage({
         '@id': absoluteUrl(`/the-archive/${unit.id}#product`),
         name: `Storage Unit ${unit.unitNumber}${unit.size != null ? ` — ${unit.size}sqm` : ''}, Melbourne CBD`,
         description: unit.description,
-        image: unit.images.map((src) => absoluteUrl(src)),
+        image: unit.images.map((src) => absoluteUrl(encodeAssetPath(src))),
         category: 'Self storage unit',
         brand: { '@id': absoluteUrl('/#organization') },
         offers: {

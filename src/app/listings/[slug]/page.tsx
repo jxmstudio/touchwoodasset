@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { ListingDetailClient } from './ListingDetailClient'
 import { listings } from '@/data/listings'
+import { encodeAssetPath } from '@/lib/site'
 
 // Use central dataset
 const mockListings = listings
@@ -18,14 +19,16 @@ export function generateStaticParams() {
   return mockListings.map((l) => ({ slug: l.slug }))
 }
 
-export async function generateMetadata({ params }: ListingDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ListingDetailPageProps): Promise<Metadata> {
   const { slug } = await params
-  const listing = mockListings.find(l => l.slug === slug)
+  const listing = mockListings.find((l) => l.slug === slug)
 
   if (!listing) {
     return {
       title: 'Property Not Found',
-      description: 'The requested property could not be found.'
+      description: 'The requested property could not be found.',
     }
   }
 
@@ -36,14 +39,16 @@ export async function generateMetadata({ params }: ListingDetailPageProps): Prom
     openGraph: {
       title: listing.title,
       description: listing.description,
-      images: [listing.heroImageUrl],
+      images: [encodeAssetPath(listing.heroImageUrl)],
     },
   }
 }
 
-export default async function ListingDetailPage({ params }: ListingDetailPageProps) {
+export default async function ListingDetailPage({
+  params,
+}: ListingDetailPageProps) {
   const { slug } = await params
-  const listing = mockListings.find(l => l.slug === slug)
+  const listing = mockListings.find((l) => l.slug === slug)
 
   if (!listing) {
     notFound()
@@ -73,7 +78,9 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
         priceCurrency: 'AUD',
       },
     }),
-    ...(listing.heroImageUrl && { image: listing.heroImageUrl }),
+    ...(listing.heroImageUrl && {
+      image: encodeAssetPath(listing.heroImageUrl),
+    }),
   }
 
   return (
