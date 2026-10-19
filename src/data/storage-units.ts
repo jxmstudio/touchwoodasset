@@ -51,7 +51,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/Ydx87CMSoVA',
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -69,7 +69,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/NN-o7adL5G0',
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -104,7 +104,7 @@ export const storageUnits: StorageUnit[] = [
       '/D32.601/Loading & Lift.jpg',
     ],
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -122,7 +122,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/Y_sxglZxPJU',
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -150,7 +150,7 @@ export const storageUnits: StorageUnit[] = [
       '/D56.601/Loading & Lift.jpg',
     ],
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -168,7 +168,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/M_36RoNeI_4',
     description:
-      'Secure storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Secure storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -207,7 +207,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/UXTuUs-6Pl4',
     description:
-      'Secure storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Secure storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -225,7 +225,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/jy51Q1pQGC4',
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -243,7 +243,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/GkK2TvUpTJk',
     description:
-      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture. Available now.',
+      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -261,7 +261,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/gV-e6U47IqI',
     description:
-      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture. Available now.',
+      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -278,7 +278,7 @@ export const storageUnits: StorageUnit[] = [
       '/E3.601/Loading & Lift.jpg',
     ],
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -296,7 +296,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/u8j-J38XtHo',
     description:
-      'Secure storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Secure storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -314,7 +314,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/2lyKt_fO4Xw',
     description:
-      'Secure storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Secure storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -332,18 +332,19 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/k5pVqyD9xdU',
     description:
-      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture. Available now.',
+      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
   {
     // Size corrected to 5 sqm and rent to $180/month per client email 12 Oct 2026.
+    // Leased per client email 15 Oct 2026.
     id: 'archive-unit-e46',
     unitNumber: 'E46',
     size: 5,
     sizeCategory: '5sqm',
     price: 180,
-    status: 'AVAILABLE',
+    status: 'LEASED',
     images: [
       '/E46.601/E46.601 (internal + furniture).jpg',
       '/E46.601/E46.601 (internal).jpg',
@@ -351,7 +352,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/LnCWsc_q6mI',
     description:
-      'Mid-size storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Mid-size storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -387,7 +388,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/1O_5lvqCbxo',
     description:
-      'Secure storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Secure storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -405,7 +406,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/OYy7ALFE52A',
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -442,21 +443,21 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/pooTRRgvYE4',
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
   {
     // New listing per client list 2 Oct 2026 ($90/month, Available). Size and
     // photos still to come from the client — replace /F5.jpg with /E97.601/...
-    // once they arrive.
+    // once they arrive. Leased per client email 15 Oct 2026.
     id: 'archive-unit-e97',
     unitNumber: 'E97',
     price: 90,
-    status: 'AVAILABLE',
+    status: 'LEASED',
     images: ['/F5.jpg'],
     description:
-      'Secure storage unit at The Archive, 601 Little Collins Street. Available now. Contact us for size details.',
+      'Secure storage unit at The Archive, 601 Little Collins Street. Contact us for size details.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -474,7 +475,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/c3vRH-OiHDA',
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -492,7 +493,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/9tuGjZSEG3s',
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -509,7 +510,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/VzAxWAl9Jns',
     description:
-      'Mid-size storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Mid-size storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 4',
   },
@@ -561,7 +562,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/NwL1fXkuts8',
     description:
-      'Mid-size storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Mid-size storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
@@ -592,7 +593,7 @@ export const storageUnits: StorageUnit[] = [
     status: 'LEASED',
     images: ['/F5.jpg'],
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
@@ -610,7 +611,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/6yPur_cV3bY',
     description:
-      'Secure storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Secure storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
@@ -641,7 +642,7 @@ export const storageUnits: StorageUnit[] = [
     status: 'LEASED',
     images: ['/F90.601/with stuff img.jpeg', '/F90.601/Empty Img.jpeg'],
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
@@ -654,7 +655,7 @@ export const storageUnits: StorageUnit[] = [
     status: 'LEASED',
     images: ['/F98.601/With stuff Img.jpeg', '/F98.601/Empty Img.jpeg'],
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
@@ -667,7 +668,7 @@ export const storageUnits: StorageUnit[] = [
     status: 'LEASED',
     images: ['/F99.601/with Stuff img.jpeg', '/F99.601/Empty Img.jpeg'],
     description:
-      'Entry-level storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
@@ -685,7 +686,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/7yYTeBPZLr8',
     description:
-      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture. Available now.',
+      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
@@ -720,7 +721,7 @@ export const storageUnits: StorageUnit[] = [
       '/F132.601/Loading & Lift.jpg',
     ],
     description:
-      'Secure storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Secure storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
@@ -757,7 +758,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/e1Z-PPBilgM',
     description:
-      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture. Available now.',
+      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture.',
     features: SHARED_FEATURES,
     floor: 'Level 7',
   },
@@ -776,7 +777,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/ErtRWEbBAqU',
     description:
-      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture. Available now.',
+      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture.',
     features: SHARED_FEATURES,
     floor: 'Level 7',
   },

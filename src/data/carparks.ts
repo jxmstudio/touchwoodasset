@@ -99,7 +99,7 @@ export const carparkBays: CarparkBay[] = [
     address: '255 Drummond Street',
     suburb: 'Carlton',
     postcode: '3053',
-    availableFrom: '2026-07-20',
+    status: 'LEASED', // per client email 15 Oct 2026
     images: [
       '/carparks/255-drummond-st-carlton/bay-265/1.jpeg',
       '/carparks/255-drummond-st-carlton/bay-265/2.jpeg',
@@ -117,6 +117,7 @@ export const carparkBays: CarparkBay[] = [
     address: '255 Drummond Street',
     suburb: 'Carlton',
     postcode: '3053',
+    status: 'LEASED', // per client email 15 Oct 2026
     images: [
       '/carparks/255-drummond-st-carlton/bay-271/bay.jpeg',
       '/carparks/255-drummond-st-carlton/bay-271/entrance.jpeg',
@@ -197,12 +198,13 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Melbourne',
     postcode: '3000',
     price: 210,
+    status: 'LEASED', // per client email 15 Oct 2026
     images: ['/carparks/58-franklin-st-melbourne/bay-810/1.jpeg'],
     description:
       'Secure car park bay #810 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
   }),
-  // Bay 603: $250/month, available from 3 Nov 2026 per client list 2 Oct 2026
-  // (was $260/month, available now per 16–17 Sep emails).
+  // Bay 603: $250/month per client list 2 Oct 2026 (was $260/month per 16–17 Sep
+  // emails). Leased per client email 15 Oct 2026.
   bay({
     bayNumber: '603',
     building: '58 Franklin Street',
@@ -211,7 +213,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Melbourne',
     postcode: '3000',
     price: 250,
-    availableFrom: '2026-11-03',
+    status: 'LEASED',
     images: ['/carparks/58-franklin-st-melbourne/bay-603/1.png'],
     description:
       'Secure car park bay #603 at 58 Franklin Street, Melbourne CBD. Near Queen Victoria Market, RMIT and Flagstaff Gardens. 24/7 swipe card access.',
@@ -296,14 +298,15 @@ export const carparkBays: CarparkBay[] = [
     address: '20 Convention Centre Place',
     suburb: 'South Wharf',
     postcode: '3006',
-    // Was Coming Soon (from 20 Sep 2026); confirmed Available per client email 17 Sep 2026.
+    // Available per client email 17 Sep 2026; Leased per client email 15 Oct 2026.
+    status: 'LEASED',
     images: [
       '/carparks/20-convention-centre-pl-south-wharf/bay-c7/1.png',
       '/carparks/20-convention-centre-pl-south-wharf/bay-c7/2.png',
       '/carparks/20-convention-centre-pl-south-wharf/bay-c7/3.png',
     ],
     description:
-      'Secure car park bay C7 (carpark #35) at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Available now. Contact us for pricing.',
+      'Secure car park bay C7 (carpark #35) at 20 Convention Centre Place, South Wharf. Next to MCEC, DFO South Wharf and the Yarra promenade. Contact us for pricing.',
   }),
   ...(
     [
@@ -527,7 +530,7 @@ export const carparkBays: CarparkBay[] = [
     description:
       'Secure car park bay #270 at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach. Contact us for pricing.',
   }),
-  // 331 Available, 332 Leased per client email 17 Sep 2026.
+  // 332 Leased per client email 17 Sep 2026; 331 Leased per client email 15 Oct 2026.
   ...['331', '332'].map((n) =>
     bay({
       bayNumber: n,
@@ -536,7 +539,7 @@ export const carparkBays: CarparkBay[] = [
       address: '135 Fitzroy Street',
       suburb: 'St Kilda',
       postcode: '3182',
-      status: n === '332' ? 'LEASED' : 'AVAILABLE',
+      status: 'LEASED',
       images: [
         `/carparks/135-fitzroy-st-st-kilda/bay-${n}/6.png`, // bay with car
         `/carparks/135-fitzroy-st-st-kilda/bay-${n}/5.png`, // empty bay
@@ -558,6 +561,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'South Melbourne',
     postcode: '3205',
     price: 320,
+    status: 'LEASED', // per client email 15 Oct 2026
     images: [
       '/carparks/63-dorcas-st-south-melbourne/bay-93b/1.jpeg',
       '/carparks/63-dorcas-st-south-melbourne/bay-93b/2.jpeg',

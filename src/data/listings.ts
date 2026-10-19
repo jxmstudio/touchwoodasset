@@ -234,13 +234,14 @@ Contact our team for the weekly rent and availability date, or to arrange an ins
   {
     // Photos supplied via Dropbox 14 Sep 2026. Furnished two-bedroom in the
     // UniLodge on Lonsdale building. Rent $600/week confirmed by client 17 Sep 2026.
+    // Leased per client email 15 Oct 2026.
     id: '2016-39-lonsdale',
     slug: 'apartment-2016-39-lonsdale-street-melbourne',
     title: '2016/39 Lonsdale Street, Melbourne',
     summary:
       'Furnished two-bedroom apartment in the Paris end of the Melbourne CBD',
     type: 'RESIDENTIAL',
-    status: 'FOR_RENT',
+    status: 'LEASED',
     price: 600,
     pricePeriod: 'per_week',
     address: '2016/39 Lonsdale Street',
@@ -1140,13 +1141,13 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
   },
   {
     // Rental (For Lease) confirmed by client 17 Sep 2026. Rent $750/week per
-    // client list 2 Oct 2026.
+    // client list 2 Oct 2026. Leased per client email 15 Oct 2026.
     id: '2111-22-24-jane-bell',
     slug: 'apartment-2111-22-24-jane-bell-lane-melbourne',
     title: '2111/22-24 Jane Bell Lane, Melbourne',
     summary: 'Two-bedroom apartment with secure car space in the Melbourne CBD',
     type: 'RESIDENTIAL',
-    status: 'FOR_RENT',
+    status: 'LEASED',
     price: 750,
     pricePeriod: 'per_week',
     address: '2111/22-24 Jane Bell Lane',
