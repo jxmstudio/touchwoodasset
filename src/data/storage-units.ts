@@ -210,13 +210,13 @@ export const storageUnits: StorageUnit[] = [
   },
   {
     // $120/month, available from 1 Nov 2026 per client list 2 Oct 2026.
+    // Leased outright per client email 23 Oct 2026.
     id: 'archive-unit-d75',
     unitNumber: 'D75',
     size: 3.2,
     sizeCategory: '3sqm',
     price: 120,
     status: 'LEASED',
-    availableFrom: '2026-11-01',
     images: [
       '/D75.601/D75.601 (internal + furniture).jpg',
       '/D75.601/D75.601 (internal 3.2sqm).jpg',
@@ -636,13 +636,13 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 5',
   },
   {
-    // Client email 22 Oct 2026 lists F83 at "$230/$250 per month"; showing the
-    // lower rate until the client confirms.
+    // $250/month confirmed per client email 23 Oct 2026 (22 Oct list said
+    // "$230/$250").
     id: 'archive-unit-f83',
     unitNumber: 'F83',
     size: 8,
     sizeCategory: '8sqm',
-    price: 230,
+    price: 250,
     status: 'AVAILABLE',
     images: [
       '/F83.601/F83.601 (8sqm internal+furniture).jpg',
@@ -651,7 +651,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/I_4ien5RfvY',
     description:
-      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture. Rent $230–$250 per month. Available now.',
+      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture. Available now.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },

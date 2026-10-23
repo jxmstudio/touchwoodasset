@@ -129,10 +129,10 @@ export const carparkBays: CarparkBay[] = [
   }),
 
   // ── 401 Docklands Drive, Docklands ───────────────────────────────────────
-  // Bay 430 (listed as "430P", Level 4): $250/month, Available per client
-  // email 22 Oct 2026.
+  // Bay 430P (Level 4): $250/month, Available per client email 22 Oct 2026;
+  // bay number confirmed as 430P on 23 Oct 2026. Photos stay in bay-430/.
   bay({
-    bayNumber: '430',
+    bayNumber: '430P',
     building: '401 Docklands Drive',
     buildingSlug: '401-docklands-drive-docklands',
     address: '401 Docklands Drive',
@@ -145,7 +145,7 @@ export const carparkBays: CarparkBay[] = [
       '/carparks/401-docklands-drive-docklands/bay-430/3.jpeg',
     ],
     description:
-      'Secure car park bay #430 on Level 4 at 401 Docklands Drive, Docklands. Near The District, Marvel Stadium and the free City Circle tram.',
+      'Secure car park bay #430P on Level 4 at 401 Docklands Drive, Docklands. Near The District, Marvel Stadium and the free City Circle tram.',
   }),
   bay({
     bayNumber: '537',
