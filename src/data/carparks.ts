@@ -129,6 +129,8 @@ export const carparkBays: CarparkBay[] = [
   }),
 
   // ── 401 Docklands Drive, Docklands ───────────────────────────────────────
+  // Bay 430 (listed as "430P", Level 4): $250/month, Available per client
+  // email 22 Oct 2026.
   bay({
     bayNumber: '430',
     building: '401 Docklands Drive',
@@ -136,14 +138,14 @@ export const carparkBays: CarparkBay[] = [
     address: '401 Docklands Drive',
     suburb: 'Docklands',
     postcode: '3008',
-    status: 'LEASED',
+    price: 250,
     images: [
       '/carparks/401-docklands-drive-docklands/bay-430/1.jpeg',
       '/carparks/401-docklands-drive-docklands/bay-430/2.jpeg',
       '/carparks/401-docklands-drive-docklands/bay-430/3.jpeg',
     ],
     description:
-      'Secure car park bay #430 at 401 Docklands Drive, Docklands. Near The District, Marvel Stadium and the free City Circle tram. Contact us for pricing.',
+      'Secure car park bay #430 on Level 4 at 401 Docklands Drive, Docklands. Near The District, Marvel Stadium and the free City Circle tram.',
   }),
   bay({
     bayNumber: '537',
@@ -272,6 +274,7 @@ export const carparkBays: CarparkBay[] = [
 
   // ── 68 La Trobe Street, Melbourne ────────────────────────────────────────
   // Bay C25: $320/month, available from 24 Oct 2026 per client list 2 Oct 2026.
+  // Not on the client's 22 Oct 2026 availability list, so marked Leased.
   bay({
     bayNumber: 'C25',
     building: '68 La Trobe Street',
@@ -280,7 +283,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Melbourne',
     postcode: '3000',
     price: 320,
-    availableFrom: '2026-10-24',
+    status: 'LEASED',
     images: [
       '/carparks/68-la-trobe-st-melbourne/bay-c25/1.jpeg',
       '/carparks/68-la-trobe-st-melbourne/bay-c25/2.jpeg',
@@ -350,6 +353,21 @@ export const carparkBays: CarparkBay[] = [
       'Secure car park bay #1308A on Level 6 at 180 City Road, Southbank. Moments from Crown, the Melbourne CBD and the Southbank arts precinct. Contact us for pricing.',
   }),
 
+  // ── 109 Clarendon Street, Southbank ──────────────────────────────────────
+  // New listing per client email 22 Oct 2026 (Level 4, $265/month, Available).
+  // Photos still to come from the client, so it uses the placeholder tile.
+  bay({
+    bayNumber: '412',
+    building: '109 Clarendon Street',
+    buildingSlug: '109-clarendon-st-southbank',
+    address: '109 Clarendon Street',
+    suburb: 'Southbank',
+    postcode: '3006',
+    price: 265,
+    description:
+      'Secure car park bay #412 on Level 4 at 109 Clarendon Street, Southbank. Moments from Crown, South Wharf, the Convention Centre and the CBD.',
+  }),
+
   // ── 83 Whiteman Street, Southbank ────────────────────────────────────────
   bay({
     bayNumber: '16',
@@ -358,9 +376,9 @@ export const carparkBays: CarparkBay[] = [
     address: '83 Whiteman Street',
     suburb: 'Southbank',
     postcode: '3006',
-    status: 'LEASED',
+    price: 280, // Available at $280/month per client email 22 Oct 2026
     description:
-      'Secure car park bay #16 at 83 Whiteman Street, Southbank. Short walk to Crown, South Wharf and Southbank Promenade. Contact us for pricing.',
+      'Secure car park bay #16 at 83 Whiteman Street, Southbank. Short walk to Crown, South Wharf and Southbank Promenade.',
   }),
 
   // ── 11 Daly Street, South Yarra ──────────────────────────────────────────
