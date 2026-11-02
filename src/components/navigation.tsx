@@ -28,9 +28,14 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 
-type NavChild = { name: string; href: string; icon?: React.ElementType; description?: string }
+type NavChild = {
+  name: string
+  href: string
+  icon?: React.ElementType
+  description?: string
+}
 type NavItem =
-  | { name: string; href: string; children?: never }
+  | { name: string; href: string; children?: never; desktopClassName?: string }
   | { name: string; href: string; children: NavChild[] }
 
 const navItems: NavItem[] = [
@@ -41,26 +46,88 @@ const navItems: NavItem[] = [
     name: 'Locations',
     href: '/locations',
     children: [
-      { name: 'All Locations', href: '/locations', icon: MapPin, description: 'Overview of all suburbs' },
-      { name: 'East Melbourne', href: '/locations/east-melbourne', icon: MapPin, description: 'Tribeca car parks, near MCG' },
-      { name: 'South Melbourne', href: '/locations/south-melbourne', icon: MapPin, description: 'Stead St & Albert Rd' },
-      { name: 'Melbourne CBD', href: '/locations/melbourne-cbd', icon: MapPin, description: 'Parking + The Archive storage' },
-      { name: 'St Kilda', href: '/locations/st-kilda', icon: MapPin, description: 'St Kilda Tower, Queens Lane' },
+      {
+        name: 'All Locations',
+        href: '/locations',
+        icon: MapPin,
+        description: 'Overview of all suburbs',
+      },
+      {
+        name: 'East Melbourne',
+        href: '/locations/east-melbourne',
+        icon: MapPin,
+        description: 'Tribeca car parks, near MCG',
+      },
+      {
+        name: 'South Melbourne',
+        href: '/locations/south-melbourne',
+        icon: MapPin,
+        description: 'Stead St & Albert Rd',
+      },
+      {
+        name: 'Melbourne CBD',
+        href: '/locations/melbourne-cbd',
+        icon: MapPin,
+        description: 'Parking + The Archive storage',
+      },
+      {
+        name: 'St Kilda',
+        href: '/locations/st-kilda',
+        icon: MapPin,
+        description: 'St Kilda Tower, Queens Lane',
+      },
     ],
   },
   {
     name: 'Services',
     href: '/services',
     children: [
-      { name: 'All Services', href: '/services', icon: Building2, description: 'Full service overview' },
-      { name: 'Prime Hosting', href: '/prime-hosting', icon: Sparkles, description: 'Short-stay rental management' },
-      { name: 'For Landlords', href: '/landlords', icon: Users, description: 'Investment property management' },
-      { name: 'For Sellers', href: '/sellers', icon: Home, description: 'Sales & appraisal services' },
-      { name: 'Property Valuation', href: '/valuation', icon: Calculator, description: 'Free property appraisal' },
-      { name: 'Book Inspection', href: '/inspection', icon: Calendar, description: 'Schedule a viewing' },
+      {
+        name: 'All Services',
+        href: '/services',
+        icon: Building2,
+        description: 'Full service overview',
+      },
+      {
+        name: 'Prime Hosting',
+        href: '/prime-hosting',
+        icon: Sparkles,
+        description: 'Short-stay rental management',
+      },
+      {
+        name: 'For Landlords',
+        href: '/landlords',
+        icon: Users,
+        description: 'Investment property management',
+      },
+      {
+        name: 'For Sellers',
+        href: '/sellers',
+        icon: Home,
+        description: 'Sales & appraisal services',
+      },
+      {
+        name: 'Property Valuation',
+        href: '/valuation',
+        icon: Calculator,
+        description: 'Free property appraisal',
+      },
+      {
+        name: 'Book Inspection',
+        href: '/inspection',
+        icon: Calendar,
+        description: 'Schedule a viewing',
+      },
     ],
   },
   { name: 'Articles', href: '/blog' },
+  // The desktop bar is full: below this width the extra item would push the
+  // Contact button off screen. The mobile menu and footer still link to it.
+  {
+    name: 'Careers',
+    href: '/careers',
+    desktopClassName: 'hidden min-[1140px]:block',
+  },
 ]
 
 export function Navigation() {
@@ -123,7 +190,9 @@ export function Navigation() {
                               {child.name}
                             </div>
                             {child.description && (
-                              <div className="text-xs text-gray-500 mt-0.5">{child.description}</div>
+                              <div className="text-xs text-gray-500 mt-0.5">
+                                {child.description}
+                              </div>
                             )}
                           </div>
                         </Link>
@@ -136,6 +205,8 @@ export function Navigation() {
                   key={item.name}
                   href={item.href}
                   className={`px-3 py-2 text-sm font-medium uppercase tracking-wide rounded-md transition-colors whitespace-nowrap ${
+                    item.desktopClassName ?? ''
+                  } ${
                     pathname === item.href
                       ? 'text-gray-900'
                       : 'text-gray-600 hover:text-gray-900'

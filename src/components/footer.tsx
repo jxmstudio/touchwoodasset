@@ -70,6 +70,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href="/careers"
+                  className="text-gray-900 font-medium hover:text-primary transition-colors"
+                >
+                  Join the Team
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/services"
                   className="text-gray-900 font-medium hover:text-primary transition-colors"
                 >

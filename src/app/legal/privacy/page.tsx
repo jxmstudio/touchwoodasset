@@ -9,13 +9,15 @@ export const metadata: Metadata = {
   alternates: { canonical: '/legal/privacy' },
 }
 
-const LAST_UPDATED = '13 August 2026'
+const LAST_UPDATED = '2 November 2026'
 
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h1 className="mb-3 text-4xl font-bold text-gray-900">Privacy Policy</h1>
+        <h1 className="mb-3 text-4xl font-bold text-gray-900">
+          Privacy Policy
+        </h1>
         <p className="mb-10 text-sm text-gray-500">
           Last updated {LAST_UPDATED}
         </p>
@@ -25,9 +27,8 @@ export default function PrivacyPolicyPage() {
             <p className="leading-relaxed">
               {SITE_NAME} (ABN to be confirmed) respects your privacy. This
               policy explains how we collect, hold, use and disclose personal
-              information, and how we comply with the{' '}
-              <em>Privacy Act 1988</em> (Cth) and the Australian Privacy
-              Principles (APPs).
+              information, and how we comply with the <em>Privacy Act 1988</em>{' '}
+              (Cth) and the Australian Privacy Principles (APPs).
             </p>
             <p className="leading-relaxed">
               By using this website or submitting an enquiry, you agree to the
@@ -37,7 +38,10 @@ export default function PrivacyPolicyPage() {
 
           <section>
             <h2>1. What we collect</h2>
-            <p>We collect personal information that you give us directly, including:</p>
+            <p>
+              We collect personal information that you give us directly,
+              including:
+            </p>
             <ul>
               <li>
                 <strong>Contact details</strong> — your name, email address and
@@ -52,6 +56,11 @@ export default function PrivacyPolicyPage() {
               <li>
                 <strong>Correspondence</strong> — the content of messages you
                 send us by form, email or phone.
+              </li>
+              <li>
+                <strong>Job application details</strong> — your work history,
+                licence status, resume and anything else you send us when you
+                apply for a role.
               </li>
             </ul>
             <p>
@@ -69,13 +78,20 @@ export default function PrivacyPolicyPage() {
             <h2>2. Why we collect it</h2>
             <p>We use personal information to:</p>
             <ul>
-              <li>respond to your enquiry and provide the service you asked for;</li>
+              <li>
+                respond to your enquiry and provide the service you asked for;
+              </li>
               <li>
                 prepare property reviews, appraisals, valuations and management
                 proposals;
               </li>
               <li>arrange and conduct property inspections;</li>
-              <li>manage properties, leases and tenancies where we act for you;</li>
+              <li>
+                manage properties, leases and tenancies where we act for you;
+              </li>
+              <li>
+                assess job applications and contact applicants about roles;
+              </li>
               <li>
                 send you information about our services, where you have asked
                 for it or would reasonably expect it;

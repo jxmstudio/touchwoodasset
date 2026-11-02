@@ -24,6 +24,7 @@ const staticPages: Array<{
   { path: '/services', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/prime-hosting', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/blog', changeFrequency: 'weekly', priority: 0.8 },
+  { path: '/careers', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/sellers', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/valuation', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/inspection', changeFrequency: 'monthly', priority: 0.7 },
@@ -35,7 +36,12 @@ const staticPages: Array<{
 ]
 
 // Suburb landing pages. Keep in sync with src/app/locations/[suburb]/page.tsx.
-const locationSlugs = ['east-melbourne', 'south-melbourne', 'melbourne-cbd', 'st-kilda']
+const locationSlugs = [
+  'east-melbourne',
+  'south-melbourne',
+  'melbourne-cbd',
+  'st-kilda',
+]
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
