@@ -35,7 +35,7 @@ type NavChild = {
   description?: string
 }
 type NavItem =
-  | { name: string; href: string; children?: never; desktopClassName?: string }
+  | { name: string; href: string; children?: never }
   | { name: string; href: string; children: NavChild[] }
 
 const navItems: NavItem[] = [
@@ -121,13 +121,7 @@ const navItems: NavItem[] = [
     ],
   },
   { name: 'Articles', href: '/blog' },
-  // The desktop bar is full: below this width the extra item would push the
-  // Contact button off screen. The mobile menu and footer still link to it.
-  {
-    name: 'Careers',
-    href: '/careers',
-    desktopClassName: 'hidden min-[1140px]:block',
-  },
+  { name: 'Careers', href: '/careers' },
 ]
 
 export function Navigation() {
@@ -157,7 +151,7 @@ export function Navigation() {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex md:items-center md:gap-1 flex-1 justify-center">
+          <div className="hidden xl:flex xl:items-center xl:gap-1 flex-1 justify-center">
             {navItems.map((item) =>
               item.children ? (
                 <div key={item.name} className="relative group">
@@ -205,8 +199,6 @@ export function Navigation() {
                   key={item.name}
                   href={item.href}
                   className={`px-3 py-2 text-sm font-medium uppercase tracking-wide rounded-md transition-colors whitespace-nowrap ${
-                    item.desktopClassName ?? ''
-                  } ${
                     pathname === item.href
                       ? 'text-gray-900'
                       : 'text-gray-600 hover:text-gray-900'
@@ -219,7 +211,7 @@ export function Navigation() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex shrink-0">
+          <div className="hidden xl:flex shrink-0">
             <Button asChild size="sm">
               <Link href="/contact" className="flex items-center gap-2">
                 <Phone className="h-3.5 w-3.5" />
@@ -229,7 +221,7 @@ export function Navigation() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="xl:hidden">
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="sm">
