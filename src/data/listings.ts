@@ -115,7 +115,8 @@ Images shown are virtually staged and the property is offered unfurnished. Fresh
     // Photos + floorplan supplied via Dropbox 14 Sep 2026 (floorplan states
     // 2 bed / 1 bath / 1 car, 79 sqm approx, furnished). Rent and available
     // date never supplied. Leased per client email 17 Sep 2026; back to
-    // Available (for rent) per client emails 30 Oct and 16 Nov 2026.
+    // Available (for rent) per client emails 30 Oct and 16 Nov 2026. Rent
+    // $750/week, available 30 Nov 2026 per client email 17 Nov 2026.
     id: '23-114-dodds-st-southbank',
     slug: 'apartment-23-114-dodds-street-southbank',
     title: '23/114 Dodds Street, Southbank',
@@ -123,6 +124,8 @@ Images shown are virtually staged and the property is offered unfurnished. Fresh
       'Furnished two-bedroom apartment with balcony and secure car space in Southbank Gardens',
     type: 'RESIDENTIAL',
     status: 'FOR_RENT',
+    price: 750,
+    pricePeriod: 'per_week',
     address: '23/114 Dodds Street',
     suburb: 'Southbank',
     state: 'VIC',
@@ -150,7 +153,7 @@ Walk to South Melbourne Market, Clarendon Street cafes and the Southbank arts pr
 Trams on Clarendon Street and Sturt Street for a quick trip to the CBD
 Close to the Royal Botanic Gardens and Albert Park Lake
 
-Contact our team for the weekly rent and availability date, or to arrange an inspection.`,
+Available from 30 November 2026 at $750 per week. Contact our team to arrange an inspection.`,
     features: [
       'Fully furnished',
       'Open plan living and dining',
@@ -225,6 +228,190 @@ Contact our team for the weekly rent and availability date, or to arrange an ins
         height: 1024,
       },
     ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    // Photos supplied via Dropbox (dated 4 Nov 2026). Client asked for it to be
+    // shown as Leased (email 17 Nov 2026). Bed/bath counts are from the photos
+    // (two bedrooms, one bathroom shown) — no floorplan or rent supplied.
+    id: '2015-135-abeckett-st-melbourne',
+    slug: 'apartment-2015-135-abeckett-street-melbourne',
+    title: "2015/135 A'Beckett Street, Melbourne",
+    summary:
+      'Furnished two-bedroom CBD apartment with balcony and city outlook',
+    type: 'RESIDENTIAL',
+    status: 'LEASED',
+    address: "2015/135 A'Beckett Street",
+    suburb: 'Melbourne',
+    state: 'VIC',
+    postcode: '3000',
+    bedrooms: 2,
+    bathrooms: 1,
+    heroImageUrl: '/2015-135-abeckett-st-melbourne/living-2.jpeg',
+    description: `A bright, furnished two-bedroom apartment at 135 A'Beckett Street, in the heart of the Melbourne CBD.
+
+Property Highlights:
+
+Open plan living and dining with floor-to-ceiling windows and split system air conditioning
+Balcony with a city outlook
+Kitchen with gas cooktop and oven
+Two bedrooms, the main with built-in robes
+Modern bathroom with walk-in shower
+European laundry with washer and dryer
+
+Lifestyle & Location:
+
+Moments from Queen Victoria Market, Melbourne Central and RMIT
+Trams on Elizabeth Street and Swanston Street close by
+
+Contact our team about similar properties in the area.`,
+    features: [
+      'Furnished',
+      'Open plan living and dining',
+      'Balcony with city outlook',
+      'Kitchen with gas cooktop',
+      'Two bedrooms',
+      'Split system air conditioning',
+      'European laundry with washer and dryer',
+    ],
+    gallery: [
+      {
+        url: '/2015-135-abeckett-st-melbourne/living-2.jpeg',
+        alt: "Living area at 2015/135 A'Beckett Street, Melbourne",
+        width: 1448,
+        height: 1086,
+      },
+      {
+        url: '/2015-135-abeckett-st-melbourne/living-1.jpeg',
+        alt: "Living and dining area at 2015/135 A'Beckett Street, Melbourne",
+        width: 1448,
+        height: 1086,
+      },
+      {
+        url: '/2015-135-abeckett-st-melbourne/lounge.jpeg',
+        alt: "Lounge at 2015/135 A'Beckett Street, Melbourne",
+        width: 1448,
+        height: 1086,
+      },
+      {
+        url: '/2015-135-abeckett-st-melbourne/living-balcony.jpeg',
+        alt: "Living area opening to the balcony at 2015/135 A'Beckett Street, Melbourne",
+        width: 1448,
+        height: 1086,
+      },
+      {
+        url: '/2015-135-abeckett-st-melbourne/balcony.jpeg',
+        alt: "Balcony with city outlook at 2015/135 A'Beckett Street, Melbourne",
+        width: 1448,
+        height: 1086,
+      },
+      {
+        url: '/2015-135-abeckett-st-melbourne/kitchen.jpeg',
+        alt: "Kitchen at 2015/135 A'Beckett Street, Melbourne",
+        width: 1448,
+        height: 1086,
+      },
+      {
+        url: '/2015-135-abeckett-st-melbourne/bedroom-1.jpeg',
+        alt: "Main bedroom at 2015/135 A'Beckett Street, Melbourne",
+        width: 1448,
+        height: 1086,
+      },
+      {
+        url: '/2015-135-abeckett-st-melbourne/bedroom-2.jpeg',
+        alt: "Second bedroom at 2015/135 A'Beckett Street, Melbourne",
+        width: 1448,
+        height: 1086,
+      },
+      {
+        url: '/2015-135-abeckett-st-melbourne/bathroom.jpeg',
+        alt: "Bathroom at 2015/135 A'Beckett Street, Melbourne",
+        width: 1448,
+        height: 1086,
+      },
+      {
+        url: '/2015-135-abeckett-st-melbourne/laundry.jpeg',
+        alt: "European laundry at 2015/135 A'Beckett Street, Melbourne",
+        width: 1086,
+        height: 1448,
+      },
+      {
+        url: '/2015-135-abeckett-st-melbourne/entry.jpeg',
+        alt: "Entry at 2015/135 A'Beckett Street, Melbourne",
+        width: 1448,
+        height: 1086,
+      },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    // Room in shared accommodation. $370/week all bills included, Available per
+    // client email 17 Nov 2026 (1103B is leased). No room photos supplied yet,
+    // so it uses the building photo from the bay 412 set.
+    id: 'room-1103a-109-clarendon-st-southbank',
+    slug: 'room-1103a-109-clarendon-street-southbank',
+    title: 'Room 1103A, 109 Clarendon Street, Southbank',
+    summary: 'Private room in a shared Southbank apartment, all bills included',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    price: 370,
+    pricePeriod: 'per_week',
+    address: '1103A/109 Clarendon Street',
+    suburb: 'Southbank',
+    state: 'VIC',
+    postcode: '3006',
+    bedrooms: 1,
+    heroImageUrl: '/carparks/109-clarendon-st-southbank/bay-412/2.jpeg',
+    description:
+      'A private room in a shared apartment at 109 Clarendon Street, Southbank, available now at $370 per week with all bills included. Moments from Crown, South Wharf, South Melbourne Market and the CBD. Contact our team for details or to arrange an inspection.',
+    features: ['Private room in shared apartment', 'All bills included'],
+    gallery: [
+      {
+        url: '/carparks/109-clarendon-st-southbank/bay-412/2.jpeg',
+        alt: 'Building at 109 Clarendon Street, Southbank',
+        width: 842,
+        height: 593,
+      },
+    ],
+    agent: {
+      name: 'Eamon Chau',
+      phone: '+61 413 889 388',
+      email: 'admin@touchwoodasset.com',
+    },
+    category: 'properties',
+  },
+  {
+    // Room in shared accommodation. $320/week all bills included, available
+    // 27 Nov 2026 per client email 17 Nov 2026 (309A and 309B are leased). No
+    // photos of this room supplied yet, so it uses the generic placeholder.
+    id: 'room-309c-60-waverley-rd-malvern-east',
+    slug: 'room-309c-60-waverley-road-malvern-east',
+    title: 'Room 309C, 60 Waverley Road, Malvern East',
+    summary:
+      'Private room in a shared Malvern East apartment, all bills included',
+    type: 'RESIDENTIAL',
+    status: 'FOR_RENT',
+    price: 320,
+    pricePeriod: 'per_week',
+    address: '309C/60 Waverley Road',
+    suburb: 'Malvern East',
+    state: 'VIC',
+    postcode: '3145',
+    bedrooms: 1,
+    heroImageUrl: '/photos-coming-soon.svg',
+    description:
+      'A private room in a shared apartment at 60 Waverley Road, Malvern East, available from 27 November 2026 at $320 per week with all bills included. Contact our team for details or to arrange an inspection.',
+    features: ['Private room in shared apartment', 'All bills included'],
     agent: {
       name: 'Eamon Chau',
       phone: '+61 413 889 388',

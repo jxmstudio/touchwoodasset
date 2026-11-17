@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 1086">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8f9fa"/>
+      <stop offset="1" stop-color="#eceef0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1448" height="1086" fill="url(#bg)"/>
+  <!-- subtle parking bay lines -->
+  <text x="724" y="580" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="bold" fill="#3a3f45">Photos coming soon</text>
+  <text x="724" y="636" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#7a8085">Enquire for details</text>
+  <text x="724" y="1010" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="bold" letter-spacing="3" fill="#E1262B">TOUCHWOOD <tspan fill="#9aa0a6">ASSET MANAGEMENT</tspan></text>
+</svg>

@@ -131,6 +131,7 @@ export const carparkBays: CarparkBay[] = [
   // ── 401 Docklands Drive, Docklands ───────────────────────────────────────
   // Bay 430P (Level 4): $250/month, Available per client email 22 Oct 2026;
   // bay number confirmed as 430P on 23 Oct 2026. Photos stay in bay-430/.
+  // Leased per client email 17 Nov 2026.
   bay({
     bayNumber: '430P',
     building: '401 Docklands Drive',
@@ -139,6 +140,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Docklands',
     postcode: '3008',
     price: 250,
+    status: 'LEASED',
     images: [
       '/carparks/401-docklands-drive-docklands/bay-430/1.jpeg',
       '/carparks/401-docklands-drive-docklands/bay-430/2.jpeg',
@@ -356,6 +358,7 @@ export const carparkBays: CarparkBay[] = [
   // ── 109 Clarendon Street, Southbank ──────────────────────────────────────
   // New listing per client email 22 Oct 2026 (Level 4); $280/month per Eamon's
   // 23 Oct 2026 reply (Raquel's list had $265). Photos from Raquel's 23 Oct email.
+  // Leased per client email 17 Nov 2026.
   bay({
     bayNumber: '412',
     building: '109 Clarendon Street',
@@ -364,6 +367,7 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Southbank',
     postcode: '3006',
     price: 280,
+    status: 'LEASED',
     images: [
       '/carparks/109-clarendon-st-southbank/bay-412/1.jpeg',
       '/carparks/109-clarendon-st-southbank/bay-412/2.jpeg',
@@ -381,7 +385,8 @@ export const carparkBays: CarparkBay[] = [
     suburb: 'Southbank',
     postcode: '3006',
     price: 280, // $280/month per client email 22 Oct 2026
-    // Photos from Raquel's 23 Oct 2026 email.
+    // Photos from Raquel's 23 Oct 2026 email. Leased per client email 17 Nov 2026.
+    status: 'LEASED',
     images: [
       '/carparks/83-whiteman-st-southbank/bay-16/1.jpeg',
       '/carparks/83-whiteman-st-southbank/bay-16/2.jpeg',
@@ -392,8 +397,9 @@ export const carparkBays: CarparkBay[] = [
   }),
 
   // ── 11 Daly Street, South Yarra ──────────────────────────────────────────
-  // Bay 557: new listing, Available per client email 16 Nov 2026. No price or
-  // bay photos supplied yet, so it uses the building's shared facility photo.
+  // Bay 557: new listing per client email 16 Nov 2026. $240/month, rooftop,
+  // "available soon" per client email 17 Nov 2026. No bay photos supplied yet,
+  // so it uses the building's shared facility photo.
   bay({
     bayNumber: '557',
     building: '11 Daly Street',
@@ -401,9 +407,11 @@ export const carparkBays: CarparkBay[] = [
     address: '11 Daly Street',
     suburb: 'South Yarra',
     postcode: '3141',
+    price: 240,
+    status: 'COMING_SOON',
     images: ['/carparks/11-daly-st-south-yarra/facility-1.jpeg'],
     description:
-      'Secure car park bay #557 at 11 Daly Street, South Yarra. Moments from Chapel Street, South Yarra Station and the Yarra trails. Contact us for pricing.',
+      'Rooftop car park bay #557 at 11 Daly Street, South Yarra. Moments from Chapel Street, South Yarra Station and the Yarra trails. Available soon.',
   }),
   ...(
     [
@@ -615,25 +623,7 @@ export const carparkBays: CarparkBay[] = [
       'Secure car park bay #93B at 63 Dorcas Street, South Melbourne. Moments from South Melbourne Market, Clarendon Street and the CBD.',
   }),
 
-  // ── 416 St Kilda Road, Melbourne (City Condos) ───────────────────────────
-  // Photos supplied via Dropbox 11 Sep 2026. $280/month per client list 2 Oct 2026
-  // (was $300/month per 17 Sep email).
-  bay({
-    bayNumber: '65',
-    building: '416 St Kilda Road',
-    buildingSlug: '416-st-kilda-rd-melbourne',
-    address: '416A St Kilda Road',
-    suburb: 'Melbourne',
-    postcode: '3004',
-    price: 280,
-    images: [
-      '/carparks/416-st-kilda-rd-melbourne/bay-65/1.jpeg',
-      '/carparks/416-st-kilda-rd-melbourne/bay-65/3.jpeg',
-      '/carparks/416-st-kilda-rd-melbourne/bay-65/2.jpeg',
-    ],
-    description:
-      'Secure undercover car park bay #65 in the City Condos building at 416 St Kilda Road, Melbourne. On the St Kilda Road tram corridor, minutes to the CBD, Albert Park Lake and the Domain precinct.',
-  }),
+  // Bay 65, 416A St Kilda Road: listing removed per client email 17 Nov 2026.
 ]
 
 // ── Helpers ────────────────────────────────────────────────────────────────

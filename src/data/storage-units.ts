@@ -92,6 +92,7 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 3',
   },
   {
+    // Leased per client email 17 Nov 2026.
     // New listing per client email 22 Oct 2026 (1.8 sqm, $60/month, Available).
     // Photos still to come from the client — replace /F5.jpg once they arrive.
     id: 'archive-unit-d24',
@@ -99,10 +100,10 @@ export const storageUnits: StorageUnit[] = [
     size: 1.8,
     sizeCategory: '2sqm',
     price: 60,
-    status: 'AVAILABLE',
+    status: 'LEASED',
     images: ['/F5.jpg'],
     description:
-      'Entry-level 1.8 sqm storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Entry-level 1.8 sqm storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -170,13 +171,14 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 3',
   },
   {
+    // Leased per client email 17 Nov 2026.
     // Available at $110/month per client email 22 Oct 2026.
     id: 'archive-unit-d71',
     unitNumber: 'D71',
     size: 3.2,
     sizeCategory: '3sqm',
     price: 120, // per Eamon's 23 Oct 2026 reply (was $110)
-    status: 'AVAILABLE',
+    status: 'LEASED',
     images: [
       '/D71.601/D71.601 (internal + furniture).jpg',
       '/D71.601/D71.601 (internal).jpg',
@@ -184,7 +186,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/M_36RoNeI_4',
     description:
-      'Secure storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Secure storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 3',
   },
@@ -636,6 +638,7 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 5',
   },
   {
+    // Leased per client email 17 Nov 2026.
     // $250/month confirmed per client email 23 Oct 2026 (22 Oct list said
     // "$230/$250").
     id: 'archive-unit-f83',
@@ -643,7 +646,7 @@ export const storageUnits: StorageUnit[] = [
     size: 8,
     sizeCategory: '8sqm',
     price: 250,
-    status: 'AVAILABLE',
+    status: 'LEASED',
     images: [
       '/F83.601/F83.601 (8sqm internal+furniture).jpg',
       '/F83.601/F83.601 (8sqm internal)..jpg',
@@ -651,7 +654,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/I_4ien5RfvY',
     description:
-      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture. Available now.',
+      'Large storage unit at The Archive, 601 Little Collins Street. Ideal for business inventory or large furniture.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
@@ -670,14 +673,18 @@ export const storageUnits: StorageUnit[] = [
   },
   {
     // New listing per client email 22 Oct 2026 (3.2 sqm, $120/month, Available).
-    // Photos still to come from the client — replace /F5.jpg once they arrive.
+    // Uses F76's photos (same layout) per client email 17 Nov 2026.
     id: 'archive-unit-f95',
     unitNumber: 'F95',
     size: 3.2,
     sizeCategory: '3sqm',
     price: 120,
     status: 'AVAILABLE',
-    images: ['/F5.jpg'],
+    images: [
+      '/F76.601/F76.601 (internal + furniture).jpg',
+      '/F76.601/F76.601 (internal).jpg',
+      '/F76.601/Loading & Lift.jpg',
+    ],
     description:
       'Secure 3.2 sqm storage unit at The Archive, 601 Little Collins Street. Available now.',
     features: SHARED_FEATURES,
@@ -685,31 +692,40 @@ export const storageUnits: StorageUnit[] = [
   },
   {
     // New listing per client email 22 Oct 2026 (3.2 sqm, $120/month, Available).
-    // Photos still to come from the client — replace /F5.jpg once they arrive.
+    // Uses F76's photos (same layout) per client email 17 Nov 2026.
     id: 'archive-unit-f96',
     unitNumber: 'F96',
     size: 3.2,
     sizeCategory: '3sqm',
     price: 120,
     status: 'AVAILABLE',
-    images: ['/F5.jpg'],
+    images: [
+      '/F76.601/F76.601 (internal + furniture).jpg',
+      '/F76.601/F76.601 (internal).jpg',
+      '/F76.601/Loading & Lift.jpg',
+    ],
     description:
       'Secure 3.2 sqm storage unit at The Archive, 601 Little Collins Street. Available now.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
   {
+    // Leased per client email 17 Nov 2026.
     // New listing per client email 22 Oct 2026 (3.2 sqm, $120/month, Available).
-    // Photos still to come from the client — replace /F5.jpg once they arrive.
+    // Uses F76's photos (same layout) per client email 17 Nov 2026.
     id: 'archive-unit-f97',
     unitNumber: 'F97',
     size: 3.2,
     sizeCategory: '3sqm',
     price: 120,
-    status: 'AVAILABLE',
-    images: ['/F5.jpg'],
+    status: 'LEASED',
+    images: [
+      '/F76.601/F76.601 (internal + furniture).jpg',
+      '/F76.601/F76.601 (internal).jpg',
+      '/F76.601/Loading & Lift.jpg',
+    ],
     description:
-      'Secure 3.2 sqm storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Secure 3.2 sqm storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
@@ -797,27 +813,39 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 5',
   },
   {
-    // New listing, Available per client email 16 Nov 2026. Size, price and
-    // photos not supplied yet — generic photo until they arrive.
+    // New listing, Available per client email 16 Nov 2026. 3.2 sqm, $110/month
+    // per client email 17 Nov 2026. No photos supplied; uses F76's photos like
+    // the other 3.2 sqm Level 5 units (our choice, not confirmed by the client).
     id: 'archive-unit-f134',
     unitNumber: 'F134',
+    size: 3.2,
+    sizeCategory: '3sqm',
+    price: 110,
     status: 'AVAILABLE',
-    images: ['/F5.jpg'],
+    images: [
+      '/F76.601/F76.601 (internal + furniture).jpg',
+      '/F76.601/F76.601 (internal).jpg',
+      '/F76.601/Loading & Lift.jpg',
+    ],
     description:
-      'Secure storage unit at The Archive, 601 Little Collins Street. Available now. Contact us for size and pricing.',
+      'Secure 3.2 sqm storage unit at The Archive, 601 Little Collins Street. Available now.',
     features: SHARED_FEATURES,
     floor: 'Level 5',
   },
   {
     // New listing per client email 22 Oct 2026 (3.2 sqm, $120/month, Available).
-    // Photos still to come from the client — replace /F5.jpg once they arrive.
+    // Uses F76's photos (same layout) per client email 17 Nov 2026.
     id: 'archive-unit-f135',
     unitNumber: 'F135',
     size: 3.2,
     sizeCategory: '3sqm',
     price: 120,
     status: 'AVAILABLE',
-    images: ['/F5.jpg'],
+    images: [
+      '/F76.601/F76.601 (internal + furniture).jpg',
+      '/F76.601/F76.601 (internal).jpg',
+      '/F76.601/Loading & Lift.jpg',
+    ],
     description:
       'Secure 3.2 sqm storage unit at The Archive, 601 Little Collins Street. Available now.',
     features: SHARED_FEATURES,
@@ -900,6 +928,7 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 7',
   },
   {
+    // Leased per client email 17 Nov 2026.
     // 7.5 sqm, $220/month, Available per client email 22 Oct 2026. Photos still
     // to come from the client — replace /F5.jpg once they arrive.
     id: 'archive-unit-g68',
@@ -907,10 +936,10 @@ export const storageUnits: StorageUnit[] = [
     size: 7.5,
     sizeCategory: '7sqm',
     price: 220,
-    status: 'AVAILABLE',
+    status: 'LEASED',
     images: ['/F5.jpg'],
     description:
-      'Secure 7.5 sqm storage unit at The Archive, 601 Little Collins Street. Available now.',
+      'Secure 7.5 sqm storage unit at The Archive, 601 Little Collins Street.',
     features: SHARED_FEATURES,
     floor: 'Level 6',
   },
