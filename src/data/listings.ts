@@ -114,14 +114,15 @@ Images shown are virtually staged and the property is offered unfurnished. Fresh
   {
     // Photos + floorplan supplied via Dropbox 14 Sep 2026 (floorplan states
     // 2 bed / 1 bath / 1 car, 79 sqm approx, furnished). Rent and available
-    // date never supplied. Leased per client email 17 Sep 2026.
+    // date never supplied. Leased per client email 17 Sep 2026; back to
+    // Available (for rent) per client emails 30 Oct and 16 Nov 2026.
     id: '23-114-dodds-st-southbank',
     slug: 'apartment-23-114-dodds-street-southbank',
     title: '23/114 Dodds Street, Southbank',
     summary:
       'Furnished two-bedroom apartment with balcony and secure car space in Southbank Gardens',
     type: 'RESIDENTIAL',
-    status: 'LEASED',
+    status: 'FOR_RENT',
     address: '23/114 Dodds Street',
     suburb: 'Southbank',
     state: 'VIC',
@@ -1031,21 +1032,24 @@ A move-in ready home offering space, style and serenity in a tightly held Alphin
     category: 'properties',
   },
   {
-    // For Sale confirmed by client 17 Sep 2026. Price and copy still to come.
+    // Rental at $775/week confirmed by Eamon 23 Oct 2026 (was listed For Sale
+    // per 17 Sep 2026). Available per client email 16 Nov 2026.
     id: '2002-555-swanston',
     slug: 'apartment-2002-555-swanston-street-carlton',
     title: '2002/555 Swanston Street, Carlton',
     summary:
       'Two-bedroom, two-bathroom apartment with balcony and secure car space in Carlton',
     type: 'RESIDENTIAL',
-    status: 'AVAILABLE',
+    status: 'FOR_RENT',
+    price: 775,
+    pricePeriod: 'per_week',
     address: '2002/555 Swanston Street',
     suburb: 'Carlton',
     state: 'VIC',
     postcode: '3053',
     heroImageUrl: '/2002-555-swanston-st-carlton/2.jpeg',
     description:
-      'A two-bedroom, two-bathroom apartment with balcony and secure car space at 555 Swanston Street, Carlton, coming to market for sale. Moments from Melbourne University, RMIT and Lygon Street. Full pricing details will be published shortly — for early enquiries or to arrange an inspection, please get in touch with our team.',
+      'A two-bedroom, two-bathroom apartment with balcony and secure car space at 555 Swanston Street, Carlton, available for rent at $775 per week. Moments from Melbourne University, RMIT and Lygon Street. To arrange an inspection, please get in touch with our team.',
     gallery: [
       {
         url: '/2002-555-swanston-st-carlton/2.jpeg',

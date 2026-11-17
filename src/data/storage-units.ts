@@ -175,7 +175,7 @@ export const storageUnits: StorageUnit[] = [
     unitNumber: 'D71',
     size: 3.2,
     sizeCategory: '3sqm',
-    price: 110,
+    price: 120, // per Eamon's 23 Oct 2026 reply (was $110)
     status: 'AVAILABLE',
     images: [
       '/D71.601/D71.601 (internal + furniture).jpg',
@@ -797,6 +797,18 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 5',
   },
   {
+    // New listing, Available per client email 16 Nov 2026. Size, price and
+    // photos not supplied yet — generic photo until they arrive.
+    id: 'archive-unit-f134',
+    unitNumber: 'F134',
+    status: 'AVAILABLE',
+    images: ['/F5.jpg'],
+    description:
+      'Secure storage unit at The Archive, 601 Little Collins Street. Available now. Contact us for size and pricing.',
+    features: SHARED_FEATURES,
+    floor: 'Level 5',
+  },
+  {
     // New listing per client email 22 Oct 2026 (3.2 sqm, $120/month, Available).
     // Photos still to come from the client — replace /F5.jpg once they arrive.
     id: 'archive-unit-f135',
@@ -812,13 +824,13 @@ export const storageUnits: StorageUnit[] = [
     floor: 'Level 5',
   },
   {
-    // Leased per client email 22 Oct 2026 (not on the current availability list).
+    // Available again per client email 16 Nov 2026 (was Leased per 22 Oct list).
     id: 'archive-unit-h23',
     unitNumber: 'H23',
     size: 6.2,
     sizeCategory: '6sqm',
     price: 200,
-    status: 'LEASED',
+    status: 'AVAILABLE',
     images: [
       '/H23.601/H23.601 (internal + furniture).jpg',
       '/H23.601/H23.601 (internal 6.2sqm).jpg',
@@ -827,7 +839,7 @@ export const storageUnits: StorageUnit[] = [
     ],
     videoUrl: 'https://youtu.be/UKUxgKunQk0',
     description:
-      'Mid-size storage unit at The Archive, 601 Little Collins Street.',
+      'Mid-size storage unit at The Archive, 601 Little Collins Street. Available now.',
     features: SHARED_FEATURES,
     floor: 'Level 7',
   },
@@ -874,7 +886,7 @@ export const storageUnits: StorageUnit[] = [
     unitNumber: 'H43',
     size: 9,
     sizeCategory: '9sqm',
-    price: 300,
+    price: 280, // per Eamon's 23 Oct 2026 reply (was $300)
     status: 'AVAILABLE',
     images: [
       '/H43.601/H43.601 (internal + furniture).jpg',

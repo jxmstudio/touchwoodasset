@@ -354,8 +354,8 @@ export const carparkBays: CarparkBay[] = [
   }),
 
   // ── 109 Clarendon Street, Southbank ──────────────────────────────────────
-  // New listing per client email 22 Oct 2026 (Level 4, $265/month, Available).
-  // Photos still to come from the client, so it uses the placeholder tile.
+  // New listing per client email 22 Oct 2026 (Level 4); $280/month per Eamon's
+  // 23 Oct 2026 reply (Raquel's list had $265). Photos from Raquel's 23 Oct email.
   bay({
     bayNumber: '412',
     building: '109 Clarendon Street',
@@ -363,7 +363,11 @@ export const carparkBays: CarparkBay[] = [
     address: '109 Clarendon Street',
     suburb: 'Southbank',
     postcode: '3006',
-    price: 265,
+    price: 280,
+    images: [
+      '/carparks/109-clarendon-st-southbank/bay-412/1.jpeg',
+      '/carparks/109-clarendon-st-southbank/bay-412/2.jpeg',
+    ],
     description:
       'Secure car park bay #412 on Level 4 at 109 Clarendon Street, Southbank. Moments from Crown, South Wharf, the Convention Centre and the CBD.',
   }),
@@ -376,12 +380,31 @@ export const carparkBays: CarparkBay[] = [
     address: '83 Whiteman Street',
     suburb: 'Southbank',
     postcode: '3006',
-    price: 280, // Available at $280/month per client email 22 Oct 2026
+    price: 280, // $280/month per client email 22 Oct 2026
+    // Photos from Raquel's 23 Oct 2026 email.
+    images: [
+      '/carparks/83-whiteman-st-southbank/bay-16/1.jpeg',
+      '/carparks/83-whiteman-st-southbank/bay-16/2.jpeg',
+      '/carparks/83-whiteman-st-southbank/bay-16/3.jpeg',
+    ],
     description:
       'Secure car park bay #16 at 83 Whiteman Street, Southbank. Short walk to Crown, South Wharf and Southbank Promenade.',
   }),
 
   // ── 11 Daly Street, South Yarra ──────────────────────────────────────────
+  // Bay 557: new listing, Available per client email 16 Nov 2026. No price or
+  // bay photos supplied yet, so it uses the building's shared facility photo.
+  bay({
+    bayNumber: '557',
+    building: '11 Daly Street',
+    buildingSlug: '11-daly-st-south-yarra',
+    address: '11 Daly Street',
+    suburb: 'South Yarra',
+    postcode: '3141',
+    images: ['/carparks/11-daly-st-south-yarra/facility-1.jpeg'],
+    description:
+      'Secure car park bay #557 at 11 Daly Street, South Yarra. Moments from Chapel Street, South Yarra Station and the Yarra trails. Contact us for pricing.',
+  }),
   ...(
     [
       ['375', ['1.png', '2.jpeg']],
@@ -548,8 +571,9 @@ export const carparkBays: CarparkBay[] = [
     description:
       'Secure car park bay #270 at 135 Fitzroy Street, St Kilda. Steps from the Fitzroy Street dining strip and St Kilda Beach. Contact us for pricing.',
   }),
-  // 332 Leased per client email 17 Sep 2026; 331 Leased per client email 15 Oct 2026.
-  ...['331', '332'].map((n) =>
+  // 332 Leased per client email 17 Sep 2026. 331 Leased per client email
+  // 15 Oct 2026, Available again per client email 16 Nov 2026.
+  ...(['331', '332'] as const).map((n) =>
     bay({
       bayNumber: n,
       building: '135 Fitzroy Street',
@@ -557,7 +581,7 @@ export const carparkBays: CarparkBay[] = [
       address: '135 Fitzroy Street',
       suburb: 'St Kilda',
       postcode: '3182',
-      status: 'LEASED',
+      status: n === '331' ? 'AVAILABLE' : 'LEASED',
       images: [
         `/carparks/135-fitzroy-st-st-kilda/bay-${n}/6.png`, // bay with car
         `/carparks/135-fitzroy-st-st-kilda/bay-${n}/5.png`, // empty bay
