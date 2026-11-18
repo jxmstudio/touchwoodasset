@@ -10,12 +10,20 @@
  * and spam filtering happens on their side via the `_gotcha` honeypot.
  */
 
-const JXM_ENDPOINT = 'https://jxm-forms.vercel.app/api/submit/touchwood'
-const JXM_API_KEY = '5836O18ziLlYS52a6TTPfYKVD8M3gtgc'
+export const JXM_ENDPOINT = 'https://jxm-forms.vercel.app/api/submit/touchwood'
+export const JXM_API_KEY = '5836O18ziLlYS52a6TTPfYKVD8M3gtgc'
 
 export interface JxmSubmissionResult {
   success: boolean
   error?: string
+}
+
+/** A file already uploaded to JXM Forms' storage, sent as `_attachments`. */
+export interface JxmAttachment {
+  path: string
+  filename: string
+  content_type: string
+  size: number
 }
 
 /**
@@ -26,7 +34,7 @@ export interface JxmSubmissionResult {
  * `_gotcha` so bot-filled submissions get dropped server-side.
  */
 export async function submitToJxmForms(
-  data: Record<string, string | undefined>
+  data: Record<string, string | JxmAttachment[] | undefined>
 ): Promise<JxmSubmissionResult> {
   try {
     const response = await fetch(JXM_ENDPOINT, {
@@ -39,17 +47,26 @@ export async function submitToJxmForms(
     })
 
     if (!response.ok) {
-      return { success: false, error: `Form backend returned ${response.status}` }
+      return {
+        success: false,
+        error: `Form backend returned ${response.status}`,
+      }
     }
 
     const result = await response.json().catch(() => null)
     if (!result?.ok) {
-      return { success: false, error: 'Form backend did not confirm the submission' }
+      return {
+        success: false,
+        error: 'Form backend did not confirm the submission',
+      }
     }
 
     return { success: true }
   } catch (error) {
     console.error('JXM Forms submission failed:', error)
-    return { success: false, error: 'Network error occurred while submitting form' }
+    return {
+      success: false,
+      error: 'Network error occurred while submitting form',
+    }
   }
 }

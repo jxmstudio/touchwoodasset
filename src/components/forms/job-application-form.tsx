@@ -18,6 +18,7 @@ import {
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -32,7 +33,13 @@ import {
   resumeMailto,
   roleLabel,
 } from '@/data/careers'
-import { submitToJxmForms } from '@/lib/jxm-forms'
+import { type JxmAttachment, submitToJxmForms } from '@/lib/jxm-forms'
+import {
+  RESUME_ACCEPT,
+  RESUME_MAX_BYTES,
+  resumeContentType,
+  uploadResume,
+} from '@/lib/resume-upload'
 import { CONTACT } from '@/lib/site'
 
 const jobApplicationSchema = z.object({
@@ -48,6 +55,17 @@ const jobApplicationSchema = z.object({
     .string()
     .trim()
     .max(300, 'Please keep this under 300 characters'),
+  resume: z
+    .custom<File | null>()
+    .refine(
+      (file) => !file || resumeContentType(file.name),
+      'Please choose a PDF, DOC or DOCX file'
+    )
+    .refine((file) => !file || file.size > 0, 'That file is empty')
+    .refine(
+      (file) => !file || file.size <= RESUME_MAX_BYTES,
+      'Please choose a file of 10 MB or less'
+    ),
   licence: z.boolean().refine((held) => held, {
     message: `A current ${LICENCE_NAME} is required for these roles`,
   }),
@@ -66,10 +84,14 @@ export function JobApplicationForm({
 }: JobApplicationFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submittedRole, setSubmittedRole] = useState<string | null>(null)
+  const [resumeOutcome, setResumeOutcome] = useState<
+    'attached' | 'failed' | null
+  >(null)
   // Honeypot: hidden from humans, bots auto-fill it. Its value is sent as
   // `_gotcha` and JXM Forms drops any submission where it's non-empty.
   const honeypotRef = useRef<HTMLInputElement>(null)
   const successRef = useRef<HTMLDivElement>(null)
+  const resumeInputRef = useRef<HTMLInputElement | null>(null)
 
   const form = useForm<JobApplicationData>({
     resolver: zodResolver(jobApplicationSchema),
@@ -80,6 +102,7 @@ export function JobApplicationForm({
       role: '',
       experience: '',
       resumeLink: '',
+      resume: null,
       licence: false,
     },
   })
@@ -99,6 +122,18 @@ export function JobApplicationForm({
     setIsSubmitting(true)
 
     try {
+      // A resume that won't upload must not cost the application: send the
+      // details without it and ask the applicant to email it instead.
+      let resume: JxmAttachment | null = null
+      if (data.resume) {
+        try {
+          resume = await uploadResume(data.resume)
+        } catch (error) {
+          console.error('Error uploading resume:', error)
+        }
+      }
+      const resumeFailed = Boolean(data.resume && !resume)
+
       // No trackLead or setAdvancedMatching here, unlike the enquiry forms: a
       // job applicant is not a property lead, and a Lead event would teach the
       // Meta campaigns to find job seekers.
@@ -111,6 +146,10 @@ export function JobApplicationForm({
         licence: `Confirmed by applicant: holds a current ${LICENCE_NAME}`,
         experience: data.experience,
         resumeLink: data.resumeLink || undefined,
+        resumeUpload: resumeFailed
+          ? `${data.resume?.name} did not upload; the applicant was asked to email it`
+          : undefined,
+        _attachments: resume ? [resume] : undefined,
         _gotcha: honeypotRef.current?.value ?? '',
       })
 
@@ -118,6 +157,7 @@ export function JobApplicationForm({
         throw new Error(result.error || 'Failed to send application')
       }
 
+      setResumeOutcome(resume ? 'attached' : resumeFailed ? 'failed' : null)
       setSubmittedRole(roleLabel(data.role))
     } catch (error) {
       console.error('Error sending job application:', error)
@@ -140,17 +180,26 @@ export function JobApplicationForm({
         <h3 className="mb-2 text-xl font-semibold text-gray-900">
           Application received
         </h3>
-        <p className="mb-6 text-gray-600">
-          Thanks for applying. The Touchwood team will review your details and
-          contact you about next steps. If you have a resume ready, please email
-          it through so we have it with your application.
-        </p>
-        <Button asChild variant="outline">
-          <a href={resumeMailto(submittedRole)}>
-            <Mail className="mr-2 h-4 w-4" />
-            Email your resume
-          </a>
-        </Button>
+        {resumeOutcome === 'attached' ? (
+          <p className="text-gray-600">
+            Thanks for applying. The Touchwood team will review your details and
+            resume, and contact you about next steps.
+          </p>
+        ) : (
+          <>
+            <p className="mb-6 text-gray-600">
+              {resumeOutcome === 'failed'
+                ? "Thanks for applying. Your details came through, but your resume didn't upload. Please email it through so we have it with your application."
+                : 'Thanks for applying. The Touchwood team will review your details and contact you about next steps. If you have a resume ready, please email it through so we have it with your application.'}
+            </p>
+            <Button asChild variant="outline">
+              <a href={resumeMailto(submittedRole)}>
+                <Mail className="mr-2 h-4 w-4" />
+                Email your resume
+              </a>
+            </Button>
+          </>
+        )}
       </div>
     )
   }
@@ -282,6 +331,53 @@ export function JobApplicationForm({
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="resume"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Resume (optional)</FormLabel>
+              <FormControl>
+                <Input
+                  ref={(input) => {
+                    field.ref(input)
+                    resumeInputRef.current = input
+                  }}
+                  type="file"
+                  name={field.name}
+                  accept={RESUME_ACCEPT}
+                  onBlur={field.onBlur}
+                  onChange={(event) =>
+                    form.setValue('resume', event.target.files?.[0] ?? null, {
+                      shouldValidate: true,
+                    })
+                  }
+                  className="h-auto cursor-pointer py-1.5 file:mr-3 file:cursor-pointer file:rounded file:border file:border-gray-300 file:bg-white file:px-3"
+                />
+              </FormControl>
+              <FormDescription>
+                PDF, DOC or DOCX, up to 10 MB.{' '}
+                {field.value && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (resumeInputRef.current) {
+                        resumeInputRef.current.value = ''
+                        resumeInputRef.current.focus()
+                      }
+                      form.setValue('resume', null, { shouldValidate: true })
+                    }}
+                    className="text-primary underline underline-offset-2"
+                  >
+                    Remove file
+                  </button>
+                )}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
