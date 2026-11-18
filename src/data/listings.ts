@@ -440,8 +440,8 @@ Contact our team about similar properties in the area.`,
     // Room in shared accommodation. $320/week all bills included, available
     // 27 Nov 2026 per client email 17 Nov 2026 (309A and 309B are leased).
     // Apartment photos and floor plan from Eamon's email 18 Nov 2026. The room
-    // photos in that email were ad graphics labelled 309A, 309B and 306C (none
-    // labelled 309C), so no room photo is shown until the client confirms.
+    // photo was sent as an ad graphic mislabelled "Room 306C"; Eamon confirmed
+    // 19 Nov 2026 it is 309C, so it is used with the label cropped off.
     id: 'room-309c-60-waverley-rd-malvern-east',
     slug: 'room-309c-60-waverley-road-malvern-east',
     title: 'Room 309C, 60 Waverley Road, Malvern East',
@@ -456,11 +456,17 @@ Contact our team about similar properties in the area.`,
     state: 'VIC',
     postcode: '3145',
     bedrooms: 1,
-    heroImageUrl: '/309-60-waverley-rd-malvern-east/living.jpg',
+    heroImageUrl: '/309-60-waverley-rd-malvern-east/room-309c.jpg',
     description:
       'A private room in a shared apartment at 60 Waverley Road, Malvern East, available from 27 November 2026 at $320 per week with all bills included. Contact our team for details or to arrange an inspection.',
     features: ['Private room in shared apartment', 'All bills included'],
     gallery: [
+      {
+        url: '/309-60-waverley-rd-malvern-east/room-309c.jpg',
+        alt: 'Room 309C at 60 Waverley Road, Malvern East',
+        width: 1535,
+        height: 723,
+      },
       {
         url: '/309-60-waverley-rd-malvern-east/living.jpg',
         alt: 'Shared living area at 309/60 Waverley Road, Malvern East',
