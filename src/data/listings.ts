@@ -237,8 +237,8 @@ Available from 30 November 2026 at $750 per week. Contact our team to arrange an
   },
   {
     // Photos supplied via Dropbox (dated 4 Nov 2026). Client asked for it to be
-    // shown as Leased (email 17 Nov 2026). Bed/bath counts are from the photos
-    // (two bedrooms, one bathroom shown) — no floorplan or rent supplied.
+    // shown as Leased (email 17 Nov 2026). Two bedrooms, one bathroom, one
+    // storage unit, rented at $715/week per client email 18 Nov 2026.
     id: '2015-135-abeckett-st-melbourne',
     slug: 'apartment-2015-135-abeckett-street-melbourne',
     title: "2015/135 A'Beckett Street, Melbourne",
@@ -246,6 +246,8 @@ Available from 30 November 2026 at $750 per week. Contact our team to arrange an
       'Furnished two-bedroom CBD apartment with balcony and city outlook',
     type: 'RESIDENTIAL',
     status: 'LEASED',
+    price: 715,
+    pricePeriod: 'per_week',
     address: "2015/135 A'Beckett Street",
     suburb: 'Melbourne',
     state: 'VIC',
@@ -263,6 +265,7 @@ Kitchen with gas cooktop and oven
 Two bedrooms, the main with built-in robes
 Modern bathroom with walk-in shower
 European laundry with washer and dryer
+One storage unit
 
 Lifestyle & Location:
 
@@ -278,6 +281,7 @@ Contact our team about similar properties in the area.`,
       'Two bedrooms',
       'Split system air conditioning',
       'European laundry with washer and dryer',
+      'Storage unit',
     ],
     gallery: [
       {
@@ -356,8 +360,8 @@ Contact our team about similar properties in the area.`,
   },
   {
     // Room in shared accommodation. $370/week all bills included, Available per
-    // client email 17 Nov 2026 (1103B is leased). No room photos supplied yet,
-    // so it uses the building photo from the bay 412 set.
+    // client email 17 Nov 2026 (1103B is leased). Photos from Eamon's email
+    // 18 Nov 2026.
     id: 'room-1103a-109-clarendon-st-southbank',
     slug: 'room-1103a-109-clarendon-street-southbank',
     title: 'Room 1103A, 109 Clarendon Street, Southbank',
@@ -371,13 +375,55 @@ Contact our team about similar properties in the area.`,
     state: 'VIC',
     postcode: '3006',
     bedrooms: 1,
-    heroImageUrl: '/carparks/109-clarendon-st-southbank/bay-412/2.jpeg',
+    heroImageUrl: '/1103a-109-clarendon-st-southbank/bedroom.jpg',
     description:
       'A private room in a shared apartment at 109 Clarendon Street, Southbank, available now at $370 per week with all bills included. Moments from Crown, South Wharf, South Melbourne Market and the CBD. Contact our team for details or to arrange an inspection.',
     features: ['Private room in shared apartment', 'All bills included'],
     gallery: [
       {
-        url: '/carparks/109-clarendon-st-southbank/bay-412/2.jpeg',
+        url: '/1103a-109-clarendon-st-southbank/bedroom.jpg',
+        alt: 'Bedroom at 1103/109 Clarendon Street, Southbank',
+        width: 2000,
+        height: 1333,
+      },
+      {
+        url: '/1103a-109-clarendon-st-southbank/living.jpg',
+        alt: 'Living area at 1103/109 Clarendon Street, Southbank',
+        width: 2000,
+        height: 1336,
+      },
+      {
+        url: '/1103a-109-clarendon-st-southbank/kitchen.jpg',
+        alt: 'Kitchen and dining area at 1103/109 Clarendon Street, Southbank',
+        width: 2000,
+        height: 1333,
+      },
+      {
+        url: '/1103a-109-clarendon-st-southbank/bathroom.jpg',
+        alt: 'Bathroom at 1103/109 Clarendon Street, Southbank',
+        width: 2000,
+        height: 1333,
+      },
+      {
+        url: '/1103a-109-clarendon-st-southbank/balcony.jpg',
+        alt: 'Balcony at 1103/109 Clarendon Street, Southbank',
+        width: 1500,
+        height: 2000,
+      },
+      {
+        url: '/1103a-109-clarendon-st-southbank/views.jpg',
+        alt: 'Bay views from 109 Clarendon Street, Southbank',
+        width: 846,
+        height: 632,
+      },
+      {
+        url: '/1103a-109-clarendon-st-southbank/gym.jpg',
+        alt: 'Residents gym at 109 Clarendon Street, Southbank',
+        width: 842,
+        height: 631,
+      },
+      {
+        url: '/1103a-109-clarendon-st-southbank/building.jpg',
         alt: 'Building at 109 Clarendon Street, Southbank',
         width: 842,
         height: 593,
@@ -392,8 +438,10 @@ Contact our team about similar properties in the area.`,
   },
   {
     // Room in shared accommodation. $320/week all bills included, available
-    // 27 Nov 2026 per client email 17 Nov 2026 (309A and 309B are leased). No
-    // photos of this room supplied yet, so it uses the generic placeholder.
+    // 27 Nov 2026 per client email 17 Nov 2026 (309A and 309B are leased).
+    // Apartment photos and floor plan from Eamon's email 18 Nov 2026. The room
+    // photos in that email were ad graphics labelled 309A, 309B and 306C (none
+    // labelled 309C), so no room photo is shown until the client confirms.
     id: 'room-309c-60-waverley-rd-malvern-east',
     slug: 'room-309c-60-waverley-road-malvern-east',
     title: 'Room 309C, 60 Waverley Road, Malvern East',
@@ -408,10 +456,54 @@ Contact our team about similar properties in the area.`,
     state: 'VIC',
     postcode: '3145',
     bedrooms: 1,
-    heroImageUrl: '/photos-coming-soon.svg',
+    heroImageUrl: '/309-60-waverley-rd-malvern-east/living.jpg',
     description:
       'A private room in a shared apartment at 60 Waverley Road, Malvern East, available from 27 November 2026 at $320 per week with all bills included. Contact our team for details or to arrange an inspection.',
     features: ['Private room in shared apartment', 'All bills included'],
+    gallery: [
+      {
+        url: '/309-60-waverley-rd-malvern-east/living.jpg',
+        alt: 'Shared living area at 309/60 Waverley Road, Malvern East',
+        width: 1096,
+        height: 726,
+      },
+      {
+        url: '/309-60-waverley-rd-malvern-east/kitchen.jpg',
+        alt: 'Shared kitchen at 309/60 Waverley Road, Malvern East',
+        width: 1096,
+        height: 717,
+      },
+      {
+        url: '/309-60-waverley-rd-malvern-east/bathroom.jpg',
+        alt: 'Bathroom at 309/60 Waverley Road, Malvern East',
+        width: 1096,
+        height: 732,
+      },
+      {
+        url: '/309-60-waverley-rd-malvern-east/powder-room.jpg',
+        alt: 'Powder room at 309/60 Waverley Road, Malvern East',
+        width: 1096,
+        height: 726,
+      },
+      {
+        url: '/309-60-waverley-rd-malvern-east/terrace.jpg',
+        alt: 'Terrace at 60 Waverley Road, Malvern East',
+        width: 1096,
+        height: 732,
+      },
+      {
+        url: '/309-60-waverley-rd-malvern-east/building.jpg',
+        alt: 'Building at 60 Waverley Road, Malvern East',
+        width: 1518,
+        height: 1036,
+      },
+      {
+        url: '/309-60-waverley-rd-malvern-east/floorplan.jpg',
+        alt: 'Floor plan of 309/60 Waverley Road, Malvern East',
+        width: 1492,
+        height: 1054,
+      },
+    ],
     agent: {
       name: 'Eamon Chau',
       phone: '+61 413 889 388',

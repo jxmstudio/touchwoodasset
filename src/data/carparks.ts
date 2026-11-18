@@ -398,8 +398,9 @@ export const carparkBays: CarparkBay[] = [
 
   // ── 11 Daly Street, South Yarra ──────────────────────────────────────────
   // Bay 557: new listing per client email 16 Nov 2026. $240/month, rooftop,
-  // "available soon" per client email 17 Nov 2026. No bay photos supplied yet,
-  // so it uses the building's shared facility photo.
+  // "available soon" per client email 17 Nov 2026. Placeholder building photo
+  // and photo of another bay supplied by Eamon 18 Nov 2026, until he can
+  // photograph the bay itself.
   bay({
     bayNumber: '557',
     building: '11 Daly Street',
@@ -409,7 +410,11 @@ export const carparkBays: CarparkBay[] = [
     postcode: '3141',
     price: 240,
     status: 'COMING_SOON',
-    images: ['/carparks/11-daly-st-south-yarra/facility-1.jpeg'],
+    images: [
+      '/carparks/11-daly-st-south-yarra/bay-557/1.jpg',
+      '/carparks/11-daly-st-south-yarra/bay-557/2.jpg',
+      '/carparks/11-daly-st-south-yarra/facility-1.jpeg',
+    ],
     description:
       'Rooftop car park bay #557 at 11 Daly Street, South Yarra. Moments from Chapel Street, South Yarra Station and the Yarra trails. Available soon.',
   }),
